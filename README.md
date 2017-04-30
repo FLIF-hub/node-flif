@@ -14,6 +14,17 @@ Eventually you will be able to `npm install` this module.
 1. Create API documentation
 1. Add it to the NPM registry once functional.
 
+* * *
+
+## Supported Environments
+
+* Node v4.0.0+ (Tested in v0.10.32 and it wouldn't work)
+* Windows 32-Bit and 64-Bit
+* Ubuntu/Debian 32-Bit and 64-Bit
+* OSX 64-Bit ([Need maintainer for 32-bit support](https://github.com/FLIF-hub/node-flif/issues/3))
+
+* * *
+
 ## Planned API
 
 This is still being fleshed out.

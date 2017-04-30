@@ -2,7 +2,10 @@
 
 A Node wrapper for the FLIF executable.
 
+FLIF is a lossless image format designed with the web in mind. It has lots of great features. To learn more about the format go to [FLIF.info](http://flif.info).
+
 Eventually you will be able to `npm install` this module.
+
 
 ## TO-DO List
 

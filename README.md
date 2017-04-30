@@ -36,7 +36,7 @@ This is still being fleshed out.
 Convert your image **to** a FLIF.
 
 ```js
-var nodeFLIF = require('nodeFLIF');
+var nodeFLIF = require('node-flif');
 
 var encodeParams = {
     input: '/path/to/input-file.png', // Only accepts PNG, PNM, PPM, PGM, PBM, PAM
@@ -65,7 +65,7 @@ A note on `keepPalette`; by default, we read PNG images as 24-bit RGB or 32-bit 
 Convert your image **from** a FLIF.
 
 ```js
-var nodeFLIF = require('nodeFLIF');
+var nodeFLIF = require('node-flif');
 
 var decodeParams = {
     input: '/path/to/input-file.flif',
@@ -86,7 +86,7 @@ nodeFLIF.decode(decodeParams);
 Identify is a **synchronous** command that will return an `object` containing the name, dimensions, color, size, and interlace data about the image.
 
 ```js
-var nodeFLIF = require('nodeFLIF');
+var nodeFLIF = require('node-flif');
 
 var pizzaData = nodeFLIF.identify('./images/pizza.flif');
 
@@ -112,7 +112,7 @@ The above snippet will console log out an object similar to this:
 Gives you information about the breakpoints in an image to allow for truncated the file at different points. The breakpoints, or "truncation offsets", are for truncations at scales 1:8, 1:4, 1:2.
 
 ```js
-var nodeFLIF = require('nodeFLIF');
+var nodeFLIF = require('node-flif');
 
 var pizzaBreakpoints = nodeFLIF.breakpoints('./images/pizza.flif');
 

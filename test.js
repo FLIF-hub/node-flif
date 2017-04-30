@@ -10,12 +10,12 @@ function testIdentify () {
     var outputData = nodeFLIF.identify(outputFLIF);
 
     var testData = [
-        { 'item': catData.file,          'expectation': 'sample\\cat.flif' },
+        { 'item': catData.file,          'expectation': path.join('sample', 'cat.flif') },
         { 'item': catData.dimensions,    'expectation': '80x64' },
         { 'item': catData.color,         'expectation': '8-bit RGBA' },
         { 'item': catData.interlace,     'expectation': 'non-interlaced' },
         { 'item': catData.size,          'expectation': 103 },
-        { 'item': outputData.file,       'expectation': 'sample\\output.flif' },
+        { 'item': outputData.file,       'expectation': path.join('sample', 'output.flif') },
         { 'item': outputData.dimensions, 'expectation': '768x512' },
         { 'item': outputData.color,      'expectation': '8-bit RGB' },
         { 'item': outputData.interlace,  'expectation': 'interlaced' },

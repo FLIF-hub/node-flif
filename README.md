@@ -59,12 +59,10 @@ var nodeFLIF = require('nodeFLIF');
 var decodeParams = {
     input: '/path/to/input-file.flif',
     output: '/path/to/output-file.png', // Must end in one of these: .png, .pnm, .ppm, .pgm, .pbm, .pam
-   -i, --identify             do not decode, just identify the input FLIF file
-   -q, --quality=N            lossy decode quality percentage; default -q100
-   -s, --scale=N              lossy downscaled image at scale 1:N (2,4,8,16,32); default -s1
-   -r, --resize=WxH           lossy downscaled image to fit inside WxH (but typically smaller)
-   -f, --fit=WxH              lossy downscaled image to exactly WxH
-   -b, --breakpoints          report breakpoints (truncation offsets) for truncations at scales 1:8, 1:4, 1:2
+    quality: 100,           // 0-100 Lossy decode quality (default is 100)
+    scale: 1,               // Lossy downscaled image at scale 1:N (2,4,8,16,32) (default 1)
+    resize: 200x400,        // Lossy downscaled image to fit inside WxH (default uses input dimensions)
+    fit: 200x400            // Lossy downscaled image to exactly WxH (default uses input dimensions)
 };
 
 nodeFLIF.decode(decodeParams);
@@ -93,5 +91,30 @@ The above snippet will console log out an object similar to this:
     color: '8-bit RGB',
     interlace: 'interlaced',
     size: 475578
+}
+```
+
+* * *
+
+### Breakpoints
+
+Gives you information about the breakpoints in an image to allow for truncated the file at different points. The breakpoints, or "truncation offsets", are for truncations at scales 1:8, 1:4, 1:2.
+
+```js
+var nodeFLIF = require('nodeFLIF');
+
+var pizzaBreakpoints = nodeFLIF.breakpoints('./images/pizza.flif');
+
+console.log(pizzaBreakpoints);
+```
+
+The above snippet will console log out an object similar to this:
+
+```js
+{
+    offsetStart: 11,
+    eighth: 8080,
+    fourth: 24900,
+    half: 90422
 }
 ```

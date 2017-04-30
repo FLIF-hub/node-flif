@@ -61,8 +61,8 @@ var decodeParams = {
     output: '/path/to/output-file.png', // Must end in one of these: .png, .pnm, .ppm, .pgm, .pbm, .pam
     quality: 100,           // 0-100 Lossy decode quality (default is 100)
     scale: 1,               // Lossy downscaled image at scale 1:N (2,4,8,16,32) (default 1)
-    resize: 200x400,        // Lossy downscaled image to fit inside WxH (default uses input dimensions)
-    fit: 200x400            // Lossy downscaled image to exactly WxH (default uses input dimensions)
+    resize: '200x400',      // Lossy downscaled image to fit inside WxH (default uses input dimensions)
+    fit: '200x400'          // Lossy downscaled image to exactly WxH (default uses input dimensions)
 };
 
 nodeFLIF.decode(decodeParams);

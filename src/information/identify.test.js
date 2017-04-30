@@ -27,13 +27,16 @@ function testIdentify () {
         var expectation = testData[i].expectation;
         if (currentItem !== expectation) {
             var errMsg = '\n' +
-                'ERROR: \n' +
-                'Iterator: ' + i + '\n' +
-                'Expected: ' + expectation + '\n' +
-                'Actual: ' + currentItem;
+                'TEST: identify\n' +
+                'ERROR:\n' +
+                '  Iterator: ' + i + '\n' +
+                '  Expected: ' + expectation + '\n' +
+                '  Actual: ' + currentItem;
             throw errMsg;
         }
     }
+
+    return ['identify', testData.length];
 }
 
 module.exports = testIdentify;

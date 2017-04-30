@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 /* eslint-disable no-multi-spaces */
 /* eslint-disable no-unused-vars */
 
@@ -32,7 +33,6 @@ var unfinishedTests = [
     decode,
     encode,
     transcode,
-    endswith,
     executablePath,
     runCommand,
     runCommandSync,
@@ -43,6 +43,7 @@ var unfinishedTests = [
 
 // List all tests to be ran in order
 var allTestsToRun = [
+    endswith,
     identify
 ];
 
@@ -53,6 +54,8 @@ var allTestsToRun = [
 // //////////////////////////// //
 
 // Run all tests
+var results = 0;
+var testNames = [];
 allTestsToRun.forEach(function (test) {
     if (typeof(test) !== 'function') {
         var errMsg = '\n' +
@@ -61,5 +64,14 @@ allTestsToRun.forEach(function (test) {
         throw errMsg;
     }
 
-    test();
+    var result = test();
+    testNames.push(result[0]);
+    results = results + result[1];
 });
+
+var output = results + ' ' +
+    'Tests completed\n' +
+    'Tested:\n * ' +
+    testNames.join('\n * ');
+
+console.log(output);

@@ -9,7 +9,6 @@ module.exports = {
         "comma-spacing":               ["error", { "before": false, "after": true }],
         "comma-style":                 ["error", "last"],
         "indent":                      ["error", 4],
-        "linebreak-style":             ["error", "windows"],
         "no-multi-spaces":             ["error"],
         "no-ternary":                  ["error"],
         "one-var":                     ["error", "never"],

@@ -1,39 +1,65 @@
 /* eslint-disable no-multi-spaces */
+/* eslint-disable no-unused-vars */
 
-var nodeFLIF = require('./index.js');
-var path = require('path');
+// //////////////////////////// //
+//       IMPORT ALL TESTS       //
+// //////////////////////////// //
 
-function testIdentify () {
-    var catFLIF = path.join('.', 'sample', 'cat.flif');
-    var outputFLIF = path.join('.', 'sample', 'output.flif');
-    var catData = nodeFLIF.identify(catFLIF);
-    var outputData = nodeFLIF.identify(outputFLIF);
+// Pull in all conversion tests:
+var decode         = require('./src/conversion/decode.test.js');
+var encode         = require('./src/conversion/encode.test.js');
+var transcode      = require('./src/conversion/transcode.test.js');
 
-    var testData = [
-        { 'item': catData.file,          'expectation': path.join('sample', 'cat.flif') },
-        { 'item': catData.dimensions,    'expectation': '80x64' },
-        { 'item': catData.color,         'expectation': '8-bit RGBA' },
-        { 'item': catData.interlace,     'expectation': 'non-interlaced' },
-        { 'item': catData.size,          'expectation': 103 },
-        { 'item': outputData.file,       'expectation': path.join('sample', 'output.flif') },
-        { 'item': outputData.dimensions, 'expectation': '768x512' },
-        { 'item': outputData.color,      'expectation': '8-bit RGB' },
-        { 'item': outputData.interlace,  'expectation': 'interlaced' },
-        { 'item': outputData.size,       'expectation': 475578 }
-    ];
+// Pull in all helper tests
+var endswith       = require('./src/helpers/endswith.test.js');
+var executablePath = require('./src/helpers/executablePath.test.js');
+var runCommand     = require('./src/helpers/runCommand.test.js');
+var runCommandSync = require('./src/helpers/runCommandSync.test.js');
+var verifyParams   = require('./src/helpers/verifyParams.test.js');
 
-    for (var i = 0; i < testData.length; i++) {
-        var currentItem = testData[i].item;
-        var expectation = testData[i].expectation;
-        if (currentItem !== expectation) {
-            var errMsg = '\n' +
-                'ERROR: \n' +
-                'Iterator: ' + i + '\n' +
-                'Expected: ' + expectation + '\n' +
-                'Actual: ' + currentItem;
-            throw errMsg;
-        }
+// Pull in all information tests
+var breakpoints    = require('./src/information/breakpoints.test.js');
+var identify       = require('./src/information/identify.test.js');
+var version        = require('./src/information/version.test.js');
+
+
+// //////////////////////////// //
+//      WHAT SHOULD BE RAN      //
+// //////////////////////////// //
+
+// As these are finished, move them down to the allTestsToRun array.
+var unfinishedTests = [
+    decode,
+    encode,
+    transcode,
+    endswith,
+    executablePath,
+    runCommand,
+    runCommandSync,
+    verifyParams,
+    breakpoints,
+    version
+];
+
+// List all tests to be ran in order
+var allTestsToRun = [
+    identify
+];
+
+
+
+// //////////////////////////// //
+//        PERFORM TESTS         //
+// //////////////////////////// //
+
+// Run all tests
+allTestsToRun.forEach(function (test) {
+    if (typeof(test) !== 'function') {
+        var errMsg = '\n' +
+            'ERROR: \n' +
+            'Test: ' + test;
+        throw errMsg;
     }
-}
 
-testIdentify();
+    test();
+});

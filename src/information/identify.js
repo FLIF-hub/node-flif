@@ -1,5 +1,5 @@
 /**
- * Do not decode, just identify the input flif file.
+ * Does not decode, just identifies the input flif file.
  *
  * @param  {string} file The path to the flif file to inspect
  * @return {object}      Data about the provided flif, including:

@@ -5,7 +5,7 @@
 function version () {
     var fs = require('fs');
     var path = require('path');
-    var manifest = fs.readFileSync(path.join('..', '..', 'package.json'), 'utf-8');
+    var manifest = fs.readFileSync(path.join('package.json'), 'utf-8');
     manifest = JSON.parse(manifest);
     var versionInfo = {
         'nodeFLIF': manifest.version,

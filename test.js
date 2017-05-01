@@ -36,15 +36,15 @@ var unfinishedTests = [
     runCommand,
     runCommandSync,
     verifyParams,
-    breakpoints,
-    version
+    breakpoints
 ];
 
 // List all tests to be ran in order
 var allTestsToRun = [
     endswith,
     executablePath,
-    identify
+    identify,
+    version
 ];
 
 
@@ -56,6 +56,7 @@ var allTestsToRun = [
 // Run all tests
 var results = 0;
 var testNames = [];
+
 allTestsToRun.forEach(function (test) {
     if (typeof(test) !== 'function') {
         var errMsg = '\n' +

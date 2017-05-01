@@ -1,7 +1,8 @@
 /* eslint-disable no-multi-spaces */
 
-function testExecutablePath () {
-    var executablePath = require('./executablepath.js');
+function test () {
+    var testName = 'executablePath';
+    var subject = require('./' + testName.toLowerCase() + '.js');
     var os = process.platform;
     var arch = process.arch;
 
@@ -18,10 +19,10 @@ function testExecutablePath () {
         var currentOS = testData[i].os;
         var currentArch = testData[i].arch;
         var expectedPath = testData[i].path;
-        var actualPath = executablePath();
+        var actualPath = subject();
         if (os === currentOS && arch === currentArch && actualPath !== expectedPath) {
             var errMsg = '\n' +
-                'TEST: executablePath\n' +
+                'TEST: ' + testName + '\n' +
                 'ERROR:\n' +
                 '  Iterator: ' + i + '\n' +
                 '  OS: ' + currentOS + '\n' +
@@ -32,7 +33,7 @@ function testExecutablePath () {
         }
     }
 
-    return ['executablePath', testData.length];
+    return [testName, testData.length];
 }
 
-module.exports = testExecutablePath;
+module.exports = test;

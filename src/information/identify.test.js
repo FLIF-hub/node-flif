@@ -1,42 +1,43 @@
 /* eslint-disable no-multi-spaces */
 
-function testIdentify () {
-    var identify = require('./identify.js');
+function test () {
+    var testName = 'identify';
+    var subject = require('./' + testName.toLowerCase() + '.js');
     var path = require('path');
 
     var catFLIF = path.join('.', 'sample', 'cat.flif');
     var outputFLIF = path.join('.', 'sample', 'output.flif');
-    var catData = identify(catFLIF);
-    var outputData = identify(outputFLIF);
+    var catData = subject(catFLIF);
+    var outputData = subject(outputFLIF);
 
     var testData = [
-        { 'item': catData.file,          'expectation': path.join('sample', 'cat.flif') },
-        { 'item': catData.dimensions,    'expectation': '80x64' },
-        { 'item': catData.color,         'expectation': '8-bit RGBA' },
-        { 'item': catData.interlace,     'expectation': 'non-interlaced' },
-        { 'item': catData.size,          'expectation': 103 },
-        { 'item': outputData.file,       'expectation': path.join('sample', 'output.flif') },
-        { 'item': outputData.dimensions, 'expectation': '768x512' },
-        { 'item': outputData.color,      'expectation': '8-bit RGB' },
-        { 'item': outputData.interlace,  'expectation': 'interlaced' },
-        { 'item': outputData.size,       'expectation': 475578 }
+        { 'actual': catData.file,          'expectation': path.join('sample', 'cat.flif') },
+        { 'actual': catData.dimensions,    'expectation': '80x64' },
+        { 'actual': catData.color,         'expectation': '8-bit RGBA' },
+        { 'actual': catData.interlace,     'expectation': 'non-interlaced' },
+        { 'actual': catData.size,          'expectation': 103 },
+        { 'actual': outputData.file,       'expectation': path.join('sample', 'output.flif') },
+        { 'actual': outputData.dimensions, 'expectation': '768x512' },
+        { 'actual': outputData.color,      'expectation': '8-bit RGB' },
+        { 'actual': outputData.interlace,  'expectation': 'interlaced' },
+        { 'actual': outputData.size,       'expectation': 475578 }
     ];
 
     for (var i = 0; i < testData.length; i++) {
-        var currentItem = testData[i].item;
+        var actual = testData[i].actual;
         var expectation = testData[i].expectation;
-        if (currentItem !== expectation) {
+        if (actual !== expectation) {
             var errMsg = '\n' +
-                'TEST: identify\n' +
+                'TEST: ' + testName + '\n' +
                 'ERROR:\n' +
                 '  Iterator: ' + i + '\n' +
                 '  Expected: ' + expectation + '\n' +
-                '  Actual: ' + currentItem;
+                '  Actual: ' + actual;
             throw errMsg;
         }
     }
 
-    return ['identify', testData.length];
+    return [testName, testData.length];
 }
 
-module.exports = testIdentify;
+module.exports = test;

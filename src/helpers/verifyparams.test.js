@@ -1,7 +1,9 @@
 /* eslint-disable no-multi-spaces */
 
-function testVerifyParams () {
-    var verifyParams = require('./verifyparams.js');
+function test () {
+    var testName = 'verifyParams';
+    var subject = require('./' + testName.toLowerCase() + '.js');
+
     var testData = [
         // Test if params exist
         { 'src': 'encode',    'param': undefined,                              'expectation': false },
@@ -48,7 +50,7 @@ function testVerifyParams () {
     for (var i = 0; i < testData.length; i++) {
         var param = testData[i].param;
         var src = testData[i].src;
-        var actual = verifyParams(param, src, true);
+        var actual = subject(param, src, true);
         var expectation = testData[i].expectation;
 
         if (actual !== expectation) {
@@ -63,7 +65,7 @@ function testVerifyParams () {
         }
     }
 
-    return ['verifyParams', testData.length];
+    return [testName, testData.length];
 }
 
-module.exports = testVerifyParams;
+module.exports = test;

@@ -1,7 +1,8 @@
 /* eslint-disable no-multi-spaces */
 
-function testVersion () {
-    var version = require('./version.js');
+function test () {
+    var testName = 'version';
+    var subject = require('./' + testName.toLowerCase() + '.js');
     var testData = [
         { 'item': 'nodeFLIF', 'expectation': '0.1.0' },
         { 'item': 'flif',     'expectation': '0.3.0' }
@@ -10,10 +11,10 @@ function testVersion () {
     for (var i = 0; i < testData.length; i++) {
         var currentItem = testData[i].item;
         var expectation = testData[i].expectation;
-        var actual = version()[currentItem];
+        var actual = subject()[currentItem];
         if (actual !== expectation) {
             var errMsg = '\n' +
-                'TEST: version\n' +
+                'TEST: ' + testName + '\n' +
                 'ERROR:\n' +
                 '  Iterator: ' + i + '\n' +
                 '  Item: ' + currentItem + '\n' +
@@ -23,7 +24,7 @@ function testVersion () {
         }
     }
 
-    return ['version', testData.length];
+    return [testName, testData.length];
 }
 
-module.exports = testVersion;
+module.exports = test;

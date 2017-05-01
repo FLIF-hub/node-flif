@@ -1,7 +1,8 @@
 /* eslint-disable no-multi-spaces */
 
 function testEndsWith () {
-    var endsWith = require('./endswith.js');
+    var testName = 'endswith';
+    var subject = require('./' + testName.toLowerCase() + '.js');
 
     var testData = [
         { 'phrase': 'Batman',    'word': 'man',          'expectation': true },
@@ -21,19 +22,19 @@ function testEndsWith () {
         var word = testData[i].word;
         var expectation = testData[i].expectation;
 
-        if (endsWith(phrase, word) !== expectation) {
+        if (subject(phrase, word) !== expectation) {
             var errMsg = '\n' +
-                'TEST: endsWith\n' +
+                'TEST: ' + testName + '\n' +
                 'ERROR:\n' +
                 '  Iterator: ' + i + '\n' +
                 '  Phrase: ' + phrase + '\n' +
                 '  Word: ' + word + '\n' +
                 '  Expected: ' + expectation + '\n' +
-                '  Actual: ' + endsWith(phrase, word);
+                '  Actual: ' + subject(phrase, word);
             throw errMsg;
         }
     }
-    return ['endsWith', testData.length];
+    return [testName, testData.length];
 }
 
 module.exports = testEndsWith;

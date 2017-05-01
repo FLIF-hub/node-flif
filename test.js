@@ -35,7 +35,6 @@ var unfinishedTests = [
     transcode,
     runCommand,
     runCommandSync,
-    verifyParams,
     breakpoints
 ];
 
@@ -44,6 +43,7 @@ var allTestsToRun = [
     endswith,
     executablePath,
     identify,
+    verifyParams,
     version
 ];
 
@@ -71,7 +71,7 @@ allTestsToRun.forEach(function (test) {
 });
 
 var output = results + ' ' +
-    'Tests completed\n' +
+    'Tests passed.\n\n' +
     'Tested:\n * ' +
     testNames.join('\n * ');
 

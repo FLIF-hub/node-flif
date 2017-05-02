@@ -17,7 +17,7 @@ function runCommandSync (args) {
 
     var child = exec(executableAndArgs);
 
-    return child;
+    return child.toString();
 }
 
 module.exports = runCommandSync;

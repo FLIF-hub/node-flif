@@ -2,15 +2,16 @@
 
 function test () {
     var testName = 'runCommandSync';
-    // var subject = require('./' + testName.toLowerCase() + '.js');
+    var subject = require('./' + testName.toLowerCase() + '.js');
 
     var testData = [
-        { 'item': '', 'expectation': '' }
+        { 'cmd': '-v', 'expectation': 'FLIF (Free Lossless Image Format) 0.3 [28 April 2017]' }
     ];
 
     for (var i = 0; i < testData.length; i++) {
-        var actual = testData[i].actual;
+        var cmd = testData[i].cmd;
         var expectation = testData[i].expectation;
+        var actual = subject(cmd).trim();
         if (actual !== expectation) {
             var errMsg = '\n' +
                 'TEST: ' + testName + '\n' +

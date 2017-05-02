@@ -22,7 +22,7 @@ function identify (file) {
     var rawData = runCommandSync('-d -i ' + file);
 
     // 'sample\cat.flif: FLIF image, 80x64, 8-bit RGBA, non-interlaced'
-    var processedData = rawData.toString().trim();
+    var processedData = rawData.trim();
 
     // 'sample\cat.flif'
     var fileName = processedData.split(': ')[0];

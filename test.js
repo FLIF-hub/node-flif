@@ -33,7 +33,6 @@ var unfinishedTests = [
     decode,
     encode,
     transcode,
-    runCommand,
     runCommandSync,
     breakpoints
 ];
@@ -43,6 +42,7 @@ var allTestsToRun = [
     endswith,
     executablePath,
     identify,
+    runCommand,
     verifyParams,
     version
 ];

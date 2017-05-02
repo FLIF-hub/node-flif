@@ -2,26 +2,28 @@
 
 function test () {
     var testName = 'runCommand';
-    // var subject = require('./' + testName.toLowerCase() + '.js');
+    var subject = require('./' + testName.toLowerCase() + '.js');
 
     var testData = [
-        { 'actual': '', 'expectation': '' }
+        { 'cmd': '-v', 'expectation': 'FLIF (Free Lossless Image Format) 0.3 [28 April 2017]' }
     ];
 
     for (var i = 0; i < testData.length; i++) {
-        var actual = testData[i].actual;
+        var cmd = testData[i].cmd;
         var expectation = testData[i].expectation;
-        if (actual !== expectation) {
-            var errMsg = '\n' +
-                'TEST: ' + testName + '\n' +
-                'ERROR:\n' +
-                '  Iterator: ' + i + '\n' +
-                '  Expected: ' + expectation + '\n' +
-                '  Actual: ' + actual;
-            throw errMsg;
-        }
+        subject(cmd, function (actual) {
+            if (actual.trim() != expectation) {
+                var errMsg = '\n' +
+                    'TEST: ' + testName + '\n' +
+                    'ERROR:\n' +
+                    '  Iterator: ' + i + '\n' +
+                    '  Command: ' + cmd + '\n' +
+                    '  Expected: ' + expectation + '\n' +
+                    '  Actual: ' + actual;
+                throw errMsg;
+            }
+        });
     }
-
     return [testName, testData.length];
 }
 

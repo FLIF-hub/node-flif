@@ -12,7 +12,7 @@ function runCommand (args, callback) {
         throw 'The second argument to the runCommand method is meant to be a callback function.';
     }
 
-    var executablePath = require('executablepath.js');
+    var executablePath = require('./executablepath.js');
     var exec = require('child_process').exec;
     var flif = executablePath();
     var executableAndArgs = flif + ' ' + args;

@@ -67,12 +67,6 @@ function verifyParams (params, src, skipWarnings) {
         return false;
     }
 
-    /********************************
-
-    No test coverage after this point
-
-    ********************************/
-
     if (src === 'decode' && !endsWith(input, '.flif')) {
         warnUser('Decode input must be a .flif.');
         return false;
@@ -90,8 +84,8 @@ function verifyParams (params, src, skipWarnings) {
         return false;
     }
 
-    if (src === 'transcode' && !endsWith(input, '.flif') || !endsWith(output, '.flif')) {
-        warnUser('Decode input and output must be .flif files.');
+    if (src === 'transcode' && (!endsWith(input, '.flif') || !endsWith(output, '.flif'))) {
+        warnUser('Transcode input and output must be .flif files.');
         return false;
     }
 

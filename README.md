@@ -154,6 +154,8 @@ console.log(nodeFLIF.executablePath);
 
 // 'C:\\projects\\your-site\\node_modules\\node-flif\\executables\\win32\\flif.exe'
 var flifPath = path.join(process.cwd(), 'node_modules', 'node-flif', nodeFLIF.executablePath);
+```
+
 * * *
 
 ### Breakpoints :star:

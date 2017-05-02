@@ -30,9 +30,14 @@ Eventually you will be able to `npm install` this module.
 
 This is still being fleshed out.
 
+:star: Done, has tests
+:black_large_square: Done, no tests
+:white_square_button: Started, not done
+:white_large_square: Not Started
+
 * * *
 
-### Encode:
+### Encode :white_large_square:
 
 Convert your image **to** a FLIF.
 
@@ -40,8 +45,10 @@ Convert your image **to** a FLIF.
 var nodeFLIF = require('node-flif');
 
 var encodeParams = {
-    input: '/path/to/input-file.png', // Only accepts PNG, PNM, PPM, PGM, PBM, PAM
-    output: '/where/to/store/output-file.flif',
+    // Required encoding parameters
+    input: '/path/to/input-file.png',    // Must end in one of these: .png, .pnm, .ppm, .pgm, .pbm, .pam
+    output: '/path/to/output-file.flif', // Must end in .flif
+    // Common optional encoding parameters
     overwrite: false,       // Set to true to overwrite existing files on output (default is false)
     effort: 60,             // 0 = fast/poor compression, 100 = slowest/best? (default is 60)
     interlace: 'auto',      // true, false, or 'auto' (interlacing except on tiny images) (default is 'auto')
@@ -52,6 +59,7 @@ var encodeParams = {
     keepColorProfile: true, // Set to false to strip ICC color profile (default is true)
     keepPalette: false,     // Set to true to keep the existing PNG pallete. (default is false)
     frameDelay: 100,        // Pass in a single number or an array of numbers for animations. (default is 100)
+    // Advanced optional encoding parameters
 };
 
 nodeFLIF.encode(encodeParams);
@@ -61,7 +69,7 @@ A note on `keepPalette`; by default, we read PNG images as 24-bit RGB or 32-bit 
 
 * * *
 
-### Decode
+### Decode :white_large_square:
 
 Convert your image **from** a FLIF.
 
@@ -69,8 +77,10 @@ Convert your image **from** a FLIF.
 var nodeFLIF = require('node-flif');
 
 var decodeParams = {
-    input: '/path/to/input-file.flif',
+    // Required decoding parameters
+    input: '/path/to/input-file.flif',  // Must end in .flif
     output: '/path/to/output-file.png', // Must end in one of these: .png, .pnm, .ppm, .pgm, .pbm, .pam
+    // Advanced optional decoding parameters
     quality: 100,           // 0-100 Lossy decode quality (default is 100)
     scale: 1,               // Lossy downscaled image at scale 1:N (2,4,8,16,32) (default 1)
     resize: '200x400',      // Lossy downscaled image to fit inside WxH (default uses input dimensions)
@@ -82,7 +92,28 @@ nodeFLIF.decode(decodeParams);
 
 * * *
 
-### Identify
+# Transcode :white_large_square:
+
+Create a new FLIF from an existing FLIF with new settings.
+
+Accepts all the same parameters as Encode and Decode (combined).
+
+```js
+var nodeFLIF = require('node-flif');
+
+var transcodeParams = {
+    // Required transcoding parameters
+    input: '/path/to/input-file.flif',   // Must end in .flif
+    output: '/path/to/output-file.flif', // Must end in .flif
+    // All encoding and decoding parameters are accepted
+};
+
+nodeFLIF.decode(transcodeParams);
+```
+
+* * *
+
+### Identify :star:
 
 Identify is a **synchronous** command that will return an `object` containing the name, dimensions, color, size, and interlace data about the image.
 
@@ -108,7 +139,24 @@ The above snippet will console log out an object similar to this:
 
 * * *
 
-### Breakpoints
+### Executable Path :star:
+
+Returns a string of the internal path to the flif executable specific to your OS (win32/linux/darwin) and architecture (x86/x64).
+
+**Design rationale:** It is assumed that there will be some people who just want a copy of the built executable for thier system to use a CLI instead of using the Node wrapper.
+
+```js
+var path = require('path');
+var nodeFLIF = require('node-flif');
+
+// 'executables\\win32\\flif.exe'
+console.log(nodeFLIF.executablePath);
+
+// 'C:\\projects\\your-site\\node_modules\\node-flif\\executables\\win32\\flif.exe'
+var flifPath = path.join(process.cwd(), 'node_modules', 'node-flif', nodeFLIF.executablePath);
+* * *
+
+### Breakpoints :star:
 
 Gives you information about the breakpoints in an image to allow for truncated the file at different points. The breakpoints, or "truncation offsets", are for truncations at scales 1:8, 1:4, 1:2. This function runs **synchronously**. Non-interlaced flifs will return an empty object.
 
@@ -130,3 +178,30 @@ The above snippet will console log out an object similar to this:
     half: 90422
 }
 ```
+
+For non-interlaced flifs, you will get an empty object back. You can also detect if an image is interlaced or not by using `nodeFLIF.identify`.
+
+```js
+{}
+```
+
+* * *
+
+### Version :star:
+
+Returns the version of node-flif and the FLIF executable as an object.
+
+```js
+var nodeFLIF = require('node-flif');
+
+var nodeFLIFVersions = nodeFLIF.versions; // { nodeFLIF: '0.1.0', flif: '0.3.0' }
+var nodeFLIFVersion = nodeFLIF.version.nodeFLIF; // '0.1.0'
+var flifVersion = nodeFLIF.version.flif // '0.3.0'
+```
+
+Here is a table of each version of Node-FLIF and the corresponding version of FLIF that shipped with it.
+
+node-flif | flif
+:--       | :--
+0.1.0     | 0.3.0
+

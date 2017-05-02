@@ -30,9 +30,9 @@ Eventually you will be able to `npm install` this module.
 
 This is still being fleshed out.
 
-:star: Done, has tests
-:black_large_square: Done, no tests
-:white_square_button: Started, not done
+:star: Done, has tests  
+:black_large_square: Done, no tests  
+:white_square_button: Started, not done  
 :white_large_square: Not Started
 
 * * *

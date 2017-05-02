@@ -28,23 +28,24 @@ var version        = require('./src/information/version.test.js');
 //      WHAT SHOULD BE RAN      //
 // //////////////////////////// //
 
-// As these are finished, move them down to the allTestsToRun array.
-var unfinishedTests = [
-    decode,
-    encode,
-    transcode,
-    breakpoints
-];
-
-// List all tests to be ran in order
+// List of all tests to be ran in order
 var allTestsToRun = [
+    // Helpers
     endswith,
     executablePath,
-    identify,
     runCommand,
     runCommandSync,
     verifyParams,
+
+    // Information
+    breakpoints,
+    identify,
     version
+
+    // Conversion
+    // decode,
+    // encode,
+    // transcode
 ];
 
 

@@ -2,10 +2,20 @@
 
 function test () {
     var testName = 'breakpoints';
-    // var subject = require('./' + testName.toLowerCase() + '.js');
+    var subject = require('./' + testName.toLowerCase() + '.js');
+    var path = require('path');
+
+    var catFLIF = path.join('.', 'sample', 'cat.flif');
+    var outputFLIF = path.join('.', 'sample', 'output.flif');
+    var catData = subject(catFLIF);
+    var outputData = subject(outputFLIF);
 
     var testData = [
-        { 'actual': '', 'expectation': '' }
+        { 'actual': JSON.stringify(catData), 'expectation': JSON.stringify({}) },
+        { 'actual': outputData.offsetStart,  'expectation': 11                 },
+        { 'actual': outputData.eighth,       'expectation': 8080               },
+        { 'actual': outputData.fourth,       'expectation': 24900              },
+        { 'actual': outputData.half,         'expectation': 90422              }
     ];
 
     for (var i = 0; i < testData.length; i++) {

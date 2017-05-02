@@ -18,17 +18,14 @@ function identify (file) {
 
     var stats = fs.statSync(file);
 
-    // [115, 97, 109, 112, 108, 101, 9......]
-    var rawData = runCommandSync('-d -i ' + file);
-
     // 'sample\cat.flif: FLIF image, 80x64, 8-bit RGBA, non-interlaced'
-    var processedData = rawData.trim();
+    var rawData = runCommandSync('-d -i ' + file).trim();
 
     // 'sample\cat.flif'
-    var fileName = processedData.split(': ')[0];
+    var fileName = rawData.split(': ')[0];
 
     // 'FLIF image, 80x64, 8-bit RGBA, non-interlaced'
-    var info = processedData.split(': ')[1];
+    var info = rawData.split(': ')[1];
 
     // ["FLIF image", "80x64", "8-bit RGBA", "non-interlaced"]
     info = info.split(', ');

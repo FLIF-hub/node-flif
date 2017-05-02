@@ -49,6 +49,25 @@ var nodeFLIF = {
     // //////////////////////////// //
 
     /**
+     * Does not decode, just returns metadata about the breakpoints
+     * of interlaced flifs. This data can be used to truncate a file
+     * at different points. The breakpoints, or "truncation offsets",
+     * are for truncations at scales 1:8, 1:4, 1:2.
+     * This function runs synchronously.
+     * Non-interlaced flifs will return an empty object.
+     *
+     * @param  {string} file Filepath to the flif image.
+     * @return {object}      An object like the example below:
+     *  {
+            offsetStart: 11,
+            eighth: 8080,
+            fourth: 24900,
+            half: 90422
+        }
+     */
+    'breakpoints': require('./src/information/breakpoints.js'),
+
+    /**
      * Does not decode, just identifies the input flif file.
      *
      * @param  {string} file The path to the flif file to inspect

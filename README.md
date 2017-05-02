@@ -110,7 +110,7 @@ The above snippet will console log out an object similar to this:
 
 ### Breakpoints
 
-Gives you information about the breakpoints in an image to allow for truncated the file at different points. The breakpoints, or "truncation offsets", are for truncations at scales 1:8, 1:4, 1:2.
+Gives you information about the breakpoints in an image to allow for truncated the file at different points. The breakpoints, or "truncation offsets", are for truncations at scales 1:8, 1:4, 1:2. This function runs **synchronously**. Non-interlaced flifs will return an empty object.
 
 ```js
 var nodeFLIF = require('node-flif');

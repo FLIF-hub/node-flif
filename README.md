@@ -150,10 +150,10 @@ var path = require('path');
 var nodeFLIF = require('node-flif');
 
 // 'executables\\win32\\flif.exe'
-console.log(nodeFLIF.executablePath);
+var internalFlifPath = nodeFLIF.executablePath;
 
 // 'C:\\projects\\your-site\\node_modules\\node-flif\\executables\\win32\\flif.exe'
-var flifPath = path.join(process.cwd(), 'node_modules', 'node-flif', nodeFLIF.executablePath);
+var flifFullPath = path.join(process.cwd(), 'node_modules', 'node-flif', nodeFLIF.executablePath);
 ```
 
 * * *

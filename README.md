@@ -2,7 +2,7 @@
 
 A Node wrapper for the FLIF executable.
 
-FLIF is a lossless image format designed with the web in mind. It has lots of great features. To learn more about the format go to [FLIF.info](http://flif.info).
+FLIF is a lossless image format designed with the web in mind. It has lots of great features. To learn more about the format go to [FLIF.info](http://flif.info). This library is for a node module that wraps around a native executable for your platform. That executable performs the actions of encoding or decoding FLIF files.
 
 Eventually you will be able to `npm install` this module.
 

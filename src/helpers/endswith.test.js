@@ -1,7 +1,7 @@
 /* eslint-disable no-multi-spaces */
 
 function testEndsWith () {
-    var testName = 'endswith';
+    var testName = 'endsWith';
     var subject = require('./' + testName.toLowerCase() + '.js');
 
     var testData = [

@@ -60,12 +60,33 @@ var encodeParams = {
     keepPalette: false,     // Set to true to keep the existing PNG pallete. (default is false)
     frameDelay: 100,        // Pass in a single number or an array of numbers for animations. (default is 100)
     // Advanced optional encoding parameters
+    maxPaletteSize: 512,    // Max number of colors to store in a FLIF palette. PNG/GIF use 256. (FLIF default is 512)
+    colorBuckets: 'auto',   // true, false, or 'auto' (default is 'auto')
+    channelCompact: true,   // true or false (default is true)
+    ycocg: true,            // false will disable YCoCg transform and use G(R-G)(B-G) (default is true)
+    subtractGreen: true,    // false will disable YCoCg and SubtractGreen transform and use GRB (default is true)
+    frameShape: true,       // false will disable Frame_Shape transform (default is true)
+    maxFrameLookBack: 1,    // Max number of frames for Frame_Lookback (default is 1)
+    maniacRepeats: 2,       // MANIAC learning iterations; (default is 2)
+    maniacThreshold: 64,    // MANIAC tree growth split threshold, in bits saved (default is 64)
+    maniacDivisor: 30,      // MANIAC inner node count divisor (default is 30)
+    maniacMinSize: 50,      // MANIAC post-pruning threshold; (default is 50)
+    chanceCutoff: 2,        // Minimum chance, 0-4096 (default is 2)
+    chanceAlpha: 19,        // Chance decay factor (default is 19)
+    adaptive: false,        // true will apply an adaptive lossy encoding, 2nd input image is saliency map (default is false)
+    guess: 'heuristically', // Pixel predictor for each plane (Y, Co, Cg, Alpha, Lookback)
+                            // 'avgerage', 'median gradient', 'median number', 'mixed', defualt is 'heuristically'
+    alphaGuess: 'heuristically', // predictor for invisible pixels (only if keepAlpha is false)
+    chromaSubsample: false  // true to write an incomplete 4:2:0 chroma subsampled lossy FLIF file (default is false)
 };
 
 nodeFLIF.encode(encodeParams);
 ```
 
 A note on `keepPalette`; by default, we read PNG images as 24-bit RGB or 32-bit RGBA. node-flif will automatically use a palette if the number of colors turns out to be low (doesn't matter if the original PNG is PNG8 or PNG24/32). The order the colors are stored in the FLIF palette is not related to the PNG8 palette order. By default it sorts on luma, the first component of YCoCg. The option `keepPalette: true` makes it read/write PNG8, and preserve the palette order. The FLIF format itself supports any palette order (though sorted on luma is slightly more compact to encode), and it supports more than 256 colors too. The main advantage of `keepPalette: true` is that you get full control over the palette order, and also a better memory footprint (because everything stays at 8-bit per pixel, no intermediate representation as 24-bit / 32-bit RGBA).
+
+TODO: Test `adaptive` to see if it takes 3 image paths or just 2. If 3 accept filepath or false?
+TODO: Test `guess` to see if it can have multiple choices passed in for each plane, if so use object.
 
 * * *
 

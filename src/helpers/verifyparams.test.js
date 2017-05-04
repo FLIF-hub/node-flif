@@ -85,7 +85,7 @@ function test () {
         { 'expect': true,  'src': 'encode',    'param': { input: 'a.pbm',  output: 'a.flif' } },
         { 'expect': true,  'src': 'encode',    'param': { input: 'a.pam',  output: 'a.flif' } },
 
-        // Test known bads for input/ouput filetypes for encode
+        // Test known bad for input/ouput filetypes for encode
         { 'expect': false, 'src': 'encode',    'param': { input: 'potato', output: 'starch' } },
         { 'expect': false, 'src': 'encode',    'param': { input: 'a.flif', output: 'a.flif' } },
         { 'expect': false, 'src': 'encode',    'param': { input: 'a.png',  output: 'a.png'  } },
@@ -98,7 +98,7 @@ function test () {
         { 'expect': true,  'src': 'decode',    'param': { input: 'a.flif', output: 'a.pbm'  } },
         { 'expect': true,  'src': 'decode',    'param': { input: 'a.flif', output: 'a.pam'  } },
 
-        // Test known bads for input/ouput filetypes for decode
+        // Test known bad for input/ouput filetypes for decode
         { 'expect': false, 'src': 'decode',    'param': { input: 'taco',   output: 'rocket' } },
         { 'expect': false, 'src': 'decode',    'param': { input: 'a.flif', output: 'a.flif' } },
         { 'expect': false, 'src': 'decode',    'param': { input: 'a.png',  output: 'a.png'  } },
@@ -106,7 +106,7 @@ function test () {
         // Test known good input/output filetypes for transcode
         { 'expect': true,  'src': 'transcode', 'param': { input: 'a.flif', output: 'b.flif' } },
 
-        // Test known bads for input/ouput filetypes for transcode
+        // Test known bad for input/ouput filetypes for transcode
         { 'expect': false, 'src': 'transcode', 'param': { input: 'turtle', output: 'robot'  } },
         { 'expect': false, 'src': 'transcode', 'param': { input: 'a.png',  output: 'a.flif' } },
         { 'expect': false, 'src': 'transcode', 'param': { input: 'a.flif', output: 'a.png'  } },
@@ -278,7 +278,6 @@ function test () {
         { 'expect': false, 'src': 'decode',    'param': { input: 'a.flif', output: 'a.png',  scale: null        } },
         { 'expect': false, 'src': 'decode',    'param': { input: 'a.flif', output: 'a.png',  scale: true        } },
         { 'expect': false, 'src': 'decode',    'param': { input: 'a.flif', output: 'a.png',  scale: false       } },
-
 
         // Test known good for resize
         { 'expect': true,  'src': 'decode',    'param': { input: 'a.flif', output: 'a.png',  resize: '1x1'       } },

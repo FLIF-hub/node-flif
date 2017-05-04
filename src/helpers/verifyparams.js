@@ -7,6 +7,7 @@
  * @param  {boolean} skipWarnings This is used in our tests to not flag false positives.
  * @return {boolean}              True if params pass, false if there was a problem.
  */
+
 function verifyParams (params, src, skipWarnings) {
     var endsWith = require('./endsWith.js');
     skipWarnings = skipWarnings || false;
@@ -31,18 +32,31 @@ function verifyParams (params, src, skipWarnings) {
         }
     }
 
-    // Ensure params exists and is an object and not an array
+
+    // ////////////////////// //
+    //  Ensure params exists  //
+    // ////////////////////// //
     if (!params || typeof(params) !== 'object' || params.length !== undefined) {
         warnUser('You must pass an object into nodeFLIF.' + src);
         return false;
     }
 
     if (!src || typeof(src) !== 'string' || src.length < 2) {
-        warnUser('The type of paramater (encode, decode, transcode) is unknown.');
+        warnUser('The type of parameter (encode, decode, transcode) is unknown.');
         return false;
     }
 
-    if (!params.input || !params.output) {
+
+    // /////////////////////// //
+    //  Validate input/output  //
+    // /////////////////////// //
+
+    if (
+        !params.input ||
+        !params.output ||
+        typeof(params.input) !== 'string' ||
+        typeof(params.output) !== 'string'
+    ) {
         warnUser('You must pass in a path to your input and output files as a string.');
         return false;
     }
@@ -88,6 +102,139 @@ function verifyParams (params, src, skipWarnings) {
         warnUser('Transcode input and output must be .flif files.');
         return false;
     }
+
+
+    // /////////////////////////// //
+    //  Validating Common Options  //
+    // /////////////////////////// //
+
+    if (
+        params.overwrite === null ||
+        params.overwrite &&
+        typeof(params.overwrite) !== 'boolean'
+    ) {
+        warnUser('The overwrite parameter must be a boolean value.');
+        return false;
+    }
+
+    if (
+        params.quality === null ||
+        params.quality === false ||
+        params.quality &&
+        typeof(params.quality) !== 'number' ||
+        params.quality &&
+        (
+            params.quality > 100 ||
+            params.quality < 0 ||
+            // check if whole number
+            params.quality % 1 !== 0
+        )
+    ) {
+        warnUser('The quality parameter must be a whole number between 0 and 100.');
+        return false;
+    }
+
+    if (
+        params.keepMetaData === null ||
+        params.keepMetaData &&
+        typeof(params.keepMetaData) !== 'boolean'
+    ) {
+        warnUser('The keepMetaData parameter must be a boolean value.');
+        return false;
+    }
+
+    if (
+        params.keepColorProfile === null ||
+        params.keepColorProfile &&
+        typeof(params.keepColorProfile) !== 'boolean'
+    ) {
+        warnUser('The keepColorProfile parameter must be a boolean value.');
+        return false;
+    }
+
+    // ///////////////////////////// //
+    //  Validating Advanced Options  //
+    // ///////////////////////////// //
+
+    if (
+        params.crc === null ||
+        params.crc &&
+        typeof(params.crc) !== 'boolean'
+    ) {
+        warnUser('The crc parameter must be a boolean value.');
+        return false;
+    }
+
+    if (
+        params.keepPalette === null ||
+        params.keepPalette &&
+        typeof(params.keepPalette) !== 'boolean'
+    ) {
+        warnUser('The keepPalette parameter must be a boolean value.');
+        return false;
+    }
+
+    if (
+        params.scale === null ||
+        params.scale === false ||
+        params.scale &&
+        typeof(params.scale) !== 'number' ||
+        params.scale &&
+        (
+            params.scale !== 1 &&
+            params.scale !== 2 &&
+            params.scale !== 4 &&
+            params.scale !== 8 &&
+            params.scale !== 16 &&
+            params.scale !== 32
+        )
+    ) {
+        warnUser('The scale parameter must be one of the following numbers: 1, 2, 4, 8, 16, 32.');
+        return false;
+    }
+
+    if (params.resize && typeof(params.resize) !== 'string') {
+        warnUser('The resize parameter must be a string.');
+        return false;
+    }
+
+    if (
+        params.resize === null ||
+        params.resize === false ||
+        params.resize &&
+        (
+            params.resize.split('x').length !== 2 ||
+            isNaN(parseInt(params.resize.split('x')[0])) ||
+            isNaN(parseInt(params.resize.split('x')[1]))
+        )
+    ) {
+        warnUser('The resize parameter should be passed as WidthxHeight, like: 320x240.');
+        return false;
+    }
+
+    if (params.fit && typeof(params.fit) !== 'string') {
+        warnUser('The fit parameter must be a string.');
+        return false;
+    }
+
+    if (
+        params.fit === null ||
+        params.fit === false ||
+        params.fit &&
+        (
+            params.fit.split('x').length !== 2 ||
+            isNaN(parseInt(params.fit.split('x')[0])) ||
+            isNaN(parseInt(params.fit.split('x')[1]))
+        )
+    ) {
+        warnUser('The fit parameter should be passed as WidthxHeight, like: 320x240.');
+        return false;
+    }
+
+    // TODO:
+    // 1. Add in the rest of the parameters from encode/transcode for validation
+    // 2. Break this file up into a bunch of smaller files for each param with their own tests
+    // 3. Ensure that encode-only params fail when passed in to transcode/decode and vice versa
 
     return true;
 }

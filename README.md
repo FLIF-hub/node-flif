@@ -98,7 +98,7 @@ TODO: Test `guess` to see if it can have multiple choices passed in for each pla
 
 * * *
 
-### Decode :white_large_square:
+### Decode :white_square_button:
 
 Convert your image **from** a FLIF.
 
@@ -141,7 +141,7 @@ nodeFLIF.decode(decodeParams, function (data) {
 
 * * *
 
-# Transcode :white_large_square:
+### Transcode :white_large_square:
 
 Create a new FLIF from an existing FLIF with new settings.
 

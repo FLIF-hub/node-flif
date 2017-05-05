@@ -39,3 +39,4 @@ jspm_packages
 # Manually added
 .DS_Store
 thumbs.db
+sample/decode-test.png

@@ -1,4 +1,5 @@
 /* eslint-disable no-console */
+/* eslint-disable no-regex-spaces */
 
 /*
  flif -d [decode options] <input.flif> <output.pnm | output.pam | output.png>
@@ -38,11 +39,93 @@
     };
  * @return {boolean}        True if successful, false if there was a problem.
  */
-function decode (params) {
+function decode (params, callback) {
+    if (!params) {
+        throw 'You must pass parameters into node-flif decode.';
+    } else if (callback && typeof(callback) !== 'function') {
+        throw 'The second argument in node-flif decode is optional. However, it must be a function if used.';
+    }
+
     var verifyParams = require('../helpers/verifyparams.js');
-    verifyParams(params, 'decode');
-    console.log(params);
+    var paramsWereVerified = verifyParams(params, 'decode');
+    if (!paramsWereVerified) {
+        return false;
+    }
+
+    var input = params.input;
+    var output = params.output;
+
+    var crc = '';
+    var keepMetaData = '';
+    var keepColorProfile = '';
+    var overwrite = '';
+    var keepPalette = '';
+    var quality = '';
+    var scale = '';
+    var resize = '';
+    var fit = '';
+
+    if (params.crc === false) {
+        crc = '-c';
+    }
+    if (params.keepMetaData === false) {
+        keepMetaData = '-m';
+    }
+    if (params.keepColorProfile === false) {
+        keepColorProfile = '-p';
+    }
+    if (params.overwrite === true) {
+        overwrite = '-o';
+    }
+    if (params.keepPalette === false) {
+        keepPalette = '-k';
+    }
+    if (params.quality) {
+        quality = '-q=' + parseInt(params.quality);
+    }
+    if (params.scale) {
+        scale = '-s=' + parseInt(params.scale);
+    }
+    if (params.resize) {
+        resize = '-r=' + parseInt(params.resize.width) + 'x' + parseInt(params.resize.height);
+    }
+    if (params.fit) {
+        fit = '-f=' + parseInt(params.fit.width) + 'x' + parseInt(params.fit.height);
+    }
+
+    var options = [
+        crc,
+        keepMetaData,
+        keepColorProfile,
+        overwrite,
+        keepPalette,
+        quality,
+        scale,
+        resize,
+        fit
+    ].join(' ');
+
+    // -c -m  -k      -s=2   -f=100x100 ==> -c -m -k -s=2 -f=100x100
+    options = options.replace(/  +/g, ' ');
+    options = options.trim();
+
+    // -d -c -m -p -o -k -q=100 -s=2 -r=100x100 -f=100x100 "input file.flif" "output file.png"
+    var arguments = '-d ' + options + ' "' + input + '" "' + output + '"';
+
+    if (params.async === false) {
+        var runCommandSync = require('../helpers/runCommandSync.js');
+        return runCommandSync(arguments);
+    } else {
+        var runCommand = require('../helpers/runCommand.js');
+        if (callback && typeof(callback) === 'function') {
+            runCommand(arguments, callback);
+        } else {
+            runCommand(arguments);
+        }
+    }
 }
+
+// TODO: Separate out the building of the args and the running of the command to two different files
 
 module.exports = decode;
 

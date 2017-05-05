@@ -49,6 +49,7 @@ var encodeParams = {
     input: '/path/to/input-file.png',    // Must end in one of these: .png, .pnm, .ppm, .pgm, .pbm, .pam
     output: '/path/to/output-file.flif', // Must end in .flif
     // Common optional encoding parameters
+    async: true,            // Set to false to run this as a synchronous encoding
     overwrite: false,       // Set to true to overwrite existing files on output (default is false)
     effort: 60,             // 0 = fast/poor compression, 100 = slowest/best? (default is 60)
     interlace: 'auto',      // true, false, or 'auto' (interlacing except on tiny images) (default is 'auto')
@@ -80,7 +81,14 @@ var encodeParams = {
     chromaSubsample: false  // true to write an incomplete 4:2:0 chroma subsampled lossy FLIF file (default is false)
 };
 
-nodeFLIF.encode(encodeParams);
+// By default encode is asynchronous, and can accept an optional callback.
+// If you set the async param to false and pass in a callback it will be ignored.
+nodeFLIF.encode(endcodeParams, function (data) {
+    console.log('Endcode finished.');
+    if (data) {
+        console.log(data);
+    }
+});
 ```
 
 A note on `keepPalette`; by default, we read PNG images as 24-bit RGB or 32-bit RGBA. node-flif will automatically use a palette if the number of colors turns out to be low (doesn't matter if the original PNG is PNG8 or PNG24/32). The order the colors are stored in the FLIF palette is not related to the PNG8 palette order. By default it sorts on luma, the first component of YCoCg. The option `keepPalette: true` makes it read/write PNG8, and preserve the palette order. The FLIF format itself supports any palette order (though sorted on luma is slightly more compact to encode), and it supports more than 256 colors too. The main advantage of `keepPalette: true` is that you get full control over the palette order, and also a better memory footprint (because everything stays at 8-bit per pixel, no intermediate representation as 24-bit / 32-bit RGBA).
@@ -102,6 +110,7 @@ var decodeParams = {
     input: '/path/to/input-file.flif',  // Must end in .flif
     output: '/path/to/output-file.png', // Must end in one of these: .png, .pnm, .ppm, .pgm, .pbm, .pam
     // Common optional decoding parameters
+    async: true,            // Set to false to run this as a synchronous encoding
     overwrite: false,       // Set to true to overwrite existing files on output (default is false)
     quality: 100,           // 0-100 Lossy decode quality (default is 100)
     keepMetaData: true,     // Set to false to strip EXIF/XMP metadata (default is true)
@@ -110,11 +119,24 @@ var decodeParams = {
     crc: true,              // Set to false to skip verifying/adding CRC (default is true)
     keepPalette: false,     // Set to true to keep the existing PNG pallete. (default is false)
     scale: 1,               // Lossy downscaled image at scale 1:N (2,4,8,16,32) (default 1)
-    resize: '200x400',      // Lossy downscaled image to fit inside WxH (default uses input dimensions)
-    fit: '200x400'          // Lossy downscaled image to exactly WxH (default uses input dimensions)
+    resize: {               // Lossy downscaled image to fit inside given Width/Height (default uses input dimensions)
+        width: 200,
+        height: 400
+    },
+    fit: {                  // Lossy downscaled image to exactly the given Width/Height (default uses input dimensions)
+        width: 200,
+        height: 400
+    }
 };
 
-nodeFLIF.decode(decodeParams);
+// By default encode is asynchronous, and can accept an optional callback.
+// If you set the async param to false and pass in a callback it will be ignored.
+nodeFLIF.decode(decodeParams, function (data) {
+    console.log('Decode finished.');
+    if (data) {
+        console.log(data);
+    }
+});
 ```
 
 * * *
@@ -135,7 +157,14 @@ var transcodeParams = {
     // All encoding and decoding parameters are accepted
 };
 
-nodeFLIF.decode(transcodeParams);
+// By default encode is asynchronous, and can accept an optional callback.
+// If you set the async param to false and pass in a callback it will be ignored.
+nodeFLIF.transcode(transcodeParams, function (data) {
+    console.log('Transcode finished.');
+    if (data) {
+        console.log(data);
+    }
+});
 ```
 
 * * *

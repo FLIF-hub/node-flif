@@ -109,6 +109,15 @@ function verifyParams (params, src, skipWarnings) {
     // /////////////////////////// //
 
     if (
+        params.async === null ||
+        params.async &&
+        typeof(params.async) !== 'boolean'
+    ) {
+        warnUser('The async parameter must be a boolean value.');
+        return false;
+    }
+
+    if (
         params.overwrite === null ||
         params.overwrite &&
         typeof(params.overwrite) !== 'boolean'
@@ -193,8 +202,8 @@ function verifyParams (params, src, skipWarnings) {
         return false;
     }
 
-    if (params.resize && typeof(params.resize) !== 'string') {
-        warnUser('The resize parameter must be a string.');
+    if (params.resize && typeof(params.resize) !== 'object') {
+        warnUser('The resize parameter must be a object.');
         return false;
     }
 
@@ -203,17 +212,23 @@ function verifyParams (params, src, skipWarnings) {
         params.resize === false ||
         params.resize &&
         (
-            params.resize.split('x').length !== 2 ||
-            isNaN(parseInt(params.resize.split('x')[0])) ||
-            isNaN(parseInt(params.resize.split('x')[1]))
+            Object.keys(params.resize).length !== 2 ||
+            params.resize.width === false ||
+            params.resize.height === false ||
+            params.resize.width === true ||
+            params.resize.height === true ||
+            isNaN(parseInt(params.resize.width)) ||
+            isNaN(parseInt(params.resize.height)) ||
+            params.resize.width < 0 ||
+            params.resize.height < 0
         )
     ) {
-        warnUser('The resize parameter should be passed as WidthxHeight, like: 320x240.');
+        warnUser('The resize parameter should be an object. Example: { width: 320, height: 240 }.');
         return false;
     }
 
-    if (params.fit && typeof(params.fit) !== 'string') {
-        warnUser('The fit parameter must be a string.');
+    if (params.fit && typeof(params.fit) !== 'object') {
+        warnUser('The fit parameter must be a object.');
         return false;
     }
 
@@ -222,12 +237,18 @@ function verifyParams (params, src, skipWarnings) {
         params.fit === false ||
         params.fit &&
         (
-            params.fit.split('x').length !== 2 ||
-            isNaN(parseInt(params.fit.split('x')[0])) ||
-            isNaN(parseInt(params.fit.split('x')[1]))
+            Object.keys(params.fit).length !== 2 ||
+            params.fit.width === false ||
+            params.fit.height === false ||
+            params.fit.width === true ||
+            params.fit.height === true ||
+            isNaN(parseInt(params.fit.width)) ||
+            isNaN(parseInt(params.fit.height)) ||
+            params.fit.width < 0 ||
+            params.fit.height < 0
         )
     ) {
-        warnUser('The fit parameter should be passed as WidthxHeight, like: 320x240.');
+        warnUser('The fit parameter should be an object. Example: { width: 320, height: 240 }.');
         return false;
     }
 

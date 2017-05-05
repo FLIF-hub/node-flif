@@ -17,17 +17,14 @@ function runCommand (args, callback) {
     var flif = executablePath();
     var executableAndArgs = flif + ' ' + args;
 
-    var child = exec(executableAndArgs,
-        function (error) {
-            if (error !== null) {
-                throw 'Executable Error: ' + error;
-            }
+    exec(executableAndArgs, function (error, stdout) {
+        if (error !== null) {
+            throw 'Executable Error: ' + error;
         }
-    );
-    // Return data from command line
-    child.stdout.on('data', function (chunk) {
-        if (callback) {
-            callback(chunk);
+        if (stdout && callback) {
+            callback(stdout);
+        } else if (callback) {
+            callback();
         }
     });
 }

@@ -22,25 +22,34 @@ var nodeFLIF = {
     //        FILE CONVERSION       //
     // //////////////////////////// //
 
-    /**
-     * Encodes your PNG/PNM/PPM/PGM/PBM/PAM to a flif.
-     * @param  {object}  params Parameters for the encoding passed in by the user.
-     * @return {boolean}        True if successful, false if there was a problem.
-     */
     'encode': require('./src/conversion/encode.js'),
-
     /**
      * Decodes your FLIF to a PNG, PNM, PPM, PGM, PBM, or PAM.
-     * @param  {object}  params Parameters for the decoding passed in by the user.
-     * @return {boolean}        True if successful, false if there was a problem.
+     * @param  {object}   params   Parameters for the decoding passed in by the user.
+     * @param  {function} callback Optional callback function, ignored if async param is false
      */
-    'decode': require('./src/conversion/decode.js'),
+    'decode': function (params, callback) {
+        if (!params) {
+            throw 'You must pass parameters into node-flif decode.';
+        } else if (callback && typeof(callback) !== 'function') {
+            throw 'The second argument in node-flif decode is optional. However if used, it must be a function.';
+        }
 
-    /**
-     * Transcodes your FLIF to a new FLIF.
-     * @param  {object}  params Parameters for the transcoding passed in by the user.
-     * @return {boolean}        True if successful, false if there was a problem.
-     */
+        var buildDecodeArgs = require('./src/conversion/decode.js');
+        var arguments = buildDecodeArgs(params);
+
+        if (params.async === false) {
+            var runCommandSync = require('./src/helpers/runCommandSync.js');
+            return runCommandSync(arguments);
+        } else {
+            var runCommand = require('./src/helpers/runCommand.js');
+            if (callback && typeof(callback) === 'function') {
+                runCommand(arguments, callback);
+            } else {
+                runCommand(arguments);
+            }
+        }
+    },
     'transcode': require('./src/conversion/transcode.js'),
 
 

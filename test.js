@@ -40,10 +40,10 @@ var allTestsToRun = [
     // Information
     breakpoints,
     identify,
-    version
+    version,
 
     // Conversion
-    // decode,
+    decode
     // encode,
     // transcode
 ];

@@ -2,7 +2,7 @@
 
 * * *
 
-# NOTE READY FOR USE YET
+# NOT READY FOR USE YET
 ### Star & Watch for updates
 
 * * *

@@ -1,18 +1,19 @@
 # node-flif
 
+* * *
+
+# NOTE READY FOR USE YET
+### Star & Watch for updates
+
+* * *
+
 A Node wrapper for the FLIF executable.
 
-FLIF is a lossless image format designed with the web in mind. It has lots of great features. To learn more about the format go to [FLIF.info](http://flif.info). This library is for a node module that wraps around a native executable for your platform. That executable performs the actions of encoding or decoding FLIF files.
+FLIF is a lossless image format designed with the web in mind. It has lots of great features. To learn more about the format go to [FLIF.info](http://flif.info).
+
+This library is for a node module that wraps around a native executable for your platform. That executable performs the actions of encoding or decoding FLIF files.
 
 Eventually you will be able to `npm install` this module.
-
-
-## TO-DO List
-
-* [x] Do builds for each version of FLIF.exe (Win/Lin/OSX).
-* [ ] Create a simple wrapper that allows passing in a parameter object that will abstract out the native executable switches.
-* [ ] Create API documentation
-* [ ] Add it to the NPM registry once functional.
 
 * * *
 
@@ -23,6 +24,14 @@ Eventually you will be able to `npm install` this module.
 * Ubuntu/Debian 32-Bit and 64-Bit
 * No OSX 64-Bit support ([Need help on building portable FLIF executable for this platform](https://github.com/FLIF-hub/node-flif/issues/4))
 * No OSX 32-Bit support ([Need maintainer for 32-bit support](https://github.com/FLIF-hub/node-flif/issues/3))
+
+* * *
+
+## TO-DO List
+
+* [x] Create API documentation (Subject to change prior to v1.0.0)
+* [ ] Create a simple wrapper that allows passing in a parameter object that will abstract out the native executable switches.
+* [ ] Add it to the NPM registry once functional.
 
 * * *
 
@@ -98,7 +107,7 @@ TODO: Test `guess` to see if it can have multiple choices passed in for each pla
 
 * * *
 
-### Decode :white_square_button:
+### Decode :star:
 
 Convert your image **from** a FLIF.
 

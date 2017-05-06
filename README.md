@@ -22,8 +22,8 @@ Eventually you will be able to `npm install` this module.
 * Node v4.0.0+ (Tested in v0.10.32 and it wouldn't work)
 * Windows 32-Bit and 64-Bit
 * Ubuntu/Debian 32-Bit and 64-Bit
-* No OSX 64-Bit support ([Need help on building portable FLIF executable for this platform](https://github.com/FLIF-hub/node-flif/issues/4))
-* No OSX 32-Bit support ([Need maintainer for 32-bit support](https://github.com/FLIF-hub/node-flif/issues/3))
+* **No OSX 64-Bit support** ([Need help on building portable FLIF executable for this platform](https://github.com/FLIF-hub/node-flif/issues/4))
+* **No OSX 32-Bit support** ([Need maintainer for 32-bit support](https://github.com/FLIF-hub/node-flif/issues/3))
 
 * * *
 

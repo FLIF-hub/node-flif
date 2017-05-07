@@ -5,7 +5,7 @@ function test () {
     var subject = require('./' + testName.toLowerCase() + '.js');
 
     var testData = [
-        // Test if params exist
+    // Test if params exist
         { 'expect': false, 'src': 'encode',    'param': undefined                             },
         { 'expect': false, 'src': 'encode',    'param': null                                  },
         { 'expect': false, 'src': 'encode',    'param': true                                  },
@@ -15,7 +15,7 @@ function test () {
         { 'expect': false, 'src': 'encode',    'param': []                                    },
         { 'expect': false, 'src': 'encode',    'param': {}                                    },
 
-        // Test if src exists
+    // Test if src exists
         { 'expect': false, 'src': undefined,   'param': { input: 'a.png',  output: 'a.flif' } },
         { 'expect': false, 'src': null,        'param': { input: 'a.png',  output: 'a.flif' } },
         { 'expect': false, 'src': true,        'param': { input: 'a.png',  output: 'a.flif' } },
@@ -25,7 +25,7 @@ function test () {
         { 'expect': false, 'src': [],          'param': { input: 'a.png',  output: 'a.flif' } },
         { 'expect': false, 'src': {},          'param': { input: 'a.png',  output: 'a.flif' } },
 
-        // Test if input/output exists
+    // Test if input/output exists
         { 'expect': false, 'src': 'encode',    'param': { input: 'a.png'                    } },
         { 'expect': false, 'src': 'decode',    'param': { input: 'a.png'                    } },
         { 'expect': false, 'src': 'transcode', 'param': { input: 'a.png'                    } },
@@ -33,7 +33,7 @@ function test () {
         { 'expect': false, 'src': 'decode',    'param': {                  output: 'a.flif' } },
         { 'expect': false, 'src': 'transcode', 'param': {                  output: 'a.flif' } },
 
-        // Test if input/output are strings
+    // Test if input/output are strings
         { 'expect': false, 'src': 'encode',    'param': { input: undefined, output: 'a.flif'  } },
         { 'expect': false, 'src': 'decode',    'param': { input: undefined, output: 'a.png'   } },
         { 'expect': false, 'src': 'transcode', 'param': { input: undefined, output: 'a.flif'  } },
@@ -77,7 +77,7 @@ function test () {
         { 'expect': false, 'src': 'decode',    'param': { input: 'a.flif',  output: {a: 'b'}  } },
         { 'expect': false, 'src': 'transcode', 'param': { input: 'a.flif',  output: {a: 'b'}  } },
 
-        // Test known good input/output filetypes for encode
+    // Test known good input/output filetypes for encode
         { 'expect': true,  'src': 'encode',    'param': { input: 'a.png',  output: 'a.flif' } },
         { 'expect': true,  'src': 'encode',    'param': { input: 'a.pnm',  output: 'a.flif' } },
         { 'expect': true,  'src': 'encode',    'param': { input: 'a.ppm',  output: 'a.flif' } },
@@ -85,12 +85,12 @@ function test () {
         { 'expect': true,  'src': 'encode',    'param': { input: 'a.pbm',  output: 'a.flif' } },
         { 'expect': true,  'src': 'encode',    'param': { input: 'a.pam',  output: 'a.flif' } },
 
-        // Test known bad for input/ouput filetypes for encode
+    // Test known bad for input/ouput filetypes for encode
         { 'expect': false, 'src': 'encode',    'param': { input: 'potato', output: 'starch' } },
         { 'expect': false, 'src': 'encode',    'param': { input: 'a.flif', output: 'a.flif' } },
         { 'expect': false, 'src': 'encode',    'param': { input: 'a.png',  output: 'a.png'  } },
 
-        // Test known good input/output filetypes for decode
+    // Test known good input/output filetypes for decode
         { 'expect': true,  'src': 'decode',    'param': { input: 'a.flif', output: 'a.png'  } },
         { 'expect': true,  'src': 'decode',    'param': { input: 'a.flif', output: 'a.pnm'  } },
         { 'expect': true,  'src': 'decode',    'param': { input: 'a.flif', output: 'a.ppm'  } },
@@ -98,20 +98,20 @@ function test () {
         { 'expect': true,  'src': 'decode',    'param': { input: 'a.flif', output: 'a.pbm'  } },
         { 'expect': true,  'src': 'decode',    'param': { input: 'a.flif', output: 'a.pam'  } },
 
-        // Test known bad for input/ouput filetypes for decode
+    // Test known bad for input/ouput filetypes for decode
         { 'expect': false, 'src': 'decode',    'param': { input: 'taco',   output: 'rocket' } },
         { 'expect': false, 'src': 'decode',    'param': { input: 'a.flif', output: 'a.flif' } },
         { 'expect': false, 'src': 'decode',    'param': { input: 'a.png',  output: 'a.png'  } },
 
-        // Test known good input/output filetypes for transcode
+    // Test known good input/output filetypes for transcode
         { 'expect': true,  'src': 'transcode', 'param': { input: 'a.flif', output: 'b.flif' } },
 
-        // Test known bad for input/ouput filetypes for transcode
+    // Test known bad for input/ouput filetypes for transcode
         { 'expect': false, 'src': 'transcode', 'param': { input: 'turtle', output: 'robot'  } },
         { 'expect': false, 'src': 'transcode', 'param': { input: 'a.png',  output: 'a.flif' } },
         { 'expect': false, 'src': 'transcode', 'param': { input: 'a.flif', output: 'a.png'  } },
 
-        // Test known good for async
+    // Test known good for async
         { 'expect': true,  'src': 'encode',    'param': { input: 'a.png',  output: 'a.flif', async: true      } },
         { 'expect': true,  'src': 'decode',    'param': { input: 'a.flif', output: 'a.png',  async: true      } },
         { 'expect': true,  'src': 'transcode', 'param': { input: 'a.flif', output: 'a.flif', async: true      } },
@@ -119,7 +119,7 @@ function test () {
         { 'expect': true,  'src': 'decode',    'param': { input: 'a.flif', output: 'a.png',  async: false     } },
         { 'expect': true,  'src': 'transcode', 'param': { input: 'a.flif', output: 'a.flif', async: false     } },
 
-        // Test known bad for async
+    // Test known bad for async
         { 'expect': false, 'src': 'encode',    'param': { input: 'a.png',  output: 'a.flif', async: 'a'       } },
         { 'expect': false, 'src': 'decode',    'param': { input: 'a.flif', output: 'a.png',  async: 'a'       } },
         { 'expect': false, 'src': 'transcode', 'param': { input: 'a.flif', output: 'a.flif', async: 'a'       } },
@@ -136,7 +136,7 @@ function test () {
         { 'expect': false, 'src': 'decode',    'param': { input: 'a.flif', output: 'a.png',  async: 8         } },
         { 'expect': false, 'src': 'transcode', 'param': { input: 'a.flif', output: 'a.flif', async: 8         } },
 
-        // Test known good for overwrite
+    // Test known good for overwrite
         { 'expect': true,  'src': 'encode',    'param': { input: 'a.png',  output: 'a.flif', overwrite: true      } },
         { 'expect': true,  'src': 'decode',    'param': { input: 'a.flif', output: 'a.png',  overwrite: true      } },
         { 'expect': true,  'src': 'transcode', 'param': { input: 'a.flif', output: 'a.flif', overwrite: true      } },
@@ -144,7 +144,7 @@ function test () {
         { 'expect': true,  'src': 'decode',    'param': { input: 'a.flif', output: 'a.png',  overwrite: false     } },
         { 'expect': true,  'src': 'transcode', 'param': { input: 'a.flif', output: 'a.flif', overwrite: false     } },
 
-        // Test known bad for overwrite
+    // Test known bad for overwrite
         { 'expect': false, 'src': 'encode',    'param': { input: 'a.png',  output: 'a.flif', overwrite: 'a'       } },
         { 'expect': false, 'src': 'decode',    'param': { input: 'a.flif', output: 'a.png',  overwrite: 'a'       } },
         { 'expect': false, 'src': 'transcode', 'param': { input: 'a.flif', output: 'a.flif', overwrite: 'a'       } },
@@ -161,7 +161,7 @@ function test () {
         { 'expect': false, 'src': 'decode',    'param': { input: 'a.flif', output: 'a.png',  overwrite: 8         } },
         { 'expect': false, 'src': 'transcode', 'param': { input: 'a.flif', output: 'a.flif', overwrite: 8         } },
 
-        // Test known good for quality
+    // Test known good for quality
         { 'expect': true,  'src': 'encode',    'param': { input: 'a.png',  output: 'a.flif', quality: 0           } },
         { 'expect': true,  'src': 'decode',    'param': { input: 'a.flif', output: 'a.png',  quality: 0           } },
         { 'expect': true,  'src': 'transcode', 'param': { input: 'a.flif', output: 'a.flif', quality: 0           } },
@@ -175,12 +175,12 @@ function test () {
         { 'expect': true,  'src': 'decode',    'param': { input: 'a.flif', output: 'a.png',  quality: 100         } },
         { 'expect': true,  'src': 'transcode', 'param': { input: 'a.flif', output: 'a.flif', quality: 100         } },
 
-        // Test random number from 0-100 on quality
+    // Test random number from 0-100 on quality
         { 'expect': true,  'src': 'encode',    'param': { input: 'a.png',  output: 'a.flif', quality: Math.round(Math.random() * 100) } },
         { 'expect': true,  'src': 'decode',    'param': { input: 'a.flif', output: 'a.png',  quality: Math.round(Math.random() * 100) } },
         { 'expect': true,  'src': 'transcode', 'param': { input: 'a.flif', output: 'a.flif', quality: Math.round(Math.random() * 100) } },
 
-        // Test known bad for quality
+    // Test known bad for quality
         { 'expect': false, 'src': 'encode',    'param': { input: 'a.png',  output: 'a.flif', quality: 101         } },
         { 'expect': false, 'src': 'decode',    'param': { input: 'a.flif', output: 'a.png',  quality: 101         } },
         { 'expect': false, 'src': 'transcode', 'param': { input: 'a.flif', output: 'a.flif', quality: 101         } },
@@ -209,7 +209,7 @@ function test () {
         { 'expect': false, 'src': 'decode',    'param': { input: 'a.flif', output: 'a.png',  quality: false       } },
         { 'expect': false, 'src': 'transcode', 'param': { input: 'a.flif', output: 'a.flif', quality: false       } },
 
-        // Test known good for keepMetaData
+    // Test known good for keepMetaData
         { 'expect': true,  'src': 'encode',    'param': { input: 'a.png',  output: 'a.flif', keepMetaData: true      } },
         { 'expect': true,  'src': 'decode',    'param': { input: 'a.flif', output: 'a.png',  keepMetaData: true      } },
         { 'expect': true,  'src': 'transcode', 'param': { input: 'a.flif', output: 'a.flif', keepMetaData: true      } },
@@ -217,7 +217,7 @@ function test () {
         { 'expect': true,  'src': 'decode',    'param': { input: 'a.flif', output: 'a.png',  keepMetaData: false     } },
         { 'expect': true,  'src': 'transcode', 'param': { input: 'a.flif', output: 'a.flif', keepMetaData: false     } },
 
-        // Test known bad for keepMetaData
+    // Test known bad for keepMetaData
         { 'expect': false, 'src': 'encode',    'param': { input: 'a.png',  output: 'a.flif', keepMetaData: 'a'       } },
         { 'expect': false, 'src': 'decode',    'param': { input: 'a.flif', output: 'a.png',  keepMetaData: 'a'       } },
         { 'expect': false, 'src': 'transcode', 'param': { input: 'a.flif', output: 'a.flif', keepMetaData: 'a'       } },
@@ -234,7 +234,7 @@ function test () {
         { 'expect': false, 'src': 'decode',    'param': { input: 'a.flif', output: 'a.png',  keepMetaData: 8         } },
         { 'expect': false, 'src': 'transcode', 'param': { input: 'a.flif', output: 'a.flif', keepMetaData: 8         } },
 
-        // Test known good for crc
+    // Test known good for crc
         { 'expect': true,  'src': 'encode',    'param': { input: 'a.png',  output: 'a.flif', crc: true      } },
         { 'expect': true,  'src': 'decode',    'param': { input: 'a.flif', output: 'a.png',  crc: true      } },
         { 'expect': true,  'src': 'transcode', 'param': { input: 'a.flif', output: 'a.flif', crc: true      } },
@@ -242,7 +242,7 @@ function test () {
         { 'expect': true,  'src': 'decode',    'param': { input: 'a.flif', output: 'a.png',  crc: false     } },
         { 'expect': true,  'src': 'transcode', 'param': { input: 'a.flif', output: 'a.flif', crc: false     } },
 
-        // Test known bad for crc
+    // Test known bad for crc
         { 'expect': false, 'src': 'encode',    'param': { input: 'a.png',  output: 'a.flif', crc: 'a'       } },
         { 'expect': false, 'src': 'decode',    'param': { input: 'a.flif', output: 'a.png',  crc: 'a'       } },
         { 'expect': false, 'src': 'transcode', 'param': { input: 'a.flif', output: 'a.flif', crc: 'a'       } },
@@ -259,7 +259,7 @@ function test () {
         { 'expect': false, 'src': 'decode',    'param': { input: 'a.flif', output: 'a.png',  crc: 8         } },
         { 'expect': false, 'src': 'transcode', 'param': { input: 'a.flif', output: 'a.flif', crc: 8         } },
 
-        // Test known good for keepPalette
+    // Test known good for keepPalette
         { 'expect': true,  'src': 'encode',    'param': { input: 'a.png',  output: 'a.flif', keepPalette: true      } },
         { 'expect': true,  'src': 'decode',    'param': { input: 'a.flif', output: 'a.png',  keepPalette: true      } },
         { 'expect': true,  'src': 'transcode', 'param': { input: 'a.flif', output: 'a.flif', keepPalette: true      } },
@@ -267,7 +267,7 @@ function test () {
         { 'expect': true,  'src': 'decode',    'param': { input: 'a.flif', output: 'a.png',  keepPalette: false     } },
         { 'expect': true,  'src': 'transcode', 'param': { input: 'a.flif', output: 'a.flif', keepPalette: false     } },
 
-        // Test known bad for keepPalette
+    // Test known bad for keepPalette
         { 'expect': false, 'src': 'encode',    'param': { input: 'a.png',  output: 'a.flif', keepPalette: 'a'       } },
         { 'expect': false, 'src': 'decode',    'param': { input: 'a.flif', output: 'a.png',  keepPalette: 'a'       } },
         { 'expect': false, 'src': 'transcode', 'param': { input: 'a.flif', output: 'a.flif', keepPalette: 'a'       } },
@@ -284,7 +284,7 @@ function test () {
         { 'expect': false, 'src': 'decode',    'param': { input: 'a.flif', output: 'a.png',  keepPalette: 8         } },
         { 'expect': false, 'src': 'transcode', 'param': { input: 'a.flif', output: 'a.flif', keepPalette: 8         } },
 
-        // Test known good for scale
+    // Test known good for scale
         { 'expect': true,  'src': 'decode',    'param': { input: 'a.flif', output: 'a.png',  scale: 1           } },
         { 'expect': true,  'src': 'decode',    'param': { input: 'a.flif', output: 'a.png',  scale: 2           } },
         { 'expect': true,  'src': 'decode',    'param': { input: 'a.flif', output: 'a.png',  scale: 4           } },
@@ -292,7 +292,7 @@ function test () {
         { 'expect': true,  'src': 'decode',    'param': { input: 'a.flif', output: 'a.png',  scale: 16          } },
         { 'expect': true,  'src': 'decode',    'param': { input: 'a.flif', output: 'a.png',  scale: 32          } },
 
-        // Test known bad for scale
+    // Test known bad for scale
         { 'expect': false, 'src': 'decode',    'param': { input: 'a.flif', output: 'a.png',  scale: 3           } },
         { 'expect': false, 'src': 'decode',    'param': { input: 'a.flif', output: 'a.png',  scale: 22          } },
         { 'expect': false, 'src': 'decode',    'param': { input: 'a.flif', output: 'a.png',  scale: -10         } },
@@ -304,7 +304,7 @@ function test () {
         { 'expect': false, 'src': 'decode',    'param': { input: 'a.flif', output: 'a.png',  scale: true        } },
         { 'expect': false, 'src': 'decode',    'param': { input: 'a.flif', output: 'a.png',  scale: false       } },
 
-        // Test known good for resize
+    // Test known good for resize
         { 'expect': true,  'src': 'decode',    'param': { input: 'a.flif', output: 'a.png',  resize: {width:0,   height:0}   } },
         { 'expect': true,  'src': 'decode',    'param': { input: 'a.flif', output: 'a.png',  resize: {width:1,   height:1}   } },
         { 'expect': true,  'src': 'decode',    'param': { input: 'a.flif', output: 'a.png',  resize: {width:10,  height:20}  } },
@@ -313,7 +313,7 @@ function test () {
         { 'expect': true,  'src': 'decode',    'param': { input: 'a.flif', output: 'a.png',  resize: {width:1,   height:1.1} } },
         { 'expect': true,  'src': 'decode',    'param': { input: 'a.flif', output: 'a.png',  resize: {width:1.1, height:1.1} } },
 
-        // Test known bad for resize
+    // Test known bad for resize
         { 'expect': false, 'src': 'decode',    'param': { input: 'a.flif', output: 'a.png',  resize: {width:100}             } },
         { 'expect': false, 'src': 'decode',    'param': { input: 'a.flif', output: 'a.png',  resize: {height:100}            } },
         { 'expect': false, 'src': 'decode',    'param': { input: 'a.flif', output: 'a.png',  resize: {width:-1,  height:10}  } },
@@ -335,7 +335,7 @@ function test () {
         { 'expect': false, 'src': 'decode',    'param': { input: 'a.flif', output: 'a.png',  resize: 'x10'                   } },
         { 'expect': false, 'src': 'decode',    'param': { input: 'a.flif', output: 'a.png',  resize: '10x'                   } },
 
-        // Test known good for fit
+    // Test known good for fit
         { 'expect': true,  'src': 'decode',    'param': { input: 'a.flif', output: 'a.png',  fit: {width:0,   height:0}   } },
         { 'expect': true,  'src': 'decode',    'param': { input: 'a.flif', output: 'a.png',  fit: {width:1,   height:1}   } },
         { 'expect': true,  'src': 'decode',    'param': { input: 'a.flif', output: 'a.png',  fit: {width:10,  height:20}  } },
@@ -344,7 +344,7 @@ function test () {
         { 'expect': true,  'src': 'decode',    'param': { input: 'a.flif', output: 'a.png',  fit: {width:1,   height:1.1} } },
         { 'expect': true,  'src': 'decode',    'param': { input: 'a.flif', output: 'a.png',  fit: {width:1.1, height:1.1} } },
 
-        // Test known bad for fit
+    // Test known bad for fit
         { 'expect': false, 'src': 'decode',    'param': { input: 'a.flif', output: 'a.png',  fit: {width:100}             } },
         { 'expect': false, 'src': 'decode',    'param': { input: 'a.flif', output: 'a.png',  fit: {height:100}            } },
         { 'expect': false, 'src': 'decode',    'param': { input: 'a.flif', output: 'a.png',  fit: {width:-1,  height:10}  } },
@@ -364,7 +364,824 @@ function test () {
         { 'expect': false, 'src': 'decode',    'param': { input: 'a.flif', output: 'a.png',  fit: '100'                   } },
         { 'expect': false, 'src': 'decode',    'param': { input: 'a.flif', output: 'a.png',  fit: '10x10'                 } },
         { 'expect': false, 'src': 'decode',    'param': { input: 'a.flif', output: 'a.png',  fit: 'x10'                   } },
-        { 'expect': false, 'src': 'decode',    'param': { input: 'a.flif', output: 'a.png',  fit: '10x'                   } }
+        { 'expect': false, 'src': 'decode',    'param': { input: 'a.flif', output: 'a.png',  fit: '10x'                   } },
+
+    // Test known good for effort
+        { 'expect': true,  'src': 'encode',    'param': { input: 'a.png',  output: 'a.flif', effort: 0           } },
+        { 'expect': true,  'src': 'transcode', 'param': { input: 'a.flif', output: 'a.flif', effort: 0           } },
+        { 'expect': true,  'src': 'encode',    'param': { input: 'a.png',  output: 'a.flif', effort: 1           } },
+        { 'expect': true,  'src': 'transcode', 'param': { input: 'a.flif', output: 'a.flif', effort: 1           } },
+        { 'expect': true,  'src': 'encode',    'param': { input: 'a.png',  output: 'a.flif', effort: 50          } },
+        { 'expect': true,  'src': 'transcode', 'param': { input: 'a.flif', output: 'a.flif', effort: 50          } },
+        { 'expect': true,  'src': 'encode',    'param': { input: 'a.png',  output: 'a.flif', effort: 100         } },
+        { 'expect': true,  'src': 'transcode', 'param': { input: 'a.flif', output: 'a.flif', effort: 100         } },
+
+    // Test random number from 0-100 on effort
+        { 'expect': true,  'src': 'encode',    'param': { input: 'a.png',  output: 'a.flif', effort: Math.round(Math.random() * 100) } },
+        { 'expect': true,  'src': 'transcode', 'param': { input: 'a.flif', output: 'a.flif', effort: Math.round(Math.random() * 100) } },
+
+    // Test known bad for effort
+        { 'expect': false, 'src': 'decode',    'param': { input: 'a.flif', output: 'a.png',  effort: 0           } },
+        { 'expect': false, 'src': 'decode',    'param': { input: 'a.flif', output: 'a.png',  effort: 1           } },
+        { 'expect': false, 'src': 'decode',    'param': { input: 'a.flif', output: 'a.png',  effort: 50          } },
+        { 'expect': false, 'src': 'decode',    'param': { input: 'a.flif', output: 'a.png',  effort: 100         } },
+        { 'expect': false, 'src': 'decode',    'param': { input: 'a.flif', output: 'a.png',  effort: Math.round(Math.random() * 100) } },
+        { 'expect': false, 'src': 'encode',    'param': { input: 'a.png',  output: 'a.flif', effort: 101         } },
+        { 'expect': false, 'src': 'decode',    'param': { input: 'a.flif', output: 'a.png',  effort: 101         } },
+        { 'expect': false, 'src': 'transcode', 'param': { input: 'a.flif', output: 'a.flif', effort: 101         } },
+        { 'expect': false, 'src': 'encode',    'param': { input: 'a.png',  output: 'a.flif', effort: -10         } },
+        { 'expect': false, 'src': 'decode',    'param': { input: 'a.flif', output: 'a.png',  effort: -10         } },
+        { 'expect': false, 'src': 'transcode', 'param': { input: 'a.flif', output: 'a.flif', effort: -10         } },
+        { 'expect': false, 'src': 'encode',    'param': { input: 'a.png',  output: 'a.flif', effort: 22.2        } },
+        { 'expect': false, 'src': 'decode',    'param': { input: 'a.flif', output: 'a.png',  effort: 22.2        } },
+        { 'expect': false, 'src': 'transcode', 'param': { input: 'a.flif', output: 'a.flif', effort: 22.2        } },
+        { 'expect': false, 'src': 'encode',    'param': { input: 'a.png',  output: 'a.flif', effort: 'a'         } },
+        { 'expect': false, 'src': 'decode',    'param': { input: 'a.flif', output: 'a.png',  effort: 'a'         } },
+        { 'expect': false, 'src': 'transcode', 'param': { input: 'a.flif', output: 'a.flif', effort: 'a'         } },
+        { 'expect': false, 'src': 'encode',    'param': { input: 'a.png',  output: 'a.flif', effort: [0, 1, 2]   } },
+        { 'expect': false, 'src': 'decode',    'param': { input: 'a.flif', output: 'a.png',  effort: [0, 1, 2]   } },
+        { 'expect': false, 'src': 'transcode', 'param': { input: 'a.flif', output: 'a.flif', effort: [0, 1, 2]   } },
+        { 'expect': false, 'src': 'encode',    'param': { input: 'a.png',  output: 'a.flif', effort: {'a': 1}    } },
+        { 'expect': false, 'src': 'decode',    'param': { input: 'a.flif', output: 'a.png',  effort: {'a': 1}    } },
+        { 'expect': false, 'src': 'transcode', 'param': { input: 'a.flif', output: 'a.flif', effort: {'a': 1}    } },
+        { 'expect': false, 'src': 'encode',    'param': { input: 'a.png',  output: 'a.flif', effort: null        } },
+        { 'expect': false, 'src': 'decode',    'param': { input: 'a.flif', output: 'a.png',  effort: null        } },
+        { 'expect': false, 'src': 'transcode', 'param': { input: 'a.flif', output: 'a.flif', effort: null        } },
+        { 'expect': false, 'src': 'encode',    'param': { input: 'a.png',  output: 'a.flif', effort: true        } },
+        { 'expect': false, 'src': 'decode',    'param': { input: 'a.flif', output: 'a.png',  effort: true        } },
+        { 'expect': false, 'src': 'transcode', 'param': { input: 'a.flif', output: 'a.flif', effort: true        } },
+        { 'expect': false, 'src': 'encode',    'param': { input: 'a.png',  output: 'a.flif', effort: false       } },
+        { 'expect': false, 'src': 'decode',    'param': { input: 'a.flif', output: 'a.png',  effort: false       } },
+        { 'expect': false, 'src': 'transcode', 'param': { input: 'a.flif', output: 'a.flif', effort: false       } },
+
+    // Test known good for interlace
+        { 'expect': true,  'src': 'encode',    'param': { input: 'a.png',  output: 'a.flif', interlace: true      } },
+        { 'expect': true,  'src': 'transcode', 'param': { input: 'a.flif', output: 'a.flif', interlace: true      } },
+        { 'expect': true,  'src': 'encode',    'param': { input: 'a.png',  output: 'a.flif', interlace: false     } },
+        { 'expect': true,  'src': 'transcode', 'param': { input: 'a.flif', output: 'a.flif', interlace: false     } },
+        { 'expect': true,  'src': 'encode',    'param': { input: 'a.png',  output: 'a.flif', interlace: 'auto'    } },
+        { 'expect': true,  'src': 'transcode', 'param': { input: 'a.flif', output: 'a.flif', interlace: 'auto'    } },
+
+    // Test known bad for interlace
+        { 'expect': false, 'src': 'decode',    'param': { input: 'a.flif', output: 'a.png',  interlace: true      } },
+        { 'expect': false, 'src': 'decode',    'param': { input: 'a.flif', output: 'a.png',  interlace: false     } },
+        { 'expect': false, 'src': 'decode',    'param': { input: 'a.flif', output: 'a.png',  interlace: 'auto'    } },
+        { 'expect': false, 'src': 'encode',    'param': { input: 'a.png',  output: 'a.flif', interlace: 'a'       } },
+        { 'expect': false, 'src': 'decode',    'param': { input: 'a.flif', output: 'a.png',  interlace: 'a'       } },
+        { 'expect': false, 'src': 'transcode', 'param': { input: 'a.flif', output: 'a.flif', interlace: 'a'       } },
+        { 'expect': false, 'src': 'encode',    'param': { input: 'a.png',  output: 'a.flif', interlace: [0, 1, 2] } },
+        { 'expect': false, 'src': 'decode',    'param': { input: 'a.flif', output: 'a.png',  interlace: [0, 1, 2] } },
+        { 'expect': false, 'src': 'transcode', 'param': { input: 'a.flif', output: 'a.flif', interlace: [0, 1, 2] } },
+        { 'expect': false, 'src': 'encode',    'param': { input: 'a.png',  output: 'a.flif', interlace: {'a': 1}  } },
+        { 'expect': false, 'src': 'decode',    'param': { input: 'a.flif', output: 'a.png',  interlace: {'a': 1}  } },
+        { 'expect': false, 'src': 'transcode', 'param': { input: 'a.flif', output: 'a.flif', interlace: {'a': 1}  } },
+        { 'expect': false, 'src': 'encode',    'param': { input: 'a.png',  output: 'a.flif', interlace: null      } },
+        { 'expect': false, 'src': 'decode',    'param': { input: 'a.flif', output: 'a.png',  interlace: null      } },
+        { 'expect': false, 'src': 'transcode', 'param': { input: 'a.flif', output: 'a.flif', interlace: null      } },
+        { 'expect': false, 'src': 'encode',    'param': { input: 'a.png',  output: 'a.flif', interlace: 8         } },
+        { 'expect': false, 'src': 'decode',    'param': { input: 'a.flif', output: 'a.png',  interlace: 8         } },
+        { 'expect': false, 'src': 'transcode', 'param': { input: 'a.flif', output: 'a.flif', interlace: 8         } },
+
+    // Test known good for keepAlpha
+        { 'expect': true,  'src': 'encode',    'param': { input: 'a.png',  output: 'a.flif', keepAlpha: true      } },
+        { 'expect': true,  'src': 'transcode', 'param': { input: 'a.flif', output: 'a.flif', keepAlpha: true      } },
+        { 'expect': true,  'src': 'encode',    'param': { input: 'a.png',  output: 'a.flif', keepAlpha: false     } },
+        { 'expect': true,  'src': 'transcode', 'param': { input: 'a.flif', output: 'a.flif', keepAlpha: false     } },
+
+    // Test known bad for keepAlpha
+        { 'expect': false, 'src': 'decode',    'param': { input: 'a.flif', output: 'a.png',  keepAlpha: true      } },
+        { 'expect': false, 'src': 'decode',    'param': { input: 'a.flif', output: 'a.png',  keepAlpha: false     } },
+        { 'expect': false, 'src': 'encode',    'param': { input: 'a.png',  output: 'a.flif', keepAlpha: 'a'       } },
+        { 'expect': false, 'src': 'decode',    'param': { input: 'a.flif', output: 'a.png',  keepAlpha: 'a'       } },
+        { 'expect': false, 'src': 'transcode', 'param': { input: 'a.flif', output: 'a.flif', keepAlpha: 'a'       } },
+        { 'expect': false, 'src': 'encode',    'param': { input: 'a.png',  output: 'a.flif', keepAlpha: [0, 1, 2] } },
+        { 'expect': false, 'src': 'decode',    'param': { input: 'a.flif', output: 'a.png',  keepAlpha: [0, 1, 2] } },
+        { 'expect': false, 'src': 'transcode', 'param': { input: 'a.flif', output: 'a.flif', keepAlpha: [0, 1, 2] } },
+        { 'expect': false, 'src': 'encode',    'param': { input: 'a.png',  output: 'a.flif', keepAlpha: {'a': 1}  } },
+        { 'expect': false, 'src': 'decode',    'param': { input: 'a.flif', output: 'a.png',  keepAlpha: {'a': 1}  } },
+        { 'expect': false, 'src': 'transcode', 'param': { input: 'a.flif', output: 'a.flif', keepAlpha: {'a': 1}  } },
+        { 'expect': false, 'src': 'encode',    'param': { input: 'a.png',  output: 'a.flif', keepAlpha: null      } },
+        { 'expect': false, 'src': 'decode',    'param': { input: 'a.flif', output: 'a.png',  keepAlpha: null      } },
+        { 'expect': false, 'src': 'transcode', 'param': { input: 'a.flif', output: 'a.flif', keepAlpha: null      } },
+        { 'expect': false, 'src': 'encode',    'param': { input: 'a.png',  output: 'a.flif', keepAlpha: 8         } },
+        { 'expect': false, 'src': 'decode',    'param': { input: 'a.flif', output: 'a.png',  keepAlpha: 8         } },
+        { 'expect': false, 'src': 'transcode', 'param': { input: 'a.flif', output: 'a.flif', keepAlpha: 8         } },
+
+    // Test known good for keepColorProfile
+        { 'expect': true,  'src': 'encode',    'param': { input: 'a.png',  output: 'a.flif', keepColorProfile: true      } },
+        { 'expect': true,  'src': 'encode',    'param': { input: 'a.png',  output: 'a.flif', keepColorProfile: false     } },
+        { 'expect': true,  'src': 'transcode', 'param': { input: 'a.flif', output: 'a.flif', keepColorProfile: true      } },
+        { 'expect': true,  'src': 'transcode', 'param': { input: 'a.flif', output: 'a.flif', keepColorProfile: false     } },
+        { 'expect': true,  'src': 'decode',    'param': { input: 'a.flif', output: 'a.png',  keepColorProfile: true      } },
+        { 'expect': true,  'src': 'decode',    'param': { input: 'a.flif', output: 'a.png',  keepColorProfile: false     } },
+
+    // Test known bad for keepColorProfile
+        { 'expect': false, 'src': 'encode',    'param': { input: 'a.png',  output: 'a.flif', keepColorProfile: 'a'       } },
+        { 'expect': false, 'src': 'decode',    'param': { input: 'a.flif', output: 'a.png',  keepColorProfile: 'a'       } },
+        { 'expect': false, 'src': 'transcode', 'param': { input: 'a.flif', output: 'a.flif', keepColorProfile: 'a'       } },
+        { 'expect': false, 'src': 'encode',    'param': { input: 'a.png',  output: 'a.flif', keepColorProfile: [0, 1, 2] } },
+        { 'expect': false, 'src': 'decode',    'param': { input: 'a.flif', output: 'a.png',  keepColorProfile: [0, 1, 2] } },
+        { 'expect': false, 'src': 'transcode', 'param': { input: 'a.flif', output: 'a.flif', keepColorProfile: [0, 1, 2] } },
+        { 'expect': false, 'src': 'encode',    'param': { input: 'a.png',  output: 'a.flif', keepColorProfile: {'a': 1}  } },
+        { 'expect': false, 'src': 'decode',    'param': { input: 'a.flif', output: 'a.png',  keepColorProfile: {'a': 1}  } },
+        { 'expect': false, 'src': 'transcode', 'param': { input: 'a.flif', output: 'a.flif', keepColorProfile: {'a': 1}  } },
+        { 'expect': false, 'src': 'encode',    'param': { input: 'a.png',  output: 'a.flif', keepColorProfile: null      } },
+        { 'expect': false, 'src': 'decode',    'param': { input: 'a.flif', output: 'a.png',  keepColorProfile: null      } },
+        { 'expect': false, 'src': 'transcode', 'param': { input: 'a.flif', output: 'a.flif', keepColorProfile: null      } },
+        { 'expect': false, 'src': 'encode',    'param': { input: 'a.png',  output: 'a.flif', keepColorProfile: 8         } },
+        { 'expect': false, 'src': 'decode',    'param': { input: 'a.flif', output: 'a.png',  keepColorProfile: 8         } },
+        { 'expect': false, 'src': 'transcode', 'param': { input: 'a.flif', output: 'a.flif', keepColorProfile: 8         } },
+
+    // Test known good for frameDelay
+    // TODO: Find out upper bounds for frameDelay and max number of frames allowed
+        { 'expect': true,  'src': 'encode',    'param': { input: 'a.png',  output: 'a.flif', frameDelay: [0]             } },
+        { 'expect': true,  'src': 'transcode', 'param': { input: 'a.flif', output: 'a.flif', frameDelay: [0]             } },
+        { 'expect': true,  'src': 'encode',    'param': { input: 'a.png',  output: 'a.flif', frameDelay: [1]             } },
+        { 'expect': true,  'src': 'transcode', 'param': { input: 'a.flif', output: 'a.flif', frameDelay: [1]             } },
+        { 'expect': true,  'src': 'encode',    'param': { input: 'a.png',  output: 'a.flif', frameDelay: [50]            } },
+        { 'expect': true,  'src': 'transcode', 'param': { input: 'a.flif', output: 'a.flif', frameDelay: [50]            } },
+        { 'expect': true,  'src': 'encode',    'param': { input: 'a.png',  output: 'a.flif', frameDelay: [100]           } },
+        { 'expect': true,  'src': 'transcode', 'param': { input: 'a.flif', output: 'a.flif', frameDelay: [100]           } },
+        { 'expect': true,  'src': 'encode',    'param': { input: 'a.png',  output: 'a.flif', frameDelay: [1000]          } },
+        { 'expect': true,  'src': 'transcode', 'param': { input: 'a.flif', output: 'a.flif', frameDelay: [1000]          } },
+        { 'expect': true,  'src': 'encode',    'param': { input: 'a.png',  output: 'a.flif', frameDelay: [10000]         } },
+        { 'expect': true,  'src': 'transcode', 'param': { input: 'a.flif', output: 'a.flif', frameDelay: [10000]         } },
+        { 'expect': true,  'src': 'encode',    'param': { input: 'a.png',  output: 'a.flif', frameDelay: [100, 200]      } },
+        { 'expect': true,  'src': 'transcode', 'param': { input: 'a.flif', output: 'a.flif', frameDelay: [100, 200]      } },
+        { 'expect': true,  'src': 'encode',    'param': { input: 'a.png',  output: 'a.flif', frameDelay: [100, 200, 300] } },
+        { 'expect': true,  'src': 'transcode', 'param': { input: 'a.flif', output: 'a.flif', frameDelay: [100, 200, 300] } },
+
+    // Test random number from 0-100 on frameDelay
+        { 'expect': true,  'src': 'encode',    'param': { input: 'a.png',  output: 'a.flif', frameDelay: [Math.round(Math.random() * 100)] } },
+        { 'expect': true,  'src': 'transcode', 'param': { input: 'a.flif', output: 'a.flif', frameDelay: [Math.round(Math.random() * 100)] } },
+
+    // Test known bad for frameDelay
+        { 'expect': false, 'src': 'decode',    'param': { input: 'a.png',  output: 'a.flif', frameDelay: [0]             } },
+        { 'expect': false, 'src': 'decode',    'param': { input: 'a.png',  output: 'a.flif', frameDelay: [1]             } },
+        { 'expect': false, 'src': 'decode',    'param': { input: 'a.png',  output: 'a.flif', frameDelay: [50]            } },
+        { 'expect': false, 'src': 'decode',    'param': { input: 'a.png',  output: 'a.flif', frameDelay: [100]           } },
+        { 'expect': false, 'src': 'decode',    'param': { input: 'a.png',  output: 'a.flif', frameDelay: [1000]          } },
+        { 'expect': false, 'src': 'decode',    'param': { input: 'a.png',  output: 'a.flif', frameDelay: [10000]         } },
+        { 'expect': false, 'src': 'decode',    'param': { input: 'a.png',  output: 'a.flif', frameDelay: [100, 200]      } },
+        { 'expect': false, 'src': 'decode',    'param': { input: 'a.png',  output: 'a.flif', frameDelay: [100, 200, 300] } },
+        { 'expect': false, 'src': 'decode',    'param': { input: 'a.flif', output: 'a.png',  frameDelay: [Math.round(Math.random() * 100)] } },
+        { 'expect': false, 'src': 'encode',    'param': { input: 'a.png',  output: 'a.flif', frameDelay: [-100]          } },
+        { 'expect': false, 'src': 'decode',    'param': { input: 'a.png',  output: 'a.flif', frameDelay: [-100]          } },
+        { 'expect': false, 'src': 'transcode', 'param': { input: 'a.png',  output: 'a.flif', frameDelay: [-100]          } },
+        { 'expect': false, 'src': 'encode',    'param': { input: 'a.png',  output: 'a.flif', frameDelay: 101             } },
+        { 'expect': false, 'src': 'decode',    'param': { input: 'a.flif', output: 'a.png',  frameDelay: 101             } },
+        { 'expect': false, 'src': 'transcode', 'param': { input: 'a.flif', output: 'a.flif', frameDelay: 101             } },
+        { 'expect': false, 'src': 'encode',    'param': { input: 'a.png',  output: 'a.flif', frameDelay: -10             } },
+        { 'expect': false, 'src': 'decode',    'param': { input: 'a.flif', output: 'a.png',  frameDelay: -10             } },
+        { 'expect': false, 'src': 'transcode', 'param': { input: 'a.flif', output: 'a.flif', frameDelay: -10             } },
+        { 'expect': false, 'src': 'encode',    'param': { input: 'a.png',  output: 'a.flif', frameDelay: 22.2            } },
+        { 'expect': false, 'src': 'decode',    'param': { input: 'a.flif', output: 'a.png',  frameDelay: 22.2            } },
+        { 'expect': false, 'src': 'transcode', 'param': { input: 'a.flif', output: 'a.flif', frameDelay: 22.2            } },
+        { 'expect': false, 'src': 'encode',    'param': { input: 'a.png',  output: 'a.flif', frameDelay: 'a'             } },
+        { 'expect': false, 'src': 'decode',    'param': { input: 'a.flif', output: 'a.png',  frameDelay: 'a'             } },
+        { 'expect': false, 'src': 'transcode', 'param': { input: 'a.flif', output: 'a.flif', frameDelay: 'a'             } },
+        { 'expect': false, 'src': 'encode',    'param': { input: 'a.png',  output: 'a.flif', frameDelay: {'a': 1}        } },
+        { 'expect': false, 'src': 'decode',    'param': { input: 'a.flif', output: 'a.png',  frameDelay: {'a': 1}        } },
+        { 'expect': false, 'src': 'transcode', 'param': { input: 'a.flif', output: 'a.flif', frameDelay: {'a': 1}        } },
+        { 'expect': false, 'src': 'encode',    'param': { input: 'a.png',  output: 'a.flif', frameDelay: null            } },
+        { 'expect': false, 'src': 'decode',    'param': { input: 'a.flif', output: 'a.png',  frameDelay: null            } },
+        { 'expect': false, 'src': 'transcode', 'param': { input: 'a.flif', output: 'a.flif', frameDelay: null            } },
+        { 'expect': false, 'src': 'encode',    'param': { input: 'a.png',  output: 'a.flif', frameDelay: true            } },
+        { 'expect': false, 'src': 'decode',    'param': { input: 'a.flif', output: 'a.png',  frameDelay: true            } },
+        { 'expect': false, 'src': 'transcode', 'param': { input: 'a.flif', output: 'a.flif', frameDelay: true            } },
+        { 'expect': false, 'src': 'encode',    'param': { input: 'a.png',  output: 'a.flif', frameDelay: false           } },
+        { 'expect': false, 'src': 'decode',    'param': { input: 'a.flif', output: 'a.png',  frameDelay: false           } },
+        { 'expect': false, 'src': 'transcode', 'param': { input: 'a.flif', output: 'a.flif', frameDelay: false           } },
+
+    // Test known good for maxPaletteSize
+    // TODO: Find out upper bounds for maxPaletteSize, all I know is it allows for the number 512 and logically shouldn't be less than 2
+        { 'expect': true,  'src': 'encode',    'param': { input: 'a.png',  output: 'a.flif', maxPaletteSize: 512         } },
+        { 'expect': true,  'src': 'transcode', 'param': { input: 'a.flif', output: 'a.flif', maxPaletteSize: 512         } },
+        { 'expect': true,  'src': 'encode',    'param': { input: 'a.png',  output: 'a.flif', maxPaletteSize: 256         } },
+        { 'expect': true,  'src': 'transcode', 'param': { input: 'a.flif', output: 'a.flif', maxPaletteSize: 256         } },
+        { 'expect': true,  'src': 'encode',    'param': { input: 'a.png',  output: 'a.flif', maxPaletteSize: 128         } },
+        { 'expect': true,  'src': 'transcode', 'param': { input: 'a.flif', output: 'a.flif', maxPaletteSize: 128         } },
+        { 'expect': true,  'src': 'encode',    'param': { input: 'a.png',  output: 'a.flif', maxPaletteSize: 64          } },
+        { 'expect': true,  'src': 'transcode', 'param': { input: 'a.flif', output: 'a.flif', maxPaletteSize: 64          } },
+        { 'expect': true,  'src': 'encode',    'param': { input: 'a.png',  output: 'a.flif', maxPaletteSize: 32          } },
+        { 'expect': true,  'src': 'transcode', 'param': { input: 'a.flif', output: 'a.flif', maxPaletteSize: 32          } },
+        { 'expect': true,  'src': 'encode',    'param': { input: 'a.png',  output: 'a.flif', maxPaletteSize: 16          } },
+        { 'expect': true,  'src': 'transcode', 'param': { input: 'a.flif', output: 'a.flif', maxPaletteSize: 16          } },
+        { 'expect': true,  'src': 'encode',    'param': { input: 'a.png',  output: 'a.flif', maxPaletteSize: 8           } },
+        { 'expect': true,  'src': 'transcode', 'param': { input: 'a.flif', output: 'a.flif', maxPaletteSize: 8           } },
+        { 'expect': true,  'src': 'encode',    'param': { input: 'a.png',  output: 'a.flif', maxPaletteSize: 4           } },
+        { 'expect': true,  'src': 'transcode', 'param': { input: 'a.flif', output: 'a.flif', maxPaletteSize: 4           } },
+        { 'expect': true,  'src': 'encode',    'param': { input: 'a.png',  output: 'a.flif', maxPaletteSize: 2           } },
+        { 'expect': true,  'src': 'transcode', 'param': { input: 'a.flif', output: 'a.flif', maxPaletteSize: 2           } },
+
+    // Test random number from 2-1024 on maxPaletteSize
+        { 'expect': true,  'src': 'encode',    'param': { input: 'a.png',  output: 'a.flif', maxPaletteSize: Math.round(Math.random() * 1022) + 2 } },
+        { 'expect': true,  'src': 'transcode', 'param': { input: 'a.flif', output: 'a.flif', maxPaletteSize: Math.round(Math.random() * 1022) + 2 } },
+
+    // Test known bad for maxPaletteSize
+        { 'expect': true,  'src': 'decode',    'param': { input: 'a.flif', output: 'a.png',  maxPaletteSize: Math.round(Math.random() * 1022) + 2 } },
+        { 'expect': true,  'src': 'decode',    'param': { input: 'a.flif', output: 'a.png',  maxPaletteSize: 512         } },
+        { 'expect': true,  'src': 'decode',    'param': { input: 'a.flif', output: 'a.png',  maxPaletteSize: 256         } },
+        { 'expect': true,  'src': 'decode',    'param': { input: 'a.flif', output: 'a.png',  maxPaletteSize: 128         } },
+        { 'expect': true,  'src': 'decode',    'param': { input: 'a.flif', output: 'a.png',  maxPaletteSize: 64          } },
+        { 'expect': true,  'src': 'decode',    'param': { input: 'a.flif', output: 'a.png',  maxPaletteSize: 32          } },
+        { 'expect': true,  'src': 'decode',    'param': { input: 'a.flif', output: 'a.png',  maxPaletteSize: 16          } },
+        { 'expect': true,  'src': 'decode',    'param': { input: 'a.flif', output: 'a.png',  maxPaletteSize: 8           } },
+        { 'expect': true,  'src': 'decode',    'param': { input: 'a.flif', output: 'a.png',  maxPaletteSize: 4           } },
+        { 'expect': true,  'src': 'decode',    'param': { input: 'a.flif', output: 'a.png',  maxPaletteSize: 2           } },
+        { 'expect': false, 'src': 'encode',    'param': { input: 'a.flif', output: 'a.png',  maxPaletteSize: 1           } },
+        { 'expect': false, 'src': 'decode',    'param': { input: 'a.flif', output: 'a.png',  maxPaletteSize: 1           } },
+        { 'expect': false, 'src': 'transcode', 'param': { input: 'a.flif', output: 'a.flif', maxPaletteSize: 1           } },
+        { 'expect': false, 'src': 'encode',    'param': { input: 'a.png',  output: 'a.flif', maxPaletteSize: 0           } },
+        { 'expect': false, 'src': 'decode',    'param': { input: 'a.flif', output: 'a.png',  maxPaletteSize: 0           } },
+        { 'expect': false, 'src': 'transcode', 'param': { input: 'a.flif', output: 'a.flif', maxPaletteSize: 0           } },
+        { 'expect': false, 'src': 'encode',    'param': { input: 'a.png',  output: 'a.flif', maxPaletteSize: -10         } },
+        { 'expect': false, 'src': 'decode',    'param': { input: 'a.flif', output: 'a.png',  maxPaletteSize: -10         } },
+        { 'expect': false, 'src': 'transcode', 'param': { input: 'a.flif', output: 'a.flif', maxPaletteSize: -10         } },
+        { 'expect': false, 'src': 'encode',    'param': { input: 'a.png',  output: 'a.flif', maxPaletteSize: 22.2        } },
+        { 'expect': false, 'src': 'decode',    'param': { input: 'a.flif', output: 'a.png',  maxPaletteSize: 22.2        } },
+        { 'expect': false, 'src': 'transcode', 'param': { input: 'a.flif', output: 'a.flif', maxPaletteSize: 22.2        } },
+        { 'expect': false, 'src': 'encode',    'param': { input: 'a.png',  output: 'a.flif', maxPaletteSize: 'a'         } },
+        { 'expect': false, 'src': 'decode',    'param': { input: 'a.flif', output: 'a.png',  maxPaletteSize: 'a'         } },
+        { 'expect': false, 'src': 'transcode', 'param': { input: 'a.flif', output: 'a.flif', maxPaletteSize: 'a'         } },
+        { 'expect': false, 'src': 'encode',    'param': { input: 'a.png',  output: 'a.flif', maxPaletteSize: [0, 1, 2]   } },
+        { 'expect': false, 'src': 'decode',    'param': { input: 'a.flif', output: 'a.png',  maxPaletteSize: [0, 1, 2]   } },
+        { 'expect': false, 'src': 'transcode', 'param': { input: 'a.flif', output: 'a.flif', maxPaletteSize: [0, 1, 2]   } },
+        { 'expect': false, 'src': 'encode',    'param': { input: 'a.png',  output: 'a.flif', maxPaletteSize: {'a': 1}    } },
+        { 'expect': false, 'src': 'decode',    'param': { input: 'a.flif', output: 'a.png',  maxPaletteSize: {'a': 1}    } },
+        { 'expect': false, 'src': 'transcode', 'param': { input: 'a.flif', output: 'a.flif', maxPaletteSize: {'a': 1}    } },
+        { 'expect': false, 'src': 'encode',    'param': { input: 'a.png',  output: 'a.flif', maxPaletteSize: null        } },
+        { 'expect': false, 'src': 'decode',    'param': { input: 'a.flif', output: 'a.png',  maxPaletteSize: null        } },
+        { 'expect': false, 'src': 'transcode', 'param': { input: 'a.flif', output: 'a.flif', maxPaletteSize: null        } },
+        { 'expect': false, 'src': 'encode',    'param': { input: 'a.png',  output: 'a.flif', maxPaletteSize: true        } },
+        { 'expect': false, 'src': 'decode',    'param': { input: 'a.flif', output: 'a.png',  maxPaletteSize: true        } },
+        { 'expect': false, 'src': 'transcode', 'param': { input: 'a.flif', output: 'a.flif', maxPaletteSize: true        } },
+        { 'expect': false, 'src': 'encode',    'param': { input: 'a.png',  output: 'a.flif', maxPaletteSize: false       } },
+        { 'expect': false, 'src': 'decode',    'param': { input: 'a.flif', output: 'a.png',  maxPaletteSize: false       } },
+        { 'expect': false, 'src': 'transcode', 'param': { input: 'a.flif', output: 'a.flif', maxPaletteSize: false       } },
+
+    // Test known good for colorBuckets
+        { 'expect': true,  'src': 'encode',    'param': { input: 'a.png',  output: 'a.flif', colorBuckets: true      } },
+        { 'expect': true,  'src': 'transcode', 'param': { input: 'a.flif', output: 'a.flif', colorBuckets: true      } },
+        { 'expect': true,  'src': 'encode',    'param': { input: 'a.png',  output: 'a.flif', colorBuckets: false     } },
+        { 'expect': true,  'src': 'transcode', 'param': { input: 'a.flif', output: 'a.flif', colorBuckets: false     } },
+        { 'expect': true,  'src': 'encode',    'param': { input: 'a.png',  output: 'a.flif', colorBuckets: 'auto'    } },
+        { 'expect': true,  'src': 'transcode', 'param': { input: 'a.flif', output: 'a.flif', colorBuckets: 'auto'    } },
+
+    // Test known bad for colorBuckets
+        { 'expect': false, 'src': 'decode',    'param': { input: 'a.flif', output: 'a.png',  colorBuckets: true      } },
+        { 'expect': false, 'src': 'decode',    'param': { input: 'a.flif', output: 'a.png',  colorBuckets: false     } },
+        { 'expect': false, 'src': 'decode',    'param': { input: 'a.flif', output: 'a.png',  colorBuckets: 'auto'    } },
+        { 'expect': false, 'src': 'encode',    'param': { input: 'a.png',  output: 'a.flif', colorBuckets: 'a'       } },
+        { 'expect': false, 'src': 'decode',    'param': { input: 'a.flif', output: 'a.png',  colorBuckets: 'a'       } },
+        { 'expect': false, 'src': 'transcode', 'param': { input: 'a.flif', output: 'a.flif', colorBuckets: 'a'       } },
+        { 'expect': false, 'src': 'encode',    'param': { input: 'a.png',  output: 'a.flif', colorBuckets: [0, 1, 2] } },
+        { 'expect': false, 'src': 'decode',    'param': { input: 'a.flif', output: 'a.png',  colorBuckets: [0, 1, 2] } },
+        { 'expect': false, 'src': 'transcode', 'param': { input: 'a.flif', output: 'a.flif', colorBuckets: [0, 1, 2] } },
+        { 'expect': false, 'src': 'encode',    'param': { input: 'a.png',  output: 'a.flif', colorBuckets: {'a': 1}  } },
+        { 'expect': false, 'src': 'decode',    'param': { input: 'a.flif', output: 'a.png',  colorBuckets: {'a': 1}  } },
+        { 'expect': false, 'src': 'transcode', 'param': { input: 'a.flif', output: 'a.flif', colorBuckets: {'a': 1}  } },
+        { 'expect': false, 'src': 'encode',    'param': { input: 'a.png',  output: 'a.flif', colorBuckets: null      } },
+        { 'expect': false, 'src': 'decode',    'param': { input: 'a.flif', output: 'a.png',  colorBuckets: null      } },
+        { 'expect': false, 'src': 'transcode', 'param': { input: 'a.flif', output: 'a.flif', colorBuckets: null      } },
+        { 'expect': false, 'src': 'encode',    'param': { input: 'a.png',  output: 'a.flif', colorBuckets: 8         } },
+        { 'expect': false, 'src': 'decode',    'param': { input: 'a.flif', output: 'a.png',  colorBuckets: 8         } },
+        { 'expect': false, 'src': 'transcode', 'param': { input: 'a.flif', output: 'a.flif', colorBuckets: 8         } },
+
+    // Test known good for channelCompact
+        { 'expect': true,  'src': 'encode',    'param': { input: 'a.png',  output: 'a.flif', channelCompact: true      } },
+        { 'expect': true,  'src': 'transcode', 'param': { input: 'a.flif', output: 'a.flif', channelCompact: true      } },
+        { 'expect': true,  'src': 'encode',    'param': { input: 'a.png',  output: 'a.flif', channelCompact: false     } },
+        { 'expect': true,  'src': 'transcode', 'param': { input: 'a.flif', output: 'a.flif', channelCompact: false     } },
+
+    // Test known bad for channelCompact
+        { 'expect': false, 'src': 'decode',    'param': { input: 'a.flif', output: 'a.png',  channelCompact: true      } },
+        { 'expect': false, 'src': 'decode',    'param': { input: 'a.flif', output: 'a.png',  channelCompact: false     } },
+        { 'expect': false, 'src': 'encode',    'param': { input: 'a.png',  output: 'a.flif', channelCompact: 'a'       } },
+        { 'expect': false, 'src': 'decode',    'param': { input: 'a.flif', output: 'a.png',  channelCompact: 'a'       } },
+        { 'expect': false, 'src': 'transcode', 'param': { input: 'a.flif', output: 'a.flif', channelCompact: 'a'       } },
+        { 'expect': false, 'src': 'encode',    'param': { input: 'a.png',  output: 'a.flif', channelCompact: [0, 1, 2] } },
+        { 'expect': false, 'src': 'decode',    'param': { input: 'a.flif', output: 'a.png',  channelCompact: [0, 1, 2] } },
+        { 'expect': false, 'src': 'transcode', 'param': { input: 'a.flif', output: 'a.flif', channelCompact: [0, 1, 2] } },
+        { 'expect': false, 'src': 'encode',    'param': { input: 'a.png',  output: 'a.flif', channelCompact: {'a': 1}  } },
+        { 'expect': false, 'src': 'decode',    'param': { input: 'a.flif', output: 'a.png',  channelCompact: {'a': 1}  } },
+        { 'expect': false, 'src': 'transcode', 'param': { input: 'a.flif', output: 'a.flif', channelCompact: {'a': 1}  } },
+        { 'expect': false, 'src': 'encode',    'param': { input: 'a.png',  output: 'a.flif', channelCompact: null      } },
+        { 'expect': false, 'src': 'decode',    'param': { input: 'a.flif', output: 'a.png',  channelCompact: null      } },
+        { 'expect': false, 'src': 'transcode', 'param': { input: 'a.flif', output: 'a.flif', channelCompact: null      } },
+        { 'expect': false, 'src': 'encode',    'param': { input: 'a.png',  output: 'a.flif', channelCompact: 8         } },
+        { 'expect': false, 'src': 'decode',    'param': { input: 'a.flif', output: 'a.png',  channelCompact: 8         } },
+        { 'expect': false, 'src': 'transcode', 'param': { input: 'a.flif', output: 'a.flif', channelCompact: 8         } },
+
+    // Test known good for ycocg
+        { 'expect': true,  'src': 'encode',    'param': { input: 'a.png',  output: 'a.flif', ycocg: true      } },
+        { 'expect': true,  'src': 'transcode', 'param': { input: 'a.flif', output: 'a.flif', ycocg: true      } },
+        { 'expect': true,  'src': 'encode',    'param': { input: 'a.png',  output: 'a.flif', ycocg: false     } },
+        { 'expect': true,  'src': 'transcode', 'param': { input: 'a.flif', output: 'a.flif', ycocg: false     } },
+
+    // Test known bad for ycocg
+        { 'expect': false, 'src': 'decode',    'param': { input: 'a.flif', output: 'a.png',  ycocg: true      } },
+        { 'expect': false, 'src': 'decode',    'param': { input: 'a.flif', output: 'a.png',  ycocg: false     } },
+        { 'expect': false, 'src': 'encode',    'param': { input: 'a.png',  output: 'a.flif', ycocg: 'a'       } },
+        { 'expect': false, 'src': 'decode',    'param': { input: 'a.flif', output: 'a.png',  ycocg: 'a'       } },
+        { 'expect': false, 'src': 'transcode', 'param': { input: 'a.flif', output: 'a.flif', ycocg: 'a'       } },
+        { 'expect': false, 'src': 'encode',    'param': { input: 'a.png',  output: 'a.flif', ycocg: [0, 1, 2] } },
+        { 'expect': false, 'src': 'decode',    'param': { input: 'a.flif', output: 'a.png',  ycocg: [0, 1, 2] } },
+        { 'expect': false, 'src': 'transcode', 'param': { input: 'a.flif', output: 'a.flif', ycocg: [0, 1, 2] } },
+        { 'expect': false, 'src': 'encode',    'param': { input: 'a.png',  output: 'a.flif', ycocg: {'a': 1}  } },
+        { 'expect': false, 'src': 'decode',    'param': { input: 'a.flif', output: 'a.png',  ycocg: {'a': 1}  } },
+        { 'expect': false, 'src': 'transcode', 'param': { input: 'a.flif', output: 'a.flif', ycocg: {'a': 1}  } },
+        { 'expect': false, 'src': 'encode',    'param': { input: 'a.png',  output: 'a.flif', ycocg: null      } },
+        { 'expect': false, 'src': 'decode',    'param': { input: 'a.flif', output: 'a.png',  ycocg: null      } },
+        { 'expect': false, 'src': 'transcode', 'param': { input: 'a.flif', output: 'a.flif', ycocg: null      } },
+        { 'expect': false, 'src': 'encode',    'param': { input: 'a.png',  output: 'a.flif', ycocg: 8         } },
+        { 'expect': false, 'src': 'decode',    'param': { input: 'a.flif', output: 'a.png',  ycocg: 8         } },
+        { 'expect': false, 'src': 'transcode', 'param': { input: 'a.flif', output: 'a.flif', ycocg: 8         } },
+
+    // Test known good for subtractGreen
+        { 'expect': true,  'src': 'encode',    'param': { input: 'a.png',  output: 'a.flif', subtractGreen: true      } },
+        { 'expect': true,  'src': 'transcode', 'param': { input: 'a.flif', output: 'a.flif', subtractGreen: true      } },
+        { 'expect': true,  'src': 'encode',    'param': { input: 'a.png',  output: 'a.flif', subtractGreen: false     } },
+        { 'expect': true,  'src': 'transcode', 'param': { input: 'a.flif', output: 'a.flif', subtractGreen: false     } },
+
+    // Test known bad for subtractGreen
+        { 'expect': false, 'src': 'decode',    'param': { input: 'a.flif', output: 'a.png',  subtractGreen: true      } },
+        { 'expect': false, 'src': 'decode',    'param': { input: 'a.flif', output: 'a.png',  subtractGreen: false     } },
+        { 'expect': false, 'src': 'encode',    'param': { input: 'a.png',  output: 'a.flif', subtractGreen: 'a'       } },
+        { 'expect': false, 'src': 'decode',    'param': { input: 'a.flif', output: 'a.png',  subtractGreen: 'a'       } },
+        { 'expect': false, 'src': 'transcode', 'param': { input: 'a.flif', output: 'a.flif', subtractGreen: 'a'       } },
+        { 'expect': false, 'src': 'encode',    'param': { input: 'a.png',  output: 'a.flif', subtractGreen: [0, 1, 2] } },
+        { 'expect': false, 'src': 'decode',    'param': { input: 'a.flif', output: 'a.png',  subtractGreen: [0, 1, 2] } },
+        { 'expect': false, 'src': 'transcode', 'param': { input: 'a.flif', output: 'a.flif', subtractGreen: [0, 1, 2] } },
+        { 'expect': false, 'src': 'encode',    'param': { input: 'a.png',  output: 'a.flif', subtractGreen: {'a': 1}  } },
+        { 'expect': false, 'src': 'decode',    'param': { input: 'a.flif', output: 'a.png',  subtractGreen: {'a': 1}  } },
+        { 'expect': false, 'src': 'transcode', 'param': { input: 'a.flif', output: 'a.flif', subtractGreen: {'a': 1}  } },
+        { 'expect': false, 'src': 'encode',    'param': { input: 'a.png',  output: 'a.flif', subtractGreen: null      } },
+        { 'expect': false, 'src': 'decode',    'param': { input: 'a.flif', output: 'a.png',  subtractGreen: null      } },
+        { 'expect': false, 'src': 'transcode', 'param': { input: 'a.flif', output: 'a.flif', subtractGreen: null      } },
+        { 'expect': false, 'src': 'encode',    'param': { input: 'a.png',  output: 'a.flif', subtractGreen: 8         } },
+        { 'expect': false, 'src': 'decode',    'param': { input: 'a.flif', output: 'a.png',  subtractGreen: 8         } },
+        { 'expect': false, 'src': 'transcode', 'param': { input: 'a.flif', output: 'a.flif', subtractGreen: 8         } },
+
+    // Test known good for frameShape
+        { 'expect': true,  'src': 'encode',    'param': { input: 'a.png',  output: 'a.flif', frameShape: true      } },
+        { 'expect': true,  'src': 'transcode', 'param': { input: 'a.flif', output: 'a.flif', frameShape: true      } },
+        { 'expect': true,  'src': 'encode',    'param': { input: 'a.png',  output: 'a.flif', frameShape: false     } },
+        { 'expect': true,  'src': 'transcode', 'param': { input: 'a.flif', output: 'a.flif', frameShape: false     } },
+
+    // Test known bad for frameShape
+        { 'expect': false, 'src': 'decode',    'param': { input: 'a.flif', output: 'a.png',  frameShape: true      } },
+        { 'expect': false, 'src': 'decode',    'param': { input: 'a.flif', output: 'a.png',  frameShape: false     } },
+        { 'expect': false, 'src': 'encode',    'param': { input: 'a.png',  output: 'a.flif', frameShape: 'a'       } },
+        { 'expect': false, 'src': 'decode',    'param': { input: 'a.flif', output: 'a.png',  frameShape: 'a'       } },
+        { 'expect': false, 'src': 'transcode', 'param': { input: 'a.flif', output: 'a.flif', frameShape: 'a'       } },
+        { 'expect': false, 'src': 'encode',    'param': { input: 'a.png',  output: 'a.flif', frameShape: [0, 1, 2] } },
+        { 'expect': false, 'src': 'decode',    'param': { input: 'a.flif', output: 'a.png',  frameShape: [0, 1, 2] } },
+        { 'expect': false, 'src': 'transcode', 'param': { input: 'a.flif', output: 'a.flif', frameShape: [0, 1, 2] } },
+        { 'expect': false, 'src': 'encode',    'param': { input: 'a.png',  output: 'a.flif', frameShape: {'a': 1}  } },
+        { 'expect': false, 'src': 'decode',    'param': { input: 'a.flif', output: 'a.png',  frameShape: {'a': 1}  } },
+        { 'expect': false, 'src': 'transcode', 'param': { input: 'a.flif', output: 'a.flif', frameShape: {'a': 1}  } },
+        { 'expect': false, 'src': 'encode',    'param': { input: 'a.png',  output: 'a.flif', frameShape: null      } },
+        { 'expect': false, 'src': 'decode',    'param': { input: 'a.flif', output: 'a.png',  frameShape: null      } },
+        { 'expect': false, 'src': 'transcode', 'param': { input: 'a.flif', output: 'a.flif', frameShape: null      } },
+        { 'expect': false, 'src': 'encode',    'param': { input: 'a.png',  output: 'a.flif', frameShape: 8         } },
+        { 'expect': false, 'src': 'decode',    'param': { input: 'a.flif', output: 'a.png',  frameShape: 8         } },
+        { 'expect': false, 'src': 'transcode', 'param': { input: 'a.flif', output: 'a.flif', frameShape: 8         } },
+
+    // Test known good for maxFrameLookBack
+    // TODO: Find out upper bounds for maxFrameLookBack, all I know is it allows for the number 1
+        { 'expect': true,  'src': 'encode',    'param': { input: 'a.png',  output: 'a.flif', maxFrameLookBack: 1           } },
+        { 'expect': true,  'src': 'transcode', 'param': { input: 'a.flif', output: 'a.flif', maxFrameLookBack: 1           } },
+        { 'expect': true,  'src': 'encode',    'param': { input: 'a.png',  output: 'a.flif', maxFrameLookBack: 2           } },
+        { 'expect': true,  'src': 'transcode', 'param': { input: 'a.flif', output: 'a.flif', maxFrameLookBack: 2           } },
+
+    // Test random number from 1-1024 on maxFrameLookBack
+        { 'expect': true,  'src': 'encode',    'param': { input: 'a.png',  output: 'a.flif', maxFrameLookBack: Math.round(Math.random() * 1023) + 1 } },
+        { 'expect': true,  'src': 'transcode', 'param': { input: 'a.flif', output: 'a.flif', maxFrameLookBack: Math.round(Math.random() * 1023) + 1 } },
+
+    // Test known bad for maxFrameLookBack
+        { 'expect': false, 'src': 'decode',    'param': { input: 'a.flif', output: 'a.png',  maxFrameLookBack: 1           } },
+        { 'expect': false, 'src': 'decode',    'param': { input: 'a.flif', output: 'a.png',  maxFrameLookBack: Math.round(Math.random() * 1023) + 1 } },
+        { 'expect': false, 'src': 'encode',    'param': { input: 'a.png',  output: 'a.flif', maxFrameLookBack: 0           } },
+        { 'expect': false, 'src': 'decode',    'param': { input: 'a.flif', output: 'a.png',  maxFrameLookBack: 0           } },
+        { 'expect': false, 'src': 'transcode', 'param': { input: 'a.flif', output: 'a.flif', maxFrameLookBack: 0           } },
+        { 'expect': false, 'src': 'encode',    'param': { input: 'a.png',  output: 'a.flif', maxFrameLookBack: -10         } },
+        { 'expect': false, 'src': 'decode',    'param': { input: 'a.flif', output: 'a.png',  maxFrameLookBack: -10         } },
+        { 'expect': false, 'src': 'transcode', 'param': { input: 'a.flif', output: 'a.flif', maxFrameLookBack: -10         } },
+        { 'expect': false, 'src': 'encode',    'param': { input: 'a.png',  output: 'a.flif', maxFrameLookBack: 22.2        } },
+        { 'expect': false, 'src': 'decode',    'param': { input: 'a.flif', output: 'a.png',  maxFrameLookBack: 22.2        } },
+        { 'expect': false, 'src': 'transcode', 'param': { input: 'a.flif', output: 'a.flif', maxFrameLookBack: 22.2        } },
+        { 'expect': false, 'src': 'encode',    'param': { input: 'a.png',  output: 'a.flif', maxFrameLookBack: 'a'         } },
+        { 'expect': false, 'src': 'decode',    'param': { input: 'a.flif', output: 'a.png',  maxFrameLookBack: 'a'         } },
+        { 'expect': false, 'src': 'transcode', 'param': { input: 'a.flif', output: 'a.flif', maxFrameLookBack: 'a'         } },
+        { 'expect': false, 'src': 'encode',    'param': { input: 'a.png',  output: 'a.flif', maxFrameLookBack: [0, 1, 2]   } },
+        { 'expect': false, 'src': 'decode',    'param': { input: 'a.flif', output: 'a.png',  maxFrameLookBack: [0, 1, 2]   } },
+        { 'expect': false, 'src': 'transcode', 'param': { input: 'a.flif', output: 'a.flif', maxFrameLookBack: [0, 1, 2]   } },
+        { 'expect': false, 'src': 'encode',    'param': { input: 'a.png',  output: 'a.flif', maxFrameLookBack: {'a': 1}    } },
+        { 'expect': false, 'src': 'decode',    'param': { input: 'a.flif', output: 'a.png',  maxFrameLookBack: {'a': 1}    } },
+        { 'expect': false, 'src': 'transcode', 'param': { input: 'a.flif', output: 'a.flif', maxFrameLookBack: {'a': 1}    } },
+        { 'expect': false, 'src': 'encode',    'param': { input: 'a.png',  output: 'a.flif', maxFrameLookBack: null        } },
+        { 'expect': false, 'src': 'decode',    'param': { input: 'a.flif', output: 'a.png',  maxFrameLookBack: null        } },
+        { 'expect': false, 'src': 'transcode', 'param': { input: 'a.flif', output: 'a.flif', maxFrameLookBack: null        } },
+        { 'expect': false, 'src': 'encode',    'param': { input: 'a.png',  output: 'a.flif', maxFrameLookBack: true        } },
+        { 'expect': false, 'src': 'decode',    'param': { input: 'a.flif', output: 'a.png',  maxFrameLookBack: true        } },
+        { 'expect': false, 'src': 'transcode', 'param': { input: 'a.flif', output: 'a.flif', maxFrameLookBack: true        } },
+        { 'expect': false, 'src': 'encode',    'param': { input: 'a.png',  output: 'a.flif', maxFrameLookBack: false       } },
+        { 'expect': false, 'src': 'decode',    'param': { input: 'a.flif', output: 'a.png',  maxFrameLookBack: false       } },
+        { 'expect': false, 'src': 'transcode', 'param': { input: 'a.flif', output: 'a.flif', maxFrameLookBack: false       } },
+
+    // Test known good for maniacRepeats
+    // TODO: Find out upper bounds for maniacRepeats, all I know is it allows for the number 2
+        { 'expect': true,  'src': 'encode',    'param': { input: 'a.png',  output: 'a.flif', maniacRepeats: 1           } },
+        { 'expect': true,  'src': 'transcode', 'param': { input: 'a.flif', output: 'a.flif', maniacRepeats: 1           } },
+        { 'expect': true,  'src': 'encode',    'param': { input: 'a.png',  output: 'a.flif', maniacRepeats: 2           } },
+        { 'expect': true,  'src': 'transcode', 'param': { input: 'a.flif', output: 'a.flif', maniacRepeats: 2           } },
+
+    // Test random number from 1-1024 on maniacRepeats
+        { 'expect': true,  'src': 'encode',    'param': { input: 'a.png',  output: 'a.flif', maniacRepeats: Math.round(Math.random() * 1023) + 1 } },
+        { 'expect': true,  'src': 'transcode', 'param': { input: 'a.flif', output: 'a.flif', maniacRepeats: Math.round(Math.random() * 1023) + 1 } },
+
+    // Test known bad for maniacRepeats
+        { 'expect': false, 'src': 'decode',    'param': { input: 'a.flif', output: 'a.png',  maniacRepeats: 1           } },
+        { 'expect': false, 'src': 'decode',    'param': { input: 'a.flif', output: 'a.png',  maniacRepeats: 2           } },
+        { 'expect': false, 'src': 'decode',    'param': { input: 'a.flif', output: 'a.png',  maniacRepeats: Math.round(Math.random() * 1023) + 1 } },
+        { 'expect': false, 'src': 'encode',    'param': { input: 'a.png',  output: 'a.flif', maniacRepeats: 0           } },
+        { 'expect': false, 'src': 'decode',    'param': { input: 'a.flif', output: 'a.png',  maniacRepeats: 0           } },
+        { 'expect': false, 'src': 'transcode', 'param': { input: 'a.flif', output: 'a.flif', maniacRepeats: 0           } },
+        { 'expect': false, 'src': 'encode',    'param': { input: 'a.png',  output: 'a.flif', maniacRepeats: -10         } },
+        { 'expect': false, 'src': 'decode',    'param': { input: 'a.flif', output: 'a.png',  maniacRepeats: -10         } },
+        { 'expect': false, 'src': 'transcode', 'param': { input: 'a.flif', output: 'a.flif', maniacRepeats: -10         } },
+        { 'expect': false, 'src': 'encode',    'param': { input: 'a.png',  output: 'a.flif', maniacRepeats: 22.2        } },
+        { 'expect': false, 'src': 'decode',    'param': { input: 'a.flif', output: 'a.png',  maniacRepeats: 22.2        } },
+        { 'expect': false, 'src': 'transcode', 'param': { input: 'a.flif', output: 'a.flif', maniacRepeats: 22.2        } },
+        { 'expect': false, 'src': 'encode',    'param': { input: 'a.png',  output: 'a.flif', maniacRepeats: 'a'         } },
+        { 'expect': false, 'src': 'decode',    'param': { input: 'a.flif', output: 'a.png',  maniacRepeats: 'a'         } },
+        { 'expect': false, 'src': 'transcode', 'param': { input: 'a.flif', output: 'a.flif', maniacRepeats: 'a'         } },
+        { 'expect': false, 'src': 'encode',    'param': { input: 'a.png',  output: 'a.flif', maniacRepeats: [0, 1, 2]   } },
+        { 'expect': false, 'src': 'decode',    'param': { input: 'a.flif', output: 'a.png',  maniacRepeats: [0, 1, 2]   } },
+        { 'expect': false, 'src': 'transcode', 'param': { input: 'a.flif', output: 'a.flif', maniacRepeats: [0, 1, 2]   } },
+        { 'expect': false, 'src': 'encode',    'param': { input: 'a.png',  output: 'a.flif', maniacRepeats: {'a': 1}    } },
+        { 'expect': false, 'src': 'decode',    'param': { input: 'a.flif', output: 'a.png',  maniacRepeats: {'a': 1}    } },
+        { 'expect': false, 'src': 'transcode', 'param': { input: 'a.flif', output: 'a.flif', maniacRepeats: {'a': 1}    } },
+        { 'expect': false, 'src': 'encode',    'param': { input: 'a.png',  output: 'a.flif', maniacRepeats: null        } },
+        { 'expect': false, 'src': 'decode',    'param': { input: 'a.flif', output: 'a.png',  maniacRepeats: null        } },
+        { 'expect': false, 'src': 'transcode', 'param': { input: 'a.flif', output: 'a.flif', maniacRepeats: null        } },
+        { 'expect': false, 'src': 'encode',    'param': { input: 'a.png',  output: 'a.flif', maniacRepeats: true        } },
+        { 'expect': false, 'src': 'decode',    'param': { input: 'a.flif', output: 'a.png',  maniacRepeats: true        } },
+        { 'expect': false, 'src': 'transcode', 'param': { input: 'a.flif', output: 'a.flif', maniacRepeats: true        } },
+        { 'expect': false, 'src': 'encode',    'param': { input: 'a.png',  output: 'a.flif', maniacRepeats: false       } },
+        { 'expect': false, 'src': 'decode',    'param': { input: 'a.flif', output: 'a.png',  maniacRepeats: false       } },
+        { 'expect': false, 'src': 'transcode', 'param': { input: 'a.flif', output: 'a.flif', maniacRepeats: false       } },
+
+    // Test known good for maniacThreshold
+    // TODO: Find out upper/lower bounds for maniacThreshold, all I know is it allows for the number 64
+        { 'expect': true,  'src': 'encode',    'param': { input: 'a.png',  output: 'a.flif', maniacThreshold: 64          } },
+        { 'expect': true,  'src': 'transcode', 'param': { input: 'a.flif', output: 'a.flif', maniacThreshold: 64          } },
+        { 'expect': true,  'src': 'encode',    'param': { input: 'a.png',  output: 'a.flif', maniacThreshold: 128         } },
+        { 'expect': true,  'src': 'transcode', 'param': { input: 'a.flif', output: 'a.flif', maniacThreshold: 128         } },
+        { 'expect': true,  'src': 'encode',    'param': { input: 'a.png',  output: 'a.flif', maniacThreshold: 0           } },
+        { 'expect': true,  'src': 'transcode', 'param': { input: 'a.flif', output: 'a.flif', maniacThreshold: 0           } },
+        { 'expect': true,  'src': 'encode',    'param': { input: 'a.png',  output: 'a.flif', maniacThreshold: 1           } },
+        { 'expect': true,  'src': 'transcode', 'param': { input: 'a.flif', output: 'a.flif', maniacThreshold: 1           } },
+
+    // Test random number from 0-255 on maniacThreshold
+        { 'expect': true,  'src': 'encode',    'param': { input: 'a.png',  output: 'a.flif', maniacThreshold: Math.round(Math.random() * 255) } },
+        { 'expect': true,  'src': 'transcode', 'param': { input: 'a.flif', output: 'a.flif', maniacThreshold: Math.round(Math.random() * 255) } },
+
+    // Test known bad for maniacThreshold
+        { 'expect': false, 'src': 'decode',    'param': { input: 'a.flif', output: 'a.png',  maniacThreshold: 0           } },
+        { 'expect': false, 'src': 'decode',    'param': { input: 'a.flif', output: 'a.png',  maniacThreshold: 1           } },
+        { 'expect': false, 'src': 'decode',    'param': { input: 'a.flif', output: 'a.png',  maniacThreshold: 64          } },
+        { 'expect': false, 'src': 'decode',    'param': { input: 'a.flif', output: 'a.png',  maniacThreshold: Math.round(Math.random() * 255) } },
+        { 'expect': false, 'src': 'encode',    'param': { input: 'a.png',  output: 'a.flif', maniacThreshold: -10         } },
+        { 'expect': false, 'src': 'decode',    'param': { input: 'a.flif', output: 'a.png',  maniacThreshold: -10         } },
+        { 'expect': false, 'src': 'transcode', 'param': { input: 'a.flif', output: 'a.flif', maniacThreshold: -10         } },
+        { 'expect': false, 'src': 'encode',    'param': { input: 'a.png',  output: 'a.flif', maniacThreshold: 22.2        } },
+        { 'expect': false, 'src': 'decode',    'param': { input: 'a.flif', output: 'a.png',  maniacThreshold: 22.2        } },
+        { 'expect': false, 'src': 'transcode', 'param': { input: 'a.flif', output: 'a.flif', maniacThreshold: 22.2        } },
+        { 'expect': false, 'src': 'encode',    'param': { input: 'a.png',  output: 'a.flif', maniacThreshold: 'a'         } },
+        { 'expect': false, 'src': 'decode',    'param': { input: 'a.flif', output: 'a.png',  maniacThreshold: 'a'         } },
+        { 'expect': false, 'src': 'transcode', 'param': { input: 'a.flif', output: 'a.flif', maniacThreshold: 'a'         } },
+        { 'expect': false, 'src': 'encode',    'param': { input: 'a.png',  output: 'a.flif', maniacThreshold: [0, 1, 2]   } },
+        { 'expect': false, 'src': 'decode',    'param': { input: 'a.flif', output: 'a.png',  maniacThreshold: [0, 1, 2]   } },
+        { 'expect': false, 'src': 'transcode', 'param': { input: 'a.flif', output: 'a.flif', maniacThreshold: [0, 1, 2]   } },
+        { 'expect': false, 'src': 'encode',    'param': { input: 'a.png',  output: 'a.flif', maniacThreshold: {'a': 1}    } },
+        { 'expect': false, 'src': 'decode',    'param': { input: 'a.flif', output: 'a.png',  maniacThreshold: {'a': 1}    } },
+        { 'expect': false, 'src': 'transcode', 'param': { input: 'a.flif', output: 'a.flif', maniacThreshold: {'a': 1}    } },
+        { 'expect': false, 'src': 'encode',    'param': { input: 'a.png',  output: 'a.flif', maniacThreshold: null        } },
+        { 'expect': false, 'src': 'decode',    'param': { input: 'a.flif', output: 'a.png',  maniacThreshold: null        } },
+        { 'expect': false, 'src': 'transcode', 'param': { input: 'a.flif', output: 'a.flif', maniacThreshold: null        } },
+        { 'expect': false, 'src': 'encode',    'param': { input: 'a.png',  output: 'a.flif', maniacThreshold: true        } },
+        { 'expect': false, 'src': 'decode',    'param': { input: 'a.flif', output: 'a.png',  maniacThreshold: true        } },
+        { 'expect': false, 'src': 'transcode', 'param': { input: 'a.flif', output: 'a.flif', maniacThreshold: true        } },
+        { 'expect': false, 'src': 'encode',    'param': { input: 'a.png',  output: 'a.flif', maniacThreshold: false       } },
+        { 'expect': false, 'src': 'decode',    'param': { input: 'a.flif', output: 'a.png',  maniacThreshold: false       } },
+        { 'expect': false, 'src': 'transcode', 'param': { input: 'a.flif', output: 'a.flif', maniacThreshold: false       } },
+
+    // Test known good for maniacDivisor
+    // TODO: Find out upper/lower bounds for maniacDivisor, all I know is it allows for the number 30
+        { 'expect': true,  'src': 'encode',    'param': { input: 'a.png',  output: 'a.flif', maniacDivisor: 30          } },
+        { 'expect': true,  'src': 'transcode', 'param': { input: 'a.flif', output: 'a.flif', maniacDivisor: 30          } },
+        { 'expect': true,  'src': 'encode',    'param': { input: 'a.png',  output: 'a.flif', maniacDivisor: 1           } },
+        { 'expect': true,  'src': 'transcode', 'param': { input: 'a.flif', output: 'a.flif', maniacDivisor: 1           } },
+
+    // Test random number from 1-100 on maniacDivisor
+        { 'expect': true,  'src': 'encode',    'param': { input: 'a.png',  output: 'a.flif', maniacDivisor: Math.round(Math.random() * 99) + 1 } },
+        { 'expect': true,  'src': 'transcode', 'param': { input: 'a.flif', output: 'a.flif', maniacDivisor: Math.round(Math.random() * 99) + 1 } },
+
+    // Test known bad for maniacDivisor
+        { 'expect': false, 'src': 'decode',    'param': { input: 'a.flif', output: 'a.png',  maniacDivisor: 30          } },
+        { 'expect': false, 'src': 'decode',    'param': { input: 'a.flif', output: 'a.png',  maniacDivisor: 1           } },
+        { 'expect': false, 'src': 'decode',    'param': { input: 'a.flif', output: 'a.png',  maniacDivisor: Math.round(Math.random() * 99) + 1 } },
+        { 'expect': false, 'src': 'encode',    'param': { input: 'a.png',  output: 'a.flif', maniacDivisor: 0           } },
+        { 'expect': false, 'src': 'decode',    'param': { input: 'a.flif', output: 'a.png',  maniacDivisor: 0           } },
+        { 'expect': false, 'src': 'transcode', 'param': { input: 'a.flif', output: 'a.flif', maniacDivisor: 0           } },
+        { 'expect': false, 'src': 'encode',    'param': { input: 'a.png',  output: 'a.flif', maniacDivisor: -10         } },
+        { 'expect': false, 'src': 'decode',    'param': { input: 'a.flif', output: 'a.png',  maniacDivisor: -10         } },
+        { 'expect': false, 'src': 'transcode', 'param': { input: 'a.flif', output: 'a.flif', maniacDivisor: -10         } },
+        { 'expect': false, 'src': 'encode',    'param': { input: 'a.png',  output: 'a.flif', maniacDivisor: 22.2        } },
+        { 'expect': false, 'src': 'decode',    'param': { input: 'a.flif', output: 'a.png',  maniacDivisor: 22.2        } },
+        { 'expect': false, 'src': 'transcode', 'param': { input: 'a.flif', output: 'a.flif', maniacDivisor: 22.2        } },
+        { 'expect': false, 'src': 'encode',    'param': { input: 'a.png',  output: 'a.flif', maniacDivisor: 'a'         } },
+        { 'expect': false, 'src': 'decode',    'param': { input: 'a.flif', output: 'a.png',  maniacDivisor: 'a'         } },
+        { 'expect': false, 'src': 'transcode', 'param': { input: 'a.flif', output: 'a.flif', maniacDivisor: 'a'         } },
+        { 'expect': false, 'src': 'encode',    'param': { input: 'a.png',  output: 'a.flif', maniacDivisor: [0, 1, 2]   } },
+        { 'expect': false, 'src': 'decode',    'param': { input: 'a.flif', output: 'a.png',  maniacDivisor: [0, 1, 2]   } },
+        { 'expect': false, 'src': 'transcode', 'param': { input: 'a.flif', output: 'a.flif', maniacDivisor: [0, 1, 2]   } },
+        { 'expect': false, 'src': 'encode',    'param': { input: 'a.png',  output: 'a.flif', maniacDivisor: {'a': 1}    } },
+        { 'expect': false, 'src': 'decode',    'param': { input: 'a.flif', output: 'a.png',  maniacDivisor: {'a': 1}    } },
+        { 'expect': false, 'src': 'transcode', 'param': { input: 'a.flif', output: 'a.flif', maniacDivisor: {'a': 1}    } },
+        { 'expect': false, 'src': 'encode',    'param': { input: 'a.png',  output: 'a.flif', maniacDivisor: null        } },
+        { 'expect': false, 'src': 'decode',    'param': { input: 'a.flif', output: 'a.png',  maniacDivisor: null        } },
+        { 'expect': false, 'src': 'transcode', 'param': { input: 'a.flif', output: 'a.flif', maniacDivisor: null        } },
+        { 'expect': false, 'src': 'encode',    'param': { input: 'a.png',  output: 'a.flif', maniacDivisor: true        } },
+        { 'expect': false, 'src': 'decode',    'param': { input: 'a.flif', output: 'a.png',  maniacDivisor: true        } },
+        { 'expect': false, 'src': 'transcode', 'param': { input: 'a.flif', output: 'a.flif', maniacDivisor: true        } },
+        { 'expect': false, 'src': 'encode',    'param': { input: 'a.png',  output: 'a.flif', maniacDivisor: false       } },
+        { 'expect': false, 'src': 'decode',    'param': { input: 'a.flif', output: 'a.png',  maniacDivisor: false       } },
+        { 'expect': false, 'src': 'transcode', 'param': { input: 'a.flif', output: 'a.flif', maniacDivisor: false       } },
+
+    // Test known good for maniacMinSize
+    // TODO: Find out upper/lower bounds for maniacMinSize, all I know is it allows for the number 50
+        { 'expect': true,  'src': 'encode',    'param': { input: 'a.png',  output: 'a.flif', maniacMinSize: 50          } },
+        { 'expect': true,  'src': 'transcode', 'param': { input: 'a.flif', output: 'a.flif', maniacMinSize: 50          } },
+        { 'expect': true,  'src': 'encode',    'param': { input: 'a.png',  output: 'a.flif', maniacMinSize: 1           } },
+        { 'expect': true,  'src': 'transcode', 'param': { input: 'a.flif', output: 'a.flif', maniacMinSize: 1           } },
+        { 'expect': true,  'src': 'encode',    'param': { input: 'a.png',  output: 'a.flif', maniacMinSize: 2           } },
+        { 'expect': true,  'src': 'transcode', 'param': { input: 'a.flif', output: 'a.flif', maniacMinSize: 2           } },
+
+    // Test random number from 1-100 on maniacMinSize
+        { 'expect': true,  'src': 'encode',    'param': { input: 'a.png',  output: 'a.flif', maniacMinSize: Math.round(Math.random() * 99) + 1} },
+        { 'expect': true,  'src': 'transcode', 'param': { input: 'a.flif', output: 'a.flif', maniacMinSize: Math.round(Math.random() * 99) + 1} },
+
+    // Test known bad for maniacMinSize
+        { 'expect': false, 'src': 'decode',    'param': { input: 'a.flif', output: 'a.png',  maniacMinSize: 50          } },
+        { 'expect': false, 'src': 'decode',    'param': { input: 'a.flif', output: 'a.png',  maniacMinSize: 1           } },
+        { 'expect': false, 'src': 'decode',    'param': { input: 'a.flif', output: 'a.png',  maniacMinSize: 2           } },
+        { 'expect': false, 'src': 'decode',    'param': { input: 'a.flif', output: 'a.png',  maniacMinSize: Math.round(Math.random() * 99) + 1 } },
+        { 'expect': false, 'src': 'encode',    'param': { input: 'a.png',  output: 'a.flif', maniacMinSize: 0           } },
+        { 'expect': false, 'src': 'decode',    'param': { input: 'a.flif', output: 'a.png',  maniacMinSize: 0           } },
+        { 'expect': false, 'src': 'transcode', 'param': { input: 'a.flif', output: 'a.flif', maniacMinSize: 0           } },
+        { 'expect': false, 'src': 'encode',    'param': { input: 'a.png',  output: 'a.flif', maniacMinSize: -10         } },
+        { 'expect': false, 'src': 'decode',    'param': { input: 'a.flif', output: 'a.png',  maniacMinSize: -10         } },
+        { 'expect': false, 'src': 'transcode', 'param': { input: 'a.flif', output: 'a.flif', maniacMinSize: -10         } },
+        { 'expect': false, 'src': 'encode',    'param': { input: 'a.png',  output: 'a.flif', maniacMinSize: 22.2        } },
+        { 'expect': false, 'src': 'decode',    'param': { input: 'a.flif', output: 'a.png',  maniacMinSize: 22.2        } },
+        { 'expect': false, 'src': 'transcode', 'param': { input: 'a.flif', output: 'a.flif', maniacMinSize: 22.2        } },
+        { 'expect': false, 'src': 'encode',    'param': { input: 'a.png',  output: 'a.flif', maniacMinSize: 'a'         } },
+        { 'expect': false, 'src': 'decode',    'param': { input: 'a.flif', output: 'a.png',  maniacMinSize: 'a'         } },
+        { 'expect': false, 'src': 'transcode', 'param': { input: 'a.flif', output: 'a.flif', maniacMinSize: 'a'         } },
+        { 'expect': false, 'src': 'encode',    'param': { input: 'a.png',  output: 'a.flif', maniacMinSize: [0, 1, 2]   } },
+        { 'expect': false, 'src': 'decode',    'param': { input: 'a.flif', output: 'a.png',  maniacMinSize: [0, 1, 2]   } },
+        { 'expect': false, 'src': 'transcode', 'param': { input: 'a.flif', output: 'a.flif', maniacMinSize: [0, 1, 2]   } },
+        { 'expect': false, 'src': 'encode',    'param': { input: 'a.png',  output: 'a.flif', maniacMinSize: {'a': 1}    } },
+        { 'expect': false, 'src': 'decode',    'param': { input: 'a.flif', output: 'a.png',  maniacMinSize: {'a': 1}    } },
+        { 'expect': false, 'src': 'transcode', 'param': { input: 'a.flif', output: 'a.flif', maniacMinSize: {'a': 1}    } },
+        { 'expect': false, 'src': 'encode',    'param': { input: 'a.png',  output: 'a.flif', maniacMinSize: null        } },
+        { 'expect': false, 'src': 'decode',    'param': { input: 'a.flif', output: 'a.png',  maniacMinSize: null        } },
+        { 'expect': false, 'src': 'transcode', 'param': { input: 'a.flif', output: 'a.flif', maniacMinSize: null        } },
+        { 'expect': false, 'src': 'encode',    'param': { input: 'a.png',  output: 'a.flif', maniacMinSize: true        } },
+        { 'expect': false, 'src': 'decode',    'param': { input: 'a.flif', output: 'a.png',  maniacMinSize: true        } },
+        { 'expect': false, 'src': 'transcode', 'param': { input: 'a.flif', output: 'a.flif', maniacMinSize: true        } },
+        { 'expect': false, 'src': 'encode',    'param': { input: 'a.png',  output: 'a.flif', maniacMinSize: false       } },
+        { 'expect': false, 'src': 'decode',    'param': { input: 'a.flif', output: 'a.png',  maniacMinSize: false       } },
+        { 'expect': false, 'src': 'transcode', 'param': { input: 'a.flif', output: 'a.flif', maniacMinSize: false       } },
+
+    // Test known good for chanceCutoff
+    // TODO: Find out upper/lower bounds for chanceCutoff, all I know is it allows for the number 2
+        { 'expect': true,  'src': 'encode',    'param': { input: 'a.png',  output: 'a.flif', chanceCutoff: 1           } },
+        { 'expect': true,  'src': 'transcode', 'param': { input: 'a.flif', output: 'a.flif', chanceCutoff: 1           } },
+        { 'expect': true,  'src': 'encode',    'param': { input: 'a.png',  output: 'a.flif', chanceCutoff: 2           } },
+        { 'expect': true,  'src': 'transcode', 'param': { input: 'a.flif', output: 'a.flif', chanceCutoff: 2           } },
+
+    // Test random number from 1-100 on chanceCutoff
+        { 'expect': true,  'src': 'encode',    'param': { input: 'a.png',  output: 'a.flif', chanceCutoff: Math.round(Math.random() * 99) + 1 } },
+        { 'expect': true,  'src': 'transcode', 'param': { input: 'a.flif', output: 'a.flif', chanceCutoff: Math.round(Math.random() * 99) + 1 } },
+
+    // Test known bad for chanceCutoff
+        { 'expect': false, 'src': 'decode',    'param': { input: 'a.flif', output: 'a.png',  chanceCutoff: 2           } },
+        { 'expect': false, 'src': 'decode',    'param': { input: 'a.flif', output: 'a.png',  chanceCutoff: Math.round(Math.random() * 99) + 1 } },
+        { 'expect': false, 'src': 'encode',    'param': { input: 'a.png',  output: 'a.flif', chanceCutoff: 0           } },
+        { 'expect': false, 'src': 'decode',    'param': { input: 'a.flif', output: 'a.png',  chanceCutoff: 0           } },
+        { 'expect': false, 'src': 'transcode', 'param': { input: 'a.flif', output: 'a.flif', chanceCutoff: 0           } },
+        { 'expect': false, 'src': 'encode',    'param': { input: 'a.png',  output: 'a.flif', chanceCutoff: -10         } },
+        { 'expect': false, 'src': 'decode',    'param': { input: 'a.flif', output: 'a.png',  chanceCutoff: -10         } },
+        { 'expect': false, 'src': 'transcode', 'param': { input: 'a.flif', output: 'a.flif', chanceCutoff: -10         } },
+        { 'expect': false, 'src': 'encode',    'param': { input: 'a.png',  output: 'a.flif', chanceCutoff: 22.2        } },
+        { 'expect': false, 'src': 'decode',    'param': { input: 'a.flif', output: 'a.png',  chanceCutoff: 22.2        } },
+        { 'expect': false, 'src': 'transcode', 'param': { input: 'a.flif', output: 'a.flif', chanceCutoff: 22.2        } },
+        { 'expect': false, 'src': 'encode',    'param': { input: 'a.png',  output: 'a.flif', chanceCutoff: 'a'         } },
+        { 'expect': false, 'src': 'decode',    'param': { input: 'a.flif', output: 'a.png',  chanceCutoff: 'a'         } },
+        { 'expect': false, 'src': 'transcode', 'param': { input: 'a.flif', output: 'a.flif', chanceCutoff: 'a'         } },
+        { 'expect': false, 'src': 'encode',    'param': { input: 'a.png',  output: 'a.flif', chanceCutoff: [0, 1, 2]   } },
+        { 'expect': false, 'src': 'decode',    'param': { input: 'a.flif', output: 'a.png',  chanceCutoff: [0, 1, 2]   } },
+        { 'expect': false, 'src': 'transcode', 'param': { input: 'a.flif', output: 'a.flif', chanceCutoff: [0, 1, 2]   } },
+        { 'expect': false, 'src': 'encode',    'param': { input: 'a.png',  output: 'a.flif', chanceCutoff: {'a': 1}    } },
+        { 'expect': false, 'src': 'decode',    'param': { input: 'a.flif', output: 'a.png',  chanceCutoff: {'a': 1}    } },
+        { 'expect': false, 'src': 'transcode', 'param': { input: 'a.flif', output: 'a.flif', chanceCutoff: {'a': 1}    } },
+        { 'expect': false, 'src': 'encode',    'param': { input: 'a.png',  output: 'a.flif', chanceCutoff: null        } },
+        { 'expect': false, 'src': 'decode',    'param': { input: 'a.flif', output: 'a.png',  chanceCutoff: null        } },
+        { 'expect': false, 'src': 'transcode', 'param': { input: 'a.flif', output: 'a.flif', chanceCutoff: null        } },
+        { 'expect': false, 'src': 'encode',    'param': { input: 'a.png',  output: 'a.flif', chanceCutoff: true        } },
+        { 'expect': false, 'src': 'decode',    'param': { input: 'a.flif', output: 'a.png',  chanceCutoff: true        } },
+        { 'expect': false, 'src': 'transcode', 'param': { input: 'a.flif', output: 'a.flif', chanceCutoff: true        } },
+        { 'expect': false, 'src': 'encode',    'param': { input: 'a.png',  output: 'a.flif', chanceCutoff: false       } },
+        { 'expect': false, 'src': 'decode',    'param': { input: 'a.flif', output: 'a.png',  chanceCutoff: false       } },
+        { 'expect': false, 'src': 'transcode', 'param': { input: 'a.flif', output: 'a.flif', chanceCutoff: false       } },
+
+    // Test known good for chanceAlpha
+    // TODO: Find out upper/lower bounds for chanceAlpha, all I know is it allows for the number 19
+        { 'expect': true,  'src': 'encode',    'param': { input: 'a.png',  output: 'a.flif', chanceAlpha: 1            } },
+        { 'expect': true,  'src': 'transcode', 'param': { input: 'a.flif', output: 'a.flif', chanceAlpha: 1            } },
+        { 'expect': true,  'src': 'encode',    'param': { input: 'a.png',  output: 'a.flif', chanceAlpha: 2            } },
+        { 'expect': true,  'src': 'transcode', 'param': { input: 'a.flif', output: 'a.flif', chanceAlpha: 2            } },
+        { 'expect': true,  'src': 'encode',    'param': { input: 'a.png',  output: 'a.flif', chanceAlpha: 19           } },
+        { 'expect': true,  'src': 'transcode', 'param': { input: 'a.flif', output: 'a.flif', chanceAlpha: 19           } },
+
+    // Test random number from 0-100 on chanceAlpha
+        { 'expect': true,  'src': 'encode',    'param': { input: 'a.png',  output: 'a.flif', chanceAlpha: Math.round(Math.random() * 99) } },
+        { 'expect': true,  'src': 'transcode', 'param': { input: 'a.flif', output: 'a.flif', chanceAlpha: Math.round(Math.random() * 99) } },
+
+    // Test known bad for chanceAlpha
+        { 'expect': false, 'src': 'decode',    'param': { input: 'a.flif', output: 'a.png',  chanceAlpha: 19           } },
+        { 'expect': false, 'src': 'decode',    'param': { input: 'a.flif', output: 'a.png',  chanceAlpha: Math.round(Math.random() * 99) } },
+        { 'expect': false, 'src': 'encode',    'param': { input: 'a.png',  output: 'a.flif', chanceAlpha: 0           } },
+        { 'expect': false, 'src': 'decode',    'param': { input: 'a.flif', output: 'a.png',  chanceAlpha: 0           } },
+        { 'expect': false, 'src': 'transcode', 'param': { input: 'a.flif', output: 'a.flif', chanceAlpha: 0           } },
+        { 'expect': false, 'src': 'encode',    'param': { input: 'a.png',  output: 'a.flif', chanceAlpha: -10         } },
+        { 'expect': false, 'src': 'decode',    'param': { input: 'a.flif', output: 'a.png',  chanceAlpha: -10         } },
+        { 'expect': false, 'src': 'transcode', 'param': { input: 'a.flif', output: 'a.flif', chanceAlpha: -10         } },
+        { 'expect': false, 'src': 'encode',    'param': { input: 'a.png',  output: 'a.flif', chanceAlpha: 22.2        } },
+        { 'expect': false, 'src': 'decode',    'param': { input: 'a.flif', output: 'a.png',  chanceAlpha: 22.2        } },
+        { 'expect': false, 'src': 'transcode', 'param': { input: 'a.flif', output: 'a.flif', chanceAlpha: 22.2        } },
+        { 'expect': false, 'src': 'encode',    'param': { input: 'a.png',  output: 'a.flif', chanceAlpha: 'a'         } },
+        { 'expect': false, 'src': 'decode',    'param': { input: 'a.flif', output: 'a.png',  chanceAlpha: 'a'         } },
+        { 'expect': false, 'src': 'transcode', 'param': { input: 'a.flif', output: 'a.flif', chanceAlpha: 'a'         } },
+        { 'expect': false, 'src': 'encode',    'param': { input: 'a.png',  output: 'a.flif', chanceAlpha: [0, 1, 2]   } },
+        { 'expect': false, 'src': 'decode',    'param': { input: 'a.flif', output: 'a.png',  chanceAlpha: [0, 1, 2]   } },
+        { 'expect': false, 'src': 'transcode', 'param': { input: 'a.flif', output: 'a.flif', chanceAlpha: [0, 1, 2]   } },
+        { 'expect': false, 'src': 'encode',    'param': { input: 'a.png',  output: 'a.flif', chanceAlpha: {'a': 1}    } },
+        { 'expect': false, 'src': 'decode',    'param': { input: 'a.flif', output: 'a.png',  chanceAlpha: {'a': 1}    } },
+        { 'expect': false, 'src': 'transcode', 'param': { input: 'a.flif', output: 'a.flif', chanceAlpha: {'a': 1}    } },
+        { 'expect': false, 'src': 'encode',    'param': { input: 'a.png',  output: 'a.flif', chanceAlpha: null        } },
+        { 'expect': false, 'src': 'decode',    'param': { input: 'a.flif', output: 'a.png',  chanceAlpha: null        } },
+        { 'expect': false, 'src': 'transcode', 'param': { input: 'a.flif', output: 'a.flif', chanceAlpha: null        } },
+        { 'expect': false, 'src': 'encode',    'param': { input: 'a.png',  output: 'a.flif', chanceAlpha: true        } },
+        { 'expect': false, 'src': 'decode',    'param': { input: 'a.flif', output: 'a.png',  chanceAlpha: true        } },
+        { 'expect': false, 'src': 'transcode', 'param': { input: 'a.flif', output: 'a.flif', chanceAlpha: true        } },
+        { 'expect': false, 'src': 'encode',    'param': { input: 'a.png',  output: 'a.flif', chanceAlpha: false       } },
+        { 'expect': false, 'src': 'decode',    'param': { input: 'a.flif', output: 'a.png',  chanceAlpha: false       } },
+        { 'expect': false, 'src': 'transcode', 'param': { input: 'a.flif', output: 'a.flif', chanceAlpha: false       } },
+
+    // Test known good for adaptive
+        { 'expect': true,  'src': 'encode',    'param': { input: 'a.png',  output: 'a.flif', adaptive: true      } },
+        { 'expect': true,  'src': 'transcode', 'param': { input: 'a.flif', output: 'a.flif', adaptive: true      } },
+        { 'expect': true,  'src': 'encode',    'param': { input: 'a.png',  output: 'a.flif', adaptive: false     } },
+        { 'expect': true,  'src': 'transcode', 'param': { input: 'a.flif', output: 'a.flif', adaptive: false     } },
+
+    // Test known bad for adaptive
+        { 'expect': false, 'src': 'decode',    'param': { input: 'a.flif', output: 'a.png',  adaptive: true      } },
+        { 'expect': false, 'src': 'decode',    'param': { input: 'a.flif', output: 'a.png',  adaptive: false     } },
+        { 'expect': false, 'src': 'encode',    'param': { input: 'a.png',  output: 'a.flif', adaptive: 'a'       } },
+        { 'expect': false, 'src': 'decode',    'param': { input: 'a.flif', output: 'a.png',  adaptive: 'a'       } },
+        { 'expect': false, 'src': 'transcode', 'param': { input: 'a.flif', output: 'a.flif', adaptive: 'a'       } },
+        { 'expect': false, 'src': 'encode',    'param': { input: 'a.png',  output: 'a.flif', adaptive: [0, 1, 2] } },
+        { 'expect': false, 'src': 'decode',    'param': { input: 'a.flif', output: 'a.png',  adaptive: [0, 1, 2] } },
+        { 'expect': false, 'src': 'transcode', 'param': { input: 'a.flif', output: 'a.flif', adaptive: [0, 1, 2] } },
+        { 'expect': false, 'src': 'encode',    'param': { input: 'a.png',  output: 'a.flif', adaptive: {'a': 1}  } },
+        { 'expect': false, 'src': 'decode',    'param': { input: 'a.flif', output: 'a.png',  adaptive: {'a': 1}  } },
+        { 'expect': false, 'src': 'transcode', 'param': { input: 'a.flif', output: 'a.flif', adaptive: {'a': 1}  } },
+        { 'expect': false, 'src': 'encode',    'param': { input: 'a.png',  output: 'a.flif', adaptive: null      } },
+        { 'expect': false, 'src': 'decode',    'param': { input: 'a.flif', output: 'a.png',  adaptive: null      } },
+        { 'expect': false, 'src': 'transcode', 'param': { input: 'a.flif', output: 'a.flif', adaptive: null      } },
+        { 'expect': false, 'src': 'encode',    'param': { input: 'a.png',  output: 'a.flif', adaptive: 8         } },
+        { 'expect': false, 'src': 'decode',    'param': { input: 'a.flif', output: 'a.png',  adaptive: 8         } },
+        { 'expect': false, 'src': 'transcode', 'param': { input: 'a.flif', output: 'a.flif', adaptive: 8         } },
+
+    // Test known good for guess
+        { 'expect': true,  'src': 'encode',    'param': { input: 'a.png',  output: 'a.flif', guess: 'heuristically'   } },
+        { 'expect': true,  'src': 'transcode', 'param': { input: 'a.flif', output: 'a.flif', guess: 'heuristically'   } },
+        { 'expect': true,  'src': 'encode',    'param': { input: 'a.png',  output: 'a.flif', guess: 'avgerage'        } },
+        { 'expect': true,  'src': 'transcode', 'param': { input: 'a.flif', output: 'a.flif', guess: 'avgerage'        } },
+        { 'expect': true,  'src': 'encode',    'param': { input: 'a.png',  output: 'a.flif', guess: 'median gradient' } },
+        { 'expect': true,  'src': 'transcode', 'param': { input: 'a.flif', output: 'a.flif', guess: 'median gradient' } },
+        { 'expect': true,  'src': 'encode',    'param': { input: 'a.png',  output: 'a.flif', guess: 'median number'   } },
+        { 'expect': true,  'src': 'transcode', 'param': { input: 'a.flif', output: 'a.flif', guess: 'median number'   } },
+        { 'expect': true,  'src': 'encode',    'param': { input: 'a.png',  output: 'a.flif', guess: 'mixed'           } },
+        { 'expect': true,  'src': 'transcode', 'param': { input: 'a.flif', output: 'a.flif', guess: 'mixed'           } },
+
+    // Test known bad for guess
+        { 'expect': false, 'src': 'decode',    'param': { input: 'a.flif', output: 'a.png',  guess: 'heuristically'   } },
+        { 'expect': false, 'src': 'decode',    'param': { input: 'a.flif', output: 'a.png',  guess: 'avgerage'        } },
+        { 'expect': false, 'src': 'decode',    'param': { input: 'a.flif', output: 'a.png',  guess: 'median gradient' } },
+        { 'expect': false, 'src': 'decode',    'param': { input: 'a.flif', output: 'a.png',  guess: 'median number'   } },
+        { 'expect': false, 'src': 'decode',    'param': { input: 'a.flif', output: 'a.png',  guess: 'mixed'           } },
+        { 'expect': false, 'src': 'encode',    'param': { input: 'a.png',  output: 'a.flif', guess: true              } },
+        { 'expect': false, 'src': 'decode',    'param': { input: 'a.flif', output: 'a.png',  guess: true              } },
+        { 'expect': false, 'src': 'transcode', 'param': { input: 'a.flif', output: 'a.flif', guess: true              } },
+        { 'expect': false, 'src': 'encode',    'param': { input: 'a.png',  output: 'a.flif', guess: false             } },
+        { 'expect': false, 'src': 'decode',    'param': { input: 'a.flif', output: 'a.png',  guess: false             } },
+        { 'expect': false, 'src': 'transcode', 'param': { input: 'a.flif', output: 'a.flif', guess: false             } },
+        { 'expect': false, 'src': 'encode',    'param': { input: 'a.png',  output: 'a.flif', guess: 'a'               } },
+        { 'expect': false, 'src': 'decode',    'param': { input: 'a.flif', output: 'a.png',  guess: 'a'               } },
+        { 'expect': false, 'src': 'transcode', 'param': { input: 'a.flif', output: 'a.flif', guess: 'a'               } },
+        { 'expect': false, 'src': 'encode',    'param': { input: 'a.png',  output: 'a.flif', guess: [0, 1, 2]         } },
+        { 'expect': false, 'src': 'decode',    'param': { input: 'a.flif', output: 'a.png',  guess: [0, 1, 2]         } },
+        { 'expect': false, 'src': 'transcode', 'param': { input: 'a.flif', output: 'a.flif', guess: [0, 1, 2]         } },
+        { 'expect': false, 'src': 'encode',    'param': { input: 'a.png',  output: 'a.flif', guess: {'a': 1}          } },
+        { 'expect': false, 'src': 'decode',    'param': { input: 'a.flif', output: 'a.png',  guess: {'a': 1}          } },
+        { 'expect': false, 'src': 'transcode', 'param': { input: 'a.flif', output: 'a.flif', guess: {'a': 1}          } },
+        { 'expect': false, 'src': 'encode',    'param': { input: 'a.png',  output: 'a.flif', guess: null              } },
+        { 'expect': false, 'src': 'decode',    'param': { input: 'a.flif', output: 'a.png',  guess: null              } },
+        { 'expect': false, 'src': 'transcode', 'param': { input: 'a.flif', output: 'a.flif', guess: null              } },
+        { 'expect': false, 'src': 'encode',    'param': { input: 'a.png',  output: 'a.flif', guess: 8                 } },
+        { 'expect': false, 'src': 'decode',    'param': { input: 'a.flif', output: 'a.png',  guess: 8                 } },
+        { 'expect': false, 'src': 'transcode', 'param': { input: 'a.flif', output: 'a.flif', guess: 8                 } },
+
+    // Test known good for alphaGuess
+        { 'expect': true,  'src': 'encode',    'param': { input: 'a.png',  output: 'a.flif', alphaGuess: 'heuristically'   } },
+        { 'expect': true,  'src': 'transcode', 'param': { input: 'a.flif', output: 'a.flif', alphaGuess: 'heuristically'   } },
+        { 'expect': true,  'src': 'encode',    'param': { input: 'a.png',  output: 'a.flif', alphaGuess: 'avgerage'        } },
+        { 'expect': true,  'src': 'transcode', 'param': { input: 'a.flif', output: 'a.flif', alphaGuess: 'avgerage'        } },
+        { 'expect': true,  'src': 'encode',    'param': { input: 'a.png',  output: 'a.flif', alphaGuess: 'median gradient' } },
+        { 'expect': true,  'src': 'transcode', 'param': { input: 'a.flif', output: 'a.flif', alphaGuess: 'median gradient' } },
+        { 'expect': true,  'src': 'encode',    'param': { input: 'a.png',  output: 'a.flif', alphaGuess: 'median number'   } },
+        { 'expect': true,  'src': 'transcode', 'param': { input: 'a.flif', output: 'a.flif', alphaGuess: 'median number'   } },
+        { 'expect': true,  'src': 'encode',    'param': { input: 'a.png',  output: 'a.flif', alphaGuess: 'mixed'           } },
+        { 'expect': true,  'src': 'transcode', 'param': { input: 'a.flif', output: 'a.flif', alphaGuess: 'mixed'           } },
+
+    // Test known bad for alphaGuess
+        { 'expect': false, 'src': 'decode',    'param': { input: 'a.flif', output: 'a.png',  alphaGuess: 'heuristically'   } },
+        { 'expect': false, 'src': 'decode',    'param': { input: 'a.flif', output: 'a.png',  alphaGuess: 'avgerage'        } },
+        { 'expect': false, 'src': 'decode',    'param': { input: 'a.flif', output: 'a.png',  alphaGuess: 'median gradient' } },
+        { 'expect': false, 'src': 'decode',    'param': { input: 'a.flif', output: 'a.png',  alphaGuess: 'median number'   } },
+        { 'expect': false, 'src': 'decode',    'param': { input: 'a.flif', output: 'a.png',  alphaGuess: 'mixed'           } },
+        { 'expect': false, 'src': 'encode',    'param': { input: 'a.png',  output: 'a.flif', alphaGuess: true              } },
+        { 'expect': false, 'src': 'decode',    'param': { input: 'a.flif', output: 'a.png',  alphaGuess: true              } },
+        { 'expect': false, 'src': 'transcode', 'param': { input: 'a.flif', output: 'a.flif', alphaGuess: true              } },
+        { 'expect': false, 'src': 'encode',    'param': { input: 'a.png',  output: 'a.flif', alphaGuess: false             } },
+        { 'expect': false, 'src': 'decode',    'param': { input: 'a.flif', output: 'a.png',  alphaGuess: false             } },
+        { 'expect': false, 'src': 'transcode', 'param': { input: 'a.flif', output: 'a.flif', alphaGuess: false             } },
+        { 'expect': false, 'src': 'encode',    'param': { input: 'a.png',  output: 'a.flif', alphaGuess: 'a'               } },
+        { 'expect': false, 'src': 'decode',    'param': { input: 'a.flif', output: 'a.png',  alphaGuess: 'a'               } },
+        { 'expect': false, 'src': 'transcode', 'param': { input: 'a.flif', output: 'a.flif', alphaGuess: 'a'               } },
+        { 'expect': false, 'src': 'encode',    'param': { input: 'a.png',  output: 'a.flif', alphaGuess: [0, 1, 2]         } },
+        { 'expect': false, 'src': 'decode',    'param': { input: 'a.flif', output: 'a.png',  alphaGuess: [0, 1, 2]         } },
+        { 'expect': false, 'src': 'transcode', 'param': { input: 'a.flif', output: 'a.flif', alphaGuess: [0, 1, 2]         } },
+        { 'expect': false, 'src': 'encode',    'param': { input: 'a.png',  output: 'a.flif', alphaGuess: {'a': 1}          } },
+        { 'expect': false, 'src': 'decode',    'param': { input: 'a.flif', output: 'a.png',  alphaGuess: {'a': 1}          } },
+        { 'expect': false, 'src': 'transcode', 'param': { input: 'a.flif', output: 'a.flif', alphaGuess: {'a': 1}          } },
+        { 'expect': false, 'src': 'encode',    'param': { input: 'a.png',  output: 'a.flif', alphaGuess: null              } },
+        { 'expect': false, 'src': 'decode',    'param': { input: 'a.flif', output: 'a.png',  alphaGuess: null              } },
+        { 'expect': false, 'src': 'transcode', 'param': { input: 'a.flif', output: 'a.flif', alphaGuess: null              } },
+        { 'expect': false, 'src': 'encode',    'param': { input: 'a.png',  output: 'a.flif', alphaGuess: 8                 } },
+        { 'expect': false, 'src': 'decode',    'param': { input: 'a.flif', output: 'a.png',  alphaGuess: 8                 } },
+        { 'expect': false, 'src': 'transcode', 'param': { input: 'a.flif', output: 'a.flif', alphaGuess: 8                 } },
+
+    // Test known good for chromaSubsample
+        { 'expect': true,  'src': 'encode',    'param': { input: 'a.png',  output: 'a.flif', chromaSubsample: true      } },
+        { 'expect': true,  'src': 'transcode', 'param': { input: 'a.flif', output: 'a.flif', chromaSubsample: true      } },
+        { 'expect': true,  'src': 'encode',    'param': { input: 'a.png',  output: 'a.flif', chromaSubsample: false     } },
+        { 'expect': true,  'src': 'transcode', 'param': { input: 'a.flif', output: 'a.flif', chromaSubsample: false     } },
+
+    // Test known bad for chromaSubsample
+        { 'expect': false, 'src': 'decode',    'param': { input: 'a.flif', output: 'a.png',  chromaSubsample: true      } },
+        { 'expect': false, 'src': 'decode',    'param': { input: 'a.flif', output: 'a.png',  chromaSubsample: false     } },
+        { 'expect': false, 'src': 'encode',    'param': { input: 'a.png',  output: 'a.flif', chromaSubsample: 'a'       } },
+        { 'expect': false, 'src': 'decode',    'param': { input: 'a.flif', output: 'a.png',  chromaSubsample: 'a'       } },
+        { 'expect': false, 'src': 'transcode', 'param': { input: 'a.flif', output: 'a.flif', chromaSubsample: 'a'       } },
+        { 'expect': false, 'src': 'encode',    'param': { input: 'a.png',  output: 'a.flif', chromaSubsample: [0, 1, 2] } },
+        { 'expect': false, 'src': 'decode',    'param': { input: 'a.flif', output: 'a.png',  chromaSubsample: [0, 1, 2] } },
+        { 'expect': false, 'src': 'transcode', 'param': { input: 'a.flif', output: 'a.flif', chromaSubsample: [0, 1, 2] } },
+        { 'expect': false, 'src': 'encode',    'param': { input: 'a.png',  output: 'a.flif', chromaSubsample: {'a': 1}  } },
+        { 'expect': false, 'src': 'decode',    'param': { input: 'a.flif', output: 'a.png',  chromaSubsample: {'a': 1}  } },
+        { 'expect': false, 'src': 'transcode', 'param': { input: 'a.flif', output: 'a.flif', chromaSubsample: {'a': 1}  } },
+        { 'expect': false, 'src': 'encode',    'param': { input: 'a.png',  output: 'a.flif', chromaSubsample: null      } },
+        { 'expect': false, 'src': 'decode',    'param': { input: 'a.flif', output: 'a.png',  chromaSubsample: null      } },
+        { 'expect': false, 'src': 'transcode', 'param': { input: 'a.flif', output: 'a.flif', chromaSubsample: null      } },
+        { 'expect': false, 'src': 'encode',    'param': { input: 'a.png',  output: 'a.flif', chromaSubsample: 8         } },
+        { 'expect': false, 'src': 'decode',    'param': { input: 'a.flif', output: 'a.png',  chromaSubsample: 8         } },
+        { 'expect': false, 'src': 'transcode', 'param': { input: 'a.flif', output: 'a.flif', chromaSubsample: 8         } }
     ];
 
     for (var i = 0; i < testData.length; i++) {
@@ -374,6 +1191,19 @@ function test () {
         var expectation = testData[i].expect;
 
         if (actual !== expectation) {
+            var stack = (new Error()).stack.trim().split('\n');
+            var nf = 'node-flif/';
+            if (process.platform === 'win32') {
+                nf = /(?:\()(?:.*)(?:node\-flif)(?:\/)?(?:\\)?/gm;
+            }
+            var stackTrace = [
+                stack[1].trim().replace('at ', '    ').replace(nf, '(.\\'),
+                stack[2].trim().replace('at ', '    ').replace(nf, '(.\\'),
+                stack[3].trim().replace('at ', '    ').replace(nf, '(.\\'),
+                stack[4].trim().replace('at ', '    ').replace(nf, '(.\\'),
+                stack[5].trim().replace('at ', '    ').replace(nf, '(.\\'),
+                stack[6].trim().replace('at ', '    ').replace(nf, '(.\\')
+            ].join('\n');
             var errMsg = '\n' +
                 'TEST: verifyParams\n' +
                 'ERROR:\n' +
@@ -381,7 +1211,10 @@ function test () {
                 '  Source: ' + src + '\n' +
                 '  Params: ' + JSON.stringify(param, null, 4).replace('}', '  }') + '\n' +
                 '  Expected: ' + expectation + '\n' +
-                '  Actual: ' + actual;
+                '  Actual: ' + actual + '\n' +
+                '  Stack Trace:\n' +
+                stackTrace.split('\n\n').join('\n');
+
             throw errMsg;
         }
     }

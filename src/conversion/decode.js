@@ -38,7 +38,7 @@ function buildDecodeArgs (params) {
     if (params.overwrite === true) {
         overwrite = '-o';
     }
-    if (params.keepPalette === false) {
+    if (params.keepPalette === true) {
         keepPalette = '-k';
     }
     if (parseInt(params.quality) < 101) {

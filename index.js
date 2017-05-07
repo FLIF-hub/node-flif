@@ -22,9 +22,35 @@ var nodeFLIF = {
     //        FILE CONVERSION       //
     // //////////////////////////// //
 
-    'encode': require('./src/conversion/encode.js'),
     /**
-     * Decodes your FLIF to a PNG, PNM, PPM, PGM, PBM, or PAM.
+     * Encodes a PNG, PNM, PPM, PGM, PBM, or PAM to a FLIF.
+     * @param  {object}   params   Parameters for the encoding passed in by the user.
+     * @param  {function} callback Optional callback function, ignored if async param is false
+     */
+    'encode': function (params, callback) {
+        if (!params) {
+            throw 'You must pass parameters into node-flif encode.';
+        } else if (callback && typeof(callback) !== 'function') {
+            throw 'The second argument in node-flif encode is optional. However if used, it must be a function.';
+        }
+
+        var buildEncodeArgs = require('./src/conversion/encode.js');
+        var arguments = buildEncodeArgs(params);
+
+        if (params.async === false) {
+            var runCommandSync = require('./src/helpers/runCommandSync.js');
+            return runCommandSync(arguments);
+        } else {
+            var runCommand = require('./src/helpers/runCommand.js');
+            if (callback && typeof(callback) === 'function') {
+                runCommand(arguments, callback);
+            } else {
+                runCommand(arguments);
+            }
+        }
+    },
+    /**
+     * Decodes a FLIF to a PNG, PNM, PPM, PGM, PBM, or PAM.
      * @param  {object}   params   Parameters for the decoding passed in by the user.
      * @param  {function} callback Optional callback function, ignored if async param is false
      */
@@ -50,7 +76,33 @@ var nodeFLIF = {
             }
         }
     },
-    'transcode': require('./src/conversion/transcode.js'),
+    /**
+     * Transcodes a FLIF to a new FLIF.
+     * @param  {object}   params   Parameters for the transcoding passed in by the user.
+     * @param  {function} callback Optional callback function, ignored if async param is false
+     */
+    'transcode': function (params, callback) {
+        if (!params) {
+            throw 'You must pass parameters into node-flif transcode.';
+        } else if (callback && typeof(callback) !== 'function') {
+            throw 'The second argument in node-flif transcode is optional. However if used, it must be a function.';
+        }
+
+        var buildTranscodeArgs = require('./src/conversion/transcode.js');
+        var arguments = buildTranscodeArgs(params);
+
+        if (params.async === false) {
+            var runCommandSync = require('./src/helpers/runCommandSync.js');
+            return runCommandSync(arguments);
+        } else {
+            var runCommand = require('./src/helpers/runCommand.js');
+            if (callback && typeof(callback) === 'function') {
+                runCommand(arguments, callback);
+            } else {
+                runCommand(arguments);
+            }
+        }
+    },
 
 
     // //////////////////////////// //

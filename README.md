@@ -31,6 +31,7 @@ Eventually you will be able to `npm install` this module.
 
 * [x] Create API documentation (Subject to change prior to v1.0.0)
 * [ ] Create a simple wrapper that allows passing in a parameter object that will abstract out the native executable switches.
+* [ ] Take care of all TODO's
 * [ ] Add it to the NPM registry once functional.
 
 * * *
@@ -46,7 +47,7 @@ This is still being fleshed out.
 
 * * *
 
-### Encode :white_large_square:
+### Encode :star:
 
 Convert your image **to** a FLIF.
 

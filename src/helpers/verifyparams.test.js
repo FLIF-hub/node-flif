@@ -1081,8 +1081,8 @@ function test () {
     // Test known good for guess
         { 'expect': true,  'src': 'encode',    'param': { input: 'a.png',  output: 'a.flif', guess: 'heuristically'   } },
         { 'expect': true,  'src': 'transcode', 'param': { input: 'a.flif', output: 'a.flif', guess: 'heuristically'   } },
-        { 'expect': true,  'src': 'encode',    'param': { input: 'a.png',  output: 'a.flif', guess: 'avgerage'        } },
-        { 'expect': true,  'src': 'transcode', 'param': { input: 'a.flif', output: 'a.flif', guess: 'avgerage'        } },
+        { 'expect': true,  'src': 'encode',    'param': { input: 'a.png',  output: 'a.flif', guess: 'average'         } },
+        { 'expect': true,  'src': 'transcode', 'param': { input: 'a.flif', output: 'a.flif', guess: 'average'         } },
         { 'expect': true,  'src': 'encode',    'param': { input: 'a.png',  output: 'a.flif', guess: 'median gradient' } },
         { 'expect': true,  'src': 'transcode', 'param': { input: 'a.flif', output: 'a.flif', guess: 'median gradient' } },
         { 'expect': true,  'src': 'encode',    'param': { input: 'a.png',  output: 'a.flif', guess: 'median number'   } },
@@ -1092,7 +1092,7 @@ function test () {
 
     // Test known bad for guess
         { 'expect': false, 'src': 'decode',    'param': { input: 'a.flif', output: 'a.png',  guess: 'heuristically'   } },
-        { 'expect': false, 'src': 'decode',    'param': { input: 'a.flif', output: 'a.png',  guess: 'avgerage'        } },
+        { 'expect': false, 'src': 'decode',    'param': { input: 'a.flif', output: 'a.png',  guess: 'average'         } },
         { 'expect': false, 'src': 'decode',    'param': { input: 'a.flif', output: 'a.png',  guess: 'median gradient' } },
         { 'expect': false, 'src': 'decode',    'param': { input: 'a.flif', output: 'a.png',  guess: 'median number'   } },
         { 'expect': false, 'src': 'decode',    'param': { input: 'a.flif', output: 'a.png',  guess: 'mixed'           } },
@@ -1121,8 +1121,8 @@ function test () {
     // Test known good for alphaGuess
         { 'expect': true,  'src': 'encode',    'param': { input: 'a.png',  output: 'a.flif', alphaGuess: 'heuristically'   } },
         { 'expect': true,  'src': 'transcode', 'param': { input: 'a.flif', output: 'a.flif', alphaGuess: 'heuristically'   } },
-        { 'expect': true,  'src': 'encode',    'param': { input: 'a.png',  output: 'a.flif', alphaGuess: 'avgerage'        } },
-        { 'expect': true,  'src': 'transcode', 'param': { input: 'a.flif', output: 'a.flif', alphaGuess: 'avgerage'        } },
+        { 'expect': true,  'src': 'encode',    'param': { input: 'a.png',  output: 'a.flif', alphaGuess: 'average'         } },
+        { 'expect': true,  'src': 'transcode', 'param': { input: 'a.flif', output: 'a.flif', alphaGuess: 'average'         } },
         { 'expect': true,  'src': 'encode',    'param': { input: 'a.png',  output: 'a.flif', alphaGuess: 'median gradient' } },
         { 'expect': true,  'src': 'transcode', 'param': { input: 'a.flif', output: 'a.flif', alphaGuess: 'median gradient' } },
         { 'expect': true,  'src': 'encode',    'param': { input: 'a.png',  output: 'a.flif', alphaGuess: 'median number'   } },
@@ -1132,7 +1132,7 @@ function test () {
 
     // Test known bad for alphaGuess
         { 'expect': false, 'src': 'decode',    'param': { input: 'a.flif', output: 'a.png',  alphaGuess: 'heuristically'   } },
-        { 'expect': false, 'src': 'decode',    'param': { input: 'a.flif', output: 'a.png',  alphaGuess: 'avgerage'        } },
+        { 'expect': false, 'src': 'decode',    'param': { input: 'a.flif', output: 'a.png',  alphaGuess: 'average'         } },
         { 'expect': false, 'src': 'decode',    'param': { input: 'a.flif', output: 'a.png',  alphaGuess: 'median gradient' } },
         { 'expect': false, 'src': 'decode',    'param': { input: 'a.flif', output: 'a.png',  alphaGuess: 'median number'   } },
         { 'expect': false, 'src': 'decode',    'param': { input: 'a.flif', output: 'a.png',  alphaGuess: 'mixed'           } },

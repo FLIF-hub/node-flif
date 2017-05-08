@@ -515,13 +515,13 @@ function verifyParams (params, src, skipWarnings) {
         params.guess && src === 'decode' ||
         params.guess && (
             params.guess !== 'heuristically' &&
-            params.guess !== 'avgerage' &&
+            params.guess !== 'average' &&
             params.guess !== 'median gradient' &&
             params.guess !== 'median number' &&
             params.guess !== 'mixed'
         )
     ) {
-        warnUser('The guess parameter must one of the following: "heuristically", "avgerage", "median gradient", "median number", "mixed".');
+        warnUser('The guess parameter must one of the following: "heuristically", "average", "median gradient", "median number", "mixed".');
         return false;
     }
 
@@ -533,13 +533,13 @@ function verifyParams (params, src, skipWarnings) {
         params.alphaGuess && src === 'decode' ||
         params.alphaGuess && (
             params.alphaGuess !== 'heuristically' &&
-            params.alphaGuess !== 'avgerage' &&
+            params.alphaGuess !== 'average' &&
             params.alphaGuess !== 'median gradient' &&
             params.alphaGuess !== 'median number' &&
             params.alphaGuess !== 'mixed'
         )
     ) {
-        warnUser('The alphaGuess parameter must one of the following: "heuristically", "avgerage", "median gradient", "median number", "mixed".');
+        warnUser('The alphaGuess parameter must one of the following: "heuristically", "average", "median gradient", "median number", "mixed".');
         return false;
     }
 

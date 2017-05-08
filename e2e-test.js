@@ -13,4 +13,17 @@ nodeFLIF.decode(decodeParams, function (data) {
     }
 });
 
+var encodeParams = {
+    input: './sample/cat.png',
+    output: './sample/encode-test.flif',
+    overwrite: true
+}
+
+nodeFLIF.encode(encodeParams, function (data) {
+    console.log('Encode finished.');
+    if (data) {
+        console.log(data);
+    }
+})
+
 console.log(nodeFLIF.identify('./sample/cat.flif'));

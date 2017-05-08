@@ -125,7 +125,7 @@ function buildEncodeArgs (params) {
         keepPalette = '-k';
     }
     if (parseInt(params.effort) < 101) {
-        effort = '-q=' + parseInt(params.effort);
+        effort = '-E' + parseInt(params.effort);
     }
     if (params.interlace === false) {
         interlace = '-N';
@@ -137,7 +137,95 @@ function buildEncodeArgs (params) {
         interlace = '';
     }
     if (parseInt(params.quality) < 101) {
-        quality = '-q=' + parseInt(params.quality);
+        quality = '-Q' + parseInt(params.quality);
+    }
+    if (params.frameDelay) {
+        frameDelay = '-F' + params.frameDelay.join(',');
+    }
+    if (params.maxPaletteSize) {
+        maxPaletteSize = '-P' + parseInt(params.maxPaletteSize);
+    }
+    if (params.colorBuckets === false) {
+        colorBuckets = '-B';
+    }
+    if (params.colorBuckets === true) {
+        colorBuckets = '-A';
+    }
+    if (params.colorBuckets === 'auto') {
+        colorBuckets = '';
+    }
+    if (params.channelCompact === false) {
+        channelCompact = '-C';
+    }
+    if (params.ycocg === false) {
+        ycocg = '-Y';
+    }
+    if (params.subtractGreen === false) {
+        subtractGreen = '-W';
+    }
+    if (params.frameShape === false) {
+        frameShape = '-S';
+    }
+    if (params.maxFrameLookBack) {
+        maxFrameLookBack = '-L' + parseInt(params.maxFrameLookBack);
+    }
+    if (params.maniacRepeats) {
+        maniacRepeats = '-R' + parseInt(params.maniacRepeats);
+    }
+    if (parseInt(params.maniacThreshold) > -1) {
+        maniacThreshold = '-T' + parseInt(params.maniacThreshold);
+    }
+    if (params.maniacDivisor) {
+        maniacDivisor = '-D' + parseInt(params.maniacDivisor);
+    }
+    if (params.maniacMinSize) {
+        maniacMinSize = '-M' + parseInt(params.maniacMinSize);
+    }
+    if (params.chanceCutoff) {
+        chanceCutoff = '-X' + parseInt(params.chanceCutoff);
+    }
+    if (params.chanceAlpha) {
+        chanceAlpha = '-Z' + parseInt(params.chanceAlpha);
+    }
+    if (params.adaptive === true) {
+        adaptive = '-U';
+    }
+    if (params.guess === 'heuristically') {
+        guess = '-G?';
+    }
+    if (params.guess === 'average') {
+        guess = '-G0';
+    }
+    if (params.guess === 'median gradient') {
+        guess = '-G1';
+    }
+    if (params.guess === 'median number') {
+        guess = '-G2';
+    }
+    if (params.guess === 'mixed') {
+        guess = '-GX';
+    }
+    if (params.alphaGuess === 'heuristically') {
+        alphaGuess = '-H?';
+    }
+    if (params.alphaGuess === 'average') {
+        alphaGuess = '-H0';
+    }
+    if (params.alphaGuess === 'median gradient') {
+        alphaGuess = '-H1';
+    }
+    if (params.alphaGuess === 'median number') {
+        alphaGuess = '-H2';
+    }
+    if (params.alphaGuess === 'mixed') {
+        alphaGuess = '-HX';
+    }
+    if (params.keepAlpha === true) {
+        keepAlpha = '-K';
+        alphaGuess = '';
+    }
+    if (params.chromaSubsample === true) {
+        chromaSubsample = '-J';
     }
 
     var options = [
@@ -170,9 +258,9 @@ function buildEncodeArgs (params) {
         chromaSubsample
     ].join(' ');
 
-    // -d -c -m -p -o -k -q=100 -s=2 -r=100x100 -f=100x100 "input file.flif" "output file.png"
+    // -e -c       -R100 -H0 "a.flif" "b.png"
     var arguments = '-e ' + options + ' "' + input + '" "' + output + '"';
-    // -d -c -m        -s=2   -f=100x100 "a.flif" "b.flif" ==> -d -c -m -s=2 -f=100x100 "a.flif" "b.flif"
+    // -e -c       -R100 -H0 "a.flif" "b.png" ==> -e -c -R100 -H0 "a.flif" "b.png"
     arguments = arguments.replace(/  +/g, ' ');
     arguments = arguments.trim();
 

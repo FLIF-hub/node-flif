@@ -43,8 +43,8 @@ var allTestsToRun = [
     version,
 
     // Conversion
-    decode
-    // encode,
+    decode,
+    encode
     // transcode
 ];
 

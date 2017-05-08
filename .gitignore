@@ -40,3 +40,4 @@ jspm_packages
 .DS_Store
 thumbs.db
 sample/decode-test.png
+sample/encode-test.flif

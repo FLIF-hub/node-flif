@@ -73,7 +73,7 @@ allTestsToRun.forEach(function (test) {
 
 var output = results + ' ' +
     'Tests passed.\n\n' +
-    'Tested:\n * ' +
-    testNames.join('\n * ');
+    'Tested:\n ∙ ' +
+    testNames.join('\n ∙ ');
 
 console.log(output);

@@ -11,7 +11,7 @@ function executablePath () {
     var executablePath = '';
 
     var arch = '64';
-    if (reportedArch === 'x86') {
+    if (reportedArch === 'x86' || reportedArch === 'ia32') {
         arch = '32';
     }
 

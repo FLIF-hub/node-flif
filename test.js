@@ -12,7 +12,6 @@ var encode         = require('./src/conversion/encode.test.js');
 var transcode      = require('./src/conversion/transcode.test.js');
 
 // Pull in all helper tests
-var endswith       = require('./src/helpers/endswith.test.js');
 var executablePath = require('./src/helpers/executablePath.test.js');
 var runCommand     = require('./src/helpers/runCommand.test.js');
 var runCommandSync = require('./src/helpers/runCommandSync.test.js');
@@ -31,7 +30,6 @@ var version        = require('./src/information/version.test.js');
 // List of all tests to be ran in order
 var allTestsToRun = [
     // Helpers
-    endswith,
     executablePath,
     runCommand,
     runCommandSync,

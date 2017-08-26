@@ -9,7 +9,6 @@
  */
 
 function verifyParams (params, src, skipWarnings) {
-    var endsWith = require('./endsWith.js');
     skipWarnings = skipWarnings || false;
     if (typeof(skipWarnings) !== 'boolean') {
         skipWarnings = false;
@@ -66,39 +65,39 @@ function verifyParams (params, src, skipWarnings) {
 
     if (
         src === 'encode' &&
-        !endsWith(input, '.png') &&
-        !endsWith(input, '.pnm') &&
-        !endsWith(input, '.ppm') &&
-        !endsWith(input, '.pgm') &&
-        !endsWith(input, '.pbm') &&
-        !endsWith(input, '.pam')
+        !input.endsWith('.png') &&
+        !input.endsWith('.pnm') &&
+        !input.endsWith('.ppm') &&
+        !input.endsWith('.pgm') &&
+        !input.endsWith('.pbm') &&
+        !input.endsWith('.pam')
     ) {
         warnUser('Encode input only accepts .png, .pnm, .ppm, .pgm, .pbm, and .pam.');
         return false;
     }
-    if (src === 'encode' && !endsWith(output, '.flif')) {
+    if (src === 'encode' && !output.endsWith('.flif')) {
         warnUser('Encode output must be a .flif.');
         return false;
     }
 
-    if (src === 'decode' && !endsWith(input, '.flif')) {
+    if (src === 'decode' && !input.endsWith('.flif')) {
         warnUser('Decode input must be a .flif.');
         return false;
     }
     if (
         src === 'decode' &&
-        !endsWith(output, '.png') &&
-        !endsWith(output, '.pnm') &&
-        !endsWith(output, '.ppm') &&
-        !endsWith(output, '.pgm') &&
-        !endsWith(output, '.pbm') &&
-        !endsWith(output, '.pam')
+        !output.endsWith('.png') &&
+        !output.endsWith('.pnm') &&
+        !output.endsWith('.ppm') &&
+        !output.endsWith('.pgm') &&
+        !output.endsWith('.pbm') &&
+        !output.endsWith('.pam')
     ) {
         warnUser('Decode output only accepts .png, .pnm, .ppm, .pgm, .pbm, and .pam.');
         return false;
     }
 
-    if (src === 'transcode' && (!endsWith(input, '.flif') || !endsWith(output, '.flif'))) {
+    if (src === 'transcode' && (!input.endsWith('.flif') || !output.endsWith('.flif'))) {
         warnUser('Transcode input and output must be .flif files.');
         return false;
     }

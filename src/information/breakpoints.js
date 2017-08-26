@@ -15,13 +15,12 @@
     }
  */
 function breakpoints (file) {
-    var endsWith = require('../helpers/endswith.js');
     var identify = require('./identify.js');
     var runCommandSync = require('../helpers/runcommandsync.js');
 
     if (!file || typeof(file) !== 'string') {
         throw 'You must pass in a string to the breakpoints method.';
-    } else if (!endsWith(file, '.flif')) {
+    } else if (!file.endsWith('.flif')) {
         throw 'The breakpoints method only works on FLIF files.';
     }
 

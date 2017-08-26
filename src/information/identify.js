@@ -7,12 +7,11 @@
  */
 function identify (file) {
     var fs = require('fs');
-    var endsWith = require('../helpers/endswith.js');
     var runCommandSync = require('../helpers/runcommandsync.js');
 
     if (!file || typeof(file) !== 'string') {
         throw 'You must pass in a string to the identify method.';
-    } else if (!endsWith(file, '.flif')) {
+    } else if (!file.endsWith('.flif')) {
         throw 'The identify method only works on FLIF files.';
     }
 

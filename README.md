@@ -2,6 +2,8 @@
 
 * * *
 
+**Status:** Development is blocked until someone with **C/C++ build experience** can help. [See Issue #5](https://github.com/FLIF-hub/node-flif/issues/5)
+
 # NOT READY FOR USE YET
 ### Star & Watch for updates
 

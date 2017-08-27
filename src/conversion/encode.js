@@ -260,7 +260,7 @@ function buildEncodeArgs (params) {
 
     // -e -c       -R100 -H0 "a.flif" "b.png"
     var arguments = '-e ' + options + ' "' + input + '" "' + output + '"';
-    // -e -c       -R100 -H0 "a.flif" "b.png" ==> -e -c -R100 -H0 "a.flif" "b.png"
+    // -e -c -R100 -H0 "a.flif" "b.png"
     arguments = arguments.replace(/  +/g, ' ');
     arguments = arguments.trim();
 

@@ -12,8 +12,9 @@ var allTestsToRun = [
     require('./src/helpers/executablePath.test.js'),
     require('./src/helpers/runCommand.test.js'),
     require('./src/helpers/runCommandSync.test.js'),
-    require('./src/helpers/verifyParams.test.js'),
     require('./src/helpers/warnUser.test.js'),
+    require('./src/helpers/verifyParams/ensureParamsExist.test.js'),
+    require('./src/helpers/verifyParams.test.js'),
 
     // Information
     require('./src/information/breakpoints.test.js'),

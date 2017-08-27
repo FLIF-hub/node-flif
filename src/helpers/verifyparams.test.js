@@ -5,26 +5,6 @@ function test () {
     var subject = require('./' + testName + '.js');
 
     var testData = [
-    // Test if params exist
-        { 'expect': false, 'src': 'encode',    'param': undefined                             },
-        { 'expect': false, 'src': 'encode',    'param': null                                  },
-        { 'expect': false, 'src': 'encode',    'param': true                                  },
-        { 'expect': false, 'src': 'encode',    'param': false                                 },
-        { 'expect': false, 'src': 'encode',    'param': 8                                     },
-        { 'expect': false, 'src': 'encode',    'param': ''                                    },
-        { 'expect': false, 'src': 'encode',    'param': []                                    },
-        { 'expect': false, 'src': 'encode',    'param': {}                                    },
-
-    // Test if src exists
-        { 'expect': false, 'src': undefined,   'param': { input: 'a.png',  output: 'a.flif' } },
-        { 'expect': false, 'src': null,        'param': { input: 'a.png',  output: 'a.flif' } },
-        { 'expect': false, 'src': true,        'param': { input: 'a.png',  output: 'a.flif' } },
-        { 'expect': false, 'src': false,       'param': { input: 'a.png',  output: 'a.flif' } },
-        { 'expect': false, 'src': 8,           'param': { input: 'a.png',  output: 'a.flif' } },
-        { 'expect': false, 'src': '',          'param': { input: 'a.png',  output: 'a.flif' } },
-        { 'expect': false, 'src': [],          'param': { input: 'a.png',  output: 'a.flif' } },
-        { 'expect': false, 'src': {},          'param': { input: 'a.png',  output: 'a.flif' } },
-
     // Test if input/output exists
         { 'expect': false, 'src': 'encode',    'param': { input: 'a.png'                    } },
         { 'expect': false, 'src': 'decode',    'param': { input: 'a.png'                    } },
@@ -1192,28 +1172,17 @@ function test () {
 
         if (actual !== expectation) {
             var stack = (new Error()).stack.trim().split('\n');
-            var nf = 'node-flif/';
-            if (process.platform === 'win32') {
-                nf = /(?:\()(?:.*)(?:node\-flif)(?:\/)?(?:\\)?/gm;
-            }
-            var stackTrace = [
-                stack[1].trim().replace('at ', '    ').replace(nf, '(.\\'),
-                stack[2].trim().replace('at ', '    ').replace(nf, '(.\\'),
-                stack[3].trim().replace('at ', '    ').replace(nf, '(.\\'),
-                stack[4].trim().replace('at ', '    ').replace(nf, '(.\\'),
-                stack[5].trim().replace('at ', '    ').replace(nf, '(.\\'),
-                stack[6].trim().replace('at ', '    ').replace(nf, '(.\\')
-            ].join('\n');
-            var errMsg = '\n' +
-                'TEST: verifyParams\n' +
-                'ERROR:\n' +
-                '  Iterator: ' + i + '\n' +
-                '  Source: ' + src + '\n' +
-                '  Params: ' + JSON.stringify(param, null, 4).replace('}', '  }') + '\n' +
-                '  Expected: ' + expectation + '\n' +
-                '  Actual: ' + actual + '\n' +
-                '  Stack Trace:\n' +
-                stackTrace.split('\n\n').join('\n');
+            var errorMessage = require('./verifyParams/errorMessage.js');
+            var errorDetails = {
+                stack: stack,
+                testName: testName,
+                i: i,
+                src: src,
+                param: param,
+                expectation: expectation,
+                actual: actual
+            };
+            var errMsg = errorMessage(errorDetails);
 
             throw errMsg;
         }

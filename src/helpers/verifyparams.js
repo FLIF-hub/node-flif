@@ -11,18 +11,12 @@
 function verifyParams (params, src, skipWarnings) {
     var warnUser = require('./warnUser.js');
 
-    // ////////////////////// //
-    //  Ensure params exists  //
-    // ////////////////////// //
-    if (!params || typeof(params) !== 'object' || params.length !== undefined) {
-        warnUser('You must pass an object into nodeFLIF.' + src, skipWarnings);
+    var ensureParamsExist = require('./verifyParams/ensureParamsExist.js');
+    var ensuredParamsExist = ensureParamsExist(params, src, skipWarnings);
+    if (!ensuredParamsExist) {
         return false;
     }
 
-    if (!src || typeof(src) !== 'string' || src.length < 2) {
-        warnUser('The type of parameter (encode, decode, transcode) is unknown.', skipWarnings);
-        return false;
-    }
 
 
     // /////////////////////// //

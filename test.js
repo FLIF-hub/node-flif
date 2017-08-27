@@ -13,7 +13,9 @@ var allTestsToRun = [
     require('./src/helpers/runCommand.test.js'),
     require('./src/helpers/runCommandSync.test.js'),
     require('./src/helpers/warnUser.test.js'),
-    require('./src/helpers/verifyParams/ensureParamsExist.test.js'),
+    [
+        require('./src/helpers/verifyParams/ensureParamsExist.test.js')
+    ],
     require('./src/helpers/verifyParams.test.js'),
 
     // Information
@@ -37,18 +39,29 @@ var allTestsToRun = [
 var numberOfTestsPassed = 0;
 var testNames = [];
 
-allTestsToRun.forEach(function (test) {
-    if (typeof(test) !== 'function') {
-        var errMsg = '\n' +
-            'ERROR: \n' +
-            'Test: ' + test;
-        throw errMsg;
-    }
-
-    var result = test();
-    testNames.push(result[0]);
-    numberOfTestsPassed = numberOfTestsPassed + result[1];
-});
+/**
+ * Recursive function to loop over all tests and subtests and run them
+ * @param  {array}   testsArray  Array of test functions and subArrays of test functions
+ * @param  {string}  sub         number of spaces for the output report later
+ */
+function runTests (testsArray, sub) {
+    sub = sub || '';
+    testsArray.forEach(function (test) {
+        if (Array.isArray(test)) {
+            runTests(test, sub + ' ');
+        } else if (typeof(test) !== 'function') {
+            var errMsg = '\n' +
+                'ERROR: \n' +
+                'Test: ' + test;
+            throw errMsg;
+        } else {
+            var result = test();
+            testNames.push(sub + ' ∙ ' + result[0] + '\n');
+            numberOfTestsPassed = numberOfTestsPassed + result[1];
+        }
+    });
+}
+runTests(allTestsToRun);
 
 
 
@@ -59,6 +72,6 @@ allTestsToRun.forEach(function (test) {
 var output =
     numberOfTestsPassed + ' Tests passed.\n\n' +
     'Tested:\n' +
-    ' ∙ ' + testNames.join('\n ∙ ');
+    testNames.join('');
 
 console.log(output);

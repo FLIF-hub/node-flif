@@ -9,39 +9,18 @@
  */
 
 function verifyParams (params, src, skipWarnings) {
-    skipWarnings = skipWarnings || false;
-    if (typeof(skipWarnings) !== 'boolean') {
-        skipWarnings = false;
-    }
-
-    /**
-     * Logs out a stack trace and helpful human readable message.
-     * @param  {string}  message  The helpful message to be logged out.
-     */
-    function warnUser (message) {
-        if (!skipWarnings) {
-            var stack = (new Error()).stack.trim().split('\n');
-            var stackTrace = [
-                stack[3].trim().replace('at ', ''),
-                stack[4].trim().replace('at ', ''),
-                stack[5].trim().replace('at ', ''),
-                stack[6].trim().replace('at ', '')
-            ].join('\n');
-            console.log('\nWARNING: ' + message + '\n\n' + stackTrace + '\n'); // eslint-disable-line no-console
-        }
-    }
-
+    var warnUser = require('./warnUser.js');
 
     // ////////////////////// //
     //  Ensure params exists  //
     // ////////////////////// //
     if (!params || typeof(params) !== 'object' || params.length !== undefined) {
-        warnUser('You must pass an object into nodeFLIF.' + src);
+        warnUser('You must pass an object into nodeFLIF.' + src, skipWarnings);
         return false;
     }
 
     if (!src || typeof(src) !== 'string' || src.length < 2) {
-        warnUser('The type of parameter (encode, decode, transcode) is unknown.');
+        warnUser('The type of parameter (encode, decode, transcode) is unknown.', skipWarnings);
         return false;
     }
 
@@ -56,7 +35,7 @@ function verifyParams (params, src, skipWarnings) {
         typeof(params.input) !== 'string' ||
         typeof(params.output) !== 'string'
     ) {
-        warnUser('You must pass in a path to your input and output files as a string.');
+        warnUser('You must pass in a path to your input and output files as a string.', skipWarnings);
         return false;
     }
 
@@ -72,16 +51,16 @@ function verifyParams (params, src, skipWarnings) {
         !input.endsWith('.pbm') &&
         !input.endsWith('.pam')
     ) {
-        warnUser('Encode input only accepts .png, .pnm, .ppm, .pgm, .pbm, and .pam.');
+        warnUser('Encode input only accepts .png, .pnm, .ppm, .pgm, .pbm, and .pam.', skipWarnings);
         return false;
     }
     if (src === 'encode' && !output.endsWith('.flif')) {
-        warnUser('Encode output must be a .flif.');
+        warnUser('Encode output must be a .flif.', skipWarnings);
         return false;
     }
 
     if (src === 'decode' && !input.endsWith('.flif')) {
-        warnUser('Decode input must be a .flif.');
+        warnUser('Decode input must be a .flif.', skipWarnings);
         return false;
     }
     if (
@@ -93,12 +72,12 @@ function verifyParams (params, src, skipWarnings) {
         !output.endsWith('.pbm') &&
         !output.endsWith('.pam')
     ) {
-        warnUser('Decode output only accepts .png, .pnm, .ppm, .pgm, .pbm, and .pam.');
+        warnUser('Decode output only accepts .png, .pnm, .ppm, .pgm, .pbm, and .pam.', skipWarnings);
         return false;
     }
 
     if (src === 'transcode' && (!input.endsWith('.flif') || !output.endsWith('.flif'))) {
-        warnUser('Transcode input and output must be .flif files.');
+        warnUser('Transcode input and output must be .flif files.', skipWarnings);
         return false;
     }
 
@@ -112,7 +91,7 @@ function verifyParams (params, src, skipWarnings) {
         params.async &&
         typeof(params.async) !== 'boolean'
     ) {
-        warnUser('The async parameter must be a boolean value.');
+        warnUser('The async parameter must be a boolean value.', skipWarnings);
         return false;
     }
 
@@ -121,7 +100,7 @@ function verifyParams (params, src, skipWarnings) {
         params.overwrite &&
         typeof(params.overwrite) !== 'boolean'
     ) {
-        warnUser('The overwrite parameter must be a boolean value.');
+        warnUser('The overwrite parameter must be a boolean value.', skipWarnings);
         return false;
     }
 
@@ -138,7 +117,7 @@ function verifyParams (params, src, skipWarnings) {
             params.quality % 1 !== 0
         )
     ) {
-        warnUser('The quality parameter must be a whole number between 0 and 100.');
+        warnUser('The quality parameter must be a whole number between 0 and 100.', skipWarnings);
         return false;
     }
 
@@ -147,7 +126,7 @@ function verifyParams (params, src, skipWarnings) {
         params.keepMetaData &&
         typeof(params.keepMetaData) !== 'boolean'
     ) {
-        warnUser('The keepMetaData parameter must be a boolean value.');
+        warnUser('The keepMetaData parameter must be a boolean value.', skipWarnings);
         return false;
     }
 
@@ -156,7 +135,7 @@ function verifyParams (params, src, skipWarnings) {
         params.keepColorProfile &&
         typeof(params.keepColorProfile) !== 'boolean'
     ) {
-        warnUser('The keepColorProfile parameter must be a boolean value.');
+        warnUser('The keepColorProfile parameter must be a boolean value.', skipWarnings);
         return false;
     }
 
@@ -169,7 +148,7 @@ function verifyParams (params, src, skipWarnings) {
         params.crc &&
         typeof(params.crc) !== 'boolean'
     ) {
-        warnUser('The crc parameter must be a boolean value.');
+        warnUser('The crc parameter must be a boolean value.', skipWarnings);
         return false;
     }
 
@@ -178,7 +157,7 @@ function verifyParams (params, src, skipWarnings) {
         params.keepPalette &&
         typeof(params.keepPalette) !== 'boolean'
     ) {
-        warnUser('The keepPalette parameter must be a boolean value.');
+        warnUser('The keepPalette parameter must be a boolean value.', skipWarnings);
         return false;
     }
 
@@ -197,12 +176,12 @@ function verifyParams (params, src, skipWarnings) {
             params.scale !== 32
         )
     ) {
-        warnUser('The scale parameter must be one of the following numbers: 1, 2, 4, 8, 16, 32.');
+        warnUser('The scale parameter must be one of the following numbers: 1, 2, 4, 8, 16, 32.', skipWarnings);
         return false;
     }
 
     if (params.resize && typeof(params.resize) !== 'object') {
-        warnUser('The resize parameter must be a object.');
+        warnUser('The resize parameter must be a object.', skipWarnings);
         return false;
     }
 
@@ -222,12 +201,12 @@ function verifyParams (params, src, skipWarnings) {
             params.resize.height < 0
         )
     ) {
-        warnUser('The resize parameter should be an object. Example: { width: 320, height: 240 }.');
+        warnUser('The resize parameter should be an object. Example: { width: 320, height: 240 }.', skipWarnings);
         return false;
     }
 
     if (params.fit && typeof(params.fit) !== 'object') {
-        warnUser('The fit parameter must be a object.');
+        warnUser('The fit parameter must be a object.', skipWarnings);
         return false;
     }
 
@@ -247,7 +226,7 @@ function verifyParams (params, src, skipWarnings) {
             params.fit.height < 0
         )
     ) {
-        warnUser('The fit parameter should be an object. Example: { width: 320, height: 240 }.');
+        warnUser('The fit parameter should be an object. Example: { width: 320, height: 240 }.', skipWarnings);
         return false;
     }
 
@@ -265,7 +244,7 @@ function verifyParams (params, src, skipWarnings) {
         ) ||
         typeof(params.effort) === 'number' && src === 'decode'
     ) {
-        warnUser('The effort parameter must be a whole number between 0 and 100.');
+        warnUser('The effort parameter must be a whole number between 0 and 100.', skipWarnings);
         return false;
     }
 
@@ -286,7 +265,7 @@ function verifyParams (params, src, skipWarnings) {
         src === 'decode' && params.interlace === true ||
         src === 'decode' && params.interlace === 'auto'
     ) {
-        warnUser('The interlace parameter must be set to true, false, or "auto".');
+        warnUser('The interlace parameter must be set to true, false, or "auto".', skipWarnings);
         return false;
     }
 
@@ -297,7 +276,7 @@ function verifyParams (params, src, skipWarnings) {
         src === 'decode' && params.keepAlpha === false ||
         src === 'decode' && params.keepAlpha === true
     ) {
-        warnUser('The keepAlpha parameter must be a boolean value.');
+        warnUser('The keepAlpha parameter must be a boolean value.', skipWarnings);
         return false;
     }
 
@@ -309,7 +288,7 @@ function verifyParams (params, src, skipWarnings) {
         params.frameDelay && typeof(params.frameDelay) !== 'object' ||
         params.frameDelay && !Array.isArray(params.frameDelay)
     ) {
-        warnUser('The frameDelay parameter must be an array of numbers like [100] or [100, 250].');
+        warnUser('The frameDelay parameter must be an array of numbers like [100] or [100, 250].', skipWarnings);
         return false;
     }
 
@@ -321,7 +300,7 @@ function verifyParams (params, src, skipWarnings) {
                 item === undefined ||
                 item < 0
             ) {
-                warnUser('The frameDelay parameter must be an array of numbers like [100] or [100, 250].');
+                warnUser('The frameDelay parameter must be an array of numbers like [100] or [100, 250].', skipWarnings);
                 return false;
             }
         }
@@ -335,7 +314,7 @@ function verifyParams (params, src, skipWarnings) {
         typeof(params.maxPaletteSize) === 'number' && params.maxPaletteSize < 2 ||
         typeof(params.maxPaletteSize) === 'number' && params.maxPaletteSize % 1 !== 0
     ) {
-        warnUser('The maxPaletteSize parameter must be a number equal to or greater than 2.');
+        warnUser('The maxPaletteSize parameter must be a number equal to or greater than 2.', skipWarnings);
         return false;
     }
 
@@ -356,7 +335,7 @@ function verifyParams (params, src, skipWarnings) {
         src === 'decode' && params.colorBuckets === true ||
         src === 'decode' && params.colorBuckets === 'auto'
     ) {
-        warnUser('The colorBuckets parameter must be set to true, false, or "auto".');
+        warnUser('The colorBuckets parameter must be set to true, false, or "auto".', skipWarnings);
         return false;
     }
 
@@ -367,7 +346,7 @@ function verifyParams (params, src, skipWarnings) {
         src === 'decode' && params.channelCompact === false ||
         src === 'decode' && params.channelCompact === true
     ) {
-        warnUser('The channelCompact parameter must be a boolean value.');
+        warnUser('The channelCompact parameter must be a boolean value.', skipWarnings);
         return false;
     }
 
@@ -378,7 +357,7 @@ function verifyParams (params, src, skipWarnings) {
         src === 'decode' && params.ycocg === false ||
         src === 'decode' && params.ycocg === true
     ) {
-        warnUser('The ycocg parameter must be a boolean value.');
+        warnUser('The ycocg parameter must be a boolean value.', skipWarnings);
         return false;
     }
 
@@ -389,7 +368,7 @@ function verifyParams (params, src, skipWarnings) {
         src === 'decode' && params.subtractGreen === false ||
         src === 'decode' && params.subtractGreen === true
     ) {
-        warnUser('The subtractGreen parameter must be a boolean value.');
+        warnUser('The subtractGreen parameter must be a boolean value.', skipWarnings);
         return false;
     }
 
@@ -400,7 +379,7 @@ function verifyParams (params, src, skipWarnings) {
         src === 'decode' && params.frameShape === false ||
         src === 'decode' && params.frameShape === true
     ) {
-        warnUser('The frameShape parameter must be a boolean value.');
+        warnUser('The frameShape parameter must be a boolean value.', skipWarnings);
         return false;
     }
 
@@ -413,7 +392,7 @@ function verifyParams (params, src, skipWarnings) {
         typeof(params.maxFrameLookBack) === 'number' && params.maxFrameLookBack % 1 !== 0 ||
         typeof(params.maxFrameLookBack) === 'number' && src === 'decode'
     ) {
-        warnUser('The maxFrameLookBack parameter must be a number greater than 0.');
+        warnUser('The maxFrameLookBack parameter must be a number greater than 0.', skipWarnings);
         return false;
     }
 
@@ -426,7 +405,7 @@ function verifyParams (params, src, skipWarnings) {
         typeof(params.maniacRepeats) === 'number' && params.maniacRepeats % 1 !== 0 ||
         typeof(params.maniacRepeats) === 'number' && src === 'decode'
     ) {
-        warnUser('The maniacRepeats parameter must be a number greater than 0.');
+        warnUser('The maniacRepeats parameter must be a number greater than 0.', skipWarnings);
         return false;
     }
 
@@ -439,7 +418,7 @@ function verifyParams (params, src, skipWarnings) {
         typeof(params.maniacThreshold) === 'number' && params.maniacThreshold % 1 !== 0 ||
         typeof(params.maniacThreshold) === 'number' && src === 'decode'
     ) {
-        warnUser('The maniacThreshold parameter must be a number greater than or equal to 0.');
+        warnUser('The maniacThreshold parameter must be a number greater than or equal to 0.', skipWarnings);
         return false;
     }
 
@@ -452,7 +431,7 @@ function verifyParams (params, src, skipWarnings) {
         typeof(params.maniacDivisor) === 'number' && params.maniacDivisor % 1 !== 0 ||
         typeof(params.maniacDivisor) === 'number' && src === 'decode'
     ) {
-        warnUser('The maniacDivisor parameter must be a number greater than 0.');
+        warnUser('The maniacDivisor parameter must be a number greater than 0.', skipWarnings);
         return false;
     }
 
@@ -465,7 +444,7 @@ function verifyParams (params, src, skipWarnings) {
         typeof(params.maniacMinSize) === 'number' && params.maniacMinSize % 1 !== 0 ||
         typeof(params.maniacMinSize) === 'number' && src === 'decode'
     ) {
-        warnUser('The maniacMinSize parameter must be a number greater than 0.');
+        warnUser('The maniacMinSize parameter must be a number greater than 0.', skipWarnings);
         return false;
     }
 
@@ -478,7 +457,7 @@ function verifyParams (params, src, skipWarnings) {
         typeof(params.chanceCutoff) === 'number' && params.chanceCutoff % 1 !== 0 ||
         typeof(params.chanceCutoff) === 'number' && src === 'decode'
     ) {
-        warnUser('The chanceCutoff parameter must be a number greater than 0.');
+        warnUser('The chanceCutoff parameter must be a number greater than 0.', skipWarnings);
         return false;
     }
 
@@ -491,7 +470,7 @@ function verifyParams (params, src, skipWarnings) {
         typeof(params.chanceAlpha) === 'number' && params.chanceAlpha % 1 !== 0 ||
         typeof(params.chanceAlpha) === 'number' && src === 'decode'
     ) {
-        warnUser('The chanceAlpha parameter must be a number greater than 0.');
+        warnUser('The chanceAlpha parameter must be a number greater than 0.', skipWarnings);
         return false;
     }
 
@@ -502,7 +481,7 @@ function verifyParams (params, src, skipWarnings) {
         src === 'decode' && params.adaptive === false ||
         src === 'decode' && params.adaptive === true
     ) {
-        warnUser('The adaptive parameter must be a boolean value.');
+        warnUser('The adaptive parameter must be a boolean value.', skipWarnings);
         return false;
     }
 
@@ -520,7 +499,7 @@ function verifyParams (params, src, skipWarnings) {
             params.guess !== 'mixed'
         )
     ) {
-        warnUser('The guess parameter must one of the following: "heuristically", "average", "median gradient", "median number", "mixed".');
+        warnUser('The guess parameter must one of the following: "heuristically", "average", "median gradient", "median number", "mixed".', skipWarnings);
         return false;
     }
 
@@ -538,7 +517,7 @@ function verifyParams (params, src, skipWarnings) {
             params.alphaGuess !== 'mixed'
         )
     ) {
-        warnUser('The alphaGuess parameter must one of the following: "heuristically", "average", "median gradient", "median number", "mixed".');
+        warnUser('The alphaGuess parameter must one of the following: "heuristically", "average", "median gradient", "median number", "mixed".', skipWarnings);
         return false;
     }
 
@@ -549,7 +528,7 @@ function verifyParams (params, src, skipWarnings) {
         src === 'decode' && params.chromaSubsample === false ||
         src === 'decode' && params.chromaSubsample === true
     ) {
-        warnUser('The chromaSubsample parameter must be a boolean value.');
+        warnUser('The chromaSubsample parameter must be a boolean value.', skipWarnings);
         return false;
     }
 

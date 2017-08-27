@@ -2,15 +2,16 @@
 
 function test () {
     var testName = 'transcode';
-    // var subject = require('./' + testName.toLowerCase() + '.js');
+    var subject = require('./' + testName + '.js');
 
     var testData = [
-        { 'actual': '', 'expectation': '' }
+        { 'params': '', 'expectation': '' }
     ];
 
     for (var i = 0; i < testData.length; i++) {
-        var actual = testData[i].actual;
+        var params = testData[i].params;
         var expectation = testData[i].expectation;
+        var actual = subject(params);
         if (actual !== expectation) {
             var errMsg = '\n' +
                 'TEST: ' + testName + '\n' +

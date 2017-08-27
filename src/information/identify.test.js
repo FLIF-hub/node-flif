@@ -2,7 +2,7 @@
 
 function test () {
     var testName = 'identify';
-    var subject = require('./' + testName.toLowerCase() + '.js');
+    var subject = require('./' + testName + '.js');
     var path = require('path');
 
     var catFLIF = path.join('.', 'sample', 'cat.flif');

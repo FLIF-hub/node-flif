@@ -1,23 +1,21 @@
-/* eslint-disable no-multi-spaces */
-
 function test () {
-    var testName = 'version';
+    var testName = 'warnUser';
     var subject = require('./' + testName + '.js');
+
     var testData = [
-        { 'item': 'nodeFLIF', 'expectation': '0.1.0' },
-        { 'item': 'flif',     'expectation': '0.3.0' }
+        // The function is used to console log out errors to the user, nothing is returned.
+        { 'message': 'N/A', 'expectation': undefined }
     ];
 
     for (var i = 0; i < testData.length; i++) {
-        var currentItem = testData[i].item;
+        var message = testData[i].message;
         var expectation = testData[i].expectation;
-        var actual = subject()[currentItem];
+        var actual = subject(message);
         if (actual !== expectation) {
             var errMsg = '\n' +
                 'TEST: ' + testName + '\n' +
                 'ERROR:\n' +
                 '  Iterator: ' + i + '\n' +
-                '  Item: ' + currentItem + '\n' +
                 '  Expected: ' + expectation + '\n' +
                 '  Actual: ' + actual;
             throw errMsg;

@@ -2,7 +2,7 @@
 
 function test () {
     var testName = 'decode';
-    var subject = require('./' + testName.toLowerCase() + '.js');
+    var subject = require('./' + testName + '.js');
 
     var testData = [
         // Individual Params

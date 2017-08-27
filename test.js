@@ -1,26 +1,5 @@
 /* eslint-disable no-console */
-/* eslint-disable no-multi-spaces */
-/* eslint-disable no-unused-vars */
 
-// //////////////////////////// //
-//       IMPORT ALL TESTS       //
-// //////////////////////////// //
-
-// Pull in all conversion tests:
-var decode         = require('./src/conversion/decode.test.js');
-var encode         = require('./src/conversion/encode.test.js');
-var transcode      = require('./src/conversion/transcode.test.js');
-
-// Pull in all helper tests
-var executablePath = require('./src/helpers/executablePath.test.js');
-var runCommand     = require('./src/helpers/runCommand.test.js');
-var runCommandSync = require('./src/helpers/runCommandSync.test.js');
-var verifyParams   = require('./src/helpers/verifyParams.test.js');
-
-// Pull in all information tests
-var breakpoints    = require('./src/information/breakpoints.test.js');
-var identify       = require('./src/information/identify.test.js');
-var version        = require('./src/information/version.test.js');
 
 
 // //////////////////////////// //
@@ -30,20 +9,21 @@ var version        = require('./src/information/version.test.js');
 // List of all tests to be ran in order
 var allTestsToRun = [
     // Helpers
-    executablePath,
-    runCommand,
-    runCommandSync,
-    verifyParams,
+    require('./src/helpers/executablePath.test.js'),
+    require('./src/helpers/runCommand.test.js'),
+    require('./src/helpers/runCommandSync.test.js'),
+    require('./src/helpers/verifyParams.test.js'),
+    require('./src/helpers/warnUser.test.js'),
 
     // Information
-    breakpoints,
-    identify,
-    version,
+    require('./src/information/breakpoints.test.js'),
+    require('./src/information/identify.test.js'),
+    require('./src/information/version.test.js'),
 
     // Conversion
-    decode,
-    encode
-    // transcode
+    require('./src/conversion/decode.test.js'),
+    require('./src/conversion/encode.test.js')
+    // require('./src/conversion/transcode.test.js')
 ];
 
 
@@ -53,7 +33,7 @@ var allTestsToRun = [
 // //////////////////////////// //
 
 // Run all tests
-var results = 0;
+var numberOfTestsPassed = 0;
 var testNames = [];
 
 allTestsToRun.forEach(function (test) {
@@ -66,12 +46,18 @@ allTestsToRun.forEach(function (test) {
 
     var result = test();
     testNames.push(result[0]);
-    results = results + result[1];
+    numberOfTestsPassed = numberOfTestsPassed + result[1];
 });
 
-var output = results + ' ' +
-    'Tests passed.\n\n' +
-    'Tested:\n ∙ ' +
-    testNames.join('\n ∙ ');
+
+
+// //////////////////////////// //
+//        OUTPUT RESULTS        //
+// //////////////////////////// //
+
+var output =
+    numberOfTestsPassed + ' Tests passed.\n\n' +
+    'Tested:\n' +
+    ' ∙ ' + testNames.join('\n ∙ ');
 
 console.log(output);

@@ -11,6 +11,11 @@
 function verifyParams (params, src, skipWarnings) {
     var warnUser = require('./warnUser.js');
 
+
+    // ///////////////////// //
+    //  Validate Parameters  //
+    // ///////////////////// //
+
     var ensureParamsExist = require('./verifyParams/ensureParamsExist.js');
     var ensuredParamsExist = ensureParamsExist(params, src, skipWarnings);
     if (!ensuredParamsExist) {
@@ -18,60 +23,13 @@ function verifyParams (params, src, skipWarnings) {
     }
 
 
-
     // /////////////////////// //
     //  Validate input/output  //
     // /////////////////////// //
 
-    if (
-        !params.input ||
-        !params.output ||
-        typeof(params.input) !== 'string' ||
-        typeof(params.output) !== 'string'
-    ) {
-        warnUser('You must pass in a path to your input and output files as a string.', skipWarnings);
-        return false;
-    }
-
-    var input = params.input.toLowerCase();
-    var output = params.output.toLowerCase();
-
-    if (
-        src === 'encode' &&
-        !input.endsWith('.png') &&
-        !input.endsWith('.pnm') &&
-        !input.endsWith('.ppm') &&
-        !input.endsWith('.pgm') &&
-        !input.endsWith('.pbm') &&
-        !input.endsWith('.pam')
-    ) {
-        warnUser('Encode input only accepts .png, .pnm, .ppm, .pgm, .pbm, and .pam.', skipWarnings);
-        return false;
-    }
-    if (src === 'encode' && !output.endsWith('.flif')) {
-        warnUser('Encode output must be a .flif.', skipWarnings);
-        return false;
-    }
-
-    if (src === 'decode' && !input.endsWith('.flif')) {
-        warnUser('Decode input must be a .flif.', skipWarnings);
-        return false;
-    }
-    if (
-        src === 'decode' &&
-        !output.endsWith('.png') &&
-        !output.endsWith('.pnm') &&
-        !output.endsWith('.ppm') &&
-        !output.endsWith('.pgm') &&
-        !output.endsWith('.pbm') &&
-        !output.endsWith('.pam')
-    ) {
-        warnUser('Decode output only accepts .png, .pnm, .ppm, .pgm, .pbm, and .pam.', skipWarnings);
-        return false;
-    }
-
-    if (src === 'transcode' && (!input.endsWith('.flif') || !output.endsWith('.flif'))) {
-        warnUser('Transcode input and output must be .flif files.', skipWarnings);
+    var ensureInputOutputExist = require('./verifyParams/ensureInputOutputExist.js');
+    var ensuredInputOutputExist = ensureInputOutputExist(params, src, skipWarnings);
+    if (!ensuredInputOutputExist) {
         return false;
     }
 

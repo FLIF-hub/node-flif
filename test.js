@@ -13,10 +13,10 @@ var allTestsToRun = [
     require('./src/helpers/runCommand.test.js'),
     require('./src/helpers/runCommandSync.test.js'),
     require('./src/helpers/warnUser.test.js'),
-    [
-        require('./src/helpers/verifyParams/ensureParamsExist.test.js')
+    require('./src/helpers/verifyParams.test.js'), [
+        require('./src/helpers/verifyParams/ensureParamsExist.test.js'),
+        require('./src/helpers/verifyParams/ensureInputOutputExist.test.js')
     ],
-    require('./src/helpers/verifyParams.test.js'),
 
     // Information
     require('./src/information/breakpoints.test.js'),
@@ -56,7 +56,7 @@ function runTests (testsArray, sub) {
             throw errMsg;
         } else {
             var result = test();
-            testNames.push(sub + ' ∙ ' + result[0] + '\n');
+            testNames.push(sub + ' ∙ ' + result[0]);
             numberOfTestsPassed = numberOfTestsPassed + result[1];
         }
     });
@@ -72,6 +72,6 @@ runTests(allTestsToRun);
 var output =
     numberOfTestsPassed + ' Tests passed.\n\n' +
     'Tested:\n' +
-    testNames.join('');
+    testNames.join('\n');
 
 console.log(output);

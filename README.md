@@ -122,7 +122,7 @@ var decodeParams = {
     input: '/path/to/input-file.flif',  // Must end in .flif
     output: '/path/to/output-file.png', // Must end in one of these: .png, .pnm, .ppm, .pgm, .pbm, .pam
     // Common optional decoding parameters
-    async: true,            // Set to false to run this as a synchronous encoding
+    async: true,            // Set to false to run this as a synchronous decoding
     overwrite: false,       // Set to true to overwrite existing files on output (default is false)
     quality: 100,           // 0-100 Lossy decode quality (default is 100)
     keepMetaData: true,     // Set to false to strip EXIF/XMP metadata (default is true)

@@ -41,3 +41,5 @@ jspm_packages
 thumbs.db
 sample/decode-test.png
 sample/encode-test.flif
+sample/encode-anim-test.flif
+sample/viewflif.exe

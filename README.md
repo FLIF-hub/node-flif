@@ -58,7 +58,7 @@ var nodeFLIF = require('node-flif');
 
 var encodeParams = {
     // Required encoding parameters
-    input: '/path/to/input-file.png',    // Must end in one of these: .png, .pnm, .ppm, .pgm, .pbm, .pam
+    input: ['/path/to/input-file.png'],  // Array of input files for frames, Each must end in one of these: .png, .pnm, .ppm, .pgm, .pbm, .pam
     output: '/path/to/output-file.flif', // Must end in .flif
     // Common optional encoding parameters
     async: true,            // Set to false to run this as a synchronous encoding

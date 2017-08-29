@@ -62,12 +62,9 @@ function verifyParams (params, src, skipWarnings) {
         return false;
     }
 
-    if (
-        params.keepColorProfile === null ||
-        params.keepColorProfile &&
-        typeof(params.keepColorProfile) !== 'boolean'
-    ) {
-        warnUser('The keepColorProfile parameter must be a boolean value.', skipWarnings);
+    var verifyKeepColorProfile = require('./verifyParams/verifyKeepColorProfile.js');
+    var verifiedKeepColorProfile = verifyKeepColorProfile(params, src, skipWarnings);
+    if (!verifiedKeepColorProfile) {
         return false;
     }
 

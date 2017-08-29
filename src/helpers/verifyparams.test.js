@@ -212,31 +212,6 @@ function test () {
         { 'expect': false, 'src': 'decode',    'param': { input: 'a.flif', output: 'a.png',  keepAlpha: 8         } },
         { 'expect': false, 'src': 'transcode', 'param': { input: 'a.flif', output: 'a.flif', keepAlpha: 8         } },
 
-        // Test known good for keepColorProfile
-        { 'expect': true,  'src': 'encode',    'param': { input: 'a.png',  output: 'a.flif', keepColorProfile: true      } },
-        { 'expect': true,  'src': 'encode',    'param': { input: 'a.png',  output: 'a.flif', keepColorProfile: false     } },
-        { 'expect': true,  'src': 'transcode', 'param': { input: 'a.flif', output: 'a.flif', keepColorProfile: true      } },
-        { 'expect': true,  'src': 'transcode', 'param': { input: 'a.flif', output: 'a.flif', keepColorProfile: false     } },
-        { 'expect': true,  'src': 'decode',    'param': { input: 'a.flif', output: 'a.png',  keepColorProfile: true      } },
-        { 'expect': true,  'src': 'decode',    'param': { input: 'a.flif', output: 'a.png',  keepColorProfile: false     } },
-
-        // Test known bad for keepColorProfile
-        { 'expect': false, 'src': 'encode',    'param': { input: 'a.png',  output: 'a.flif', keepColorProfile: 'a'       } },
-        { 'expect': false, 'src': 'decode',    'param': { input: 'a.flif', output: 'a.png',  keepColorProfile: 'a'       } },
-        { 'expect': false, 'src': 'transcode', 'param': { input: 'a.flif', output: 'a.flif', keepColorProfile: 'a'       } },
-        { 'expect': false, 'src': 'encode',    'param': { input: 'a.png',  output: 'a.flif', keepColorProfile: [0, 1, 2] } },
-        { 'expect': false, 'src': 'decode',    'param': { input: 'a.flif', output: 'a.png',  keepColorProfile: [0, 1, 2] } },
-        { 'expect': false, 'src': 'transcode', 'param': { input: 'a.flif', output: 'a.flif', keepColorProfile: [0, 1, 2] } },
-        { 'expect': false, 'src': 'encode',    'param': { input: 'a.png',  output: 'a.flif', keepColorProfile: {'a': 1}  } },
-        { 'expect': false, 'src': 'decode',    'param': { input: 'a.flif', output: 'a.png',  keepColorProfile: {'a': 1}  } },
-        { 'expect': false, 'src': 'transcode', 'param': { input: 'a.flif', output: 'a.flif', keepColorProfile: {'a': 1}  } },
-        { 'expect': false, 'src': 'encode',    'param': { input: 'a.png',  output: 'a.flif', keepColorProfile: null      } },
-        { 'expect': false, 'src': 'decode',    'param': { input: 'a.flif', output: 'a.png',  keepColorProfile: null      } },
-        { 'expect': false, 'src': 'transcode', 'param': { input: 'a.flif', output: 'a.flif', keepColorProfile: null      } },
-        { 'expect': false, 'src': 'encode',    'param': { input: 'a.png',  output: 'a.flif', keepColorProfile: 8         } },
-        { 'expect': false, 'src': 'decode',    'param': { input: 'a.flif', output: 'a.png',  keepColorProfile: 8         } },
-        { 'expect': false, 'src': 'transcode', 'param': { input: 'a.flif', output: 'a.flif', keepColorProfile: 8         } },
-
         // Test known good for frameDelay
         // TODO: Find out upper bounds for frameDelay and max number of frames allowed
         { 'expect': true,  'src': 'encode',    'param': { input: 'a.png',  output: 'a.flif', frameDelay: [0]             } },

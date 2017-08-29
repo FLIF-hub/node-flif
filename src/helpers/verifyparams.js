@@ -50,20 +50,9 @@ function verifyParams (params, src, skipWarnings) {
         return false;
     }
 
-    if (
-        params.quality === null ||
-        params.quality === false ||
-        params.quality &&
-        typeof(params.quality) !== 'number' ||
-        params.quality &&
-        (
-            params.quality > 100 ||
-            params.quality < 0 ||
-            // check if whole number
-            params.quality % 1 !== 0
-        )
-    ) {
-        warnUser('The quality parameter must be a whole number between 0 and 100.', skipWarnings);
+    var verifyQuality = require('./verifyParams/verifyQuality.js');
+    var verifiedQuality = verifyQuality(params, src, skipWarnings);
+    if (!verifiedQuality) {
         return false;
     }
 

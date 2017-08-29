@@ -17,7 +17,8 @@ var allTestsToRun = [
         require('./src/helpers/verifyParams/ensureParamsExist.test.js'),
         require('./src/helpers/verifyParams/ensureInputOutputExist.test.js'),
         require('./src/helpers/verifyParams/verifyAsync.test.js'),
-        require('./src/helpers/verifyParams/verifyOverwrite.test.js')
+        require('./src/helpers/verifyParams/verifyOverwrite.test.js'),
+        require('./src/helpers/verifyParams/verifyQuality.test.js')
     ],
 
     // Information

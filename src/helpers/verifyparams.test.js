@@ -1,11 +1,10 @@
 /* eslint-disable no-multi-spaces */
 
 function test () {
+    var runAllTests = require('./verifyParams/verifyParamsHelpers/loopOverParamsTests.js');
     var testName = 'verifyParams';
-    var subject = require('./' + testName + '.js');
-
     var testData = [
-    // Test known good for keepMetaData
+        // Test known good for keepMetaData
         { 'expect': true,  'src': 'encode',    'param': { input: 'a.png',  output: 'a.flif', keepMetaData: true      } },
         { 'expect': true,  'src': 'decode',    'param': { input: 'a.flif', output: 'a.png',  keepMetaData: true      } },
         { 'expect': true,  'src': 'transcode', 'param': { input: 'a.flif', output: 'a.flif', keepMetaData: true      } },
@@ -13,7 +12,7 @@ function test () {
         { 'expect': true,  'src': 'decode',    'param': { input: 'a.flif', output: 'a.png',  keepMetaData: false     } },
         { 'expect': true,  'src': 'transcode', 'param': { input: 'a.flif', output: 'a.flif', keepMetaData: false     } },
 
-    // Test known bad for keepMetaData
+        // Test known bad for keepMetaData
         { 'expect': false, 'src': 'encode',    'param': { input: 'a.png',  output: 'a.flif', keepMetaData: 'a'       } },
         { 'expect': false, 'src': 'decode',    'param': { input: 'a.flif', output: 'a.png',  keepMetaData: 'a'       } },
         { 'expect': false, 'src': 'transcode', 'param': { input: 'a.flif', output: 'a.flif', keepMetaData: 'a'       } },
@@ -30,7 +29,7 @@ function test () {
         { 'expect': false, 'src': 'decode',    'param': { input: 'a.flif', output: 'a.png',  keepMetaData: 8         } },
         { 'expect': false, 'src': 'transcode', 'param': { input: 'a.flif', output: 'a.flif', keepMetaData: 8         } },
 
-    // Test known good for crc
+        // Test known good for crc
         { 'expect': true,  'src': 'encode',    'param': { input: 'a.png',  output: 'a.flif', crc: true      } },
         { 'expect': true,  'src': 'decode',    'param': { input: 'a.flif', output: 'a.png',  crc: true      } },
         { 'expect': true,  'src': 'transcode', 'param': { input: 'a.flif', output: 'a.flif', crc: true      } },
@@ -38,7 +37,7 @@ function test () {
         { 'expect': true,  'src': 'decode',    'param': { input: 'a.flif', output: 'a.png',  crc: false     } },
         { 'expect': true,  'src': 'transcode', 'param': { input: 'a.flif', output: 'a.flif', crc: false     } },
 
-    // Test known bad for crc
+        // Test known bad for crc
         { 'expect': false, 'src': 'encode',    'param': { input: 'a.png',  output: 'a.flif', crc: 'a'       } },
         { 'expect': false, 'src': 'decode',    'param': { input: 'a.flif', output: 'a.png',  crc: 'a'       } },
         { 'expect': false, 'src': 'transcode', 'param': { input: 'a.flif', output: 'a.flif', crc: 'a'       } },
@@ -55,7 +54,7 @@ function test () {
         { 'expect': false, 'src': 'decode',    'param': { input: 'a.flif', output: 'a.png',  crc: 8         } },
         { 'expect': false, 'src': 'transcode', 'param': { input: 'a.flif', output: 'a.flif', crc: 8         } },
 
-    // Test known good for keepPalette
+        // Test known good for keepPalette
         { 'expect': true,  'src': 'encode',    'param': { input: 'a.png',  output: 'a.flif', keepPalette: true      } },
         { 'expect': true,  'src': 'decode',    'param': { input: 'a.flif', output: 'a.png',  keepPalette: true      } },
         { 'expect': true,  'src': 'transcode', 'param': { input: 'a.flif', output: 'a.flif', keepPalette: true      } },
@@ -63,7 +62,7 @@ function test () {
         { 'expect': true,  'src': 'decode',    'param': { input: 'a.flif', output: 'a.png',  keepPalette: false     } },
         { 'expect': true,  'src': 'transcode', 'param': { input: 'a.flif', output: 'a.flif', keepPalette: false     } },
 
-    // Test known bad for keepPalette
+        // Test known bad for keepPalette
         { 'expect': false, 'src': 'encode',    'param': { input: 'a.png',  output: 'a.flif', keepPalette: 'a'       } },
         { 'expect': false, 'src': 'decode',    'param': { input: 'a.flif', output: 'a.png',  keepPalette: 'a'       } },
         { 'expect': false, 'src': 'transcode', 'param': { input: 'a.flif', output: 'a.flif', keepPalette: 'a'       } },
@@ -80,7 +79,7 @@ function test () {
         { 'expect': false, 'src': 'decode',    'param': { input: 'a.flif', output: 'a.png',  keepPalette: 8         } },
         { 'expect': false, 'src': 'transcode', 'param': { input: 'a.flif', output: 'a.flif', keepPalette: 8         } },
 
-    // Test known good for scale
+        // Test known good for scale
         { 'expect': true,  'src': 'decode',    'param': { input: 'a.flif', output: 'a.png',  scale: 1           } },
         { 'expect': true,  'src': 'decode',    'param': { input: 'a.flif', output: 'a.png',  scale: 2           } },
         { 'expect': true,  'src': 'decode',    'param': { input: 'a.flif', output: 'a.png',  scale: 4           } },
@@ -88,7 +87,7 @@ function test () {
         { 'expect': true,  'src': 'decode',    'param': { input: 'a.flif', output: 'a.png',  scale: 16          } },
         { 'expect': true,  'src': 'decode',    'param': { input: 'a.flif', output: 'a.png',  scale: 32          } },
 
-    // Test known bad for scale
+        // Test known bad for scale
         { 'expect': false, 'src': 'decode',    'param': { input: 'a.flif', output: 'a.png',  scale: 3           } },
         { 'expect': false, 'src': 'decode',    'param': { input: 'a.flif', output: 'a.png',  scale: 22          } },
         { 'expect': false, 'src': 'decode',    'param': { input: 'a.flif', output: 'a.png',  scale: -10         } },
@@ -100,7 +99,7 @@ function test () {
         { 'expect': false, 'src': 'decode',    'param': { input: 'a.flif', output: 'a.png',  scale: true        } },
         { 'expect': false, 'src': 'decode',    'param': { input: 'a.flif', output: 'a.png',  scale: false       } },
 
-    // Test known good for resize
+        // Test known good for resize
         { 'expect': true,  'src': 'decode',    'param': { input: 'a.flif', output: 'a.png',  resize: {width:0,   height:0}   } },
         { 'expect': true,  'src': 'decode',    'param': { input: 'a.flif', output: 'a.png',  resize: {width:1,   height:1}   } },
         { 'expect': true,  'src': 'decode',    'param': { input: 'a.flif', output: 'a.png',  resize: {width:10,  height:20}  } },
@@ -109,7 +108,7 @@ function test () {
         { 'expect': true,  'src': 'decode',    'param': { input: 'a.flif', output: 'a.png',  resize: {width:1,   height:1.1} } },
         { 'expect': true,  'src': 'decode',    'param': { input: 'a.flif', output: 'a.png',  resize: {width:1.1, height:1.1} } },
 
-    // Test known bad for resize
+        // Test known bad for resize
         { 'expect': false, 'src': 'decode',    'param': { input: 'a.flif', output: 'a.png',  resize: {width:100}             } },
         { 'expect': false, 'src': 'decode',    'param': { input: 'a.flif', output: 'a.png',  resize: {height:100}            } },
         { 'expect': false, 'src': 'decode',    'param': { input: 'a.flif', output: 'a.png',  resize: {width:-1,  height:10}  } },
@@ -131,7 +130,7 @@ function test () {
         { 'expect': false, 'src': 'decode',    'param': { input: 'a.flif', output: 'a.png',  resize: 'x10'                   } },
         { 'expect': false, 'src': 'decode',    'param': { input: 'a.flif', output: 'a.png',  resize: '10x'                   } },
 
-    // Test known good for fit
+        // Test known good for fit
         { 'expect': true,  'src': 'decode',    'param': { input: 'a.flif', output: 'a.png',  fit: {width:0,   height:0}   } },
         { 'expect': true,  'src': 'decode',    'param': { input: 'a.flif', output: 'a.png',  fit: {width:1,   height:1}   } },
         { 'expect': true,  'src': 'decode',    'param': { input: 'a.flif', output: 'a.png',  fit: {width:10,  height:20}  } },
@@ -140,7 +139,7 @@ function test () {
         { 'expect': true,  'src': 'decode',    'param': { input: 'a.flif', output: 'a.png',  fit: {width:1,   height:1.1} } },
         { 'expect': true,  'src': 'decode',    'param': { input: 'a.flif', output: 'a.png',  fit: {width:1.1, height:1.1} } },
 
-    // Test known bad for fit
+        // Test known bad for fit
         { 'expect': false, 'src': 'decode',    'param': { input: 'a.flif', output: 'a.png',  fit: {width:100}             } },
         { 'expect': false, 'src': 'decode',    'param': { input: 'a.flif', output: 'a.png',  fit: {height:100}            } },
         { 'expect': false, 'src': 'decode',    'param': { input: 'a.flif', output: 'a.png',  fit: {width:-1,  height:10}  } },
@@ -162,7 +161,7 @@ function test () {
         { 'expect': false, 'src': 'decode',    'param': { input: 'a.flif', output: 'a.png',  fit: 'x10'                   } },
         { 'expect': false, 'src': 'decode',    'param': { input: 'a.flif', output: 'a.png',  fit: '10x'                   } },
 
-    // Test known good for effort
+        // Test known good for effort
         { 'expect': true,  'src': 'encode',    'param': { input: 'a.png',  output: 'a.flif', effort: 0           } },
         { 'expect': true,  'src': 'transcode', 'param': { input: 'a.flif', output: 'a.flif', effort: 0           } },
         { 'expect': true,  'src': 'encode',    'param': { input: 'a.png',  output: 'a.flif', effort: 1           } },
@@ -172,11 +171,11 @@ function test () {
         { 'expect': true,  'src': 'encode',    'param': { input: 'a.png',  output: 'a.flif', effort: 100         } },
         { 'expect': true,  'src': 'transcode', 'param': { input: 'a.flif', output: 'a.flif', effort: 100         } },
 
-    // Test random number from 0-100 on effort
+        // Test random number from 0-100 on effort
         { 'expect': true,  'src': 'encode',    'param': { input: 'a.png',  output: 'a.flif', effort: Math.round(Math.random() * 100) } },
         { 'expect': true,  'src': 'transcode', 'param': { input: 'a.flif', output: 'a.flif', effort: Math.round(Math.random() * 100) } },
 
-    // Test known bad for effort
+        // Test known bad for effort
         { 'expect': false, 'src': 'decode',    'param': { input: 'a.flif', output: 'a.png',  effort: 0           } },
         { 'expect': false, 'src': 'decode',    'param': { input: 'a.flif', output: 'a.png',  effort: 1           } },
         { 'expect': false, 'src': 'decode',    'param': { input: 'a.flif', output: 'a.png',  effort: 50          } },
@@ -210,7 +209,7 @@ function test () {
         { 'expect': false, 'src': 'decode',    'param': { input: 'a.flif', output: 'a.png',  effort: false       } },
         { 'expect': false, 'src': 'transcode', 'param': { input: 'a.flif', output: 'a.flif', effort: false       } },
 
-    // Test known good for interlace
+        // Test known good for interlace
         { 'expect': true,  'src': 'encode',    'param': { input: 'a.png',  output: 'a.flif', interlace: true      } },
         { 'expect': true,  'src': 'transcode', 'param': { input: 'a.flif', output: 'a.flif', interlace: true      } },
         { 'expect': true,  'src': 'encode',    'param': { input: 'a.png',  output: 'a.flif', interlace: false     } },
@@ -218,7 +217,7 @@ function test () {
         { 'expect': true,  'src': 'encode',    'param': { input: 'a.png',  output: 'a.flif', interlace: 'auto'    } },
         { 'expect': true,  'src': 'transcode', 'param': { input: 'a.flif', output: 'a.flif', interlace: 'auto'    } },
 
-    // Test known bad for interlace
+        // Test known bad for interlace
         { 'expect': false, 'src': 'decode',    'param': { input: 'a.flif', output: 'a.png',  interlace: true      } },
         { 'expect': false, 'src': 'decode',    'param': { input: 'a.flif', output: 'a.png',  interlace: false     } },
         { 'expect': false, 'src': 'decode',    'param': { input: 'a.flif', output: 'a.png',  interlace: 'auto'    } },
@@ -238,13 +237,13 @@ function test () {
         { 'expect': false, 'src': 'decode',    'param': { input: 'a.flif', output: 'a.png',  interlace: 8         } },
         { 'expect': false, 'src': 'transcode', 'param': { input: 'a.flif', output: 'a.flif', interlace: 8         } },
 
-    // Test known good for keepAlpha
+        // Test known good for keepAlpha
         { 'expect': true,  'src': 'encode',    'param': { input: 'a.png',  output: 'a.flif', keepAlpha: true      } },
         { 'expect': true,  'src': 'transcode', 'param': { input: 'a.flif', output: 'a.flif', keepAlpha: true      } },
         { 'expect': true,  'src': 'encode',    'param': { input: 'a.png',  output: 'a.flif', keepAlpha: false     } },
         { 'expect': true,  'src': 'transcode', 'param': { input: 'a.flif', output: 'a.flif', keepAlpha: false     } },
 
-    // Test known bad for keepAlpha
+        // Test known bad for keepAlpha
         { 'expect': false, 'src': 'decode',    'param': { input: 'a.flif', output: 'a.png',  keepAlpha: true      } },
         { 'expect': false, 'src': 'decode',    'param': { input: 'a.flif', output: 'a.png',  keepAlpha: false     } },
         { 'expect': false, 'src': 'encode',    'param': { input: 'a.png',  output: 'a.flif', keepAlpha: 'a'       } },
@@ -263,7 +262,7 @@ function test () {
         { 'expect': false, 'src': 'decode',    'param': { input: 'a.flif', output: 'a.png',  keepAlpha: 8         } },
         { 'expect': false, 'src': 'transcode', 'param': { input: 'a.flif', output: 'a.flif', keepAlpha: 8         } },
 
-    // Test known good for keepColorProfile
+        // Test known good for keepColorProfile
         { 'expect': true,  'src': 'encode',    'param': { input: 'a.png',  output: 'a.flif', keepColorProfile: true      } },
         { 'expect': true,  'src': 'encode',    'param': { input: 'a.png',  output: 'a.flif', keepColorProfile: false     } },
         { 'expect': true,  'src': 'transcode', 'param': { input: 'a.flif', output: 'a.flif', keepColorProfile: true      } },
@@ -271,7 +270,7 @@ function test () {
         { 'expect': true,  'src': 'decode',    'param': { input: 'a.flif', output: 'a.png',  keepColorProfile: true      } },
         { 'expect': true,  'src': 'decode',    'param': { input: 'a.flif', output: 'a.png',  keepColorProfile: false     } },
 
-    // Test known bad for keepColorProfile
+        // Test known bad for keepColorProfile
         { 'expect': false, 'src': 'encode',    'param': { input: 'a.png',  output: 'a.flif', keepColorProfile: 'a'       } },
         { 'expect': false, 'src': 'decode',    'param': { input: 'a.flif', output: 'a.png',  keepColorProfile: 'a'       } },
         { 'expect': false, 'src': 'transcode', 'param': { input: 'a.flif', output: 'a.flif', keepColorProfile: 'a'       } },
@@ -288,8 +287,8 @@ function test () {
         { 'expect': false, 'src': 'decode',    'param': { input: 'a.flif', output: 'a.png',  keepColorProfile: 8         } },
         { 'expect': false, 'src': 'transcode', 'param': { input: 'a.flif', output: 'a.flif', keepColorProfile: 8         } },
 
-    // Test known good for frameDelay
-    // TODO: Find out upper bounds for frameDelay and max number of frames allowed
+        // Test known good for frameDelay
+        // TODO: Find out upper bounds for frameDelay and max number of frames allowed
         { 'expect': true,  'src': 'encode',    'param': { input: 'a.png',  output: 'a.flif', frameDelay: [0]             } },
         { 'expect': true,  'src': 'transcode', 'param': { input: 'a.flif', output: 'a.flif', frameDelay: [0]             } },
         { 'expect': true,  'src': 'encode',    'param': { input: 'a.png',  output: 'a.flif', frameDelay: [1]             } },
@@ -307,11 +306,11 @@ function test () {
         { 'expect': true,  'src': 'encode',    'param': { input: 'a.png',  output: 'a.flif', frameDelay: [100, 200, 300] } },
         { 'expect': true,  'src': 'transcode', 'param': { input: 'a.flif', output: 'a.flif', frameDelay: [100, 200, 300] } },
 
-    // Test random number from 0-100 on frameDelay
+        // Test random number from 0-100 on frameDelay
         { 'expect': true,  'src': 'encode',    'param': { input: 'a.png',  output: 'a.flif', frameDelay: [Math.round(Math.random() * 100)] } },
         { 'expect': true,  'src': 'transcode', 'param': { input: 'a.flif', output: 'a.flif', frameDelay: [Math.round(Math.random() * 100)] } },
 
-    // Test known bad for frameDelay
+        // Test known bad for frameDelay
         { 'expect': false, 'src': 'decode',    'param': { input: 'a.png',  output: 'a.flif', frameDelay: [0]             } },
         { 'expect': false, 'src': 'decode',    'param': { input: 'a.png',  output: 'a.flif', frameDelay: [1]             } },
         { 'expect': false, 'src': 'decode',    'param': { input: 'a.png',  output: 'a.flif', frameDelay: [50]            } },
@@ -349,8 +348,8 @@ function test () {
         { 'expect': false, 'src': 'decode',    'param': { input: 'a.flif', output: 'a.png',  frameDelay: false           } },
         { 'expect': false, 'src': 'transcode', 'param': { input: 'a.flif', output: 'a.flif', frameDelay: false           } },
 
-    // Test known good for maxPaletteSize
-    // TODO: Find out upper bounds for maxPaletteSize, all I know is it allows for the number 512 and logically shouldn't be less than 2
+        // Test known good for maxPaletteSize
+        // TODO: Find out upper bounds for maxPaletteSize, all I know is it allows for the number 512 and logically shouldn't be less than 2
         { 'expect': true,  'src': 'encode',    'param': { input: 'a.png',  output: 'a.flif', maxPaletteSize: 512         } },
         { 'expect': true,  'src': 'transcode', 'param': { input: 'a.flif', output: 'a.flif', maxPaletteSize: 512         } },
         { 'expect': true,  'src': 'encode',    'param': { input: 'a.png',  output: 'a.flif', maxPaletteSize: 256         } },
@@ -370,11 +369,11 @@ function test () {
         { 'expect': true,  'src': 'encode',    'param': { input: 'a.png',  output: 'a.flif', maxPaletteSize: 2           } },
         { 'expect': true,  'src': 'transcode', 'param': { input: 'a.flif', output: 'a.flif', maxPaletteSize: 2           } },
 
-    // Test random number from 2-1024 on maxPaletteSize
+        // Test random number from 2-1024 on maxPaletteSize
         { 'expect': true,  'src': 'encode',    'param': { input: 'a.png',  output: 'a.flif', maxPaletteSize: Math.round(Math.random() * 1022) + 2 } },
         { 'expect': true,  'src': 'transcode', 'param': { input: 'a.flif', output: 'a.flif', maxPaletteSize: Math.round(Math.random() * 1022) + 2 } },
 
-    // Test known bad for maxPaletteSize
+        // Test known bad for maxPaletteSize
         { 'expect': true,  'src': 'decode',    'param': { input: 'a.flif', output: 'a.png',  maxPaletteSize: Math.round(Math.random() * 1022) + 2 } },
         { 'expect': true,  'src': 'decode',    'param': { input: 'a.flif', output: 'a.png',  maxPaletteSize: 512         } },
         { 'expect': true,  'src': 'decode',    'param': { input: 'a.flif', output: 'a.png',  maxPaletteSize: 256         } },
@@ -416,7 +415,7 @@ function test () {
         { 'expect': false, 'src': 'decode',    'param': { input: 'a.flif', output: 'a.png',  maxPaletteSize: false       } },
         { 'expect': false, 'src': 'transcode', 'param': { input: 'a.flif', output: 'a.flif', maxPaletteSize: false       } },
 
-    // Test known good for colorBuckets
+        // Test known good for colorBuckets
         { 'expect': true,  'src': 'encode',    'param': { input: 'a.png',  output: 'a.flif', colorBuckets: true      } },
         { 'expect': true,  'src': 'transcode', 'param': { input: 'a.flif', output: 'a.flif', colorBuckets: true      } },
         { 'expect': true,  'src': 'encode',    'param': { input: 'a.png',  output: 'a.flif', colorBuckets: false     } },
@@ -424,7 +423,7 @@ function test () {
         { 'expect': true,  'src': 'encode',    'param': { input: 'a.png',  output: 'a.flif', colorBuckets: 'auto'    } },
         { 'expect': true,  'src': 'transcode', 'param': { input: 'a.flif', output: 'a.flif', colorBuckets: 'auto'    } },
 
-    // Test known bad for colorBuckets
+        // Test known bad for colorBuckets
         { 'expect': false, 'src': 'decode',    'param': { input: 'a.flif', output: 'a.png',  colorBuckets: true      } },
         { 'expect': false, 'src': 'decode',    'param': { input: 'a.flif', output: 'a.png',  colorBuckets: false     } },
         { 'expect': false, 'src': 'decode',    'param': { input: 'a.flif', output: 'a.png',  colorBuckets: 'auto'    } },
@@ -444,13 +443,13 @@ function test () {
         { 'expect': false, 'src': 'decode',    'param': { input: 'a.flif', output: 'a.png',  colorBuckets: 8         } },
         { 'expect': false, 'src': 'transcode', 'param': { input: 'a.flif', output: 'a.flif', colorBuckets: 8         } },
 
-    // Test known good for channelCompact
+        // Test known good for channelCompact
         { 'expect': true,  'src': 'encode',    'param': { input: 'a.png',  output: 'a.flif', channelCompact: true      } },
         { 'expect': true,  'src': 'transcode', 'param': { input: 'a.flif', output: 'a.flif', channelCompact: true      } },
         { 'expect': true,  'src': 'encode',    'param': { input: 'a.png',  output: 'a.flif', channelCompact: false     } },
         { 'expect': true,  'src': 'transcode', 'param': { input: 'a.flif', output: 'a.flif', channelCompact: false     } },
 
-    // Test known bad for channelCompact
+        // Test known bad for channelCompact
         { 'expect': false, 'src': 'decode',    'param': { input: 'a.flif', output: 'a.png',  channelCompact: true      } },
         { 'expect': false, 'src': 'decode',    'param': { input: 'a.flif', output: 'a.png',  channelCompact: false     } },
         { 'expect': false, 'src': 'encode',    'param': { input: 'a.png',  output: 'a.flif', channelCompact: 'a'       } },
@@ -469,13 +468,13 @@ function test () {
         { 'expect': false, 'src': 'decode',    'param': { input: 'a.flif', output: 'a.png',  channelCompact: 8         } },
         { 'expect': false, 'src': 'transcode', 'param': { input: 'a.flif', output: 'a.flif', channelCompact: 8         } },
 
-    // Test known good for ycocg
+        // Test known good for ycocg
         { 'expect': true,  'src': 'encode',    'param': { input: 'a.png',  output: 'a.flif', ycocg: true      } },
         { 'expect': true,  'src': 'transcode', 'param': { input: 'a.flif', output: 'a.flif', ycocg: true      } },
         { 'expect': true,  'src': 'encode',    'param': { input: 'a.png',  output: 'a.flif', ycocg: false     } },
         { 'expect': true,  'src': 'transcode', 'param': { input: 'a.flif', output: 'a.flif', ycocg: false     } },
 
-    // Test known bad for ycocg
+        // Test known bad for ycocg
         { 'expect': false, 'src': 'decode',    'param': { input: 'a.flif', output: 'a.png',  ycocg: true      } },
         { 'expect': false, 'src': 'decode',    'param': { input: 'a.flif', output: 'a.png',  ycocg: false     } },
         { 'expect': false, 'src': 'encode',    'param': { input: 'a.png',  output: 'a.flif', ycocg: 'a'       } },
@@ -494,13 +493,13 @@ function test () {
         { 'expect': false, 'src': 'decode',    'param': { input: 'a.flif', output: 'a.png',  ycocg: 8         } },
         { 'expect': false, 'src': 'transcode', 'param': { input: 'a.flif', output: 'a.flif', ycocg: 8         } },
 
-    // Test known good for subtractGreen
+        // Test known good for subtractGreen
         { 'expect': true,  'src': 'encode',    'param': { input: 'a.png',  output: 'a.flif', subtractGreen: true      } },
         { 'expect': true,  'src': 'transcode', 'param': { input: 'a.flif', output: 'a.flif', subtractGreen: true      } },
         { 'expect': true,  'src': 'encode',    'param': { input: 'a.png',  output: 'a.flif', subtractGreen: false     } },
         { 'expect': true,  'src': 'transcode', 'param': { input: 'a.flif', output: 'a.flif', subtractGreen: false     } },
 
-    // Test known bad for subtractGreen
+        // Test known bad for subtractGreen
         { 'expect': false, 'src': 'decode',    'param': { input: 'a.flif', output: 'a.png',  subtractGreen: true      } },
         { 'expect': false, 'src': 'decode',    'param': { input: 'a.flif', output: 'a.png',  subtractGreen: false     } },
         { 'expect': false, 'src': 'encode',    'param': { input: 'a.png',  output: 'a.flif', subtractGreen: 'a'       } },
@@ -519,13 +518,13 @@ function test () {
         { 'expect': false, 'src': 'decode',    'param': { input: 'a.flif', output: 'a.png',  subtractGreen: 8         } },
         { 'expect': false, 'src': 'transcode', 'param': { input: 'a.flif', output: 'a.flif', subtractGreen: 8         } },
 
-    // Test known good for frameShape
+        // Test known good for frameShape
         { 'expect': true,  'src': 'encode',    'param': { input: 'a.png',  output: 'a.flif', frameShape: true      } },
         { 'expect': true,  'src': 'transcode', 'param': { input: 'a.flif', output: 'a.flif', frameShape: true      } },
         { 'expect': true,  'src': 'encode',    'param': { input: 'a.png',  output: 'a.flif', frameShape: false     } },
         { 'expect': true,  'src': 'transcode', 'param': { input: 'a.flif', output: 'a.flif', frameShape: false     } },
 
-    // Test known bad for frameShape
+        // Test known bad for frameShape
         { 'expect': false, 'src': 'decode',    'param': { input: 'a.flif', output: 'a.png',  frameShape: true      } },
         { 'expect': false, 'src': 'decode',    'param': { input: 'a.flif', output: 'a.png',  frameShape: false     } },
         { 'expect': false, 'src': 'encode',    'param': { input: 'a.png',  output: 'a.flif', frameShape: 'a'       } },
@@ -544,18 +543,18 @@ function test () {
         { 'expect': false, 'src': 'decode',    'param': { input: 'a.flif', output: 'a.png',  frameShape: 8         } },
         { 'expect': false, 'src': 'transcode', 'param': { input: 'a.flif', output: 'a.flif', frameShape: 8         } },
 
-    // Test known good for maxFrameLookBack
-    // TODO: Find out upper bounds for maxFrameLookBack, all I know is it allows for the number 1
+        // Test known good for maxFrameLookBack
+        // TODO: Find out upper bounds for maxFrameLookBack, all I know is it allows for the number 1
         { 'expect': true,  'src': 'encode',    'param': { input: 'a.png',  output: 'a.flif', maxFrameLookBack: 1           } },
         { 'expect': true,  'src': 'transcode', 'param': { input: 'a.flif', output: 'a.flif', maxFrameLookBack: 1           } },
         { 'expect': true,  'src': 'encode',    'param': { input: 'a.png',  output: 'a.flif', maxFrameLookBack: 2           } },
         { 'expect': true,  'src': 'transcode', 'param': { input: 'a.flif', output: 'a.flif', maxFrameLookBack: 2           } },
 
-    // Test random number from 1-1024 on maxFrameLookBack
+        // Test random number from 1-1024 on maxFrameLookBack
         { 'expect': true,  'src': 'encode',    'param': { input: 'a.png',  output: 'a.flif', maxFrameLookBack: Math.round(Math.random() * 1023) + 1 } },
         { 'expect': true,  'src': 'transcode', 'param': { input: 'a.flif', output: 'a.flif', maxFrameLookBack: Math.round(Math.random() * 1023) + 1 } },
 
-    // Test known bad for maxFrameLookBack
+        // Test known bad for maxFrameLookBack
         { 'expect': false, 'src': 'decode',    'param': { input: 'a.flif', output: 'a.png',  maxFrameLookBack: 1           } },
         { 'expect': false, 'src': 'decode',    'param': { input: 'a.flif', output: 'a.png',  maxFrameLookBack: Math.round(Math.random() * 1023) + 1 } },
         { 'expect': false, 'src': 'encode',    'param': { input: 'a.png',  output: 'a.flif', maxFrameLookBack: 0           } },
@@ -586,18 +585,18 @@ function test () {
         { 'expect': false, 'src': 'decode',    'param': { input: 'a.flif', output: 'a.png',  maxFrameLookBack: false       } },
         { 'expect': false, 'src': 'transcode', 'param': { input: 'a.flif', output: 'a.flif', maxFrameLookBack: false       } },
 
-    // Test known good for maniacRepeats
-    // TODO: Find out upper bounds for maniacRepeats, all I know is it allows for the number 2
+        // Test known good for maniacRepeats
+        // TODO: Find out upper bounds for maniacRepeats, all I know is it allows for the number 2
         { 'expect': true,  'src': 'encode',    'param': { input: 'a.png',  output: 'a.flif', maniacRepeats: 1           } },
         { 'expect': true,  'src': 'transcode', 'param': { input: 'a.flif', output: 'a.flif', maniacRepeats: 1           } },
         { 'expect': true,  'src': 'encode',    'param': { input: 'a.png',  output: 'a.flif', maniacRepeats: 2           } },
         { 'expect': true,  'src': 'transcode', 'param': { input: 'a.flif', output: 'a.flif', maniacRepeats: 2           } },
 
-    // Test random number from 1-1024 on maniacRepeats
+        // Test random number from 1-1024 on maniacRepeats
         { 'expect': true,  'src': 'encode',    'param': { input: 'a.png',  output: 'a.flif', maniacRepeats: Math.round(Math.random() * 1023) + 1 } },
         { 'expect': true,  'src': 'transcode', 'param': { input: 'a.flif', output: 'a.flif', maniacRepeats: Math.round(Math.random() * 1023) + 1 } },
 
-    // Test known bad for maniacRepeats
+        // Test known bad for maniacRepeats
         { 'expect': false, 'src': 'decode',    'param': { input: 'a.flif', output: 'a.png',  maniacRepeats: 1           } },
         { 'expect': false, 'src': 'decode',    'param': { input: 'a.flif', output: 'a.png',  maniacRepeats: 2           } },
         { 'expect': false, 'src': 'decode',    'param': { input: 'a.flif', output: 'a.png',  maniacRepeats: Math.round(Math.random() * 1023) + 1 } },
@@ -629,8 +628,8 @@ function test () {
         { 'expect': false, 'src': 'decode',    'param': { input: 'a.flif', output: 'a.png',  maniacRepeats: false       } },
         { 'expect': false, 'src': 'transcode', 'param': { input: 'a.flif', output: 'a.flif', maniacRepeats: false       } },
 
-    // Test known good for maniacThreshold
-    // TODO: Find out upper/lower bounds for maniacThreshold, all I know is it allows for the number 64
+        // Test known good for maniacThreshold
+        // TODO: Find out upper/lower bounds for maniacThreshold, all I know is it allows for the number 64
         { 'expect': true,  'src': 'encode',    'param': { input: 'a.png',  output: 'a.flif', maniacThreshold: 64          } },
         { 'expect': true,  'src': 'transcode', 'param': { input: 'a.flif', output: 'a.flif', maniacThreshold: 64          } },
         { 'expect': true,  'src': 'encode',    'param': { input: 'a.png',  output: 'a.flif', maniacThreshold: 128         } },
@@ -640,11 +639,11 @@ function test () {
         { 'expect': true,  'src': 'encode',    'param': { input: 'a.png',  output: 'a.flif', maniacThreshold: 1           } },
         { 'expect': true,  'src': 'transcode', 'param': { input: 'a.flif', output: 'a.flif', maniacThreshold: 1           } },
 
-    // Test random number from 0-255 on maniacThreshold
+        // Test random number from 0-255 on maniacThreshold
         { 'expect': true,  'src': 'encode',    'param': { input: 'a.png',  output: 'a.flif', maniacThreshold: Math.round(Math.random() * 255) } },
         { 'expect': true,  'src': 'transcode', 'param': { input: 'a.flif', output: 'a.flif', maniacThreshold: Math.round(Math.random() * 255) } },
 
-    // Test known bad for maniacThreshold
+        // Test known bad for maniacThreshold
         { 'expect': false, 'src': 'decode',    'param': { input: 'a.flif', output: 'a.png',  maniacThreshold: 0           } },
         { 'expect': false, 'src': 'decode',    'param': { input: 'a.flif', output: 'a.png',  maniacThreshold: 1           } },
         { 'expect': false, 'src': 'decode',    'param': { input: 'a.flif', output: 'a.png',  maniacThreshold: 64          } },
@@ -674,18 +673,18 @@ function test () {
         { 'expect': false, 'src': 'decode',    'param': { input: 'a.flif', output: 'a.png',  maniacThreshold: false       } },
         { 'expect': false, 'src': 'transcode', 'param': { input: 'a.flif', output: 'a.flif', maniacThreshold: false       } },
 
-    // Test known good for maniacDivisor
-    // TODO: Find out upper/lower bounds for maniacDivisor, all I know is it allows for the number 30
+        // Test known good for maniacDivisor
+        // TODO: Find out upper/lower bounds for maniacDivisor, all I know is it allows for the number 30
         { 'expect': true,  'src': 'encode',    'param': { input: 'a.png',  output: 'a.flif', maniacDivisor: 30          } },
         { 'expect': true,  'src': 'transcode', 'param': { input: 'a.flif', output: 'a.flif', maniacDivisor: 30          } },
         { 'expect': true,  'src': 'encode',    'param': { input: 'a.png',  output: 'a.flif', maniacDivisor: 1           } },
         { 'expect': true,  'src': 'transcode', 'param': { input: 'a.flif', output: 'a.flif', maniacDivisor: 1           } },
 
-    // Test random number from 1-100 on maniacDivisor
+        // Test random number from 1-100 on maniacDivisor
         { 'expect': true,  'src': 'encode',    'param': { input: 'a.png',  output: 'a.flif', maniacDivisor: Math.round(Math.random() * 99) + 1 } },
         { 'expect': true,  'src': 'transcode', 'param': { input: 'a.flif', output: 'a.flif', maniacDivisor: Math.round(Math.random() * 99) + 1 } },
 
-    // Test known bad for maniacDivisor
+        // Test known bad for maniacDivisor
         { 'expect': false, 'src': 'decode',    'param': { input: 'a.flif', output: 'a.png',  maniacDivisor: 30          } },
         { 'expect': false, 'src': 'decode',    'param': { input: 'a.flif', output: 'a.png',  maniacDivisor: 1           } },
         { 'expect': false, 'src': 'decode',    'param': { input: 'a.flif', output: 'a.png',  maniacDivisor: Math.round(Math.random() * 99) + 1 } },
@@ -717,8 +716,8 @@ function test () {
         { 'expect': false, 'src': 'decode',    'param': { input: 'a.flif', output: 'a.png',  maniacDivisor: false       } },
         { 'expect': false, 'src': 'transcode', 'param': { input: 'a.flif', output: 'a.flif', maniacDivisor: false       } },
 
-    // Test known good for maniacMinSize
-    // TODO: Find out upper/lower bounds for maniacMinSize, all I know is it allows for the number 50
+        // Test known good for maniacMinSize
+        // TODO: Find out upper/lower bounds for maniacMinSize, all I know is it allows for the number 50
         { 'expect': true,  'src': 'encode',    'param': { input: 'a.png',  output: 'a.flif', maniacMinSize: 50          } },
         { 'expect': true,  'src': 'transcode', 'param': { input: 'a.flif', output: 'a.flif', maniacMinSize: 50          } },
         { 'expect': true,  'src': 'encode',    'param': { input: 'a.png',  output: 'a.flif', maniacMinSize: 1           } },
@@ -726,11 +725,11 @@ function test () {
         { 'expect': true,  'src': 'encode',    'param': { input: 'a.png',  output: 'a.flif', maniacMinSize: 2           } },
         { 'expect': true,  'src': 'transcode', 'param': { input: 'a.flif', output: 'a.flif', maniacMinSize: 2           } },
 
-    // Test random number from 1-100 on maniacMinSize
+        // Test random number from 1-100 on maniacMinSize
         { 'expect': true,  'src': 'encode',    'param': { input: 'a.png',  output: 'a.flif', maniacMinSize: Math.round(Math.random() * 99) + 1} },
         { 'expect': true,  'src': 'transcode', 'param': { input: 'a.flif', output: 'a.flif', maniacMinSize: Math.round(Math.random() * 99) + 1} },
 
-    // Test known bad for maniacMinSize
+        // Test known bad for maniacMinSize
         { 'expect': false, 'src': 'decode',    'param': { input: 'a.flif', output: 'a.png',  maniacMinSize: 50          } },
         { 'expect': false, 'src': 'decode',    'param': { input: 'a.flif', output: 'a.png',  maniacMinSize: 1           } },
         { 'expect': false, 'src': 'decode',    'param': { input: 'a.flif', output: 'a.png',  maniacMinSize: 2           } },
@@ -763,18 +762,18 @@ function test () {
         { 'expect': false, 'src': 'decode',    'param': { input: 'a.flif', output: 'a.png',  maniacMinSize: false       } },
         { 'expect': false, 'src': 'transcode', 'param': { input: 'a.flif', output: 'a.flif', maniacMinSize: false       } },
 
-    // Test known good for chanceCutoff
-    // TODO: Find out upper/lower bounds for chanceCutoff, all I know is it allows for the number 2
+        // Test known good for chanceCutoff
+        // TODO: Find out upper/lower bounds for chanceCutoff, all I know is it allows for the number 2
         { 'expect': true,  'src': 'encode',    'param': { input: 'a.png',  output: 'a.flif', chanceCutoff: 1           } },
         { 'expect': true,  'src': 'transcode', 'param': { input: 'a.flif', output: 'a.flif', chanceCutoff: 1           } },
         { 'expect': true,  'src': 'encode',    'param': { input: 'a.png',  output: 'a.flif', chanceCutoff: 2           } },
         { 'expect': true,  'src': 'transcode', 'param': { input: 'a.flif', output: 'a.flif', chanceCutoff: 2           } },
 
-    // Test random number from 1-100 on chanceCutoff
+        // Test random number from 1-100 on chanceCutoff
         { 'expect': true,  'src': 'encode',    'param': { input: 'a.png',  output: 'a.flif', chanceCutoff: Math.round(Math.random() * 99) + 1 } },
         { 'expect': true,  'src': 'transcode', 'param': { input: 'a.flif', output: 'a.flif', chanceCutoff: Math.round(Math.random() * 99) + 1 } },
 
-    // Test known bad for chanceCutoff
+        // Test known bad for chanceCutoff
         { 'expect': false, 'src': 'decode',    'param': { input: 'a.flif', output: 'a.png',  chanceCutoff: 2           } },
         { 'expect': false, 'src': 'decode',    'param': { input: 'a.flif', output: 'a.png',  chanceCutoff: Math.round(Math.random() * 99) + 1 } },
         { 'expect': false, 'src': 'encode',    'param': { input: 'a.png',  output: 'a.flif', chanceCutoff: 0           } },
@@ -805,8 +804,8 @@ function test () {
         { 'expect': false, 'src': 'decode',    'param': { input: 'a.flif', output: 'a.png',  chanceCutoff: false       } },
         { 'expect': false, 'src': 'transcode', 'param': { input: 'a.flif', output: 'a.flif', chanceCutoff: false       } },
 
-    // Test known good for chanceAlpha
-    // TODO: Find out upper/lower bounds for chanceAlpha, all I know is it allows for the number 19
+        // Test known good for chanceAlpha
+        // TODO: Find out upper/lower bounds for chanceAlpha, all I know is it allows for the number 19
         { 'expect': true,  'src': 'encode',    'param': { input: 'a.png',  output: 'a.flif', chanceAlpha: 1            } },
         { 'expect': true,  'src': 'transcode', 'param': { input: 'a.flif', output: 'a.flif', chanceAlpha: 1            } },
         { 'expect': true,  'src': 'encode',    'param': { input: 'a.png',  output: 'a.flif', chanceAlpha: 2            } },
@@ -814,11 +813,11 @@ function test () {
         { 'expect': true,  'src': 'encode',    'param': { input: 'a.png',  output: 'a.flif', chanceAlpha: 19           } },
         { 'expect': true,  'src': 'transcode', 'param': { input: 'a.flif', output: 'a.flif', chanceAlpha: 19           } },
 
-    // Test random number from 0-100 on chanceAlpha
+        // Test random number from 0-100 on chanceAlpha
         { 'expect': true,  'src': 'encode',    'param': { input: 'a.png',  output: 'a.flif', chanceAlpha: Math.round(Math.random() * 99) } },
         { 'expect': true,  'src': 'transcode', 'param': { input: 'a.flif', output: 'a.flif', chanceAlpha: Math.round(Math.random() * 99) } },
 
-    // Test known bad for chanceAlpha
+        // Test known bad for chanceAlpha
         { 'expect': false, 'src': 'decode',    'param': { input: 'a.flif', output: 'a.png',  chanceAlpha: 19           } },
         { 'expect': false, 'src': 'decode',    'param': { input: 'a.flif', output: 'a.png',  chanceAlpha: Math.round(Math.random() * 99) } },
         { 'expect': false, 'src': 'encode',    'param': { input: 'a.png',  output: 'a.flif', chanceAlpha: 0           } },
@@ -849,13 +848,13 @@ function test () {
         { 'expect': false, 'src': 'decode',    'param': { input: 'a.flif', output: 'a.png',  chanceAlpha: false       } },
         { 'expect': false, 'src': 'transcode', 'param': { input: 'a.flif', output: 'a.flif', chanceAlpha: false       } },
 
-    // Test known good for adaptive
+        // Test known good for adaptive
         { 'expect': true,  'src': 'encode',    'param': { input: 'a.png',  output: 'a.flif', adaptive: true      } },
         { 'expect': true,  'src': 'transcode', 'param': { input: 'a.flif', output: 'a.flif', adaptive: true      } },
         { 'expect': true,  'src': 'encode',    'param': { input: 'a.png',  output: 'a.flif', adaptive: false     } },
         { 'expect': true,  'src': 'transcode', 'param': { input: 'a.flif', output: 'a.flif', adaptive: false     } },
 
-    // Test known bad for adaptive
+        // Test known bad for adaptive
         { 'expect': false, 'src': 'decode',    'param': { input: 'a.flif', output: 'a.png',  adaptive: true      } },
         { 'expect': false, 'src': 'decode',    'param': { input: 'a.flif', output: 'a.png',  adaptive: false     } },
         { 'expect': false, 'src': 'encode',    'param': { input: 'a.png',  output: 'a.flif', adaptive: 'a'       } },
@@ -874,7 +873,7 @@ function test () {
         { 'expect': false, 'src': 'decode',    'param': { input: 'a.flif', output: 'a.png',  adaptive: 8         } },
         { 'expect': false, 'src': 'transcode', 'param': { input: 'a.flif', output: 'a.flif', adaptive: 8         } },
 
-    // Test known good for guess
+        // Test known good for guess
         { 'expect': true,  'src': 'encode',    'param': { input: 'a.png',  output: 'a.flif', guess: 'heuristically'   } },
         { 'expect': true,  'src': 'transcode', 'param': { input: 'a.flif', output: 'a.flif', guess: 'heuristically'   } },
         { 'expect': true,  'src': 'encode',    'param': { input: 'a.png',  output: 'a.flif', guess: 'average'         } },
@@ -886,7 +885,7 @@ function test () {
         { 'expect': true,  'src': 'encode',    'param': { input: 'a.png',  output: 'a.flif', guess: 'mixed'           } },
         { 'expect': true,  'src': 'transcode', 'param': { input: 'a.flif', output: 'a.flif', guess: 'mixed'           } },
 
-    // Test known bad for guess
+        // Test known bad for guess
         { 'expect': false, 'src': 'decode',    'param': { input: 'a.flif', output: 'a.png',  guess: 'heuristically'   } },
         { 'expect': false, 'src': 'decode',    'param': { input: 'a.flif', output: 'a.png',  guess: 'average'         } },
         { 'expect': false, 'src': 'decode',    'param': { input: 'a.flif', output: 'a.png',  guess: 'median gradient' } },
@@ -914,7 +913,7 @@ function test () {
         { 'expect': false, 'src': 'decode',    'param': { input: 'a.flif', output: 'a.png',  guess: 8                 } },
         { 'expect': false, 'src': 'transcode', 'param': { input: 'a.flif', output: 'a.flif', guess: 8                 } },
 
-    // Test known good for alphaGuess
+        // Test known good for alphaGuess
         { 'expect': true,  'src': 'encode',    'param': { input: 'a.png',  output: 'a.flif', alphaGuess: 'heuristically'   } },
         { 'expect': true,  'src': 'transcode', 'param': { input: 'a.flif', output: 'a.flif', alphaGuess: 'heuristically'   } },
         { 'expect': true,  'src': 'encode',    'param': { input: 'a.png',  output: 'a.flif', alphaGuess: 'average'         } },
@@ -926,7 +925,7 @@ function test () {
         { 'expect': true,  'src': 'encode',    'param': { input: 'a.png',  output: 'a.flif', alphaGuess: 'mixed'           } },
         { 'expect': true,  'src': 'transcode', 'param': { input: 'a.flif', output: 'a.flif', alphaGuess: 'mixed'           } },
 
-    // Test known bad for alphaGuess
+        // Test known bad for alphaGuess
         { 'expect': false, 'src': 'decode',    'param': { input: 'a.flif', output: 'a.png',  alphaGuess: 'heuristically'   } },
         { 'expect': false, 'src': 'decode',    'param': { input: 'a.flif', output: 'a.png',  alphaGuess: 'average'         } },
         { 'expect': false, 'src': 'decode',    'param': { input: 'a.flif', output: 'a.png',  alphaGuess: 'median gradient' } },
@@ -954,13 +953,13 @@ function test () {
         { 'expect': false, 'src': 'decode',    'param': { input: 'a.flif', output: 'a.png',  alphaGuess: 8                 } },
         { 'expect': false, 'src': 'transcode', 'param': { input: 'a.flif', output: 'a.flif', alphaGuess: 8                 } },
 
-    // Test known good for chromaSubsample
+        // Test known good for chromaSubsample
         { 'expect': true,  'src': 'encode',    'param': { input: 'a.png',  output: 'a.flif', chromaSubsample: true      } },
         { 'expect': true,  'src': 'transcode', 'param': { input: 'a.flif', output: 'a.flif', chromaSubsample: true      } },
         { 'expect': true,  'src': 'encode',    'param': { input: 'a.png',  output: 'a.flif', chromaSubsample: false     } },
         { 'expect': true,  'src': 'transcode', 'param': { input: 'a.flif', output: 'a.flif', chromaSubsample: false     } },
 
-    // Test known bad for chromaSubsample
+        // Test known bad for chromaSubsample
         { 'expect': false, 'src': 'decode',    'param': { input: 'a.flif', output: 'a.png',  chromaSubsample: true      } },
         { 'expect': false, 'src': 'decode',    'param': { input: 'a.flif', output: 'a.png',  chromaSubsample: false     } },
         { 'expect': false, 'src': 'encode',    'param': { input: 'a.png',  output: 'a.flif', chromaSubsample: 'a'       } },
@@ -980,29 +979,7 @@ function test () {
         { 'expect': false, 'src': 'transcode', 'param': { input: 'a.flif', output: 'a.flif', chromaSubsample: 8         } }
     ];
 
-    for (var i = 0; i < testData.length; i++) {
-        var param = testData[i].param;
-        var src = testData[i].src;
-        var actual = subject(param, src, true);
-        var expectation = testData[i].expect;
-
-        if (actual !== expectation) {
-            var stack = (new Error()).stack.trim().split('\n');
-            var errorMessage = require('./verifyParams/errorMessage.js');
-            var errorDetails = {
-                stack: stack,
-                testName: testName,
-                i: i,
-                src: src,
-                param: param,
-                expectation: expectation,
-                actual: actual
-            };
-            var errMsg = errorMessage(errorDetails);
-
-            throw errMsg;
-        }
-    }
+    runAllTests('../' + testName, testData);
 
     return [testName, testData.length];
 }

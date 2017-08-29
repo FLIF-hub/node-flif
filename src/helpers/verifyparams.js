@@ -38,12 +38,9 @@ function verifyParams (params, src, skipWarnings) {
     //  Validating Common Options  //
     // /////////////////////////// //
 
-    if (
-        params.async === null ||
-        params.async &&
-        typeof(params.async) !== 'boolean'
-    ) {
-        warnUser('The async parameter must be a boolean value.', skipWarnings);
+    var verifyAsync = require('./verifyParams/verifyAsync.js');
+    var verifiedAsync = verifyAsync(params, src, skipWarnings);
+    if (!verifiedAsync) {
         return false;
     }
 

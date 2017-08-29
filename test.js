@@ -15,7 +15,8 @@ var allTestsToRun = [
     require('./src/helpers/warnUser.test.js'),
     require('./src/helpers/verifyParams.test.js'), [
         require('./src/helpers/verifyParams/ensureParamsExist.test.js'),
-        require('./src/helpers/verifyParams/ensureInputOutputExist.test.js')
+        require('./src/helpers/verifyParams/ensureInputOutputExist.test.js'),
+        require('./src/helpers/verifyParams/verifyAsync.test.js')
     ],
 
     // Information

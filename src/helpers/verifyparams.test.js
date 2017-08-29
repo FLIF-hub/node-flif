@@ -5,65 +5,6 @@ function test () {
     var subject = require('./' + testName + '.js');
 
     var testData = [
-    // Test known good input/output filetypes for encode
-        { 'expect': true,  'src': 'encode',    'param': { input: 'a.png',  output: 'a.flif' } },
-        { 'expect': true,  'src': 'encode',    'param': { input: 'a.pnm',  output: 'a.flif' } },
-        { 'expect': true,  'src': 'encode',    'param': { input: 'a.ppm',  output: 'a.flif' } },
-        { 'expect': true,  'src': 'encode',    'param': { input: 'a.pgm',  output: 'a.flif' } },
-        { 'expect': true,  'src': 'encode',    'param': { input: 'a.pbm',  output: 'a.flif' } },
-        { 'expect': true,  'src': 'encode',    'param': { input: 'a.pam',  output: 'a.flif' } },
-
-    // Test known bad for input/ouput filetypes for encode
-        { 'expect': false, 'src': 'encode',    'param': { input: 'potato', output: 'starch' } },
-        { 'expect': false, 'src': 'encode',    'param': { input: 'a.flif', output: 'a.flif' } },
-        { 'expect': false, 'src': 'encode',    'param': { input: 'a.png',  output: 'a.png'  } },
-
-    // Test known good input/output filetypes for decode
-        { 'expect': true,  'src': 'decode',    'param': { input: 'a.flif', output: 'a.png'  } },
-        { 'expect': true,  'src': 'decode',    'param': { input: 'a.flif', output: 'a.pnm'  } },
-        { 'expect': true,  'src': 'decode',    'param': { input: 'a.flif', output: 'a.ppm'  } },
-        { 'expect': true,  'src': 'decode',    'param': { input: 'a.flif', output: 'a.pgm'  } },
-        { 'expect': true,  'src': 'decode',    'param': { input: 'a.flif', output: 'a.pbm'  } },
-        { 'expect': true,  'src': 'decode',    'param': { input: 'a.flif', output: 'a.pam'  } },
-
-    // Test known bad for input/ouput filetypes for decode
-        { 'expect': false, 'src': 'decode',    'param': { input: 'taco',   output: 'rocket' } },
-        { 'expect': false, 'src': 'decode',    'param': { input: 'a.flif', output: 'a.flif' } },
-        { 'expect': false, 'src': 'decode',    'param': { input: 'a.png',  output: 'a.png'  } },
-
-    // Test known good input/output filetypes for transcode
-        { 'expect': true,  'src': 'transcode', 'param': { input: 'a.flif', output: 'b.flif' } },
-
-    // Test known bad for input/ouput filetypes for transcode
-        { 'expect': false, 'src': 'transcode', 'param': { input: 'turtle', output: 'robot'  } },
-        { 'expect': false, 'src': 'transcode', 'param': { input: 'a.png',  output: 'a.flif' } },
-        { 'expect': false, 'src': 'transcode', 'param': { input: 'a.flif', output: 'a.png'  } },
-
-    // Test known good for async
-        { 'expect': true,  'src': 'encode',    'param': { input: 'a.png',  output: 'a.flif', async: true      } },
-        { 'expect': true,  'src': 'decode',    'param': { input: 'a.flif', output: 'a.png',  async: true      } },
-        { 'expect': true,  'src': 'transcode', 'param': { input: 'a.flif', output: 'a.flif', async: true      } },
-        { 'expect': true,  'src': 'encode',    'param': { input: 'a.png',  output: 'a.flif', async: false     } },
-        { 'expect': true,  'src': 'decode',    'param': { input: 'a.flif', output: 'a.png',  async: false     } },
-        { 'expect': true,  'src': 'transcode', 'param': { input: 'a.flif', output: 'a.flif', async: false     } },
-
-    // Test known bad for async
-        { 'expect': false, 'src': 'encode',    'param': { input: 'a.png',  output: 'a.flif', async: 'a'       } },
-        { 'expect': false, 'src': 'decode',    'param': { input: 'a.flif', output: 'a.png',  async: 'a'       } },
-        { 'expect': false, 'src': 'transcode', 'param': { input: 'a.flif', output: 'a.flif', async: 'a'       } },
-        { 'expect': false, 'src': 'encode',    'param': { input: 'a.png',  output: 'a.flif', async: [0, 1, 2] } },
-        { 'expect': false, 'src': 'decode',    'param': { input: 'a.flif', output: 'a.png',  async: [0, 1, 2] } },
-        { 'expect': false, 'src': 'transcode', 'param': { input: 'a.flif', output: 'a.flif', async: [0, 1, 2] } },
-        { 'expect': false, 'src': 'encode',    'param': { input: 'a.png',  output: 'a.flif', async: {'a': 1}  } },
-        { 'expect': false, 'src': 'decode',    'param': { input: 'a.flif', output: 'a.png',  async: {'a': 1}  } },
-        { 'expect': false, 'src': 'transcode', 'param': { input: 'a.flif', output: 'a.flif', async: {'a': 1}  } },
-        { 'expect': false, 'src': 'encode',    'param': { input: 'a.png',  output: 'a.flif', async: null      } },
-        { 'expect': false, 'src': 'decode',    'param': { input: 'a.flif', output: 'a.png',  async: null      } },
-        { 'expect': false, 'src': 'transcode', 'param': { input: 'a.flif', output: 'a.flif', async: null      } },
-        { 'expect': false, 'src': 'encode',    'param': { input: 'a.png',  output: 'a.flif', async: 8         } },
-        { 'expect': false, 'src': 'decode',    'param': { input: 'a.flif', output: 'a.png',  async: 8         } },
-        { 'expect': false, 'src': 'transcode', 'param': { input: 'a.flif', output: 'a.flif', async: 8         } },
-
     // Test known good for overwrite
         { 'expect': true,  'src': 'encode',    'param': { input: 'a.png',  output: 'a.flif', overwrite: true      } },
         { 'expect': true,  'src': 'decode',    'param': { input: 'a.flif', output: 'a.png',  overwrite: true      } },

@@ -24,6 +24,7 @@ var allTestsToRun = [
         require('./src/helpers/verifyParams/verifyCRC.test.js'),
         require('./src/helpers/verifyParams/verifyKeepPalette.test.js'),
         require('./src/helpers/verifyParams/verifyScale.test.js'),
+        require('./src/helpers/verifyParams/verifyResize.test.js'),
 
         require('./src/helpers/verifyParams/verifyChromaSubsample.test.js')
     ],

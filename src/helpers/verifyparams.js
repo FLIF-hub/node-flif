@@ -61,36 +61,13 @@ function verifyParams (params, src, skipWarnings) {
     var verifyCRC              = require('./verifyParams/verifyCRC.js')(params, src, skipWarnings);
     var verifyKeepPalette      = require('./verifyParams/verifyKeepPalette.js')(params, src, skipWarnings);
     var verifyScale            = require('./verifyParams/verifyScale.js')(params, src, skipWarnings);
+    var verifyResize           = require('./verifyParams/verifyResize.js')(params, src, skipWarnings);
     if (
         !verifyCRC ||
         !verifyKeepPalette ||
-        !verifyScale
+        !verifyScale ||
+        !verifyResize
     ) {
-        return false;
-    }
-
-    if (params.resize && typeof(params.resize) !== 'object') {
-        warnUser('The resize parameter must be a object.', skipWarnings);
-        return false;
-    }
-
-    if (
-        params.resize === null ||
-        params.resize === false ||
-        params.resize &&
-        (
-            Object.keys(params.resize).length !== 2 ||
-            params.resize.width === false ||
-            params.resize.height === false ||
-            params.resize.width === true ||
-            params.resize.height === true ||
-            isNaN(parseInt(params.resize.width)) ||
-            isNaN(parseInt(params.resize.height)) ||
-            params.resize.width < 0 ||
-            params.resize.height < 0
-        )
-    ) {
-        warnUser('The resize parameter should be an object. Example: { width: 320, height: 240 }.', skipWarnings);
         return false;
     }
 

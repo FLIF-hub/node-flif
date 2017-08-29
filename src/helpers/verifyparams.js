@@ -44,12 +44,9 @@ function verifyParams (params, src, skipWarnings) {
         return false;
     }
 
-    if (
-        params.overwrite === null ||
-        params.overwrite &&
-        typeof(params.overwrite) !== 'boolean'
-    ) {
-        warnUser('The overwrite parameter must be a boolean value.', skipWarnings);
+    var verifyOverwrite = require('./verifyParams/verifyOverwrite.js');
+    var verifiedOverwrite = verifyOverwrite(params, src, skipWarnings);
+    if (!verifiedOverwrite) {
         return false;
     }
 

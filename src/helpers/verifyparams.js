@@ -75,12 +75,9 @@ function verifyParams (params, src, skipWarnings) {
     //  Validating Advanced Options  //
     // ///////////////////////////// //
 
-    if (
-        params.crc === null ||
-        params.crc &&
-        typeof(params.crc) !== 'boolean'
-    ) {
-        warnUser('The crc parameter must be a boolean value.', skipWarnings);
+    var verifyCRC = require('./verifyParams/verifyCRC.js');
+    var verifiedCRC = verifyCRC(params, src, skipWarnings);
+    if (!verifiedCRC) {
         return false;
     }
 

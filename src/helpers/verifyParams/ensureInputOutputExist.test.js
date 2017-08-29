@@ -57,38 +57,38 @@ function test () {
         { 'expect': false, 'src': 'transcode', 'param': { input: 'a.flif',  output: {a: 'b'}  } },
 
         // Test known good input/output filetypes for encode
-        { 'expect': true,  'src': 'encode',    'param': { input: 'a.png',  output: 'a.flif' } },
-        { 'expect': true,  'src': 'encode',    'param': { input: 'a.pnm',  output: 'a.flif' } },
-        { 'expect': true,  'src': 'encode',    'param': { input: 'a.ppm',  output: 'a.flif' } },
-        { 'expect': true,  'src': 'encode',    'param': { input: 'a.pgm',  output: 'a.flif' } },
-        { 'expect': true,  'src': 'encode',    'param': { input: 'a.pbm',  output: 'a.flif' } },
-        { 'expect': true,  'src': 'encode',    'param': { input: 'a.pam',  output: 'a.flif' } },
+        { 'expect': true,  'src': 'encode',    'param': { input: 'a.png',   output: 'a.flif'  } },
+        { 'expect': true,  'src': 'encode',    'param': { input: 'a.pnm',   output: 'a.flif'  } },
+        { 'expect': true,  'src': 'encode',    'param': { input: 'a.ppm',   output: 'a.flif'  } },
+        { 'expect': true,  'src': 'encode',    'param': { input: 'a.pgm',   output: 'a.flif'  } },
+        { 'expect': true,  'src': 'encode',    'param': { input: 'a.pbm',   output: 'a.flif'  } },
+        { 'expect': true,  'src': 'encode',    'param': { input: 'a.pam',   output: 'a.flif'  } },
 
         // Test known bad for input/ouput filetypes for encode
-        { 'expect': false, 'src': 'encode',    'param': { input: 'potato', output: 'starch' } },
-        { 'expect': false, 'src': 'encode',    'param': { input: 'a.flif', output: 'a.flif' } },
-        { 'expect': false, 'src': 'encode',    'param': { input: 'a.png',  output: 'a.png'  } },
+        { 'expect': false, 'src': 'encode',    'param': { input: 'potato',  output: 'starch'  } },
+        { 'expect': false, 'src': 'encode',    'param': { input: 'a.flif',  output: 'a.flif'  } },
+        { 'expect': false, 'src': 'encode',    'param': { input: 'a.png',   output: 'a.png'   } },
 
         // Test known good input/output filetypes for decode
-        { 'expect': true,  'src': 'decode',    'param': { input: 'a.flif', output: 'a.png'  } },
-        { 'expect': true,  'src': 'decode',    'param': { input: 'a.flif', output: 'a.pnm'  } },
-        { 'expect': true,  'src': 'decode',    'param': { input: 'a.flif', output: 'a.ppm'  } },
-        { 'expect': true,  'src': 'decode',    'param': { input: 'a.flif', output: 'a.pgm'  } },
-        { 'expect': true,  'src': 'decode',    'param': { input: 'a.flif', output: 'a.pbm'  } },
-        { 'expect': true,  'src': 'decode',    'param': { input: 'a.flif', output: 'a.pam'  } },
+        { 'expect': true,  'src': 'decode',    'param': { input: 'a.flif',  output: 'a.png'   } },
+        { 'expect': true,  'src': 'decode',    'param': { input: 'a.flif',  output: 'a.pnm'   } },
+        { 'expect': true,  'src': 'decode',    'param': { input: 'a.flif',  output: 'a.ppm'   } },
+        { 'expect': true,  'src': 'decode',    'param': { input: 'a.flif',  output: 'a.pgm'   } },
+        { 'expect': true,  'src': 'decode',    'param': { input: 'a.flif',  output: 'a.pbm'   } },
+        { 'expect': true,  'src': 'decode',    'param': { input: 'a.flif',  output: 'a.pam'   } },
 
         // Test known bad for input/ouput filetypes for decode
-        { 'expect': false, 'src': 'decode',    'param': { input: 'taco',   output: 'rocket' } },
-        { 'expect': false, 'src': 'decode',    'param': { input: 'a.flif', output: 'a.flif' } },
-        { 'expect': false, 'src': 'decode',    'param': { input: 'a.png',  output: 'a.png'  } },
+        { 'expect': false, 'src': 'decode',    'param': { input: 'taco',    output: 'rocket'  } },
+        { 'expect': false, 'src': 'decode',    'param': { input: 'a.flif',  output: 'a.flif'  } },
+        { 'expect': false, 'src': 'decode',    'param': { input: 'a.png',   output: 'a.png'   } },
 
         // Test known good input/output filetypes for transcode
-        { 'expect': true,  'src': 'transcode', 'param': { input: 'a.flif', output: 'b.flif' } },
+        { 'expect': true,  'src': 'transcode', 'param': { input: 'a.flif',  output: 'b.flif'  } },
 
         // Test known bad for input/ouput filetypes for transcode
-        { 'expect': false, 'src': 'transcode', 'param': { input: 'turtle', output: 'robot'  } },
-        { 'expect': false, 'src': 'transcode', 'param': { input: 'a.png',  output: 'a.flif' } },
-        { 'expect': false, 'src': 'transcode', 'param': { input: 'a.flif', output: 'a.png'  } }
+        { 'expect': false, 'src': 'transcode', 'param': { input: 'turtle',  output: 'robot'   } },
+        { 'expect': false, 'src': 'transcode', 'param': { input: 'a.png',   output: 'a.flif'  } },
+        { 'expect': false, 'src': 'transcode', 'param': { input: 'a.flif',  output: 'a.png'   } }
     ];
 
     runAllTests(testName, testData);

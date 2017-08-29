@@ -56,12 +56,9 @@ function verifyParams (params, src, skipWarnings) {
         return false;
     }
 
-    if (
-        params.keepMetaData === null ||
-        params.keepMetaData &&
-        typeof(params.keepMetaData) !== 'boolean'
-    ) {
-        warnUser('The keepMetaData parameter must be a boolean value.', skipWarnings);
+    var verifyKeepMetaData = require('./verifyParams/verifyKeepMetaData.js');
+    var verifiedKeepMetaData = verifyKeepMetaData(params, src, skipWarnings);
+    if (!verifiedKeepMetaData) {
         return false;
     }
 

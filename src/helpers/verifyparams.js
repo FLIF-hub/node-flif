@@ -1,3 +1,5 @@
+/* eslint-disable no-multi-spaces */
+
 /**
  * Verify that the passed in parameters are the correct types.
  * Return helpful error messages to users.
@@ -16,9 +18,8 @@ function verifyParams (params, src, skipWarnings) {
     //  Validate Parameters  //
     // ///////////////////// //
 
-    var ensureParamsExist = require('./verifyParams/ensureParamsExist.js');
-    var ensuredParamsExist = ensureParamsExist(params, src, skipWarnings);
-    if (!ensuredParamsExist) {
+    var ensureParamsExist = require('./verifyParams/ensureParamsExist.js')(params, src, skipWarnings);
+    if (!ensureParamsExist) {
         return false;
     }
 
@@ -27,9 +28,8 @@ function verifyParams (params, src, skipWarnings) {
     //  Validate input/output  //
     // /////////////////////// //
 
-    var ensureInputOutputExist = require('./verifyParams/ensureInputOutputExist.js');
-    var ensuredInputOutputExist = ensureInputOutputExist(params, src, skipWarnings);
-    if (!ensuredInputOutputExist) {
+    var ensureInputOutputExist = require('./verifyParams/ensureInputOutputExist.js')(params, src, skipWarnings);
+    if (!ensureInputOutputExist) {
         return false;
     }
 
@@ -38,33 +38,19 @@ function verifyParams (params, src, skipWarnings) {
     //  Validating Common Options  //
     // /////////////////////////// //
 
-    var verifyAsync = require('./verifyParams/verifyAsync.js');
-    var verifiedAsync = verifyAsync(params, src, skipWarnings);
-    if (!verifiedAsync) {
-        return false;
-    }
+    var verifyAsync            = require('./verifyParams/verifyAsync.js')(params, src, skipWarnings);
+    var verifyOverwrite        = require('./verifyParams/verifyOverwrite.js')(params, src, skipWarnings);
+    var verifyQuality          = require('./verifyParams/verifyQuality.js')(params, src, skipWarnings);
+    var verifyKeepMetaData     = require('./verifyParams/verifyKeepMetaData.js')(params, src, skipWarnings);
+    var verifyKeepColorProfile = require('./verifyParams/verifyKeepColorProfile.js')(params, src, skipWarnings);
 
-    var verifyOverwrite = require('./verifyParams/verifyOverwrite.js');
-    var verifiedOverwrite = verifyOverwrite(params, src, skipWarnings);
-    if (!verifiedOverwrite) {
-        return false;
-    }
-
-    var verifyQuality = require('./verifyParams/verifyQuality.js');
-    var verifiedQuality = verifyQuality(params, src, skipWarnings);
-    if (!verifiedQuality) {
-        return false;
-    }
-
-    var verifyKeepMetaData = require('./verifyParams/verifyKeepMetaData.js');
-    var verifiedKeepMetaData = verifyKeepMetaData(params, src, skipWarnings);
-    if (!verifiedKeepMetaData) {
-        return false;
-    }
-
-    var verifyKeepColorProfile = require('./verifyParams/verifyKeepColorProfile.js');
-    var verifiedKeepColorProfile = verifyKeepColorProfile(params, src, skipWarnings);
-    if (!verifiedKeepColorProfile) {
+    if (
+        !verifyAsync ||
+        !verifyOverwrite ||
+        !verifyQuality ||
+        !verifyKeepMetaData ||
+        !verifyKeepColorProfile
+    ) {
         return false;
     }
 
@@ -72,9 +58,8 @@ function verifyParams (params, src, skipWarnings) {
     //  Validating Advanced Options  //
     // ///////////////////////////// //
 
-    var verifyCRC = require('./verifyParams/verifyCRC.js');
-    var verifiedCRC = verifyCRC(params, src, skipWarnings);
-    if (!verifiedCRC) {
+    var verifyCRC = require('./verifyParams/verifyCRC.js')(params, src, skipWarnings);
+    if (!verifyCRC) {
         return false;
     }
 
@@ -447,14 +432,8 @@ function verifyParams (params, src, skipWarnings) {
         return false;
     }
 
-    if (
-        params.chromaSubsample === null ||
-        params.chromaSubsample &&
-        typeof(params.chromaSubsample) !== 'boolean' ||
-        src === 'decode' && params.chromaSubsample === false ||
-        src === 'decode' && params.chromaSubsample === true
-    ) {
-        warnUser('The chromaSubsample parameter must be a boolean value.', skipWarnings);
+    var verifyChromaSubsample = require('./verifyParams/verifyChromaSubsample.js')(params, src, skipWarnings);
+    if (!verifyChromaSubsample) {
         return false;
     }
 

@@ -21,7 +21,9 @@ var allTestsToRun = [
         require('./src/helpers/verifyParams/verifyQuality.test.js'),
         require('./src/helpers/verifyParams/verifyKeepMetaData.test.js'),
         require('./src/helpers/verifyParams/verifyKeepColorProfile.test.js'),
-        require('./src/helpers/verifyParams/verifyCRC.test.js')
+        require('./src/helpers/verifyParams/verifyCRC.test.js'),
+
+        require('./src/helpers/verifyParams/verifyChromaSubsample.test.js')
     ],
 
     // Information

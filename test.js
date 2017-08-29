@@ -22,6 +22,7 @@ var allTestsToRun = [
         require('./src/helpers/verifyParams/verifyKeepMetaData.test.js'),
         require('./src/helpers/verifyParams/verifyKeepColorProfile.test.js'),
         require('./src/helpers/verifyParams/verifyCRC.test.js'),
+        require('./src/helpers/verifyParams/verifyKeepPalette.test.js'),
 
         require('./src/helpers/verifyParams/verifyChromaSubsample.test.js')
     ],
@@ -71,6 +72,8 @@ function runTests (testsArray, sub) {
 }
 runTests(allTestsToRun);
 
+// TODO: Remove this line after you are done splitting up the verifyParams to modules
+if (numberOfTestsPassed !== 1146) { throw 'You forgot to import a subtest during refactoring'; }
 
 
 // //////////////////////////// //

@@ -63,12 +63,8 @@ function verifyParams (params, src, skipWarnings) {
         return false;
     }
 
-    if (
-        params.keepPalette === null ||
-        params.keepPalette &&
-        typeof(params.keepPalette) !== 'boolean'
-    ) {
-        warnUser('The keepPalette parameter must be a boolean value.', skipWarnings);
+    var verifyKeepPalette = require('./verifyParams/verifyKeepPalette.js')(params, src, skipWarnings);
+    if (!verifyKeepPalette) {
         return false;
     }
 

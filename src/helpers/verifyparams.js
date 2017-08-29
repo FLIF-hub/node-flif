@@ -58,32 +58,14 @@ function verifyParams (params, src, skipWarnings) {
     //  Validating Advanced Options  //
     // ///////////////////////////// //
 
-    var verifyCRC = require('./verifyParams/verifyCRC.js')(params, src, skipWarnings);
-    if (!verifyCRC) {
-        return false;
-    }
-
-    var verifyKeepPalette = require('./verifyParams/verifyKeepPalette.js')(params, src, skipWarnings);
-    if (!verifyKeepPalette) {
-        return false;
-    }
-
+    var verifyCRC              = require('./verifyParams/verifyCRC.js')(params, src, skipWarnings);
+    var verifyKeepPalette      = require('./verifyParams/verifyKeepPalette.js')(params, src, skipWarnings);
+    var verifyScale            = require('./verifyParams/verifyScale.js')(params, src, skipWarnings);
     if (
-        params.scale === null ||
-        params.scale === false ||
-        params.scale &&
-        typeof(params.scale) !== 'number' ||
-        params.scale &&
-        (
-            params.scale !== 1 &&
-            params.scale !== 2 &&
-            params.scale !== 4 &&
-            params.scale !== 8 &&
-            params.scale !== 16 &&
-            params.scale !== 32
-        )
+        !verifyCRC ||
+        !verifyKeepPalette ||
+        !verifyScale
     ) {
-        warnUser('The scale parameter must be one of the following numbers: 1, 2, 4, 8, 16, 32.', skipWarnings);
         return false;
     }
 

@@ -7,7 +7,7 @@
  */
 function identify (file) {
     var fs = require('fs');
-    var runCommandSync = require('../helpers/runcommandsync.js');
+    var runCommandSync = require('../helpers/runCommandSync.js');
 
     if (!file || typeof(file) !== 'string') {
         throw 'You must pass in a string to the identify method.';

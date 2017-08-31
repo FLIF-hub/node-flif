@@ -1,4 +1,9 @@
+/* eslint-disable no-console */
+
 var nodeFLIF = require('./index.js');
+
+
+// Test converting 1 flif to 1 png
 
 var decodeParams = {
     input: './sample/cat.flif',
@@ -7,27 +12,53 @@ var decodeParams = {
 };
 
 nodeFLIF.decode(decodeParams, function (data) {
-    console.log('Decode finished');
+    console.log('Decode cat.flif -> decode-test.png finished');
     if (data) {
         console.log(data);
     }
 });
 
+
+// Test converting 1 png to 1 flif
+
 var encodeParams = {
     input: './sample/cat.png',
     output: './sample/encode-test.flif',
-    overwrite: true
-}
+    overwrite: true,
+    async: false
+};
 
-nodeFLIF.encode(encodeParams, function (data) {
-    console.log('Encode finished.');
+console.log(nodeFLIF.encode(encodeParams));
+console.log('Encode cat.png -> encode-test.flif finished.');
+
+
+// Verify the above flif was created properly by decoding to png
+
+var decodeParams2 = {
+    input: './sample/encode-test.flif',
+    output: './sample/decode-encode-test.png',
+    overwrite: true
+};
+
+nodeFLIF.decode(decodeParams2, function (data) {
+    console.log('Decode encode-test.flif -> decode-encode-test.png finished');
     if (data) {
         console.log(data);
     }
-})
+});
 
-console.log(nodeFLIF.identify('./sample/cat.flif'));
 
+// Identify data in a flif
+
+var catData = nodeFLIF.identify('./sample/cat.flif');
+console.log(catData);
+console.log('Identified cat.flif');
+
+
+// Create an animated flif
+
+// TODO: allow passing an array as input
+/*
 var encodeAnimParams = {
     input: [
         './sample/catrun01.png',
@@ -42,8 +73,9 @@ var encodeAnimParams = {
 };
 
 nodeFLIF.encode(encodeAnimParams, function (data) {
-    console.log('Encode animation finished.');
+    console.log('Encod catrun01-06.png -> encode-anim-test.flif finished.');
     if (data) {
         console.log(data);
     }
-})
+});
+*/

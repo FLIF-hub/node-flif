@@ -7,8 +7,8 @@
   "scripts": {
     "start": "node index.js",
     "installer": "npm install --loglevel=error",
-    "lint": "eslint --config=.eslintrc.js index.js e2etest.js test.js src/**/*.js",
-    "fix": "eslint --fix --config=.eslintrc.js index.js e2etest.js test.js src/**/*.js",
+    "lint": "eslint --config=.eslintrc.js index.js e2e-test.js test.js src/**/*.js",
+    "fix": "eslint --fix --config=.eslintrc.js index.js e2e-test.js test.js src/**/*.js",
     "test": "node test.js"
   },
   "repository": {

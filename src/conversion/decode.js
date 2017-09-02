@@ -7,7 +7,7 @@
  * @return {string}          The built args to be sent to the command line.
  */
 function buildDecodeArgs (params) {
-    var verifyParams = require('../helpers/verifyparams.js');
+    var verifyParams = require('../helpers/verifyParams.js');
     var paramsWereVerified = verifyParams(params, 'decode');
     if (!paramsWereVerified) {
         return false;

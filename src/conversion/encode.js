@@ -67,7 +67,7 @@ var encodeParams = {
  * @return {string}          The built args to be sent to the command line.
  */
 function buildEncodeArgs (params) {
-    var verifyParams = require('../helpers/verifyparams.js');
+    var verifyParams = require('../helpers/verifyParams.js');
     var paramsWereVerified = verifyParams(params, 'dncode');
     if (!paramsWereVerified) {
         return false;

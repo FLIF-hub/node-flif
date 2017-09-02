@@ -25,7 +25,8 @@
     "decode"
   ],
   "dependencies": {
-    "flif-wasm": "^1.0.3"
+    "flif-wasm": "^1.0.3",
+    "lodash.isequal": "^4.5.0"
   },
   "devDependencies": {
     "eslint": "^3.8.1",
@@ -33,13 +34,18 @@
   },
   "author": "The Jared Wilcurt",
   "license": "MIT",
-  "licenses": [{
-    "type": "MIT",
-    "url": "https://github.com/FLIF-hub/node-flif/blob/master/LICENSE"
-  }],
+  "licenses": [
+    {
+      "type": "MIT",
+      "url": "https://github.com/FLIF-hub/node-flif/blob/master/LICENSE"
+    }
+  ],
   "bugs": {
     "url": "https://github.com/FLIF-hub/node-flif/issues"
   },
   "homepage": "https://github.com/FLIF-hub/node-flif#readme",
-  "pre-commit": [ "test", "lint" ]
+  "pre-commit": [
+    "test",
+    "lint"
+  ]
 }

@@ -7,26 +7,31 @@
  * @return {boolean}          Throw if we detect a failure, otherwise return true
  */
 function loopOverAllTestSets (testName, folder, testSet) {
-    var subject = require('../' + folder + '/' + testName + '.js');
+    var path = require('path');
+    var isEqual = require('lodash.isequal');
+
+    var testFile = path.join('..', folder, testName + '.js');
+    var subject = require(testFile);
 
     for (var i = 0; i < testSet.length; i++) {
         var arguments = testSet[i].arguments;
         var expected = testSet[i].expected;
         var actual = subject.apply(null, arguments);
 
-        // If we expect to generate an Object, compare the insides of the object.
-        if (typeof(expected) === 'object' && !Array.isArray(expected)) {
-            // TODO: Make this recursive so it can handle objects in objects in objects
-            for (var key in actual) {
-                if (actual[key] !== expected[key]) {
-                    throw 'fail';
-                }
-            }
-        } else {
-            // TODO: use the errorMessage.js file for the throw
-            if (actual[key] !== expected[key]) {
-                throw 'fail';
-            }
+        if (!isEqual(expected, actual)) {
+            var stack = (new Error()).stack.trim().split('\n');
+            var errorMessage = require('./errorMessage.js');
+            var errorDetails = {
+                stack: stack,
+                testName: testName,
+                i: i,
+                arguments: arguments,
+                expectation: expected,
+                actual: actual
+            };
+            var errMsg = errorMessage(errorDetails);
+
+            throw errMsg;
         }
     }
 

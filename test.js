@@ -6,10 +6,12 @@
 //      WHAT SHOULD BE RAN      //
 // //////////////////////////// //
 
+var path = require('path');
+
 // List of all tests to be ran in order
 var allTestsToRun = [
     // Helpers
-    require('./src/helpers/executablePath.test.js'),
+    require(path.resolve('.', 'src', 'helpers', 'executablePath.test.js')),
     require('./src/helpers/runCommand.test.js'),
     require('./src/helpers/runCommandSync.test.js'),
     require('./src/helpers/warnUser.test.js'),

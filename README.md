@@ -1,4 +1,4 @@
-# node-flif
+# node-flif [![Build Status](https://travis-ci.org/FLIF-hub/node-flif.svg?branch=master)](https://travis-ci.org/FLIF-hub/node-flif)
 
 * * *
 

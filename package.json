@@ -24,6 +24,9 @@
     "encode",
     "decode"
   ],
+  "dependencies": {
+    "flif-wasm": "^1.0.3"
+  },
   "devDependencies": {
     "eslint": "^3.8.1",
     "pre-commit": "^1.1.3"

@@ -7,6 +7,7 @@
  */
 function identify (file) {
     var fs = require('fs');
+    var path = require('path');
     var runCommandSync = require('../helpers/runCommandSync.js');
 
     if (!file || typeof(file) !== 'string') {
@@ -15,10 +16,12 @@ function identify (file) {
         throw 'The identify method only works on FLIF files.';
     }
 
+    file = path.resolve(file);
+
     var stats = fs.statSync(file);
 
     // 'sample\cat.flif: FLIF image, 80x64, 8-bit RGBA, non-interlaced'
-    var rawData = runCommandSync('-d -i ' + file).trim();
+    var rawData = runCommandSync('-d -i "' + file + '"').trim();
 
     // 'sample\cat.flif'
     var fileName = rawData.split(': ')[0];

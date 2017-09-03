@@ -31,7 +31,7 @@ var allTestsToRun = [
 
     // Information
     // require('./src/information/breakpoints.test.js'),
-    // require('./src/information/identify.test.js'),
+    require('./src/information/identify.test.js'),
     require('./src/information/version.test.js'),
 
     // Conversion

@@ -34,8 +34,8 @@ function errorMessage (details) {
         'TEST: ' + details.testName + '\n' +
         'ERROR:\n' +
         '  Iterator: ' + details.i + '\n' +
-        '  Expected: ' + details.expectation + '\n' +
-        '  Actual: ' + details.actual + '\n' +
+        '  Expected: ' + JSON.stringify(details.expectation, null, 2).replace(/\n  /g, '\n    ').replace('}', '  }') + '\n' +
+        '  Actual: ' + JSON.stringify(details.actual, null, 2).replace(/\n  /g, '\n    ').replace('}', '  }') + '\n' +
         '  Arguments: ' + JSON.stringify(details.arguments, null, 2).replace(/\n  /g, '\n    ').replace(']', '  ]') + '\n' +
         '  Stack Trace:\n' +
         stackTrace.split('\n\n').join('\n');

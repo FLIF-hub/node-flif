@@ -5,7 +5,7 @@ function test () {
     var testName = 'executablePath';
     var path = require('path');
     var testData = [
-        { 'expected': 'node "' + path.resolve(process.cwd(), '.\\node_modules\\flif-wasm\\lib\\flif-wasm.js') + '"', 'arguments': [] }
+        { 'expected': 'node "' + path.resolve(process.cwd(), 'node_modules', 'flif-wasm', 'lib', 'flif-wasm.js') + '"', 'arguments': [] }
     ];
     runAllTests(testName, 'helpers', testData);
 

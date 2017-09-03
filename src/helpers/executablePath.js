@@ -4,11 +4,10 @@
  * @return {string} Path to the correct flif binary
  */
 function executablePath () {
-    var path = require('path');
-    // TODO: This probably won't work once node-flif is required as a dep in other projects
-    var binary = path.resolve(process.cwd(), './node_modules/.bin/flif-wasm');
+    var wasmPath = require.resolve('flif-wasm');
+    var executionPath = 'node "' + wasmPath + '"';
 
-    return binary;
+    return executionPath;
 }
 
 module.exports = executablePath;

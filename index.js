@@ -15,7 +15,7 @@ var nodeFLIF = {
      *
      * @return {string} Path to the correct flif.exe
      */
-    'executablePath': require('./src/helpers/executablepath.js'),
+    'executablePath': require('./src/helpers/executablePath.js'),
 
 
     // //////////////////////////// //

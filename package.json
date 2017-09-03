@@ -4,6 +4,9 @@
   "flifVersion": "0.3.0",
   "description": "A Node.js wrapper for the FLIF executable.",
   "main": "index.js",
+  "engines": {
+    "node": ">=4.0.0"
+  },
   "scripts": {
     "start": "node index.js",
     "installer": "npm install --loglevel=error",

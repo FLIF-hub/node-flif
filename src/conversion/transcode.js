@@ -52,7 +52,7 @@
  * @return {boolean}        True if successful, false if there was a problem.
  */
 function transcode (params) {
-    var verifyParams = require('../helpers/verifyparams.js');
+    var verifyParams = require('../helpers/verifyParams.js');
     verifyParams(params, 'transcode');
     console.log(params);
 }

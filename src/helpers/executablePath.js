@@ -1,33 +1,18 @@
 /**
- * Detect the user's OS and architecture to generate the correct
- * path to the flif executable that will work for them.
+ * Return the correct path to the flif-wasm bin module.
  *
- * @return {string} Path to the correct flif.exe
+ * @return {string} Path to the correct flif binary
  */
 function executablePath () {
     var path = require('path');
-    var os = process.platform;
-    var reportedArch = process.arch;
-    var executablePath = '';
+    var wasmPath = require.resolve('flif-wasm');
+    var executionPath = 'node "' + wasmPath + '"';
 
-    var arch = '64';
-    if (reportedArch === 'x86' || reportedArch === 'ia32') {
-        arch = '32';
+    if (process.platform === 'win32') {
+        executionPath = path.join('.', 'executables', 'win32', 'flif.exe');
     }
 
-    if (os === 'win32') {
-        executablePath = path.join('.', 'executables', 'win' + arch, 'flif.exe');
-    } else if (os === 'darwin') {
-        executablePath = path.join('.', 'executables', 'osx' + arch, 'flif');
-    } else if (os === 'linux') {
-        executablePath = path.join('.', 'executables', 'ubuntu' + arch, 'flif');
-    }
-
-    if (executablePath.length < 2 || os === 'darwin' && arch === '32') {
-        throw 'Your operating system or architecture is not supported by node-flif.';
-    }
-
-    return executablePath;
+    return executionPath;
 }
 
 module.exports = executablePath;

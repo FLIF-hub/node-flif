@@ -28,6 +28,7 @@
     "decode"
   ],
   "dependencies": {
+    "flif-wasm": "^1.0.3",
     "lodash.isequal": "^4.5.0"
   },
   "devDependencies": {

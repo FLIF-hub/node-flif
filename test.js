@@ -75,7 +75,7 @@ function runTests (testsArray, sub) {
 runTests(allTestsToRun);
 
 // TODO: Remove this line after you are done splitting up the verifyParams to modules
-if (numberOfTestsPassed !== 1146) { throw 'You forgot to import a subtest during refactoring'; }
+if (numberOfTestsPassed !== 1138) { throw ' You forgot to import a subtest during refactoring'; }
 
 
 // //////////////////////////// //

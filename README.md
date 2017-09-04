@@ -2,30 +2,36 @@
 
 * * *
 
-**Status:** Development is blocked until someone with **C/C++ build experience** can help. [See Issue #5](https://github.com/FLIF-hub/node-flif/issues/5)
-
 # NOT READY FOR USE YET
 ### Star & Watch for updates
 
 * * *
 
-A Node wrapper for the FLIF executable.
+A Node wrapper for the FLIF CLI executable.
 
 FLIF is a lossless image format designed with the web in mind. It has lots of great features. To learn more about the format go to [FLIF.info](http://flif.info).
 
-This library is for a node module that wraps around a native executable for your platform. That executable performs the actions of encoding or decoding FLIF files.
+This library is for a node module that wraps around a native executable for your platform. That executable performs the actions of encoding or decoding FLIF files. This wrapper allows you to pass in a javascript params object into a function that will create the commandline arguments for you and then run them against the executable CLI. It will also warn you if you pass in the wrong parameters or types of data.
 
 Eventually you will be able to `npm install` this module.
+
+### node-flif is **NOT** meant for browsers
+
+Since node-flif wraps around a native executable and references the file system, it cannot be ran in a browser.
+
+If you would like to encode/decode flif files in a browser look into other projects like:
+
+* [Poly FLIF](https://github.com/UprootLabs/poly-flif/)
+* [libflif.js](https://github.com/saschanaz/libflif.js/)
 
 * * *
 
 ## Supported Environments
 
-* Node v4.0.0+ (Tested in v0.10.32 and it wouldn't work)
-* Windows 32-Bit and 64-Bit
-* Ubuntu/Debian 32-Bit and 64-Bit
-* **No OSX 64-Bit support** ([Need help on building portable FLIF executable for this platform](https://github.com/FLIF-hub/node-flif/issues/4))
-* **No OSX 32-Bit support** ([Need maintainer for 32-bit support](https://github.com/FLIF-hub/node-flif/issues/3))
+* **Windows** - Node v1.0.0+ (Tested in v0.12.18 and it wouldn't work, works on 1.0.0-8.4.0)
+* Linux/OSX - Node v8.0.0+ (Tested in 2.5.0, 3.3.1, 4.0.0, 4.8.4, 5.0.0, 6.0.0, 7.0.0, 7.10.1, none worked)
+
+Linux/OSX is using [flif-wasm](https://github.com/SaschaNaz/flif-wasm), it has a few known Windows-specific bugs however. So on Windows we are using a pre-built 32-Bit `flif.exe` file. Because `flif-wasm` relies on Node 8+, `node-flif` on those platforms requires that same version. Where as the Windows version does not have that requirement.
 
 * * *
 
@@ -271,7 +277,7 @@ var flifVersion = nodeFLIF.version.flif // '0.3.0'
 
 Here is a table of each version of Node-FLIF and the corresponding version of FLIF that shipped with it.
 
-node-flif | flif
-:--       | :--
-0.1.0     | 0.3.0
-
+node-flif | flif  | flif-wasm
+:--       | :--   | :--
+0.2.0     | 0.3.0 | 1.0.3
+0.1.0     | 0.3.0 | N/A

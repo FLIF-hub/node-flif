@@ -15,6 +15,9 @@ function loopOverAllTestSets (testName, folder, testSet) {
 
     for (var i = 0; i < testSet.length; i++) {
         var arguments = testSet[i].arguments;
+        if (!Array.isArray(arguments)) {
+            throw 'Argument is not an array.';
+        }
         var expected = testSet[i].expected;
         var actual = subject.apply(null, arguments);
 

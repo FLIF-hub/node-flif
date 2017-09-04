@@ -1,36 +1,36 @@
 /* eslint-disable no-multi-spaces */
 
 function test () {
-    var runAllTests = require('./verifyParamsHelpers/loopOverParamsTests.js');
+    var runAllTests = require('../../testers/loopOverAllTestSets.js');
     var testName = 'verifyCRC';
     var testData = [
         // Test known good for crc
-        { 'expect': true,  'src': 'encode',    'param': { input: 'a.png',  output: 'a.flif', crc: true      } },
-        { 'expect': true,  'src': 'decode',    'param': { input: 'a.flif', output: 'a.png',  crc: true      } },
-        { 'expect': true,  'src': 'transcode', 'param': { input: 'a.flif', output: 'a.flif', crc: true      } },
-        { 'expect': true,  'src': 'encode',    'param': { input: 'a.png',  output: 'a.flif', crc: false     } },
-        { 'expect': true,  'src': 'decode',    'param': { input: 'a.flif', output: 'a.png',  crc: false     } },
-        { 'expect': true,  'src': 'transcode', 'param': { input: 'a.flif', output: 'a.flif', crc: false     } },
+        { expected: true,  arguments: [{ input: 'a.png',  output: 'a.flif', crc: true      }, 'encode',    true] },
+        { expected: true,  arguments: [{ input: 'a.flif', output: 'a.png',  crc: true      }, 'decode',    true] },
+        { expected: true,  arguments: [{ input: 'a.flif', output: 'a.flif', crc: true      }, 'transcode', true] },
+        { expected: true,  arguments: [{ input: 'a.png',  output: 'a.flif', crc: false     }, 'encode',    true] },
+        { expected: true,  arguments: [{ input: 'a.flif', output: 'a.png',  crc: false     }, 'decode',    true] },
+        { expected: true,  arguments: [{ input: 'a.flif', output: 'a.flif', crc: false     }, 'transcode', true] },
 
         // Test known bad for crc
-        { 'expect': false, 'src': 'encode',    'param': { input: 'a.png',  output: 'a.flif', crc: 'a'       } },
-        { 'expect': false, 'src': 'decode',    'param': { input: 'a.flif', output: 'a.png',  crc: 'a'       } },
-        { 'expect': false, 'src': 'transcode', 'param': { input: 'a.flif', output: 'a.flif', crc: 'a'       } },
-        { 'expect': false, 'src': 'encode',    'param': { input: 'a.png',  output: 'a.flif', crc: [0, 1, 2] } },
-        { 'expect': false, 'src': 'decode',    'param': { input: 'a.flif', output: 'a.png',  crc: [0, 1, 2] } },
-        { 'expect': false, 'src': 'transcode', 'param': { input: 'a.flif', output: 'a.flif', crc: [0, 1, 2] } },
-        { 'expect': false, 'src': 'encode',    'param': { input: 'a.png',  output: 'a.flif', crc: {'a': 1}  } },
-        { 'expect': false, 'src': 'decode',    'param': { input: 'a.flif', output: 'a.png',  crc: {'a': 1}  } },
-        { 'expect': false, 'src': 'transcode', 'param': { input: 'a.flif', output: 'a.flif', crc: {'a': 1}  } },
-        { 'expect': false, 'src': 'encode',    'param': { input: 'a.png',  output: 'a.flif', crc: null      } },
-        { 'expect': false, 'src': 'decode',    'param': { input: 'a.flif', output: 'a.png',  crc: null      } },
-        { 'expect': false, 'src': 'transcode', 'param': { input: 'a.flif', output: 'a.flif', crc: null      } },
-        { 'expect': false, 'src': 'encode',    'param': { input: 'a.png',  output: 'a.flif', crc: 8         } },
-        { 'expect': false, 'src': 'decode',    'param': { input: 'a.flif', output: 'a.png',  crc: 8         } },
-        { 'expect': false, 'src': 'transcode', 'param': { input: 'a.flif', output: 'a.flif', crc: 8         } }
+        { expected: false, arguments: [{ input: 'a.png',  output: 'a.flif', crc: 'a'       }, 'encode',    true] },
+        { expected: false, arguments: [{ input: 'a.flif', output: 'a.png',  crc: 'a'       }, 'decode',    true] },
+        { expected: false, arguments: [{ input: 'a.flif', output: 'a.flif', crc: 'a'       }, 'transcode', true] },
+        { expected: false, arguments: [{ input: 'a.png',  output: 'a.flif', crc: [0, 1, 2] }, 'encode',    true] },
+        { expected: false, arguments: [{ input: 'a.flif', output: 'a.png',  crc: [0, 1, 2] }, 'decode',    true] },
+        { expected: false, arguments: [{ input: 'a.flif', output: 'a.flif', crc: [0, 1, 2] }, 'transcode', true] },
+        { expected: false, arguments: [{ input: 'a.png',  output: 'a.flif', crc: {'a': 1}  }, 'encode',    true] },
+        { expected: false, arguments: [{ input: 'a.flif', output: 'a.png',  crc: {'a': 1}  }, 'decode',    true] },
+        { expected: false, arguments: [{ input: 'a.flif', output: 'a.flif', crc: {'a': 1}  }, 'transcode', true] },
+        { expected: false, arguments: [{ input: 'a.png',  output: 'a.flif', crc: null      }, 'encode',    true] },
+        { expected: false, arguments: [{ input: 'a.flif', output: 'a.png',  crc: null      }, 'decode',    true] },
+        { expected: false, arguments: [{ input: 'a.flif', output: 'a.flif', crc: null      }, 'transcode', true] },
+        { expected: false, arguments: [{ input: 'a.png',  output: 'a.flif', crc: 8         }, 'encode',    true] },
+        { expected: false, arguments: [{ input: 'a.flif', output: 'a.png',  crc: 8         }, 'decode',    true] },
+        { expected: false, arguments: [{ input: 'a.flif', output: 'a.flif', crc: 8         }, 'transcode', true] }
     ];
 
-    runAllTests(testName, testData);
+    runAllTests(testName, 'helpers/verifyParams', testData);
 
     return [testName, testData.length];
 }

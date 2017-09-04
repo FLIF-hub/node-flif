@@ -1,36 +1,36 @@
 /* eslint-disable no-multi-spaces */
 
 function test () {
-    var runAllTests = require('./verifyParamsHelpers/loopOverParamsTests.js');
+    var runAllTests = require('../../testers/loopOverAllTestSets.js');
     var testName = 'ensureParamsExist';
     var testData = [
         // Test if params exist
-        { 'expect': false, 'src': 'encode',    'param': undefined                             },
-        { 'expect': false, 'src': 'encode',    'param': null                                  },
-        { 'expect': false, 'src': 'encode',    'param': true                                  },
-        { 'expect': false, 'src': 'encode',    'param': false                                 },
-        { 'expect': false, 'src': 'encode',    'param': 8                                     },
-        { 'expect': false, 'src': 'encode',    'param': ''                                    },
-        { 'expect': false, 'src': 'encode',    'param': []                                    },
-        { 'expect': false, 'src': 'encode',    'param': {}                                    },
+        { expected: false, arguments: [ undefined,                             'encode',    true]},
+        { expected: false, arguments: [ null,                                  'encode',    true]},
+        { expected: false, arguments: [ true,                                  'encode',    true]},
+        { expected: false, arguments: [ false,                                 'encode',    true]},
+        { expected: false, arguments: [ 8,                                     'encode',    true]},
+        { expected: false, arguments: [ '',                                    'encode',    true]},
+        { expected: false, arguments: [ [],                                    'encode',    true]},
+        { expected: false, arguments: [ {},                                    'encode',    true]},
 
         // Test if src exists
-        { 'expect': false, 'src': undefined,   'param': { input: 'a.png',  output: 'a.flif' } },
-        { 'expect': false, 'src': null,        'param': { input: 'a.png',  output: 'a.flif' } },
-        { 'expect': false, 'src': true,        'param': { input: 'a.png',  output: 'a.flif' } },
-        { 'expect': false, 'src': false,       'param': { input: 'a.png',  output: 'a.flif' } },
-        { 'expect': false, 'src': 8,           'param': { input: 'a.png',  output: 'a.flif' } },
-        { 'expect': false, 'src': '',          'param': { input: 'a.png',  output: 'a.flif' } },
-        { 'expect': false, 'src': [],          'param': { input: 'a.png',  output: 'a.flif' } },
-        { 'expect': false, 'src': {},          'param': { input: 'a.png',  output: 'a.flif' } },
+        { expected: false, arguments: [ { input: 'a.png',  output: 'a.flif' }, undefined,   true]},
+        { expected: false, arguments: [ { input: 'a.png',  output: 'a.flif' }, null,        true]},
+        { expected: false, arguments: [ { input: 'a.png',  output: 'a.flif' }, true,        true]},
+        { expected: false, arguments: [ { input: 'a.png',  output: 'a.flif' }, false,       true]},
+        { expected: false, arguments: [ { input: 'a.png',  output: 'a.flif' }, 8,           true]},
+        { expected: false, arguments: [ { input: 'a.png',  output: 'a.flif' }, '',          true]},
+        { expected: false, arguments: [ { input: 'a.png',  output: 'a.flif' }, [],          true]},
+        { expected: false, arguments: [ { input: 'a.png',  output: 'a.flif' }, {},          true]},
 
         // Known good
-        { 'expect': true,  'src': 'encode',    'param': { input: 'a.png',  output: 'a.flif' } },
-        { 'expect': true,  'src': 'decode',    'param': { input: 'a.flif', output: 'a.png'  } },
-        { 'expect': true,  'src': 'transcode', 'param': { input: 'a.flif', output: 'a.flif' } }
+        { expected: true,  arguments: [ { input: 'a.png',  output: 'a.flif' }, 'encode',    true]},
+        { expected: true,  arguments: [ { input: 'a.flif', output: 'a.png'  }, 'decode',    true]},
+        { expected: true,  arguments: [ { input: 'a.flif', output: 'a.flif' }, 'transcode', true]}
     ];
 
-    runAllTests(testName, testData);
+    runAllTests(testName, 'helpers/verifyParams', testData);
 
     return [testName, testData.length];
 }

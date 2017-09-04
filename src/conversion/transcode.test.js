@@ -1,27 +1,13 @@
 /* eslint-disable no-multi-spaces */
 
 function test () {
+    var runAllTests = require('../testers/loopOverAllTestSets.js');
     var testName = 'transcode';
-    var subject = require('./' + testName + '.js');
-
     var testData = [
-        { 'params': '', 'expectation': '' }
+        { 'expected': '', 'arguments': [] }
     ];
 
-    for (var i = 0; i < testData.length; i++) {
-        var params = testData[i].params;
-        var expectation = testData[i].expectation;
-        var actual = subject(params);
-        if (actual !== expectation) {
-            var errMsg = '\n' +
-                'TEST: ' + testName + '\n' +
-                'ERROR:\n' +
-                '  Iterator: ' + i + '\n' +
-                '  Expected: ' + expectation + '\n' +
-                '  Actual: ' + actual;
-            throw errMsg;
-        }
-    }
+    runAllTests(testName, 'conversion', testData);
 
     return [testName, testData.length];
 }

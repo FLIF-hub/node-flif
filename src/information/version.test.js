@@ -4,7 +4,7 @@ function test () {
     var testName = 'version';
     var subject = require('./' + testName + '.js');
     var testData = [
-        { 'item': 'nodeFLIF', 'expectation': '0.1.0' },
+        { 'item': 'nodeFLIF', 'expectation': '0.2.0' },
         { 'item': 'flif',     'expectation': '0.3.0' }
     ];
 

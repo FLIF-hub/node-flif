@@ -2,11 +2,12 @@
  * Loop ever a set of test data to check if expectations match actual results
  *
  * @param  {string}  testName Name of the logic file we are testing
- * @param  {string}  folder   Path to the file
+ * @param  {string}  folder   Relative path to the file
  * @param  {array}   testSet  Array of objects, each object contains an expectation and an arr
  * @return {boolean}          Throw if we detect a failure, otherwise return true
  */
-function loopOverAllTestSets (testName, folder, testSet) {
+function loopOverAllTestSets (testName, folder, testSet, async) {
+    async = async || false;
     var path = require('path');
     var isEqual = require('lodash.isequal');
 
@@ -19,26 +20,52 @@ function loopOverAllTestSets (testName, folder, testSet) {
             throw 'Argument is not an array.';
         }
         var expected = testSet[i].expected;
-        var actual = subject.apply(null, arguments);
 
-        if (!isEqual(expected, actual)) {
-            var stack = (new Error()).stack.trim().split('\n');
-            var errorMessage = require('./errorMessage.js');
-            var errorDetails = {
-                stack: stack,
-                testName: testName,
-                i: i,
-                arguments: arguments,
-                expectation: expected,
-                actual: actual
-            };
-            var errMsg = errorMessage(errorDetails);
+        if (async) {
+            // eslint-disable-next-line
+            function cb (actual) {
+                actual = actual.toString().trim();
+                if (!isEqual(expected, actual)) {
+                    var stack = (new Error()).stack.trim().split('\n');
+                    var errorMessage = require('./errorMessage.js');
+                    var errorDetails = {
+                        stack: stack,
+                        testName: testName,
+                        i: i,
+                        arguments: arguments,
+                        expectation: expected,
+                        actual: actual
+                    };
+                    var errMsg = errorMessage(errorDetails);
 
-            throw errMsg;
+                    throw errMsg;
+                }
+                return true;
+            }
+            arguments.push(cb);
+            subject.apply(null, arguments);
+        } else {
+            var actual = subject.apply(null, arguments);
+
+            if (!isEqual(expected, actual)) {
+                var stack = (new Error()).stack.trim().split('\n');
+                var errorMessage = require('./errorMessage.js');
+                var errorDetails = {
+                    stack: stack,
+                    testName: testName,
+                    i: i,
+                    arguments: arguments,
+                    expectation: expected,
+                    actual: actual
+                };
+                var errMsg = errorMessage(errorDetails);
+
+                throw errMsg;
+            }
+            return true;
         }
     }
 
-    return true;
 }
 
 module.exports = loopOverAllTestSets;

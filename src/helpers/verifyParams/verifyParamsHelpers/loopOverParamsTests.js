@@ -16,7 +16,7 @@ function loopOverParamsTests (testName, testData) {
 
         if (actual !== expectation) {
             var stack = (new Error()).stack.trim().split('\n');
-            var errorMessage = require('./errorMessage.js');
+            var errorMessage = require('../../../testers/errorMessage.js');
             var errorDetails = {
                 stack: stack,
                 testName: testName,

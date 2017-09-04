@@ -29,7 +29,9 @@ If you would like to encode/decode flif files in a browser look into other proje
 ## Supported Environments
 
 * **Windows** - Node v1.0.0+ (Tested in v0.12.18 and it wouldn't work, works on 1.0.0-8.4.0)
-* Linux/OSX - Node v8.0.0+ (Tested in 2.5.0, 3.3.1, 4.0.0, 4.8.4, 5.0.0, 6.0.0, 7.0.0, 7.10.1, none worked)
+* **Linux/OSX** - Node v8.0.0+ (Tested in 2.5.0, 3.3.1, 4.0.0, 4.8.4, 5.0.0, 6.0.0, 7.0.0, 7.10.1, none worked. Tested in Ubuntu 16 and OSX 10.11 on Node 8.0.0 and 8.4.0 and it worked.)
+
+**Why the difference between Node version on Win/\*Nix:**
 
 Linux/OSX is using [flif-wasm](https://github.com/SaschaNaz/flif-wasm), it has a few known Windows-specific bugs however. So on Windows we are using a pre-built 32-Bit `flif.exe` file. Because `flif-wasm` relies on Node 8+, `node-flif` on those platforms requires that same version. Where as the Windows version does not have that requirement.
 

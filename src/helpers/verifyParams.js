@@ -63,38 +63,17 @@ function verifyParams (params, src, skipWarnings) {
     var verifyScale            = require('./verifyParams/verifyScale.js')(params, src, skipWarnings);
     var verifyResize           = require('./verifyParams/verifyResize.js')(params, src, skipWarnings);
     var verifyFit              = require('./verifyParams/verifyFit.js')(params, src, skipWarnings);
-    var verifyEffort           = require('./verifyParams/verifyFit.js')(params, src, skipWarnings);
+    var verifyEffort           = require('./verifyParams/verifyEffort.js')(params, src, skipWarnings);
+    var verifyInterlace        = require('./verifyParams/verifyInterlace.js')(params, src, skipWarnings);
     if (
         !verifyCRC ||
         !verifyKeepPalette ||
         !verifyScale ||
         !verifyResize ||
         !verifyFit ||
-        !verifyEffort
+        !verifyEffort ||
+        !verifyInterlace
     ) {
-        return false;
-    }
-
-
-
-    if (
-        params.interlace === null ||
-        typeof(params.interlace) === 'object' ||
-        typeof(params.interlace) === 'number' ||
-        (
-            typeof(params.interlace) === 'boolean' &&
-            params.interlace !== false &&
-            params.interlace !== true
-        ) ||
-        (
-            typeof(params.interlace) === 'string' &&
-            params.interlace !== 'auto'
-        ) ||
-        src === 'decode' && params.interlace === false ||
-        src === 'decode' && params.interlace === true ||
-        src === 'decode' && params.interlace === 'auto'
-    ) {
-        warnUser('The interlace parameter must be set to true, false, or "auto".', skipWarnings);
         return false;
     }
 

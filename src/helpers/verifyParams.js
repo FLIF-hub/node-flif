@@ -63,33 +63,19 @@ function verifyParams (params, src, skipWarnings) {
     var verifyScale            = require('./verifyParams/verifyScale.js')(params, src, skipWarnings);
     var verifyResize           = require('./verifyParams/verifyResize.js')(params, src, skipWarnings);
     var verifyFit              = require('./verifyParams/verifyFit.js')(params, src, skipWarnings);
+    var verifyEffort           = require('./verifyParams/verifyFit.js')(params, src, skipWarnings);
     if (
         !verifyCRC ||
         !verifyKeepPalette ||
         !verifyScale ||
         !verifyResize ||
-        !verifyFit
+        !verifyFit ||
+        !verifyEffort
     ) {
         return false;
     }
 
-    if (
-        params.effort === null ||
-        params.effort === false ||
-        params.effort &&
-        typeof(params.effort) !== 'number' ||
-        typeof(params.effort) === 'number' &&
-        (
-            params.effort > 100 ||
-            params.effort < 0 ||
-            // check if whole number
-            params.effort % 1 !== 0
-        ) ||
-        typeof(params.effort) === 'number' && src === 'decode'
-    ) {
-        warnUser('The effort parameter must be a whole number between 0 and 100.', skipWarnings);
-        return false;
-    }
+
 
     if (
         params.interlace === null ||

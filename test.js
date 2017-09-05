@@ -72,8 +72,10 @@ function runTests (testsArray, sub) {
             throw errMsg;
         } else {
             var result = test();
-            testNames.push(sub + ' ∙ ' + result[0]);
-            numberOfTestsPassed = numberOfTestsPassed + result[1];
+            var testName = result[0];
+            var amountOfTestsRan = result[1];
+            testNames.push(sub + ' ∙ ' + testName);
+            numberOfTestsPassed = numberOfTestsPassed + amountOfTestsRan;
         }
     });
 }

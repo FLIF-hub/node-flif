@@ -7,6 +7,7 @@ function version () {
         'nodeFLIF': process.env.npm_package_version,
         'flif': process.env.npm_package_flifVersion
     };
+
     return versionInfo;
 }
 

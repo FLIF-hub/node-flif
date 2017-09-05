@@ -1,36 +1,20 @@
 /* eslint-disable no-multi-spaces */
 
 function test () {
+    var runAllTests = require('../testers/loopOverAllTestSets.js');
     var testName = 'breakpoints';
-    var subject = require('./' + testName + '.js');
     var path = require('path');
-
-    var catFLIF = path.join('.', 'sample', 'cat.flif');
-    var outputFLIF = path.join('.', 'sample', 'output.flif');
-    var catData = subject(catFLIF);
-    var outputData = subject(outputFLIF);
-
     var testData = [
-        { 'actual': JSON.stringify(catData), 'expectation': JSON.stringify({}) },
-        { 'actual': outputData.offsetStart,  'expectation': 11                 },
-        { 'actual': outputData.eighth,       'expectation': 8080               },
-        { 'actual': outputData.fourth,       'expectation': 24900              },
-        { 'actual': outputData.half,         'expectation': 90422              }
+        { expected: {}, arguments: [path.join('.', 'sample', 'cat.flif')] },
+        { expected: {
+            offsetStart: 11,
+            eighth: 8080,
+            fourth: 24900,
+            half: 90422
+        }, arguments: [path.join('.', 'sample', 'output.flif')] }
     ];
 
-    for (var i = 0; i < testData.length; i++) {
-        var actual = testData[i].actual;
-        var expectation = testData[i].expectation;
-        if (actual !== expectation) {
-            var errMsg = '\n' +
-                'TEST: ' + testName + '\n' +
-                'ERROR:\n' +
-                '  Iterator: ' + i + '\n' +
-                '  Expected: ' + expectation + '\n' +
-                '  Actual: ' + actual;
-            throw errMsg;
-        }
-    }
+    runAllTests(testName, 'information', testData);
 
     return [testName, testData.length];
 }

@@ -65,6 +65,7 @@ function verifyParams (params, src, skipWarnings) {
     var verifyFit              = require('./verifyParams/verifyFit.js')(params, src, skipWarnings);
     var verifyEffort           = require('./verifyParams/verifyEffort.js')(params, src, skipWarnings);
     var verifyInterlace        = require('./verifyParams/verifyInterlace.js')(params, src, skipWarnings);
+    var verifyKeepAlpha        = require('./verifyParams/verifyKeepAlpha.js')(params, src, skipWarnings);
     if (
         !verifyCRC ||
         !verifyKeepPalette ||
@@ -72,19 +73,9 @@ function verifyParams (params, src, skipWarnings) {
         !verifyResize ||
         !verifyFit ||
         !verifyEffort ||
-        !verifyInterlace
+        !verifyInterlace ||
+        !verifyKeepAlpha
     ) {
-        return false;
-    }
-
-    if (
-        params.keepAlpha === null ||
-        params.keepAlpha &&
-        typeof(params.keepAlpha) !== 'boolean' ||
-        src === 'decode' && params.keepAlpha === false ||
-        src === 'decode' && params.keepAlpha === true
-    ) {
-        warnUser('The keepAlpha parameter must be a boolean value.', skipWarnings);
         return false;
     }
 

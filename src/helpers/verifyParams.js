@@ -62,37 +62,14 @@ function verifyParams (params, src, skipWarnings) {
     var verifyKeepPalette      = require('./verifyParams/verifyKeepPalette.js')(params, src, skipWarnings);
     var verifyScale            = require('./verifyParams/verifyScale.js')(params, src, skipWarnings);
     var verifyResize           = require('./verifyParams/verifyResize.js')(params, src, skipWarnings);
+    var verifyFit              = require('./verifyParams/verifyFit.js')(params, src, skipWarnings);
     if (
         !verifyCRC ||
         !verifyKeepPalette ||
         !verifyScale ||
-        !verifyResize
+        !verifyResize ||
+        !verifyFit
     ) {
-        return false;
-    }
-
-    if (params.fit && typeof(params.fit) !== 'object') {
-        warnUser('The fit parameter must be a object.', skipWarnings);
-        return false;
-    }
-
-    if (
-        params.fit === null ||
-        params.fit === false ||
-        params.fit &&
-        (
-            Object.keys(params.fit).length !== 2 ||
-            params.fit.width === false ||
-            params.fit.height === false ||
-            params.fit.width === true ||
-            params.fit.height === true ||
-            isNaN(parseInt(params.fit.width)) ||
-            isNaN(parseInt(params.fit.height)) ||
-            params.fit.width < 0 ||
-            params.fit.height < 0
-        )
-    ) {
-        warnUser('The fit parameter should be an object. Example: { width: 320, height: 240 }.', skipWarnings);
         return false;
     }
 

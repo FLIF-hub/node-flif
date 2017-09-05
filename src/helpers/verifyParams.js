@@ -66,6 +66,7 @@ function verifyParams (params, src, skipWarnings) {
     var verifyEffort           = require('./verifyParams/verifyEffort.js')(params, src, skipWarnings);
     var verifyInterlace        = require('./verifyParams/verifyInterlace.js')(params, src, skipWarnings);
     var verifyKeepAlpha        = require('./verifyParams/verifyKeepAlpha.js')(params, src, skipWarnings);
+    var verifyFrameDelay       = require('./verifyParams/verifyFrameDelay.js')(params, src, skipWarnings);
     if (
         !verifyCRC ||
         !verifyKeepPalette ||
@@ -74,35 +75,10 @@ function verifyParams (params, src, skipWarnings) {
         !verifyFit ||
         !verifyEffort ||
         !verifyInterlace ||
-        !verifyKeepAlpha
+        !verifyKeepAlpha ||
+        !verifyFrameDelay
     ) {
         return false;
-    }
-
-    if (
-        params.frameDelay === null ||
-        params.frameDelay === false ||
-        params.frameDelay === true ||
-        params.frameDelay && src === 'decode' ||
-        params.frameDelay && typeof(params.frameDelay) !== 'object' ||
-        params.frameDelay && !Array.isArray(params.frameDelay)
-    ) {
-        warnUser('The frameDelay parameter must be an array of numbers like [100] or [100, 250].', skipWarnings);
-        return false;
-    }
-
-    if (params.frameDelay && params.frameDelay.length > 0) {
-        for (var i = 0; i < params.frameDelay.length; i++) {
-            var item = params.frameDelay[i];
-            if (
-                typeof(item) !== 'number' ||
-                item === undefined ||
-                item < 0
-            ) {
-                warnUser('The frameDelay parameter must be an array of numbers like [100] or [100, 250].', skipWarnings);
-                return false;
-            }
-        }
     }
 
     if (

@@ -69,6 +69,11 @@ function verifyParams (params, src, skipWarnings) {
     var verifyFrameDelay       = require('./verifyParams/verifyFrameDelay.js')(params, src, skipWarnings);
     var verifyMaxPaletteSize   = require('./verifyParams/verifyMaxPaletteSize.js')(params, src, skipWarnings);
     var verifyColorBuckets     = require('./verifyParams/verifyColorBuckets.js')(params, src, skipWarnings);
+    var verifyChannelCompact   = require('./verifyParams/verifyChannelCompact.js')(params, src, skipWarnings);
+    var verifyYcocg            = require('./verifyParams/verifyYcocg.js')(params, src, skipWarnings);
+    var verifySubtractGreen    = require('./verifyParams/verifySubtractGreen.js')(params, src, skipWarnings);
+    var verifyFrameShape       = require('./verifyParams/verifyFrameShape.js')(params, src, skipWarnings);
+    var verifyMaxFrameLookBack = require('./verifyParams/verifyMaxFrameLookBack.js')(params, src, skipWarnings);
 
     if (
         !verifyCRC ||
@@ -81,65 +86,13 @@ function verifyParams (params, src, skipWarnings) {
         !verifyKeepAlpha ||
         !verifyFrameDelay ||
         !verifyMaxPaletteSize ||
-        !verifyColorBuckets
+        !verifyColorBuckets ||
+        !verifyChannelCompact ||
+        !verifyYcocg ||
+        !verifySubtractGreen ||
+        !verifyFrameShape ||
+        !verifyMaxFrameLookBack
     ) {
-        return false;
-    }
-
-    if (
-        params.channelCompact === null ||
-        params.channelCompact &&
-        typeof(params.channelCompact) !== 'boolean' ||
-        src === 'decode' && params.channelCompact === false ||
-        src === 'decode' && params.channelCompact === true
-    ) {
-        warnUser('The channelCompact parameter must be a boolean value.', skipWarnings);
-        return false;
-    }
-
-    if (
-        params.ycocg === null ||
-        params.ycocg &&
-        typeof(params.ycocg) !== 'boolean' ||
-        src === 'decode' && params.ycocg === false ||
-        src === 'decode' && params.ycocg === true
-    ) {
-        warnUser('The ycocg parameter must be a boolean value.', skipWarnings);
-        return false;
-    }
-
-    if (
-        params.subtractGreen === null ||
-        params.subtractGreen &&
-        typeof(params.subtractGreen) !== 'boolean' ||
-        src === 'decode' && params.subtractGreen === false ||
-        src === 'decode' && params.subtractGreen === true
-    ) {
-        warnUser('The subtractGreen parameter must be a boolean value.', skipWarnings);
-        return false;
-    }
-
-    if (
-        params.frameShape === null ||
-        params.frameShape &&
-        typeof(params.frameShape) !== 'boolean' ||
-        src === 'decode' && params.frameShape === false ||
-        src === 'decode' && params.frameShape === true
-    ) {
-        warnUser('The frameShape parameter must be a boolean value.', skipWarnings);
-        return false;
-    }
-
-    if (
-        params.maxFrameLookBack === false ||
-        params.maxFrameLookBack === true ||
-        params.maxFrameLookBack === null ||
-        params.maxFrameLookBack && typeof(params.maxFrameLookBack) !== 'number' ||
-        typeof(params.maxFrameLookBack) === 'number' && params.maxFrameLookBack < 1 ||
-        typeof(params.maxFrameLookBack) === 'number' && params.maxFrameLookBack % 1 !== 0 ||
-        typeof(params.maxFrameLookBack) === 'number' && src === 'decode'
-    ) {
-        warnUser('The maxFrameLookBack parameter must be a number greater than 0.', skipWarnings);
         return false;
     }
 

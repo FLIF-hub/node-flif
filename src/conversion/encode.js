@@ -68,7 +68,7 @@ var encodeParams = {
  */
 function buildEncodeArgs (params) {
     var verifyParams = require('../helpers/verifyParams.js');
-    var paramsWereVerified = verifyParams(params, 'dncode');
+    var paramsWereVerified = verifyParams(params, 'encode');
     if (!paramsWereVerified) {
         return false;
     }

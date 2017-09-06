@@ -32,6 +32,11 @@ var allTestsToRun = [
         require('./src/helpers/verifyParams/verifyFrameDelay.test.js'),
         require('./src/helpers/verifyParams/verifyMaxPaletteSize.test.js'),
         require('./src/helpers/verifyParams/verifyColorBuckets.test.js'),
+        require('./src/helpers/verifyParams/verifyChannelCompact.test.js'),
+        require('./src/helpers/verifyParams/verifyYcocg.test.js'),
+        require('./src/helpers/verifyParams/verifySubtractGreen.test.js'),
+        require('./src/helpers/verifyParams/verifyFrameShape.test.js'),
+        require('./src/helpers/verifyParams/verifyMaxFrameLookBack.test.js'),
 
         require('./src/helpers/verifyParams/verifyChromaSubsample.test.js')
     ],

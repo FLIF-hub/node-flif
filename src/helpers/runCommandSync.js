@@ -7,7 +7,7 @@
  */
 function runCommandSync (args) {
     if (!args || typeof(args) !== 'string') {
-        throw 'You must pass in a string containing the arguments to be sent to the command line.';
+        throw '\nERROR: Command line arguments where not supplied to the FLIF executable. See above warning for details.';
     }
 
     var executablePath = require('./executablePath.js');

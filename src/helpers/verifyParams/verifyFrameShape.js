@@ -7,20 +7,21 @@
  * @param  {boolean} skipWarnings This is used in our tests to not flag false positives.
  * @return {boolean}              True if params pass, false if there was a problem.
  */
-function ensureParamsExist (params, src, skipWarnings) {
+function verifyFrameShape (params, src, skipWarnings) {
     var warnUser = require('../warnUser.js');
 
-    if (!params || typeof(params) !== 'object' || Object.keys(params).length < 2) {
-        warnUser('You must pass an object into nodeFLIF.' + src + ' containing input/output paths.', skipWarnings);
-        return false;
-    }
-
-    if (!src || typeof(src) !== 'string' || src.length < 2) {
-        warnUser('The conversion method (encode, decode, transcode) is unknown.', skipWarnings);
+    if (
+        params.frameShape === null ||
+        params.frameShape &&
+        typeof(params.frameShape) !== 'boolean' ||
+        src === 'decode' && params.frameShape === false ||
+        src === 'decode' && params.frameShape === true
+    ) {
+        warnUser('The frameShape parameter must be a boolean value.', skipWarnings);
         return false;
     }
 
     return true;
 }
 
-module.exports = ensureParamsExist;
+module.exports = verifyFrameShape;

@@ -4,7 +4,6 @@
  * @param  {string}  testName Name of the logic file we are testing
  * @param  {string}  folder   Relative path to the file
  * @param  {array}   testSet  Array of objects, each object contains an expectation and an arr
- * @return {boolean}          Throw if we detect a failure, otherwise return true
  */
 function loopOverAllTestSets (testName, folder, testSet, async) {
     async = async || false;
@@ -40,7 +39,6 @@ function loopOverAllTestSets (testName, folder, testSet, async) {
 
                     throw errMsg;
                 }
-                return true;
             }
             arguments.push(cb);
             subject.apply(null, arguments);
@@ -62,10 +60,8 @@ function loopOverAllTestSets (testName, folder, testSet, async) {
 
                 throw errMsg;
             }
-            return true;
         }
     }
-
 }
 
 module.exports = loopOverAllTestSets;

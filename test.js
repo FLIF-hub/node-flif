@@ -30,6 +30,8 @@ var allTestsToRun = [
         require('./src/helpers/verifyParams/verifyInterlace.test.js'),
         require('./src/helpers/verifyParams/verifyKeepAlpha.test.js'),
         require('./src/helpers/verifyParams/verifyFrameDelay.test.js'),
+        require('./src/helpers/verifyParams/verifyMaxPaletteSize.test.js'),
+        require('./src/helpers/verifyParams/verifyColorBuckets.test.js'),
 
         require('./src/helpers/verifyParams/verifyChromaSubsample.test.js')
     ],

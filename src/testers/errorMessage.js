@@ -15,7 +15,8 @@
  */
 function errorMessage (details) {
     // Get the name of the project from package.json
-    var project = process.env.npm_package_name;
+    var manifest = require('root-require')('package.json');
+    var project = manifest.name;
     var projectName = project + '/';
     // Escape any dashes that could be in the package name
     project = project.replace(/-/g, '\\-');

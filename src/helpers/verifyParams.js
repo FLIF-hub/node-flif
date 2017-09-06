@@ -67,6 +67,9 @@ function verifyParams (params, src, skipWarnings) {
     var verifyInterlace        = require('./verifyParams/verifyInterlace.js')(params, src, skipWarnings);
     var verifyKeepAlpha        = require('./verifyParams/verifyKeepAlpha.js')(params, src, skipWarnings);
     var verifyFrameDelay       = require('./verifyParams/verifyFrameDelay.js')(params, src, skipWarnings);
+    var verifyMaxPaletteSize   = require('./verifyParams/verifyMaxPaletteSize.js')(params, src, skipWarnings);
+    var verifyColorBuckets     = require('./verifyParams/verifyColorBuckets.js')(params, src, skipWarnings);
+
     if (
         !verifyCRC ||
         !verifyKeepPalette ||
@@ -76,41 +79,10 @@ function verifyParams (params, src, skipWarnings) {
         !verifyEffort ||
         !verifyInterlace ||
         !verifyKeepAlpha ||
-        !verifyFrameDelay
+        !verifyFrameDelay ||
+        !verifyMaxPaletteSize ||
+        !verifyColorBuckets
     ) {
-        return false;
-    }
-
-    if (
-        params.maxPaletteSize === false ||
-        params.maxPaletteSize === true ||
-        params.maxPaletteSize === null ||
-        params.maxPaletteSize && typeof(params.maxPaletteSize) !== 'number' ||
-        typeof(params.maxPaletteSize) === 'number' && params.maxPaletteSize < 2 ||
-        typeof(params.maxPaletteSize) === 'number' && params.maxPaletteSize % 1 !== 0
-    ) {
-        warnUser('The maxPaletteSize parameter must be a number equal to or greater than 2.', skipWarnings);
-        return false;
-    }
-
-    if (
-        params.colorBuckets === null ||
-        typeof(params.colorBuckets) === 'object' ||
-        typeof(params.colorBuckets) === 'number' ||
-        (
-            typeof(params.colorBuckets) === 'boolean' &&
-            params.colorBuckets !== false &&
-            params.colorBuckets !== true
-        ) ||
-        (
-            typeof(params.colorBuckets) === 'string' &&
-            params.colorBuckets !== 'auto'
-        ) ||
-        src === 'decode' && params.colorBuckets === false ||
-        src === 'decode' && params.colorBuckets === true ||
-        src === 'decode' && params.colorBuckets === 'auto'
-    ) {
-        warnUser('The colorBuckets parameter must be set to true, false, or "auto".', skipWarnings);
         return false;
     }
 

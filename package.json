@@ -12,6 +12,7 @@
     "installer": "npm install --loglevel=error",
     "lint": "eslint --config=.eslintrc.js index.js e2e-test.js test.js src/**/*.js",
     "fix": "eslint --fix --config=.eslintrc.js index.js e2e-test.js test.js src/**/*.js",
+    "debug": "node --inspect-brk test.js",
     "test": "node test.js"
   },
   "repository": {
@@ -29,7 +30,8 @@
   ],
   "dependencies": {
     "flif-wasm": "^1.0.3",
-    "lodash.isequal": "^4.5.0"
+    "lodash.isequal": "^4.5.0",
+    "root-require": "^0.3.1"
   },
   "devDependencies": {
     "eslint": "^3.8.1",

@@ -2,7 +2,7 @@
 
 function test () {
     var testName = 'executablePath';
-    var subject = require('./' + testName.toLowerCase() + '.js');
+    var subject = require('./' + testName + '.js');
     var os = process.platform;
     var arch = process.arch;
 

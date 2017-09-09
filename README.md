@@ -272,8 +272,8 @@ Returns the version of node-flif and the FLIF executable as an object.
 ```js
 var nodeFLIF = require('node-flif');
 
-var nodeFLIFVersions = nodeFLIF.versions; // { nodeFLIF: '0.1.0', flif: '0.3.0' }
-var nodeFLIFVersion = nodeFLIF.version.nodeFLIF; // '0.1.0'
+var nodeFLIFVersions = nodeFLIF.versions; // { nodeFLIF: '0.2.0', flif: '0.3.0' }
+var nodeFLIFVersion = nodeFLIF.version.nodeFLIF; // '0.2.0'
 var flifVersion = nodeFLIF.version.flif // '0.3.0'
 ```
 

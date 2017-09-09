@@ -2,7 +2,7 @@
 
 function test () {
     var testName = 'runCommandSync';
-    var subject = require('./' + testName.toLowerCase() + '.js');
+    var subject = require('./' + testName + '.js');
 
     var testData = [
         { 'cmd': '-v', 'expectation': 'FLIF (Free Lossless Image Format) 0.3 [28 April 2017]' }

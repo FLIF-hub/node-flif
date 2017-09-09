@@ -10,7 +10,7 @@ function runCommandSync (args) {
         throw 'You must pass in a string containing the arguments to be sent to the command line.';
     }
 
-    var executablePath = require('./executablepath.js');
+    var executablePath = require('./executablePath.js');
     var exec = require('child_process').execSync;
     var flif = executablePath();
     var executableAndArgs = flif + ' ' + args;

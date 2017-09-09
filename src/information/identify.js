@@ -7,8 +7,8 @@
  */
 function identify (file) {
     var fs = require('fs');
-    var endsWith = require('../helpers/endswith.js');
-    var runCommandSync = require('../helpers/runcommandsync.js');
+    var endsWith = require('../helpers/endsWith.js');
+    var runCommandSync = require('../helpers/runCommandSync.js');
 
     if (!file || typeof(file) !== 'string') {
         throw 'You must pass in a string to the identify method.';

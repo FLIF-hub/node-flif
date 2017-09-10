@@ -74,6 +74,7 @@ function verifyParams (params, src, skipWarnings) {
     var verifySubtractGreen    = require('./verifyParams/verifySubtractGreen.js')(params, src, skipWarnings);
     var verifyFrameShape       = require('./verifyParams/verifyFrameShape.js')(params, src, skipWarnings);
     var verifyMaxFrameLookBack = require('./verifyParams/verifyMaxFrameLookBack.js')(params, src, skipWarnings);
+    var verifyManiacRepeats    = require('./verifyParams/verifyManiacRepeats.js')(params, src, skipWarnings);
 
     if (
         !verifyCRC ||
@@ -91,7 +92,8 @@ function verifyParams (params, src, skipWarnings) {
         !verifyYcocg ||
         !verifySubtractGreen ||
         !verifyFrameShape ||
-        !verifyMaxFrameLookBack
+        !verifyMaxFrameLookBack ||
+        !verifyManiacRepeats
     ) {
         return false;
     }

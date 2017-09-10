@@ -38,6 +38,7 @@ var allTestsToRun = [
         require('./src/helpers/verifyParams/verifyFrameShape.test.js'),
         require('./src/helpers/verifyParams/verifyMaxFrameLookBack.test.js'),
         require('./src/helpers/verifyParams/verifyManiacRepeats.test.js'),
+        require('./src/helpers/verifyParams/verifyManiacThreshold.test.js'),
 
         require('./src/helpers/verifyParams/verifyChromaSubsample.test.js')
     ],

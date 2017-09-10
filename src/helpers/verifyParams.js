@@ -75,6 +75,7 @@ function verifyParams (params, src, skipWarnings) {
     var verifyFrameShape       = require('./verifyParams/verifyFrameShape.js')(params, src, skipWarnings);
     var verifyMaxFrameLookBack = require('./verifyParams/verifyMaxFrameLookBack.js')(params, src, skipWarnings);
     var verifyManiacRepeats    = require('./verifyParams/verifyManiacRepeats.js')(params, src, skipWarnings);
+    var verifyManiacThreshold  = require('./verifyParams/verifyManiacThreshold.js')(params, src, skipWarnings);
 
     if (
         !verifyCRC ||
@@ -93,34 +94,9 @@ function verifyParams (params, src, skipWarnings) {
         !verifySubtractGreen ||
         !verifyFrameShape ||
         !verifyMaxFrameLookBack ||
-        !verifyManiacRepeats
+        !verifyManiacRepeats ||
+        !verifyManiacThreshold
     ) {
-        return false;
-    }
-
-    if (
-        params.maniacRepeats === false ||
-        params.maniacRepeats === true ||
-        params.maniacRepeats === null ||
-        params.maniacRepeats && typeof(params.maniacRepeats) !== 'number' ||
-        typeof(params.maniacRepeats) === 'number' && params.maniacRepeats < 1 ||
-        typeof(params.maniacRepeats) === 'number' && params.maniacRepeats % 1 !== 0 ||
-        typeof(params.maniacRepeats) === 'number' && src === 'decode'
-    ) {
-        warnUser('The maniacRepeats parameter must be a number greater than 0.', skipWarnings);
-        return false;
-    }
-
-    if (
-        params.maniacThreshold === false ||
-        params.maniacThreshold === true ||
-        params.maniacThreshold === null ||
-        params.maniacThreshold && typeof(params.maniacThreshold) !== 'number' ||
-        typeof(params.maniacThreshold) === 'number' && params.maniacThreshold < 0 ||
-        typeof(params.maniacThreshold) === 'number' && params.maniacThreshold % 1 !== 0 ||
-        typeof(params.maniacThreshold) === 'number' && src === 'decode'
-    ) {
-        warnUser('The maniacThreshold parameter must be a number greater than or equal to 0.', skipWarnings);
         return false;
     }
 

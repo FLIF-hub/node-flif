@@ -76,6 +76,8 @@ function verifyParams (params, src, skipWarnings) {
     var verifyMaxFrameLookBack = require('./verifyParams/verifyMaxFrameLookBack.js')(params, src, skipWarnings);
     var verifyManiacRepeats    = require('./verifyParams/verifyManiacRepeats.js')(params, src, skipWarnings);
     var verifyManiacThreshold  = require('./verifyParams/verifyManiacThreshold.js')(params, src, skipWarnings);
+    var verifyManiacDivisor    = require('./verifyParams/verifyManiacDivisor.js')(params, src, skipWarnings);
+    var verifyManiacMinSize    = require('./verifyParams/verifyManiacMinSize.js')(params, src, skipWarnings);
 
     if (
         !verifyCRC ||
@@ -95,34 +97,10 @@ function verifyParams (params, src, skipWarnings) {
         !verifyFrameShape ||
         !verifyMaxFrameLookBack ||
         !verifyManiacRepeats ||
-        !verifyManiacThreshold
+        !verifyManiacThreshold ||
+        !verifyManiacDivisor ||
+        !verifyManiacMinSize
     ) {
-        return false;
-    }
-
-    if (
-        params.maniacDivisor === false ||
-        params.maniacDivisor === true ||
-        params.maniacDivisor === null ||
-        params.maniacDivisor && typeof(params.maniacDivisor) !== 'number' ||
-        typeof(params.maniacDivisor) === 'number' && params.maniacDivisor < 1 ||
-        typeof(params.maniacDivisor) === 'number' && params.maniacDivisor % 1 !== 0 ||
-        typeof(params.maniacDivisor) === 'number' && src === 'decode'
-    ) {
-        warnUser('The maniacDivisor parameter must be a number greater than 0.', skipWarnings);
-        return false;
-    }
-
-    if (
-        params.maniacMinSize === false ||
-        params.maniacMinSize === true ||
-        params.maniacMinSize === null ||
-        params.maniacMinSize && typeof(params.maniacMinSize) !== 'number' ||
-        typeof(params.maniacMinSize) === 'number' && params.maniacMinSize < 1 ||
-        typeof(params.maniacMinSize) === 'number' && params.maniacMinSize % 1 !== 0 ||
-        typeof(params.maniacMinSize) === 'number' && src === 'decode'
-    ) {
-        warnUser('The maniacMinSize parameter must be a number greater than 0.', skipWarnings);
         return false;
     }
 

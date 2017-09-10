@@ -11,7 +11,6 @@
  */
 
 function verifyParams (params, src, skipWarnings) {
-    var warnUser = require('./warnUser.js');
 
 
     // ///////////////////// //
@@ -54,6 +53,7 @@ function verifyParams (params, src, skipWarnings) {
         return false;
     }
 
+
     // ///////////////////////////// //
     //  Validating Advanced Options  //
     // ///////////////////////////// //
@@ -78,6 +78,12 @@ function verifyParams (params, src, skipWarnings) {
     var verifyManiacThreshold  = require('./verifyParams/verifyManiacThreshold.js')(params, src, skipWarnings);
     var verifyManiacDivisor    = require('./verifyParams/verifyManiacDivisor.js')(params, src, skipWarnings);
     var verifyManiacMinSize    = require('./verifyParams/verifyManiacMinSize.js')(params, src, skipWarnings);
+    var verifyChanceCutoff     = require('./verifyParams/verifyChanceCutoff.js')(params, src, skipWarnings);
+    var verifyChanceAlpha      = require('./verifyParams/verifyChanceAlpha.js')(params, src, skipWarnings);
+    var verifyAdaptive         = require('./verifyParams/verifyAdaptive.js')(params, src, skipWarnings);
+    var verifyGuess            = require('./verifyParams/verifyGuess.js')(params, src, skipWarnings);
+    var verifyAlphaGuess       = require('./verifyParams/verifyAlphaGuess.js')(params, src, skipWarnings);
+    var verifyChromaSubsample  = require('./verifyParams/verifyChromaSubsample.js')(params, src, skipWarnings);
 
     if (
         !verifyCRC ||
@@ -99,93 +105,21 @@ function verifyParams (params, src, skipWarnings) {
         !verifyManiacRepeats ||
         !verifyManiacThreshold ||
         !verifyManiacDivisor ||
-        !verifyManiacMinSize
+        !verifyManiacMinSize ||
+        !verifyChanceCutoff ||
+        !verifyChanceAlpha ||
+        !verifyAdaptive ||
+        !verifyGuess ||
+        !verifyAlphaGuess ||
+        !verifyChromaSubsample
     ) {
         return false;
     }
 
-    if (
-        params.chanceCutoff === false ||
-        params.chanceCutoff === true ||
-        params.chanceCutoff === null ||
-        params.chanceCutoff && typeof(params.chanceCutoff) !== 'number' ||
-        typeof(params.chanceCutoff) === 'number' && params.chanceCutoff < 1 ||
-        typeof(params.chanceCutoff) === 'number' && params.chanceCutoff % 1 !== 0 ||
-        typeof(params.chanceCutoff) === 'number' && src === 'decode'
-    ) {
-        warnUser('The chanceCutoff parameter must be a number greater than 0.', skipWarnings);
-        return false;
-    }
-
-    if (
-        params.chanceAlpha === false ||
-        params.chanceAlpha === true ||
-        params.chanceAlpha === null ||
-        params.chanceAlpha && typeof(params.chanceAlpha) !== 'number' ||
-        typeof(params.chanceAlpha) === 'number' && params.chanceAlpha < 1 ||
-        typeof(params.chanceAlpha) === 'number' && params.chanceAlpha % 1 !== 0 ||
-        typeof(params.chanceAlpha) === 'number' && src === 'decode'
-    ) {
-        warnUser('The chanceAlpha parameter must be a number greater than 0.', skipWarnings);
-        return false;
-    }
-
-    if (
-        params.adaptive === null ||
-        params.adaptive &&
-        typeof(params.adaptive) !== 'boolean' ||
-        src === 'decode' && params.adaptive === false ||
-        src === 'decode' && params.adaptive === true
-    ) {
-        warnUser('The adaptive parameter must be a boolean value.', skipWarnings);
-        return false;
-    }
-
-    if (
-        params.guess === false ||
-        params.guess === true ||
-        params.guess === null ||
-        params.guess && typeof(params.guess) !== 'string' ||
-        params.guess && src === 'decode' ||
-        params.guess && (
-            params.guess !== 'heuristically' &&
-            params.guess !== 'average' &&
-            params.guess !== 'median gradient' &&
-            params.guess !== 'median number' &&
-            params.guess !== 'mixed'
-        )
-    ) {
-        warnUser('The guess parameter must one of the following: "heuristically", "average", "median gradient", "median number", "mixed".', skipWarnings);
-        return false;
-    }
-
-    if (
-        params.alphaGuess === false ||
-        params.alphaGuess === true ||
-        params.alphaGuess === null ||
-        params.alphaGuess && typeof(params.alphaGuess) !== 'string' ||
-        params.alphaGuess && src === 'decode' ||
-        params.alphaGuess && (
-            params.alphaGuess !== 'heuristically' &&
-            params.alphaGuess !== 'average' &&
-            params.alphaGuess !== 'median gradient' &&
-            params.alphaGuess !== 'median number' &&
-            params.alphaGuess !== 'mixed'
-        )
-    ) {
-        warnUser('The alphaGuess parameter must one of the following: "heuristically", "average", "median gradient", "median number", "mixed".', skipWarnings);
-        return false;
-    }
-
-    var verifyChromaSubsample = require('./verifyParams/verifyChromaSubsample.js')(params, src, skipWarnings);
-    if (!verifyChromaSubsample) {
-        return false;
-    }
 
     // TODO:
     // 1. Add in the rest of the parameters from encode/transcode for validation
-    // 2. Break this file up into a bunch of smaller files for each param with their own tests
-    // 3. Ensure that encode-only params fail when passed in to transcode/decode and vice versa
+    // 2. Ensure that encode-only params fail when passed in to transcode/decode and vice versa
 
     return true;
 }

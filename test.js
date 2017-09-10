@@ -41,7 +41,11 @@ var allTestsToRun = [
         require('./src/helpers/verifyParams/verifyManiacThreshold.test.js'),
         require('./src/helpers/verifyParams/verifyManiacDivisor.test.js'),
         require('./src/helpers/verifyParams/verifyManiacMinSize.test.js'),
-
+        require('./src/helpers/verifyParams/verifyChanceCutoff.test.js'),
+        require('./src/helpers/verifyParams/verifyChanceAlpha.test.js'),
+        require('./src/helpers/verifyParams/verifyAdaptive.test.js'),
+        require('./src/helpers/verifyParams/verifyGuess.test.js'),
+        require('./src/helpers/verifyParams/verifyAlphaGuess.test.js'),
         require('./src/helpers/verifyParams/verifyChromaSubsample.test.js')
     ],
 

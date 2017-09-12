@@ -1,6 +1,7 @@
 /* eslint-disable no-console */
 
 
+var start = Date.now();
 
 // //////////////////////////// //
 //      WHAT SHOULD BE RAN      //
@@ -102,8 +103,14 @@ runTests(allTestsToRun);
 //        OUTPUT RESULTS        //
 // //////////////////////////// //
 
-var output =
-    numberOfTestsPassed + ' Tests passed.\n\n' +
+var end = Date.now();
+var seconds = Math.round((end - start) / 1000);
+var testsPerSecond = Math.round(numberOfTestsPassed / seconds);
+
+var output = '\n' +
+    numberOfTestsPassed + ' Tests passed.\n' +
+    'Took ' + seconds + ' seconds to run.\n' +
+    'Which is ' + testsPerSecond + ' tests per second.\n\n' +
     'Tested:\n' +
     testNames.join('\n');
 

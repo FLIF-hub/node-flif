@@ -104,14 +104,18 @@ runTests(allTestsToRun);
 // //////////////////////////// //
 
 var end = Date.now();
-var seconds = Math.round((end - start) / 1000);
-var testsPerSecond = Math.round(numberOfTestsPassed / seconds);
+var seconds = Math.round((end - start) / 100) / 10;
+var testsPerSecond = Math.round((numberOfTestsPassed / seconds) * 10) / 10;
+
+testsPerSecond = testsPerSecond.toLocaleString();
+numberOfTestsPassed = numberOfTestsPassed.toLocaleString();
+seconds = seconds.toLocaleString();
 
 var output = '\n' +
+    'Tested:\n' +
+    testNames.join('\n') + '\n\n' +
     numberOfTestsPassed + ' Tests passed.\n' +
     'Took ' + seconds + ' seconds to run.\n' +
-    'Which is ' + testsPerSecond + ' tests per second.\n\n' +
-    'Tested:\n' +
-    testNames.join('\n');
+    'Which is ' + testsPerSecond + ' tests per second.';
 
 console.log(output);

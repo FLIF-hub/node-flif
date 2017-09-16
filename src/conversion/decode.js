@@ -13,9 +13,11 @@ function buildDecodeArgs (params) {
         return false;
     }
 
+    // Required
     var input = params.input;
     var output = params.output;
 
+    // Common
     var crc = '';
     var keepMetaData = '';
     var keepColorProfile = '';

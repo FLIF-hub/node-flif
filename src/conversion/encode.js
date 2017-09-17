@@ -1,4 +1,3 @@
-/* eslint-disable no-console */
 /* eslint-disable no-regex-spaces */
 
 /*
@@ -77,19 +76,16 @@ function buildEncodeArgs (params) {
     var input = params.input;
     var output = params.output;
 
-    // Common
-    var crc = '';
-    var keepMetaData = '';
-    var keepColorProfile = '';
-    var overwrite = '';
-    var keepPalette = '';
+    var commonEncodeDecode = require('./argumentGroups/commonEncodeDecode.js');
+
+    // Common Encode
     var effort = '';
     var interlace = '';
     var quality = '';
     var keepAlpha = '';
     var frameDelay = '';
 
-    // Advanced
+    // Advanced Encode
     var maxPaletteSize = '';
     var colorBuckets = '';
     var channelCompact = '';
@@ -109,21 +105,6 @@ function buildEncodeArgs (params) {
     var chromaSubsample = '';
 
 
-    if (params.crc === false) {
-        crc = '-c';
-    }
-    if (params.keepMetaData === false) {
-        keepMetaData = '-m';
-    }
-    if (params.keepColorProfile === false) {
-        keepColorProfile = '-p';
-    }
-    if (params.overwrite === true) {
-        overwrite = '-o';
-    }
-    if (params.keepPalette === true) {
-        keepPalette = '-k';
-    }
     if (parseInt(params.effort) < 101) {
         effort = '-E' + parseInt(params.effort);
     }
@@ -229,11 +210,8 @@ function buildEncodeArgs (params) {
     }
 
     var options = [
-        crc,
-        keepMetaData,
-        keepColorProfile,
-        overwrite,
-        keepPalette,
+        commonEncodeDecode(params),
+
         effort,
         interlace,
         quality,

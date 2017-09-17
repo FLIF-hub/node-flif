@@ -4,7 +4,7 @@ function test () {
     var runAllTests = require('../testers/loopOverAllTestSets.js');
     var testName = 'transcode';
     var testData = [
-        { expected: '', arguments: [] }
+        // { expected: '', arguments: [] }
     ];
 
     runAllTests(testName, 'conversion', testData);

@@ -56,9 +56,15 @@ var allTestsToRun = [
     require('./src/information/version.test.js'),
 
     // Conversion
-    require('./src/conversion/decode.test.js'),
-    require('./src/conversion/encode.test.js')
-    // require('./src/conversion/transcode.test.js')
+    require('./src/conversion/encode.test.js'), [
+        require('./src/conversion/argumentGroups/commonEncodeDecode.test.js'),
+        require('./src/conversion/argumentGroups/commonEncode.test.js'),
+        require('./src/conversion/argumentGroups/advancedEncode.test.js')
+    ],
+    require('./src/conversion/decode.test.js'), [
+        require('./src/conversion/argumentGroups/commonDecode.test.js')
+    ],
+    require('./src/conversion/transcode.test.js')
 ];
 
 
@@ -97,6 +103,14 @@ function runTests (testsArray, sub) {
 }
 runTests(allTestsToRun);
 
+
+if (numberOfTestsPassed !== 1134) {
+    var message =
+        'Total number of tests has changed.\n\n' +
+        ' Expected: 1,134\n' +
+        '   Actual: ' + numberOfTestsPassed.toLocaleString();
+    throw message;
+}
 
 
 // //////////////////////////// //

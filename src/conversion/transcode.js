@@ -1,4 +1,3 @@
-/* eslint-disable no-console */
 /* eslint-disable no-regex-spaces */
 
 /*
@@ -92,23 +91,17 @@ var encodeParams = {
 /**
  * Transcodes your FLIF to a new FLIF.
  * @param  {object}  params Parameters for the transcoding passed in by the user.
- * @return {boolean}        True if successful, false if there was a problem.
+ * @return {string}         The arguments to be passed into the CLI
  */
 function transcode (params) {
     var verifyParams = require('../helpers/verifyParams.js');
     verifyParams(params, 'transcode');
-    console.log(params);
 
     // Required
     var input = params.input;
     var output = params.output;
 
-    // Common (Encode/Decode)
-    var crc = '';
-    var keepMetaData = '';
-    var keepColorProfile = '';
-    var overwrite = '';
-    var keepPalette = '';
+    var commonEncodeDecode = require('./argumentsGroups/commonEncodeDecode.js');
 
     // Common (Encode)
     var encodeQuality = '';
@@ -141,23 +134,6 @@ function transcode (params) {
     var guess = '';
     var alphaGuess = '';
     var chromaSubsample = '';
-
-    // Common (Encode/Decode)
-    if (params.crc === false) {
-        crc = '-c';
-    }
-    if (params.keepMetaData === false) {
-        keepMetaData = '-m';
-    }
-    if (params.keepColorProfile === false) {
-        keepColorProfile = '-p';
-    }
-    if (params.overwrite === true) {
-        overwrite = '-o';
-    }
-    if (params.keepPalette === true) {
-        keepPalette = '-k';
-    }
 
 
     // TODO: encode quality is -Q
@@ -206,6 +182,7 @@ function transcode (params) {
         fit = '-f=' + parseInt(params.fit.width) + 'x' + parseInt(params.fit.height);
     }
 
+    // Advanced (encode)
     if (params.maxPaletteSize) {
         maxPaletteSize = '-P' + parseInt(params.maxPaletteSize);
     }
@@ -289,12 +266,8 @@ function transcode (params) {
     }
 
     var options = [
-        // Common (Encode/Decode)
-        crc,
-        keepMetaData,
-        keepColorProfile,
-        overwrite,
-        keepPalette,
+        commonEncodeDecode(params),
+
         // Common (Encode)
         encodeQuality,
         effort,

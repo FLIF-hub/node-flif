@@ -9,16 +9,6 @@ function test () {
 
         { expected: '-e "a.png" "b.flif"',        arguments: [{input:'a.png', output:'b.flif', async: true                   }] },
         { expected: '-e "a.png" "b.flif"',        arguments: [{input:'a.png', output:'b.flif', async: false                  }] },
-        { expected: '-e -o "a.png" "b.flif"',     arguments: [{input:'a.png', output:'b.flif', overwrite: true               }] },
-        { expected: '-e "a.png" "b.flif"',        arguments: [{input:'a.png', output:'b.flif', overwrite: false              }] },
-        { expected: '-e "a.png" "b.flif"',        arguments: [{input:'a.png', output:'b.flif', keepMetaData: true            }] },
-        { expected: '-e -m "a.png" "b.flif"',     arguments: [{input:'a.png', output:'b.flif', keepMetaData: false           }] },
-        { expected: '-e "a.png" "b.flif"',        arguments: [{input:'a.png', output:'b.flif', keepColorProfile: true        }] },
-        { expected: '-e -p "a.png" "b.flif"',     arguments: [{input:'a.png', output:'b.flif', keepColorProfile: false       }] },
-        { expected: '-e "a.png" "b.flif"',        arguments: [{input:'a.png', output:'b.flif', crc: true                     }] },
-        { expected: '-e -c "a.png" "b.flif"',     arguments: [{input:'a.png', output:'b.flif', crc: false                    }] },
-        { expected: '-e -k "a.png" "b.flif"',     arguments: [{input:'a.png', output:'b.flif', keepPalette: true             }] },
-        { expected: '-e "a.png" "b.flif"',        arguments: [{input:'a.png', output:'b.flif', keepPalette: false            }] },
 
         { expected: '-e -E0 "a.png" "b.flif"',    arguments: [{input:'a.png', output:'b.flif', effort: 0                     }] },
         { expected: '-e -E1 "a.png" "b.flif"',    arguments: [{input:'a.png', output:'b.flif', effort: 1                     }] },
@@ -88,31 +78,6 @@ function test () {
         { expected: '-e "a.png" "b.flif"',        arguments: [{input:'a.png', output:'b.flif', chromaSubsample: false        }] },
 
         // Multi param tests
-        {
-            expected: '-e -m -p -o "a.png" "b.flif"',
-            arguments: [
-                {
-                    input: 'a.png',
-                    output: 'b.flif',
-                    overwrite: true,
-                    keepMetaData: false,
-                    keepColorProfile: false
-                }
-            ]
-        },
-        {
-            expected: '-e -c -R100 -H0 "a.png" "b.flif"',
-            arguments: [
-                {
-                    input: 'a.png',
-                    output: 'b.flif',
-                    crc: false,
-                    overwrite: false,
-                    maniacRepeats: 100,
-                    alphaGuess: 'average'
-                }
-            ]
-        },
         {
             expected: '-e -E0 -I -Q0 -F250,1000,250 -P2 -A -L10 -R200 -T256 -D10 -M1 -X50 -Z1 -G2 -H1 "a.png" "b.flif"',
             arguments: [

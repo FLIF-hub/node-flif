@@ -18,31 +18,14 @@ function buildDecodeArgs (params) {
     var output = params.output;
 
     // Common
-    var crc = '';
-    var keepMetaData = '';
-    var keepColorProfile = '';
-    var overwrite = '';
-    var keepPalette = '';
+    var commonEncodeDecode = require('./argumentGroups/commonEncodeDecode.js');
+
     var quality = '';
     var scale = '';
     var resize = '';
     var fit = '';
 
-    if (params.crc === false) {
-        crc = '-c';
-    }
-    if (params.keepMetaData === false) {
-        keepMetaData = '-m';
-    }
-    if (params.keepColorProfile === false) {
-        keepColorProfile = '-p';
-    }
-    if (params.overwrite === true) {
-        overwrite = '-o';
-    }
-    if (params.keepPalette === true) {
-        keepPalette = '-k';
-    }
+
     if (parseInt(params.quality) < 101) {
         quality = '-q=' + parseInt(params.quality);
     }
@@ -57,11 +40,8 @@ function buildDecodeArgs (params) {
     }
 
     var options = [
-        crc,
-        keepMetaData,
-        keepColorProfile,
-        overwrite,
-        keepPalette,
+        commonEncodeDecode(params),
+
         quality,
         scale,
         resize,

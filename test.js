@@ -104,10 +104,10 @@ function runTests (testsArray, sub) {
 runTests(allTestsToRun);
 
 
-if (numberOfTestsPassed !== 1134) {
+if (numberOfTestsPassed !== 1124) {
     var message =
         'Total number of tests has changed.\n\n' +
-        ' Expected: 1,134\n' +
+        ' Expected: 1,124\n' +
         '   Actual: ' + numberOfTestsPassed.toLocaleString();
     throw message;
 }

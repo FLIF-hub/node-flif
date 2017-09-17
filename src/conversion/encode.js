@@ -10,7 +10,7 @@ var encodeParams = {
     overwrite: false,       // Set to true to overwrite existing files on output (default is false)
     effort: 60,             // 0 = fast/poor compression, 100 = slowest/best? (default is 60)
     interlace: 'auto',      // true, false, or 'auto' (interlacing except on tiny images) (default is 'auto')
-    quality: 100,           // 0-100, where 99 and below are lossy (default is 100)
+    encodeQuality: 100,     // 0-100, where 99 and below are lossy (default is 100)
     keepAlpha: false,       // Stores the original RGB data with 0 alpha (transparent) (default is false)
     crc: true,              // Set to false to skip verifying/adding CRC (default is true)
     keepMetaData: true,     // Set to false to strip EXIF/XMP metadata (default is true)
@@ -77,13 +77,7 @@ function buildEncodeArgs (params) {
     var output = params.output;
 
     var commonEncodeDecode = require('./argumentGroups/commonEncodeDecode.js');
-
-    // Common Encode
-    var effort = '';
-    var interlace = '';
-    var quality = '';
-    var keepAlpha = '';
-    var frameDelay = '';
+    var commonEncode = require('./argumentGroups/commonEncode.js');
 
     // Advanced Encode
     var maxPaletteSize = '';
@@ -104,25 +98,6 @@ function buildEncodeArgs (params) {
     var alphaGuess = '';
     var chromaSubsample = '';
 
-
-    if (parseInt(params.effort) < 101) {
-        effort = '-E' + parseInt(params.effort);
-    }
-    if (params.interlace === false) {
-        interlace = '-N';
-    }
-    if (params.interlace === true) {
-        interlace = '-I';
-    }
-    if (params.interlace === 'auto') {
-        interlace = '';
-    }
-    if (parseInt(params.quality) < 101) {
-        quality = '-Q' + parseInt(params.quality);
-    }
-    if (params.frameDelay) {
-        frameDelay = '-F' + params.frameDelay.join(',');
-    }
     if (params.maxPaletteSize) {
         maxPaletteSize = '-P' + parseInt(params.maxPaletteSize);
     }
@@ -186,24 +161,22 @@ function buildEncodeArgs (params) {
     if (params.guess === 'mixed') {
         guess = '-GX';
     }
-    if (params.alphaGuess === 'heuristically') {
-        alphaGuess = '-H?';
-    }
-    if (params.alphaGuess === 'average') {
-        alphaGuess = '-H0';
-    }
-    if (params.alphaGuess === 'median gradient') {
-        alphaGuess = '-H1';
-    }
-    if (params.alphaGuess === 'median number') {
-        alphaGuess = '-H2';
-    }
-    if (params.alphaGuess === 'mixed') {
-        alphaGuess = '-HX';
-    }
-    if (params.keepAlpha === true) {
-        keepAlpha = '-K';
-        alphaGuess = '';
+    if (!params.keepAlpha) {
+        if (params.alphaGuess === 'heuristically') {
+            alphaGuess = '-H?';
+        }
+        if (params.alphaGuess === 'average') {
+            alphaGuess = '-H0';
+        }
+        if (params.alphaGuess === 'median gradient') {
+            alphaGuess = '-H1';
+        }
+        if (params.alphaGuess === 'median number') {
+            alphaGuess = '-H2';
+        }
+        if (params.alphaGuess === 'mixed') {
+            alphaGuess = '-HX';
+        }
     }
     if (params.chromaSubsample === true) {
         chromaSubsample = '-J';
@@ -211,12 +184,8 @@ function buildEncodeArgs (params) {
 
     var options = [
         commonEncodeDecode(params),
+        commonEncode(params),
 
-        effort,
-        interlace,
-        quality,
-        keepAlpha,
-        frameDelay,
         maxPaletteSize,
         colorBuckets,
         channelCompact,

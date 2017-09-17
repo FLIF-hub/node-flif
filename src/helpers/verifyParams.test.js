@@ -11,3 +11,5 @@ function test () {
 }
 
 module.exports = test;
+
+// TODO: test encodeQuality and decodeQuality

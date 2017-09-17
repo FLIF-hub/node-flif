@@ -59,11 +59,10 @@ var allTestsToRun = [
     require('./src/conversion/encode.test.js'), [
         require('./src/conversion/argumentGroups/commonEncodeDecode.test.js'),
         require('./src/conversion/argumentGroups/commonEncode.test.js'),
-        require('./src/conversion/argumentGroups/advancedEncode.test.js')
-    ],
-    require('./src/conversion/decode.test.js'), [
+        require('./src/conversion/argumentGroups/advancedEncode.test.js'),
         require('./src/conversion/argumentGroups/commonDecode.test.js')
     ],
+    require('./src/conversion/decode.test.js'),
     require('./src/conversion/transcode.test.js')
 ];
 
@@ -104,10 +103,10 @@ function runTests (testsArray, sub) {
 runTests(allTestsToRun);
 
 
-if (numberOfTestsPassed !== 1124) {
+if (numberOfTestsPassed !== 1128) {
     var message =
         'Total number of tests has changed.\n\n' +
-        ' Expected: 1,124\n' +
+        ' Expected: 1,128\n' +
         '   Actual: ' + numberOfTestsPassed.toLocaleString();
     throw message;
 }

@@ -102,13 +102,7 @@ function transcode (params) {
     var output = params.output;
 
     var commonEncodeDecode = require('./argumentsGroups/commonEncodeDecode.js');
-
-    // Common (Encode)
-    var encodeQuality = '';
-    var effort = '';
-    var interlace = '';
-    var keepAlpha = '';
-    var frameDelay = '';
+    var commonEncode = require('./argumentsGroups/commonEncode.js');
 
     // Common (Decode)
     var decodeQuality = '';
@@ -143,30 +137,6 @@ function transcode (params) {
     // passes in encodeQuality or just quality to the encode they
     // should both work. Same for decodeQuality/quality in decode.
     // TODO: Update documentation to reflect this change.
-
-    // Common (Encode)
-    if (parseInt(params.encodeQuality) < 101) {
-        encodeQuality = '-Q' + parseInt(params.encodeQuality);
-    }
-    if (parseInt(params.effort) < 101) {
-        effort = '-E' + parseInt(params.effort);
-    }
-    if (params.interlace === false) {
-        interlace = '-N';
-    }
-    if (params.interlace === true) {
-        interlace = '-I';
-    }
-    if (params.interlace === 'auto') {
-        interlace = '';
-    }
-    if (params.keepAlpha === true) {
-        keepAlpha = '-K';
-        alphaGuess = '';
-    }
-    if (params.frameDelay) {
-        frameDelay = '-F' + params.frameDelay.join(',');
-    }
 
     // Common (Decode)
     if (parseInt(params.decodeQuality) < 101) {
@@ -267,13 +237,8 @@ function transcode (params) {
 
     var options = [
         commonEncodeDecode(params),
+        commonEncode(params),
 
-        // Common (Encode)
-        encodeQuality,
-        effort,
-        interlace,
-        keepAlpha,
-        frameDelay,
         // Common (Decode)
         decodeQuality,
         scale,

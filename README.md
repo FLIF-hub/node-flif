@@ -73,7 +73,7 @@ var encodeParams = {
     overwrite: false,       // Set to true to overwrite existing files on output (default is false)
     effort: 60,             // 0 = fast/poor compression, 100 = slowest/best? (default is 60)
     interlace: 'auto',      // true, false, or 'auto' (interlacing except on tiny images) (default is 'auto')
-    quality: 100,           // 0-100, where 99 and below are lossy (default is 100)
+    encodeQuality: 100,     // 0-100, where 99 and below are lossy (default is 100)
     keepAlpha: false,       // Stores the original RGB data with 0 alpha (transparent) (default is false)
     crc: true,              // Set to false to skip verifying/adding CRC (default is true)
     keepMetaData: true,     // Set to false to strip EXIF/XMP metadata (default is true)
@@ -132,7 +132,7 @@ var decodeParams = {
     // Common optional decoding parameters
     async: true,            // Set to false to run this as a synchronous decoding
     overwrite: false,       // Set to true to overwrite existing files on output (default is false)
-    quality: 100,           // 0-100 Lossy decode quality (default is 100)
+    decodeQuality: 100,     // 0-100 Lossy decode quality (default is 100)
     keepMetaData: true,     // Set to false to strip EXIF/XMP metadata (default is true)
     keepColorProfile: true, // Set to false to strip ICC color profile (default is true)
     // Advanced optional decoding parameters

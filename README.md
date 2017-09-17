@@ -11,7 +11,7 @@ A Node wrapper for the FLIF CLI executable.
 
 FLIF is a lossless image format designed with the web in mind. It has lots of great features. To learn more about the format go to [FLIF.info](http://flif.info).
 
-This library is for a node module that wraps around a native executable for your platform. That executable performs the actions of encoding or decoding FLIF files. This wrapper allows you to pass in a javascript params object into a function that will create the commandline arguments for you and then run them against the executable CLI. It will also warn you if you pass in the wrong parameters or types of data.
+This repository is for a Node.js module that wraps around a native executable for your platform. That executable performs the actions of encoding or decoding FLIF files. This wrapper allows you to pass in a javascript object containing your settings into a function that will create the commandline arguments for you and then run them against the executable CLI. It will also warn you if you pass in the wrong parameters or types of data.
 
 Eventually you will be able to `npm install` this module.
 
@@ -41,8 +41,11 @@ Linux/OSX is using [flif-wasm](https://github.com/SaschaNaz/flif-wasm), it has a
 
 * [x] Create API documentation (Subject to change prior to v1.0.0)
 * [ ] Create a simple wrapper that allows passing in a parameter object that will abstract out the native executable switches.
+ * Finishing up extracting common conversion argument code
+ * Finishing up transcoding
 * [ ] Take care of all TODO's
-* [ ] Add it to the NPM registry once functional.
+ * 8 remaining
+* [ ] Add it to the NPM registry when at v1.0.0.
 
 * * *
 

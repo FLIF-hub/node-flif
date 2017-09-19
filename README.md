@@ -44,7 +44,7 @@ Linux/OSX is using [flif-wasm](https://github.com/SaschaNaz/flif-wasm), it has a
  * Finishing up extracting common conversion argument code
  * Finishing up transcoding
 * [ ] Take care of all TODO's
- * 8 remaining
+ * 19 remaining
 * [ ] Add it to the NPM registry when at v1.0.0.
 
 * * *
@@ -286,3 +286,13 @@ node-flif | flif  | flif-wasm
 :--       | :--   | :--
 0.2.0     | 0.3.0 | 1.0.3
 0.1.0     | 0.3.0 | N/A
+
+
+* * *
+
+### Questions:
+
+I need to try to solve these on my own with the CLI, then consult documentation or Jon with any remaining questions.
+
+* Q: What are the upper/lower bounds for `-chance-alpha` (`-Z`, `chanceAlpha`), all I know is it allows for the number 19
+

@@ -94,21 +94,19 @@ var encodeParams = {
  * @return {string}         The arguments to be passed into the CLI
  */
 function transcode (params) {
+    var commonEncodeDecode = require('./argumentsGroups/commonEncodeDecode.js');
+    var commonEncode = require('./argumentsGroups/commonEncode.js');
+    var commonDecode = require('./argumentsGroups/commonDecode.js');
     var verifyParams = require('../helpers/verifyParams.js');
-    verifyParams(params, 'transcode');
+
+    var paramsWereVerified = verifyParams(params, 'transcode');
+    if (!paramsWereVerified) {
+        return false;
+    }
 
     // Required
     var input = params.input;
     var output = params.output;
-
-    var commonEncodeDecode = require('./argumentsGroups/commonEncodeDecode.js');
-    var commonEncode = require('./argumentsGroups/commonEncode.js');
-
-    // Common (Decode)
-    var decodeQuality = '';
-    var scale = '';
-    var resize = '';
-    var fit = '';
 
     // Advanced (Encode)
     var maxPaletteSize = '';
@@ -128,29 +126,6 @@ function transcode (params) {
     var guess = '';
     var alphaGuess = '';
     var chromaSubsample = '';
-
-
-    // TODO: encode quality is -Q
-    // TODO: decode quality is -q
-    // TODO: If transcode allows both, rename them to encodeQuality
-    // and decodeQuality globally, to be consistent. If the user
-    // passes in encodeQuality or just quality to the encode they
-    // should both work. Same for decodeQuality/quality in decode.
-    // TODO: Update documentation to reflect this change.
-
-    // Common (Decode)
-    if (parseInt(params.decodeQuality) < 101) {
-        decodeQuality = '-q=' + parseInt(params.decodeQuality);
-    }
-    if (params.scale) {
-        scale = '-s=' + parseInt(params.scale);
-    }
-    if (params.resize) {
-        resize = '-r=' + parseInt(params.resize.width) + 'x' + parseInt(params.resize.height);
-    }
-    if (params.fit) {
-        fit = '-f=' + parseInt(params.fit.width) + 'x' + parseInt(params.fit.height);
-    }
 
     // Advanced (encode)
     if (params.maxPaletteSize) {
@@ -238,12 +213,8 @@ function transcode (params) {
     var options = [
         commonEncodeDecode(params),
         commonEncode(params),
+        commonDecode(params),
 
-        // Common (Decode)
-        decodeQuality,
-        scale,
-        resize,
-        fit,
         // Advanced (Encode)
         maxPaletteSize,
         colorBuckets,

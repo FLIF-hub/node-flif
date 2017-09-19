@@ -27,11 +27,36 @@ function test () {
             ]
         },
         {
-            expected: '-c',
+            expected: '-c -k',
+            arguments: [
+                {
+                    keepPalette: true,
+                    crc: false,
+                    overwrite: false
+                }
+            ]
+        },
+        {
+            expected: '-c -m -p -o -k',
             arguments: [
                 {
                     crc: false,
-                    overwrite: false
+                    keepMetaData: false,
+                    keepColorProfile: false,
+                    overwrite: true,
+                    keepPalette: true
+                }
+            ]
+        },
+        {
+            expected: '',
+            arguments: [
+                {
+                    crc: true,
+                    keepMetaData: true,
+                    keepColorProfile: true,
+                    overwrite: false,
+                    keepPalette: false
                 }
             ]
         }

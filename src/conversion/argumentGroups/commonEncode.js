@@ -1,5 +1,4 @@
 /* eslint-disable no-regex-spaces */
-/* eslint-disable no-unused-vars */
 
 /**
  * Commonly used arguments used for Encodes.

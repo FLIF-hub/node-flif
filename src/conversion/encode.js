@@ -66,7 +66,10 @@ var encodeParams = {
  * @return {string}          The built args to be sent to the command line.
  */
 function buildEncodeArgs (params) {
+    var commonEncodeDecode = require('./argumentGroups/commonEncodeDecode.js');
+    var commonEncode = require('./argumentGroups/commonEncode.js');
     var verifyParams = require('../helpers/verifyParams.js');
+
     var paramsWereVerified = verifyParams(params, 'encode');
     if (!paramsWereVerified) {
         return false;
@@ -75,9 +78,6 @@ function buildEncodeArgs (params) {
     // Required
     var input = params.input;
     var output = params.output;
-
-    var commonEncodeDecode = require('./argumentGroups/commonEncodeDecode.js');
-    var commonEncode = require('./argumentGroups/commonEncode.js');
 
     // Advanced Encode
     var maxPaletteSize = '';

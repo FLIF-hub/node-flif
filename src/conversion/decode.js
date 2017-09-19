@@ -7,45 +7,20 @@
  * @return {string}          The built args to be sent to the command line.
  */
 function buildDecodeArgs (params) {
+    var commonEncodeDecode = require('./argumentGroups/commonEncodeDecode.js');
+    var commonDecode = require('./argumentGroups/commonDecode.js');
     var verifyParams = require('../helpers/verifyParams.js');
+
     var paramsWereVerified = verifyParams(params, 'decode');
     if (!paramsWereVerified) {
         return false;
     }
 
-    // Required
     var input = params.input;
     var output = params.output;
-
-    // Common
-    var commonEncodeDecode = require('./argumentGroups/commonEncodeDecode.js');
-
-    var quality = '';
-    var scale = '';
-    var resize = '';
-    var fit = '';
-
-
-    if (parseInt(params.quality) < 101) {
-        quality = '-q=' + parseInt(params.quality);
-    }
-    if (params.scale) {
-        scale = '-s=' + parseInt(params.scale);
-    }
-    if (params.resize) {
-        resize = '-r=' + parseInt(params.resize.width) + 'x' + parseInt(params.resize.height);
-    }
-    if (params.fit) {
-        fit = '-f=' + parseInt(params.fit.width) + 'x' + parseInt(params.fit.height);
-    }
-
     var options = [
         commonEncodeDecode(params),
-
-        quality,
-        scale,
-        resize,
-        fit
+        commonDecode(params)
     ].join(' ');
 
     // -d -c -m -p -o -k -q=100 -s=2 -r=100x100 -f=100x100 "input file.flif" "output file.png"

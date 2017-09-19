@@ -44,7 +44,7 @@ Linux/OSX is using [flif-wasm](https://github.com/SaschaNaz/flif-wasm), it has a
   * Finishing up extracting common conversion argument code
   * Finishing up transcoding
 * [ ] Take care of all TODO's
-  * 19 remaining
+  * 20 remaining
 * [ ] Add it to the NPM registry when at v1.0.0.
 
 * * *

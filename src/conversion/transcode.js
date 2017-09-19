@@ -94,6 +94,7 @@ var encodeParams = {
  * @return {string}         The arguments to be passed into the CLI
  */
 function transcode (params) {
+    var advancedEncode = require('./argumentsGroups/advancedEncode.js');
     var commonEncodeDecode = require('./argumentsGroups/commonEncodeDecode.js');
     var commonEncode = require('./argumentsGroups/commonEncode.js');
     var commonDecode = require('./argumentsGroups/commonDecode.js');
@@ -107,132 +108,11 @@ function transcode (params) {
     // Required
     var input = params.input;
     var output = params.output;
-
-    // Advanced (Encode)
-    var maxPaletteSize = '';
-    var colorBuckets = '';
-    var channelCompact = '';
-    var ycocg = '';
-    var subtractGreen = '';
-    var frameShape = '';
-    var maxFrameLookBack = '';
-    var maniacRepeats = '';
-    var maniacThreshold = '';
-    var maniacDivisor = '';
-    var maniacMinSize = '';
-    var chanceCutoff = '';
-    var chanceAlpha = '';
-    var adaptive = '';
-    var guess = '';
-    var alphaGuess = '';
-    var chromaSubsample = '';
-
-    // Advanced (encode)
-    if (params.maxPaletteSize) {
-        maxPaletteSize = '-P' + parseInt(params.maxPaletteSize);
-    }
-    if (params.colorBuckets === false) {
-        colorBuckets = '-B';
-    }
-    if (params.colorBuckets === true) {
-        colorBuckets = '-A';
-    }
-    if (params.colorBuckets === 'auto') {
-        colorBuckets = '';
-    }
-    if (params.channelCompact === false) {
-        channelCompact = '-C';
-    }
-    if (params.ycocg === false) {
-        ycocg = '-Y';
-    }
-    if (params.subtractGreen === false) {
-        subtractGreen = '-W';
-    }
-    if (params.frameShape === false) {
-        frameShape = '-S';
-    }
-    if (params.maxFrameLookBack) {
-        maxFrameLookBack = '-L' + parseInt(params.maxFrameLookBack);
-    }
-    if (params.maniacRepeats) {
-        maniacRepeats = '-R' + parseInt(params.maniacRepeats);
-    }
-    if (parseInt(params.maniacThreshold) > -1) {
-        maniacThreshold = '-T' + parseInt(params.maniacThreshold);
-    }
-    if (params.maniacDivisor) {
-        maniacDivisor = '-D' + parseInt(params.maniacDivisor);
-    }
-    if (params.maniacMinSize) {
-        maniacMinSize = '-M' + parseInt(params.maniacMinSize);
-    }
-    if (params.chanceCutoff) {
-        chanceCutoff = '-X' + parseInt(params.chanceCutoff);
-    }
-    if (params.chanceAlpha) {
-        chanceAlpha = '-Z' + parseInt(params.chanceAlpha);
-    }
-    if (params.adaptive === true) {
-        adaptive = '-U';
-    }
-    if (params.guess === 'heuristically') {
-        guess = '-G?';
-    }
-    if (params.guess === 'average') {
-        guess = '-G0';
-    }
-    if (params.guess === 'median gradient') {
-        guess = '-G1';
-    }
-    if (params.guess === 'median number') {
-        guess = '-G2';
-    }
-    if (params.guess === 'mixed') {
-        guess = '-GX';
-    }
-    if (params.alphaGuess === 'heuristically') {
-        alphaGuess = '-H?';
-    }
-    if (params.alphaGuess === 'average') {
-        alphaGuess = '-H0';
-    }
-    if (params.alphaGuess === 'median gradient') {
-        alphaGuess = '-H1';
-    }
-    if (params.alphaGuess === 'median number') {
-        alphaGuess = '-H2';
-    }
-    if (params.alphaGuess === 'mixed') {
-        alphaGuess = '-HX';
-    }
-    if (params.chromaSubsample === true) {
-        chromaSubsample = '-J';
-    }
-
     var options = [
         commonEncodeDecode(params),
         commonEncode(params),
         commonDecode(params),
-
-        // Advanced (Encode)
-        maxPaletteSize,
-        colorBuckets,
-        channelCompact,
-        ycocg,
-        subtractGreen,
-        frameShape,
-        maxFrameLookBack,
-        maniacRepeats,
-        maniacThreshold,
-        maniacDivisor,
-        maniacMinSize,
-        chanceCutoff,
-        chanceAlpha,
-        adaptive,
-        guess,
-        alphaGuess,
-        chromaSubsample
+        advancedEncode(params)
     ].join(' ');
 
     // -t -c -m -p -o -k -q=100 -s=2 -r=100x100 -f=100x100 "a.flif" "b.flif"
@@ -242,7 +122,6 @@ function transcode (params) {
     arguments = arguments.trim();
 
     return arguments;
-
 }
 
 module.exports = transcode;

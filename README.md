@@ -41,10 +41,10 @@ Linux/OSX is using [flif-wasm](https://github.com/SaschaNaz/flif-wasm), it has a
 
 * [x] Create API documentation (Subject to change prior to v1.0.0)
 * [ ] Create a simple wrapper that allows passing in a parameter object that will abstract out the native executable switches.
- * Finishing up extracting common conversion argument code
- * Finishing up transcoding
+  * Finishing up extracting common conversion argument code
+  * Finishing up transcoding
 * [ ] Take care of all TODO's
- * 19 remaining
+  * 19 remaining
 * [ ] Add it to the NPM registry when at v1.0.0.
 
 * * *

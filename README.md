@@ -43,6 +43,7 @@ Linux/OSX is using [flif-wasm](https://github.com/SaschaNaz/flif-wasm), it has a
 * [ ] Create a simple wrapper that allows passing in a parameter object that will abstract out the native executable switches.
   * Finishing up extracting common conversion argument code
   * Finishing up transcoding
+* [ ] Create automated end-to-end testing folder that verifies tests
 * [ ] Take care of all TODO's
   * 20 remaining
 * [ ] Add it to the NPM registry when at v1.0.0.

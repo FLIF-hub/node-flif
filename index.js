@@ -23,7 +23,7 @@ var nodeFLIF = {
     // //////////////////////////// //
 
     'convert': function (params, src, callback) {
-        if (!src || typeof(src) !== 'string' || src !== 'encode' || src !== 'decode' || src !== 'transcode') {
+        if (!src || typeof(src) !== 'string' || (src !== 'encode' && src !== 'decode' && src !== 'transcode')) {
             throw 'The src argument must be encode, decode, or transcode.';
         }
         if (callback && typeof(callback) !== 'function') {

@@ -8,7 +8,7 @@
 function loopOverAllTestSets (testName, folder, testSet, async) {
     async = async || false;
     var path = require('path');
-    var isEqual = require('lodash.isequal');
+    var assert = require('assert');
 
     var testFile = path.join('..', folder, testName + '.js');
     var subject = require(testFile);
@@ -24,9 +24,17 @@ function loopOverAllTestSets (testName, folder, testSet, async) {
             // eslint-disable-next-line
             function cb (actual) {
                 actual = actual.toString().trim();
-                if (!isEqual(expected, actual)) {
+
+                var isEqual = true;
+                try {
+                    assert.deepStrictEqual(expected, actual);
+                } catch (err) {
+                    isEqual = false;
+                }
+
+                if (!isEqual) {
                     var stack = (new Error()).stack.trim().split('\n');
-                    var errorMessage = require('./errorMessage.js');
+                    var errorMessageGenerator = require('./errorMessage.js');
                     var errorDetails = {
                         stack: stack,
                         testName: testName,
@@ -35,9 +43,9 @@ function loopOverAllTestSets (testName, folder, testSet, async) {
                         expectation: expected,
                         actual: actual
                     };
-                    var errMsg = errorMessage(errorDetails);
+                    var errorMessage = errorMessageGenerator(errorDetails);
 
-                    throw errMsg;
+                    throw errorMessage;
                 }
             }
             arguments.push(cb);
@@ -45,9 +53,16 @@ function loopOverAllTestSets (testName, folder, testSet, async) {
         } else {
             var actual = subject.apply(null, arguments);
 
-            if (!isEqual(expected, actual)) {
+            var isEqual = true;
+            try {
+                assert.deepStrictEqual(expected, actual);
+            } catch (err) {
+                isEqual = false;
+            }
+
+            if (!isEqual) {
                 var stack = (new Error()).stack.trim().split('\n');
-                var errorMessage = require('./errorMessage.js');
+                var errorMessageGenerator = require('./errorMessage.js');
                 var errorDetails = {
                     stack: stack,
                     testName: testName,
@@ -56,9 +71,9 @@ function loopOverAllTestSets (testName, folder, testSet, async) {
                     expectation: expected,
                     actual: actual
                 };
-                var errMsg = errorMessage(errorDetails);
+                var errorMessage = errorMessageGenerator(errorDetails);
 
-                throw errMsg;
+                throw errorMessage;
             }
         }
     }

@@ -30,7 +30,6 @@
   ],
   "dependencies": {
     "flif-wasm": "^1.0.3",
-    "lodash.isequal": "^4.5.0",
     "root-require": "^0.3.1"
   },
   "devDependencies": {

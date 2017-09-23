@@ -5,6 +5,8 @@ function test () {
     var testName = 'decode';
     var testData = [
         // Individual params
+        { expected: false,                        arguments: [{input:'a.flif', output:'b.flif'                             }] },
+        { expected: false,                        arguments: [{input:'a.png',  output:'b.flif'                             }] },
         { expected: '-d "a.flif" "b.png"',        arguments: [{input:'a.flif', output:'b.png'                              }] },
         { expected: '-d "a.flif" "b.png"',        arguments: [{input:'a.flif', output:'b.png', async: true                 }] },
         { expected: '-d "a.flif" "b.png"',        arguments: [{input:'a.flif', output:'b.png', async: false                }] },

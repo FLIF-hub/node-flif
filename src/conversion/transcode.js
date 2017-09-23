@@ -94,10 +94,10 @@ var encodeParams = {
  * @return {string}         The arguments to be passed into the CLI
  */
 function transcode (params) {
-    var advancedEncode = require('./argumentsGroups/advancedEncode.js');
-    var commonEncodeDecode = require('./argumentsGroups/commonEncodeDecode.js');
-    var commonEncode = require('./argumentsGroups/commonEncode.js');
-    var commonDecode = require('./argumentsGroups/commonDecode.js');
+    var advancedEncode = require('./argumentGroups/advancedEncode.js');
+    var commonEncodeDecode = require('./argumentGroups/commonEncodeDecode.js');
+    var commonEncode = require('./argumentGroups/commonEncode.js');
+    var commonDecode = require('./argumentGroups/commonDecode.js');
     var verifyParams = require('../helpers/verifyParams.js');
 
     var paramsWereVerified = verifyParams(params, 'transcode');

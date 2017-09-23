@@ -5,9 +5,11 @@ function test () {
     var testName = 'encode';
     var testData = [
         // Individual Params
-        { expected: '-e "a.png" "b.flif"',        arguments: [{input:'a.png', output:'b.flif'                                }] },
-        { expected: '-e "a.png" "b.flif"',        arguments: [{input:'a.png', output:'b.flif', async: true                   }] },
-        { expected: '-e "a.png" "b.flif"',        arguments: [{input:'a.png', output:'b.flif', async: false                  }] },
+        { expected: false,                        arguments: [{input:'a.flif', output:'b.png'                                 }] },
+        { expected: false,                        arguments: [{input:'a.flif', output:'b.flif'                                }] },
+        { expected: '-e "a.png" "b.flif"',        arguments: [{input:'a.png',  output:'b.flif'                                }] },
+        { expected: '-e "a.png" "b.flif"',        arguments: [{input:'a.png',  output:'b.flif', async: true                   }] },
+        { expected: '-e "a.png" "b.flif"',        arguments: [{input:'a.png',  output:'b.flif', async: false                  }] },
 
         // Multi param tests
         {

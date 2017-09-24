@@ -15,6 +15,7 @@ function loopOverAllTestSets (testName, folder, testSet, async) {
 
     for (var i = 0; i < testSet.length; i++) {
         var arguments = testSet[i].arguments;
+        var skipWarnings = true;
         if (!Array.isArray(arguments)) {
             throw 'Argument is not an array.';
         }
@@ -49,8 +50,10 @@ function loopOverAllTestSets (testName, folder, testSet, async) {
                 }
             }
             arguments.push(cb);
+            arguments.push(skipWarnings);
             subject.apply(null, arguments);
         } else {
+            arguments.push(skipWarnings);
             var actual = subject.apply(null, arguments);
 
             var isEqual = true;

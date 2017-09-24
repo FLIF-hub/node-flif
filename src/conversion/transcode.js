@@ -90,17 +90,18 @@ var encodeParams = {
 
 /**
  * Transcodes your FLIF to a new FLIF.
- * @param  {object}  params Parameters for the transcoding passed in by the user.
- * @return {string}         The arguments to be passed into the CLI
+ * @param  {object}  params       Parameters for the transcoding passed in by the user.
+ * @param  {boolean} skipWarnings If true, then helpful warning messages will not be displayed.
+ * @return {string}               The arguments to be passed into the CLI.
  */
-function transcode (params) {
+function transcode (params, skipWarnings) {
     var advancedEncode = require('./argumentGroups/advancedEncode.js');
     var commonEncodeDecode = require('./argumentGroups/commonEncodeDecode.js');
     var commonEncode = require('./argumentGroups/commonEncode.js');
     var commonDecode = require('./argumentGroups/commonDecode.js');
     var verifyParams = require('../helpers/verifyParams.js');
 
-    var paramsWereVerified = verifyParams(params, 'transcode');
+    var paramsWereVerified = verifyParams(params, 'transcode', skipWarnings);
     if (!paramsWereVerified) {
         return false;
     }

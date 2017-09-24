@@ -62,16 +62,17 @@ var encodeParams = {
 
 /**
  * Converts JSON params for encoding into CLI arguments
- * @param  {object}  params  Parameters for the encoding passed in by the user.
- * @return {string}          The built args to be sent to the command line.
+ * @param  {object}  params       Parameters for the encoding passed in by the user.
+ * @param  {boolean} skipWarnings If true, then helpful warning messages will not be displayed.
+ * @return {string}               The built args to be sent to the command line.
  */
-function buildEncodeArgs (params) {
+function buildEncodeArgs (params, skipWarnings) {
     var advancedEncode = require('./argumentGroups/advancedEncode.js');
     var commonEncodeDecode = require('./argumentGroups/commonEncodeDecode.js');
     var commonEncode = require('./argumentGroups/commonEncode.js');
     var verifyParams = require('../helpers/verifyParams.js');
 
-    var paramsWereVerified = verifyParams(params, 'encode');
+    var paramsWereVerified = verifyParams(params, 'encode', skipWarnings);
     if (!paramsWereVerified) {
         return false;
     }

@@ -29,7 +29,8 @@ function verifyResize (params, src, skipWarnings) {
             isNaN(parseInt(params.resize.height)) ||
             // TODO: Can you resize something less than 1px?
             params.resize.width < 0 ||
-            params.resize.height < 0
+            params.resize.height < 0 ||
+            src === 'encode'
         )
     ) {
         warnUser('The resize parameter should be an object. Example: { width: 320, height: 240 }.', skipWarnings);

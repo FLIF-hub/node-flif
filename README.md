@@ -40,12 +40,31 @@ Linux/OSX is using [flif-wasm](https://github.com/SaschaNaz/flif-wasm), it has a
 ## TO-DO List
 
 * [x] Create API documentation (Subject to change prior to v1.0.0)
-* [ ] Create a simple wrapper that allows passing in a parameter object that will abstract out the native executable switches.
-  * Finishing up extracting common conversion argument code
-  * Finishing up transcoding
+* [x] Create a simple wrapper that allows passing in a parameter object that will abstract out the native executable switches.
+* [ ] Add in more multi-arg tests for encode/decode/transcode
 * [ ] Create automated end-to-end testing folder that verifies tests
 * [ ] Take care of all TODO's
-  * 20 remaining
+  * 20 remaining:
+    * **encode.js.** input should accept array of files
+    * **encode.js.** Check `adaptive` to see if it takes 3 image paths or just 2. If 3 accept filepath or false?
+    * **encode.js.** Test `guess` to see if it can have multiple choices passed in for each plane, if so use object.
+    * **advancedEncode.test.js.** Test combos of keepAlpha and alphaGuess
+    * **verifyParams.js.** Add in the rest of the parameters from encode/transcode for validation
+    * **verifyParams.js.** Ensure that encode-only params fail when passed in to transcode/decode and vice versa
+    * **verifyParams.test.js.** Test encodeQuality and decodeQuality.
+    * **verifyChanceAlpha.test.js.** Find out upper/lower bounds for chanceAlpha, all I know is it allows for the number 19.
+    * **verifyChanceCutoff.test.js.** Find out upper/lower bounds for chanceCutoff, all I know is it allows for the number 2.
+    * **verifyFit.test.js.** add falses for encode/transcode of fit
+    * **verifyFrameDelay.test.js.** Find out upper bounds for frameDelay and max number of frames allowed.
+    * **verifyManiacDivisor.test.js.** Find out upper/lower bounds for maniacDivisor, all I know is it allows for the number 30.
+    * **verifyManiacMinSize.test.js.** Find out upper/lower bounds for maniacMinSize, all I know is it allows for the number 50.
+    * **verifyManiacRepeats.test.js.** Find out upper bounds for maniacRepeats, all I know is it allows for the number 2
+    * **verifyManiacThreshold.test.js.** Find out upper/lower bounds for maniacThreshold, all I know is it allows for the number 64.
+    * **verifyMaxFrameLookBack.test.js.** Find out upper bounds for maxFrameLookBack, all I know is it allows for the number 1.
+    * **verifyMaxPaletteSize.test.js.** Find out upper bounds for maxPaletteSize, all I know is it allows for the number 512 and logically shouldn't be less than 2.
+    * **verifyResize.js.** Can you resize something less than 1px?
+    * **verifyResize.test.js.** Handle falses for encode/transcode.
+    * **verifyScale.test.js.** Handle falses for encode/transcode.
 * [ ] Add it to the NPM registry when at v1.0.0.
 
 * * *

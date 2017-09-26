@@ -27,17 +27,17 @@ function commonDecode (params) {
         fit = '-f=' + parseInt(params.fit.width) + 'x' + parseInt(params.fit.height);
     }
 
-    var arguments = [
+    var args = [
         decodeQuality,
         scale,
         resize,
         fit
     ].join(' ');
 
-    arguments = arguments.replace(/  +/g, ' ');
-    arguments = arguments.trim();
+    args = args.replace(/  +/g, ' ');
+    args = args.trim();
 
-    return arguments;
+    return args;
 }
 
 module.exports = commonDecode;

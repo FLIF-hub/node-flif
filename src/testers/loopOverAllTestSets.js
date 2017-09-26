@@ -14,9 +14,9 @@ function loopOverAllTestSets (testName, folder, testSet, async) {
     var subject = require(testFile);
 
     for (var i = 0; i < testSet.length; i++) {
-        var arguments = testSet[i].arguments;
+        var args = testSet[i].arguments;
         var skipWarnings = true;
-        if (!Array.isArray(arguments)) {
+        if (!Array.isArray(args)) {
             throw 'Argument is not an array.';
         }
         var expected = testSet[i].expected;
@@ -40,7 +40,7 @@ function loopOverAllTestSets (testName, folder, testSet, async) {
                         stack: stack,
                         testName: testName,
                         i: i,
-                        arguments: arguments,
+                        arguments: args,
                         expectation: expected,
                         actual: actual
                     };
@@ -49,12 +49,12 @@ function loopOverAllTestSets (testName, folder, testSet, async) {
                     throw errorMessage;
                 }
             }
-            arguments.push(cb);
-            arguments.push(skipWarnings);
-            subject.apply(null, arguments);
+            args.push(cb);
+            args.push(skipWarnings);
+            subject.apply(null, args);
         } else {
-            arguments.push(skipWarnings);
-            var actual = subject.apply(null, arguments);
+            args.push(skipWarnings);
+            var actual = subject.apply(null, args);
 
             var isEqual = true;
             try {
@@ -70,7 +70,7 @@ function loopOverAllTestSets (testName, folder, testSet, async) {
                     stack: stack,
                     testName: testName,
                     i: i,
-                    arguments: arguments,
+                    arguments: args,
                     expectation: expected,
                     actual: actual
                 };

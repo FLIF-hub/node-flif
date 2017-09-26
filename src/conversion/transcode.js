@@ -117,12 +117,12 @@ function transcode (params, skipWarnings) {
     ].join(' ');
 
     // -t -c -m -p -o -k -q=100 -s=2 -r=100x100 -f=100x100 "a.flif" "b.flif"
-    var arguments = '-t ' + options + ' "' + input + '" "' + output + '"';
+    var args = '-t ' + options + ' "' + input + '" "' + output + '"';
     // -t -c -m        -s=2   -f=100x100 "a.flif" "b.flif" ==> -t -c -m -s=2 -f=100x100 "a.flif" "b.flif"
-    arguments = arguments.replace(/  +/g, ' ');
-    arguments = arguments.trim();
+    args = args.replace(/  +/g, ' ');
+    args = args.trim();
 
-    return arguments;
+    return args;
 }
 
 module.exports = transcode;

@@ -44,7 +44,7 @@ Linux/OSX is using [flif-wasm](https://github.com/SaschaNaz/flif-wasm), it has a
 * [ ] Add in more multi-arg tests for encode/decode/transcode
 * [ ] Create automated end-to-end testing folder that verifies tests
 * [ ] Take care of all TODO's
-  * 19 remaining:
+  * 18 remaining:
     * **encode.js.** input should accept array of files
     * **encode.js.** Check `adaptive` to see if it takes 3 image paths or just 2. If 3 accept filepath or false?
     * **encode.js.** Test `guess` to see if it can have multiple choices passed in for each plane, if so use object.
@@ -63,7 +63,6 @@ Linux/OSX is using [flif-wasm](https://github.com/SaschaNaz/flif-wasm), it has a
     * **verifyMaxFrameLookBack.test.js.** Find out upper bounds for maxFrameLookBack, all I know is it allows for the number 1.
     * **verifyMaxPaletteSize.test.js.** Find out upper bounds for maxPaletteSize, all I know is it allows for the number 512 and logically shouldn't be less than 2.
     * **verifyResize.js.** Can you resize something less than 1px?
-    * **verifyScale.test.js.** Handle falses for encode/transcode.
 * [ ] Add it to the NPM registry when at v1.0.0.
 
 * * *

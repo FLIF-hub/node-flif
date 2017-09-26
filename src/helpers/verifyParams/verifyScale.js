@@ -22,7 +22,8 @@ function verifyScale (params, src, skipWarnings) {
             params.scale !== 4 &&
             params.scale !== 8 &&
             params.scale !== 16 &&
-            params.scale !== 32
+            params.scale !== 32 ||
+            src === 'encode'
         )
     ) {
         warnUser('The scale parameter must be one of the following numbers: 1, 2, 4, 8, 16, 32.', skipWarnings);

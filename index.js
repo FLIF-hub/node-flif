@@ -31,21 +31,21 @@ var nodeFLIF = {
         }
 
         var buildArgs = require('./src/conversion/' + src + '.js');
-        var arguments = buildArgs(params);
+        var args = buildArgs(params);
 
-        if (arguments === false) {
+        if (args === false) {
             throw 'ERROR: node-flif was unable to complete.';
         }
 
         if (params.async === false) {
             var runCommandSync = require('./src/helpers/runCommandSync.js');
-            return runCommandSync(arguments);
+            return runCommandSync(args);
         } else {
             var runCommand = require('./src/helpers/runCommand.js');
             if (callback && typeof(callback) === 'function') {
-                runCommand(arguments, callback);
+                runCommand(args, callback);
             } else {
-                runCommand(arguments);
+                runCommand(args);
             }
         }
     },

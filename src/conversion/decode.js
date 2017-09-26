@@ -25,12 +25,12 @@ function buildDecodeArgs (params, skipWarnings) {
     ].join(' ');
 
     // -d -c -m -p -o -k -q=100 -s=2 -r=100x100 -f=100x100 "input file.flif" "output file.png"
-    var arguments = '-d ' + options + ' "' + input + '" "' + output + '"';
+    var args = '-d ' + options + ' "' + input + '" "' + output + '"';
     // -d -c -m        -s=2   -f=100x100 "a.flif" "b.flif" ==> -d -c -m -s=2 -f=100x100 "a.flif" "b.flif"
-    arguments = arguments.replace(/  +/g, ' ');
-    arguments = arguments.trim();
+    args = args.replace(/  +/g, ' ');
+    args = args.trim();
 
-    return arguments;
+    return args;
 }
 
 module.exports = buildDecodeArgs;

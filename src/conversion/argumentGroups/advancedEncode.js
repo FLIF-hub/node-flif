@@ -108,7 +108,7 @@ function advancedEncode (params) {
         chromaSubsample = '-J';
     }
 
-    var arguments = [
+    var args = [
         maxPaletteSize,
         colorBuckets,
         channelCompact,
@@ -128,10 +128,10 @@ function advancedEncode (params) {
         chromaSubsample
     ].join(' ');
 
-    arguments = arguments.replace(/  +/g, ' ');
-    arguments = arguments.trim();
+    args = args.replace(/  +/g, ' ');
+    args = args.trim();
 
-    return arguments;
+    return args;
 }
 
 module.exports = advancedEncode;

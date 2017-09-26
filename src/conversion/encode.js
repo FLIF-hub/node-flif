@@ -86,12 +86,12 @@ function buildEncodeArgs (params, skipWarnings) {
     ].join(' ');
 
     // -e -c       -R100 -H0 "a.flif" "b.png"
-    var arguments = '-e ' + options + ' "' + input + '" "' + output + '"';
+    var args = '-e ' + options + ' "' + input + '" "' + output + '"';
     // -e -c -R100 -H0 "a.flif" "b.png"
-    arguments = arguments.replace(/  +/g, ' ');
-    arguments = arguments.trim();
+    args = args.replace(/  +/g, ' ');
+    args = args.trim();
 
-    return arguments;
+    return args;
 }
 
 module.exports = buildEncodeArgs;

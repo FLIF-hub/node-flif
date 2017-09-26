@@ -37,7 +37,7 @@ function commonEncode (params) {
         frameDelay = '-F' + params.frameDelay.join(',');
     }
 
-    var arguments = [
+    var args = [
         effort,
         interlace,
         encodeQuality,
@@ -45,10 +45,10 @@ function commonEncode (params) {
         frameDelay
     ].join(' ');
 
-    arguments = arguments.replace(/  +/g, ' ');
-    arguments = arguments.trim();
+    args = args.replace(/  +/g, ' ');
+    args = args.trim();
 
-    return arguments;
+    return args;
 }
 
 module.exports = commonEncode;

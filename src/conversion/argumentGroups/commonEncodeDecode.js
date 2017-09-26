@@ -29,7 +29,7 @@ function commonEncodeDecode (params) {
         keepPalette = '-k';
     }
 
-    var arguments = [
+    var args = [
         crc,
         keepMetaData,
         keepColorProfile,
@@ -37,10 +37,10 @@ function commonEncodeDecode (params) {
         keepPalette
     ].join(' ');
 
-    arguments = arguments.replace(/  +/g, ' ');
-    arguments = arguments.trim();
+    args = args.replace(/  +/g, ' ');
+    args = args.trim();
 
-    return arguments;
+    return args;
 }
 
 module.exports = commonEncodeDecode;

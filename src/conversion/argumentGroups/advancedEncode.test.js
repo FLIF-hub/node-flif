@@ -48,6 +48,11 @@ function test () {
         { expected: '-G1',    arguments: [{ guess: 'median gradient'      }] },
         { expected: '-G2',    arguments: [{ guess: 'median number'        }] },
         { expected: '-GX',    arguments: [{ guess: 'mixed'                }] },
+        // TODO: check how you actually pass stuff into "guess", --guess=N[N..]
+        // -K, --keep-invisible-rgb    store original RGB values behind A=0
+        // -G, --guess=N[N..]          pixel predictor for each plane (Y,Co,Cg,Alpha,Lookback)
+        //                             ?=pick heuristically, 0=avg, 1=median_grad, 2=median_nb, X=mixed
+        // -H, --invisible-guess=N     predictor for invisible pixels (only if -K is not used)
         { expected: '-H?',    arguments: [{ alphaGuess: 'heuristically'   }] },
         { expected: '-H0',    arguments: [{ alphaGuess: 'average'         }] },
         { expected: '-H1',    arguments: [{ alphaGuess: 'median gradient' }] },
@@ -55,7 +60,6 @@ function test () {
         { expected: '-HX',    arguments: [{ alphaGuess: 'mixed'           }] },
         { expected: '-J',     arguments: [{ chromaSubsample: true         }] },
         { expected: '',       arguments: [{ chromaSubsample: false        }] }
-        // TODO: test combos of keepAlpha and alphaGuess
     ];
 
     runAllTests(testName, 'conversion/argumentGroups', testData);

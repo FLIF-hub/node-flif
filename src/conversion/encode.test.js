@@ -110,7 +110,19 @@ function test () {
                     frameDelay: [100]        // -F100
                 }
             ]
-        }
+        },
+
+        // Testing KeepAlpha and AlphaGuess interaction
+        { expected: '-e -H? "a.png" "b.flif"',    arguments: [{input:'a.png',  output:'b.flif', keepAlpha: false, alphaGuess: 'heuristically'   }] },
+        { expected: '-e -H0 "a.png" "b.flif"',    arguments: [{input:'a.png',  output:'b.flif', keepAlpha: false, alphaGuess: 'average'         }] },
+        { expected: '-e -H1 "a.png" "b.flif"',    arguments: [{input:'a.png',  output:'b.flif', keepAlpha: false, alphaGuess: 'median gradient' }] },
+        { expected: '-e -H2 "a.png" "b.flif"',    arguments: [{input:'a.png',  output:'b.flif', keepAlpha: false, alphaGuess: 'median number'   }] },
+        { expected: '-e -HX "a.png" "b.flif"',    arguments: [{input:'a.png',  output:'b.flif', keepAlpha: false, alphaGuess: 'mixed'           }] },
+        { expected: '-e -K "a.png" "b.flif"',     arguments: [{input:'a.png',  output:'b.flif', keepAlpha: true,  alphaGuess: 'heuristically'   }] },
+        { expected: '-e -K "a.png" "b.flif"',     arguments: [{input:'a.png',  output:'b.flif', keepAlpha: true,  alphaGuess: 'average'         }] },
+        { expected: '-e -K "a.png" "b.flif"',     arguments: [{input:'a.png',  output:'b.flif', keepAlpha: true,  alphaGuess: 'median gradient' }] },
+        { expected: '-e -K "a.png" "b.flif"',     arguments: [{input:'a.png',  output:'b.flif', keepAlpha: true,  alphaGuess: 'median number'   }] },
+        { expected: '-e -K "a.png" "b.flif"',     arguments: [{input:'a.png',  output:'b.flif', keepAlpha: true,  alphaGuess: 'mixed'           }] }
     ];
 
     runAllTests(testName, 'conversion', testData);

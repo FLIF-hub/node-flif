@@ -18,6 +18,11 @@ function runCommandSync (args) {
     return child.toString().trim();
 }
 
+function openImage (args) {
+    var exec = require('child_process').execSync;
+    exec(args);
+}
+
 try { fs.unlinkSync('./sample/check.flif'); } catch (err) {}
 try { fs.unlinkSync('./sample/check.png'); } catch (err) {}
 
@@ -26,8 +31,14 @@ var version = runCommandSync('-v');
 console.log(version);
 
 // Should convert cat.png to check.flif
-var encode = runCommandSync('-e -L1 ./sample/cat.png ./sample/check.flif');
+var encode = runCommandSync('-e -L257 ./sample/cat.png ./sample/check.flif');
 console.log(encode);
+
+// good
+// L1, L0, L-1, L255, L256
+// bad
+// L-100, L-2, L257
+// https://github.com/FLIF-hub/FLIF/blob/v0.3/src/flif.cpp#L580
 
 // Log out true/false if file exists
 console.log(fs.existsSync('./sample/check.flif'));
@@ -39,3 +50,7 @@ console.log(decode);
 
 // Log out true/false if file exists
 console.log(fs.existsSync('./sample/check.png'));
+
+openImage('sample\\check.png');
+
+

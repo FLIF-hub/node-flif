@@ -15,11 +15,12 @@ function verifyMaxFrameLookBack (params, src, skipWarnings) {
         params.maxFrameLookBack === true ||
         params.maxFrameLookBack === null ||
         params.maxFrameLookBack && typeof(params.maxFrameLookBack) !== 'number' ||
-        typeof(params.maxFrameLookBack) === 'number' && params.maxFrameLookBack < 1 ||
+        typeof(params.maxFrameLookBack) === 'number' && params.maxFrameLookBack < -1 ||
+        typeof(params.maxFrameLookBack) === 'number' && params.maxFrameLookBack > 256 ||
         typeof(params.maxFrameLookBack) === 'number' && params.maxFrameLookBack % 1 !== 0 ||
         typeof(params.maxFrameLookBack) === 'number' && src === 'decode'
     ) {
-        warnUser('The maxFrameLookBack parameter must be a number greater than 0.', skipWarnings);
+        warnUser('The maxFrameLookBack parameter must be a whole number between -1 and 256.', skipWarnings);
         return false;
     }
 

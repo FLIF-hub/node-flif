@@ -13,7 +13,7 @@ function test () {
 
         // Multi param tests
         {
-            expected: '-e -E0 -I -Q0 -F250,1000,250 -P2 -A -L10 -R200 -T256 -D10 -M1 -X50 -Z1 -G2 -H1 "a.png" "b.flif"',
+            expected: '-e -E0 -I -Q0 -F250,1000,250 -P2 -A -L10 -R200 -T256 -D10 -M1 -X50 -Z2 -G2 -H1 "a.png" "b.flif"',
             arguments: [
                 {
                     input: 'a.png',
@@ -40,7 +40,7 @@ function test () {
                     maniacDivisor: 10,
                     maniacMinSize: 1,
                     chanceCutoff: 50,
-                    chanceAlpha: 1,
+                    chanceAlpha: 2,
                     adaptive: false,
                     guess: 'median number',
                     alphaGuess: 'median gradient',

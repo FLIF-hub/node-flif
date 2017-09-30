@@ -15,11 +15,12 @@ function verifyChanceAlpha (params, src, skipWarnings) {
         params.chanceAlpha === true ||
         params.chanceAlpha === null ||
         params.chanceAlpha && typeof(params.chanceAlpha) !== 'number' ||
-        typeof(params.chanceAlpha) === 'number' && params.chanceAlpha < 1 ||
+        typeof(params.chanceAlpha) === 'number' && params.chanceAlpha < 2 ||
+        typeof(params.chanceAlpha) === 'number' && params.chanceAlpha > 128 ||
         typeof(params.chanceAlpha) === 'number' && params.chanceAlpha % 1 !== 0 ||
         typeof(params.chanceAlpha) === 'number' && src === 'decode'
     ) {
-        warnUser('The chanceAlpha parameter must be a number greater than 0.', skipWarnings);
+        warnUser('The chanceAlpha parameter must be a number between 2 and 128.', skipWarnings);
         return false;
     }
 

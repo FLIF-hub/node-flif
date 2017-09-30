@@ -110,9 +110,9 @@ var encodeParams = {
     maniacRepeats: 2,       // MANIAC learning iterations; (default is 2)
     maniacThreshold: 64,    // MANIAC tree growth split threshold, in bits saved (default is 64)
     maniacDivisor: 30,      // MANIAC inner node count divisor (default is 30)
-    maniacMinSize: 50,      // MANIAC post-pruning threshold; (default is 50)
+    maniacMinSize: 50,      // MANIAC post-pruning threshold; (min allowed: 0, default is 50)
     chanceCutoff: 2,        // Minimum chance, 0-4096 (default is 2)
-    chanceAlpha: 19,        // Chance decay factor (default is 19)
+    chanceAlpha: 19,        // Chance decay factor (allows 2-128, default is 19)
     adaptive: false,        // true will apply an adaptive lossy encoding, 2nd input image is saliency map (default is false)
     guess: 'heuristically', // Pixel predictor for each plane (Y, Co, Cg, Alpha, Lookback)
                             // 'average', 'median gradient', 'median number', 'mixed', defualt is 'heuristically'
@@ -312,3 +312,5 @@ I need to try to solve these on my own with the CLI, then consult documentation 
 
 * Q: What are the upper/lower bounds for `-chance-alpha` (`-Z`, `chanceAlpha`), all I know is it allows for the number 19
 
+  options.alpha < 2 || options.alpha > 128
+  Not a sensible number for option -Z (try something between 2 and 128)

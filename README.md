@@ -44,7 +44,7 @@ Linux/OSX is using [flif-wasm](https://github.com/SaschaNaz/flif-wasm), it has a
 * [ ] Add in more multi-arg tests for encode/decode/transcode
 * [ ] Create automated end-to-end testing folder that verifies tests
 * [ ] Take care of all TODO's
-  * 14 remaining:
+  * 13 remaining:
     * **encode.js.** input should accept array of files
     * **encode.js.** Check `adaptive` to see if it takes 3 image paths or just 2. If 3 accept filepath or false?
     * **encode.js.** Check `guess` to see if it can have multiple choices passed in for each plane, if so use object.
@@ -55,7 +55,6 @@ Linux/OSX is using [flif-wasm](https://github.com/SaschaNaz/flif-wasm), it has a
     * **verifyChanceCutoff.test.js.** Find out upper/lower bounds for chanceCutoff, all I know is it allows for the number 2.
     * **verifyFit.test.js.** add falses for encode/transcode of fit
     * **verifyFrameDelay.test.js.** Find out upper bounds for frameDelay and max number of frames allowed.
-    * **verifyManiacRepeats.test.js.** Find out upper bounds for maniacRepeats, all I know is it allows for the number 2
     * **verifyManiacThreshold.test.js.** Find out upper/lower bounds for maniacThreshold, all I know is it allows for the number 64.
     * **verifyMaxPaletteSize.test.js.** Find out upper bounds for maxPaletteSize, all I know is it allows for the number 512 and logically shouldn't be less than 2.
     * **verifyResize.js.** Can you resize something less than 1px?

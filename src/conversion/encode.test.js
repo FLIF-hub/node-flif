@@ -13,7 +13,7 @@ function test () {
 
         // Multi param tests
         {
-            expected: '-e -E0 -I -Q0 -F250,1000,250 -P2 -A -L10 -R200 -T256 -D10 -M1 -X50 -Z2 -G2 -H1 "a.png" "b.flif"',
+            expected: '-e -E0 -I -Q0 -F250,1000,250 -P2 -A -L10 -R20 -T256 -D10 -M1 -X50 -Z2 -G2 -H1 "a.png" "b.flif"',
             arguments: [
                 {
                     input: 'a.png',
@@ -35,7 +35,7 @@ function test () {
                     subtractGreen: true,
                     frameShape: true,
                     maxFrameLookBack: 10,
-                    maniacRepeats: 200,
+                    maniacRepeats: 20,
                     maniacThreshold: 256,
                     maniacDivisor: 10,
                     maniacMinSize: 1,

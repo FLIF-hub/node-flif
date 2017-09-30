@@ -44,7 +44,7 @@ Linux/OSX is using [flif-wasm](https://github.com/SaschaNaz/flif-wasm), it has a
 * [ ] Add in more multi-arg tests for encode/decode/transcode
 * [ ] Create automated end-to-end testing folder that verifies tests
 * [ ] Take care of all TODO's
-  * 16 remaining:
+  * 14 remaining:
     * **encode.js.** input should accept array of files
     * **encode.js.** Check `adaptive` to see if it takes 3 image paths or just 2. If 3 accept filepath or false?
     * **encode.js.** Check `guess` to see if it can have multiple choices passed in for each plane, if so use object.
@@ -52,11 +52,9 @@ Linux/OSX is using [flif-wasm](https://github.com/SaschaNaz/flif-wasm), it has a
     * **verifyParams.js.** Add in the rest of the parameters from encode/transcode for validation
     * **verifyParams.js.** Ensure that encode-only params fail when passed in to transcode/decode and vice versa
     * **verifyParams.test.js.** Add tests for encodeQuality and decodeQuality.
-    * **verifyChanceAlpha.test.js.** Find out upper/lower bounds for chanceAlpha, all I know is it allows for the number 19.
     * **verifyChanceCutoff.test.js.** Find out upper/lower bounds for chanceCutoff, all I know is it allows for the number 2.
     * **verifyFit.test.js.** add falses for encode/transcode of fit
     * **verifyFrameDelay.test.js.** Find out upper bounds for frameDelay and max number of frames allowed.
-    * **verifyManiacDivisor.test.js.** Find out upper/lower bounds for maniacDivisor, all I know is it allows for the number 30.
     * **verifyManiacRepeats.test.js.** Find out upper bounds for maniacRepeats, all I know is it allows for the number 2
     * **verifyManiacThreshold.test.js.** Find out upper/lower bounds for maniacThreshold, all I know is it allows for the number 64.
     * **verifyMaxPaletteSize.test.js.** Find out upper bounds for maxPaletteSize, all I know is it allows for the number 512 and logically shouldn't be less than 2.
@@ -109,7 +107,7 @@ var encodeParams = {
     maxFrameLookBack: 1,    // Max number of frames for Frame_Lookback (allows -1-256, default is 1)
     maniacRepeats: 2,       // MANIAC learning iterations; (default is 2)
     maniacThreshold: 64,    // MANIAC tree growth split threshold, in bits saved (default is 64)
-    maniacDivisor: 30,      // MANIAC inner node count divisor (default is 30)
+    maniacDivisor: 30,      // MANIAC inner node count divisor (allows 1-268435455, default is 30)
     maniacMinSize: 50,      // MANIAC post-pruning threshold; (min allowed: 0, default is 50)
     chanceCutoff: 2,        // Minimum chance, 0-4096 (default is 2)
     chanceAlpha: 19,        // Chance decay factor (allows 2-128, default is 19)

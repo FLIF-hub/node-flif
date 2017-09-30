@@ -11,23 +11,23 @@ function test () {
         // TODO: Find out upper/lower bounds for maniacMinSize, all I know is it allows for the number 50
         { expected: true,  arguments: [{ input: 'a.png',  output: 'a.flif', maniacMinSize: 50               }, 'encode',    true]},
         { expected: true,  arguments: [{ input: 'a.flif', output: 'a.flif', maniacMinSize: 50               }, 'transcode', true]},
+        { expected: true,  arguments: [{ input: 'a.png',  output: 'a.flif', maniacMinSize: 0                }, 'encode',    true]},
+        { expected: true,  arguments: [{ input: 'a.flif', output: 'a.flif', maniacMinSize: 0                }, 'transcode', true]},
         { expected: true,  arguments: [{ input: 'a.png',  output: 'a.flif', maniacMinSize: 1                }, 'encode',    true]},
         { expected: true,  arguments: [{ input: 'a.flif', output: 'a.flif', maniacMinSize: 1                }, 'transcode', true]},
         { expected: true,  arguments: [{ input: 'a.png',  output: 'a.flif', maniacMinSize: 2                }, 'encode',    true]},
         { expected: true,  arguments: [{ input: 'a.flif', output: 'a.flif', maniacMinSize: 2                }, 'transcode', true]},
 
-        // Test random number from 1-100 on maniacMinSize
-        { expected: true,  arguments: [{ input: 'a.png',  output: 'a.flif', maniacMinSize: rand(99) + 1     }, 'encode',    true]},
-        { expected: true,  arguments: [{ input: 'a.flif', output: 'a.flif', maniacMinSize: rand(99) + 1     }, 'transcode', true]},
+        // Test random number from 0-1000 on maniacMinSize
+        { expected: true,  arguments: [{ input: 'a.png',  output: 'a.flif', maniacMinSize: rand(1000)       }, 'encode',    true]},
+        { expected: true,  arguments: [{ input: 'a.flif', output: 'a.flif', maniacMinSize: rand(1000)       }, 'transcode', true]},
 
         // Test known bad for maniacMinSize
         { expected: false, arguments: [{ input: 'a.flif', output: 'a.png',  maniacMinSize: 50               }, 'decode',    true]},
         { expected: false, arguments: [{ input: 'a.flif', output: 'a.png',  maniacMinSize: 1                }, 'decode',    true]},
         { expected: false, arguments: [{ input: 'a.flif', output: 'a.png',  maniacMinSize: 2                }, 'decode',    true]},
-        { expected: false, arguments: [{ input: 'a.flif', output: 'a.png',  maniacMinSize: rand(99) + 1     }, 'decode',    true]},
-        { expected: false, arguments: [{ input: 'a.png',  output: 'a.flif', maniacMinSize: 0                }, 'encode',    true]},
+        { expected: false, arguments: [{ input: 'a.flif', output: 'a.png',  maniacMinSize: rand(1000)       }, 'decode',    true]},
         { expected: false, arguments: [{ input: 'a.flif', output: 'a.png',  maniacMinSize: 0                }, 'decode',    true]},
-        { expected: false, arguments: [{ input: 'a.flif', output: 'a.flif', maniacMinSize: 0                }, 'transcode', true]},
         { expected: false, arguments: [{ input: 'a.png',  output: 'a.flif', maniacMinSize: -10              }, 'encode',    true]},
         { expected: false, arguments: [{ input: 'a.flif', output: 'a.png',  maniacMinSize: -10              }, 'decode',    true]},
         { expected: false, arguments: [{ input: 'a.flif', output: 'a.flif', maniacMinSize: -10              }, 'transcode', true]},

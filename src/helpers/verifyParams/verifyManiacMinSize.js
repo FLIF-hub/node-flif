@@ -15,11 +15,11 @@ function verifyManiacMinSize (params, src, skipWarnings) {
         params.maniacMinSize === true ||
         params.maniacMinSize === null ||
         params.maniacMinSize && typeof(params.maniacMinSize) !== 'number' ||
-        typeof(params.maniacMinSize) === 'number' && params.maniacMinSize < 1 ||
+        typeof(params.maniacMinSize) === 'number' && params.maniacMinSize < 0 ||
         typeof(params.maniacMinSize) === 'number' && params.maniacMinSize % 1 !== 0 ||
         typeof(params.maniacMinSize) === 'number' && src === 'decode'
     ) {
-        warnUser('The maniacMinSize parameter must be a number greater than 0.', skipWarnings);
+        warnUser('The maniacMinSize parameter must be a number greater than -1.', skipWarnings);
         return false;
     }
 

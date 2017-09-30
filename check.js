@@ -31,13 +31,13 @@ var version = runCommandSync('-v');
 console.log(version);
 
 // Should convert cat.png to check.flif
-var encode = runCommandSync('-e -L257 ./sample/cat.png ./sample/check.flif');
+var encode = runCommandSync('-e -M0 ./sample/cat.png ./sample/check.flif');
 console.log(encode);
 
 // good
-// L1, L0, L-1, L255, L256
+// M0
 // bad
-// L-100, L-2, L257
+// M-1
 // https://github.com/FLIF-hub/FLIF/blob/v0.3/src/flif.cpp#L580
 
 // Log out true/false if file exists

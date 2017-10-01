@@ -8,22 +8,27 @@ function test () {
     }
     var testData = [
         // Test known good for chanceCutoff
-        // TODO: Find out upper/lower bounds for chanceCutoff, all I know is it allows for the number 2
         { expected: true,  arguments: [{ input: 'a.png',  output: 'a.flif', chanceCutoff: 1                 }, 'encode',    true]},
         { expected: true,  arguments: [{ input: 'a.flif', output: 'a.flif', chanceCutoff: 1                 }, 'transcode', true]},
         { expected: true,  arguments: [{ input: 'a.png',  output: 'a.flif', chanceCutoff: 2                 }, 'encode',    true]},
         { expected: true,  arguments: [{ input: 'a.flif', output: 'a.flif', chanceCutoff: 2                 }, 'transcode', true]},
+        { expected: true,  arguments: [{ input: 'a.png',  output: 'a.flif', chanceCutoff: 128               }, 'encode',    true]},
+        { expected: true,  arguments: [{ input: 'a.flif', output: 'a.flif', chanceCutoff: 128               }, 'transcode', true]},
 
-        // Test random number from 1-100 on chanceCutoff
-        { expected: true,  arguments: [{ input: 'a.png',  output: 'a.flif', chanceCutoff: rand(99) + 1      }, 'encode',    true]},
-        { expected: true,  arguments: [{ input: 'a.flif', output: 'a.flif', chanceCutoff: rand(99) + 1      }, 'transcode', true]},
+        // Test random number from 1-128 on chanceCutoff
+        { expected: true,  arguments: [{ input: 'a.png',  output: 'a.flif', chanceCutoff: rand(127) + 1     }, 'encode',    true]},
+        { expected: true,  arguments: [{ input: 'a.flif', output: 'a.flif', chanceCutoff: rand(127) + 1     }, 'transcode', true]},
 
         // Test known bad for chanceCutoff
+        { expected: false, arguments: [{ input: 'a.flif', output: 'a.png',  chanceCutoff: 1                 }, 'decode',    true]},
         { expected: false, arguments: [{ input: 'a.flif', output: 'a.png',  chanceCutoff: 2                 }, 'decode',    true]},
-        { expected: false, arguments: [{ input: 'a.flif', output: 'a.png',  chanceCutoff: rand(99) + 1      }, 'decode',    true]},
+        { expected: false, arguments: [{ input: 'a.flif', output: 'a.png',  chanceCutoff: rand(127) + 1     }, 'decode',    true]},
         { expected: false, arguments: [{ input: 'a.png',  output: 'a.flif', chanceCutoff: 0                 }, 'encode',    true]},
         { expected: false, arguments: [{ input: 'a.flif', output: 'a.png',  chanceCutoff: 0                 }, 'decode',    true]},
         { expected: false, arguments: [{ input: 'a.flif', output: 'a.flif', chanceCutoff: 0                 }, 'transcode', true]},
+        { expected: false, arguments: [{ input: 'a.png',  output: 'a.flif', chanceCutoff: 129               }, 'encode',    true]},
+        { expected: false, arguments: [{ input: 'a.flif', output: 'a.png',  chanceCutoff: 129               }, 'decode',    true]},
+        { expected: false, arguments: [{ input: 'a.flif', output: 'a.flif', chanceCutoff: 129               }, 'transcode', true]},
         { expected: false, arguments: [{ input: 'a.png',  output: 'a.flif', chanceCutoff: -10               }, 'encode',    true]},
         { expected: false, arguments: [{ input: 'a.flif', output: 'a.png',  chanceCutoff: -10               }, 'decode',    true]},
         { expected: false, arguments: [{ input: 'a.flif', output: 'a.flif', chanceCutoff: -10               }, 'transcode', true]},

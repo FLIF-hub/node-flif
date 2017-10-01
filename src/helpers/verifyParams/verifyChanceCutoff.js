@@ -9,17 +9,20 @@
  */
 function verifyChanceCutoff (params, src, skipWarnings) {
     var warnUser = require('../warnUser.js');
+    var lowerBounds = 1;
+    var upperBounds = 128;
 
     if (
         params.chanceCutoff === false ||
         params.chanceCutoff === true ||
         params.chanceCutoff === null ||
         params.chanceCutoff && typeof(params.chanceCutoff) !== 'number' ||
-        typeof(params.chanceCutoff) === 'number' && params.chanceCutoff < 1 ||
+        typeof(params.chanceCutoff) === 'number' && params.chanceCutoff < lowerBounds ||
+        typeof(params.chanceCutoff) === 'number' && params.chanceCutoff > upperBounds ||
         typeof(params.chanceCutoff) === 'number' && params.chanceCutoff % 1 !== 0 ||
         typeof(params.chanceCutoff) === 'number' && src === 'decode'
     ) {
-        warnUser('The chanceCutoff parameter must be a number greater than 0.', skipWarnings);
+        warnUser('The chanceCutoff parameter must be a whole number between ' + lowerBounds + ' and ' + upperBounds + '.', skipWarnings);
         return false;
     }
 

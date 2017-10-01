@@ -9,21 +9,19 @@
  */
 function verifyQuality (params, src, skipWarnings) {
     var warnUser = require('../warnUser.js');
+    var lowerBounds = 0;
+    var upperBounds = 100;
 
     if (
-        params.quality === null ||
         params.quality === false ||
-        params.quality &&
-        typeof(params.quality) !== 'number' ||
-        params.quality &&
-        (
-            params.quality > 100 ||
-            params.quality < 0 ||
-            // check if whole number
-            params.quality % 1 !== 0
-        )
+        params.quality === true ||
+        params.quality === null ||
+        params.quality && typeof(params.quality) !== 'number' ||
+        typeof(params.quality) === 'number' && params.quality < lowerBounds ||
+        typeof(params.quality) === 'number' && params.quality > upperBounds ||
+        typeof(params.quality) === 'number' && params.quality % 1 !== 0
     ) {
-        warnUser('The quality parameter must be a whole number between 0 and 100.', skipWarnings);
+        warnUser('The quality parameter must be a whole number between ' + lowerBounds + ' and ' + upperBounds + '.', skipWarnings);
         return false;
     }
 

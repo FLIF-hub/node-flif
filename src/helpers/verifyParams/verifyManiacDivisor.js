@@ -9,18 +9,20 @@
  */
 function verifyManiacDivisor (params, src, skipWarnings) {
     var warnUser = require('../warnUser.js');
+    var lowerBounds = 1;
+    var upperBounds = 268435455;
 
     if (
         params.maniacDivisor === false ||
         params.maniacDivisor === true ||
         params.maniacDivisor === null ||
         params.maniacDivisor && typeof(params.maniacDivisor) !== 'number' ||
-        typeof(params.maniacDivisor) === 'number' && params.maniacDivisor < 1 ||
-        typeof(params.maniacDivisor) === 'number' && params.maniacDivisor > 268435455 ||
+        typeof(params.maniacDivisor) === 'number' && params.maniacDivisor < lowerBounds ||
+        typeof(params.maniacDivisor) === 'number' && params.maniacDivisor > upperBounds ||
         typeof(params.maniacDivisor) === 'number' && params.maniacDivisor % 1 !== 0 ||
         typeof(params.maniacDivisor) === 'number' && src === 'decode'
     ) {
-        warnUser('The maniacDivisor parameter must be a number between 1 and 268435455.', skipWarnings);
+        warnUser('The maniacDivisor parameter must be a number between ' + lowerBounds + ' and ' + upperBounds + '.', skipWarnings);
         return false;
     }
 

@@ -9,17 +9,18 @@
  */
 function verifyManiacMinSize (params, src, skipWarnings) {
     var warnUser = require('../warnUser.js');
+    var lowerBounds = 0;
 
     if (
         params.maniacMinSize === false ||
         params.maniacMinSize === true ||
         params.maniacMinSize === null ||
         params.maniacMinSize && typeof(params.maniacMinSize) !== 'number' ||
-        typeof(params.maniacMinSize) === 'number' && params.maniacMinSize < 0 ||
+        typeof(params.maniacMinSize) === 'number' && params.maniacMinSize < lowerBounds ||
         typeof(params.maniacMinSize) === 'number' && params.maniacMinSize % 1 !== 0 ||
         typeof(params.maniacMinSize) === 'number' && src === 'decode'
     ) {
-        warnUser('The maniacMinSize parameter must be a number greater than -1.', skipWarnings);
+        warnUser('The maniacMinSize parameter must be a whole number greater than or equal to ' + lowerBounds + '.', skipWarnings);
         return false;
     }
 

@@ -9,22 +9,20 @@
  */
 function verifyEffort (params, src, skipWarnings) {
     var warnUser = require('../warnUser.js');
+    var lowerBounds = 0;
+    var upperBounds = 100;
 
     if (
         params.effort === null ||
         params.effort === false ||
         params.effort &&
         typeof(params.effort) !== 'number' ||
-        typeof(params.effort) === 'number' &&
-        (
-            params.effort > 100 ||
-            params.effort < 0 ||
-            // check if whole number
-            params.effort % 1 !== 0
-        ) ||
+        typeof(params.effort) === 'number' && params.effort < lowerBounds ||
+        typeof(params.effort) === 'number' && params.effort > upperBounds ||
+        typeof(params.effort) === 'number' && params.effort % 1 !== 0 ||
         typeof(params.effort) === 'number' && src === 'decode'
     ) {
-        warnUser('The effort parameter must be a whole number between 0 and 100.', skipWarnings);
+        warnUser('The effort parameter must be a whole number between ' + lowerBounds + ' and ' + upperBounds + '.', skipWarnings);
         return false;
     }
 

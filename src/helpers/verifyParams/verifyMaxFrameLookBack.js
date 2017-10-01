@@ -9,18 +9,20 @@
  */
 function verifyMaxFrameLookBack (params, src, skipWarnings) {
     var warnUser = require('../warnUser.js');
+    var lowerBounds = -1;
+    var upperBounds = 256;
 
     if (
         params.maxFrameLookBack === false ||
         params.maxFrameLookBack === true ||
         params.maxFrameLookBack === null ||
         params.maxFrameLookBack && typeof(params.maxFrameLookBack) !== 'number' ||
-        typeof(params.maxFrameLookBack) === 'number' && params.maxFrameLookBack < -1 ||
-        typeof(params.maxFrameLookBack) === 'number' && params.maxFrameLookBack > 256 ||
+        typeof(params.maxFrameLookBack) === 'number' && params.maxFrameLookBack < lowerBounds ||
+        typeof(params.maxFrameLookBack) === 'number' && params.maxFrameLookBack > upperBounds ||
         typeof(params.maxFrameLookBack) === 'number' && params.maxFrameLookBack % 1 !== 0 ||
         typeof(params.maxFrameLookBack) === 'number' && src === 'decode'
     ) {
-        warnUser('The maxFrameLookBack parameter must be a whole number between -1 and 256.', skipWarnings);
+        warnUser('The maxFrameLookBack parameter must be a whole number between ' + lowerBounds + ' and ' + upperBounds + '.', skipWarnings);
         return false;
     }
 

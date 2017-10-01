@@ -9,18 +9,20 @@
  */
 function verifyChanceAlpha (params, src, skipWarnings) {
     var warnUser = require('../warnUser.js');
+    var lowerBounds = 2;
+    var upperBounds = 128;
 
     if (
         params.chanceAlpha === false ||
         params.chanceAlpha === true ||
         params.chanceAlpha === null ||
         params.chanceAlpha && typeof(params.chanceAlpha) !== 'number' ||
-        typeof(params.chanceAlpha) === 'number' && params.chanceAlpha < 2 ||
-        typeof(params.chanceAlpha) === 'number' && params.chanceAlpha > 128 ||
+        typeof(params.chanceAlpha) === 'number' && params.chanceAlpha < lowerBounds ||
+        typeof(params.chanceAlpha) === 'number' && params.chanceAlpha > upperBounds ||
         typeof(params.chanceAlpha) === 'number' && params.chanceAlpha % 1 !== 0 ||
         typeof(params.chanceAlpha) === 'number' && src === 'decode'
     ) {
-        warnUser('The chanceAlpha parameter must be a number between 2 and 128.', skipWarnings);
+        warnUser('The chanceAlpha parameter must be a whole number between ' + lowerBounds + ' and ' + upperBounds + '.', skipWarnings);
         return false;
     }
 

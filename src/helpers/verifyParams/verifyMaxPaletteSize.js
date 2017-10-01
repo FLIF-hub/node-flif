@@ -9,16 +9,17 @@
  */
 function verifyMaxPaletteSize (params, src, skipWarnings) {
     var warnUser = require('../warnUser.js');
+    var lowerBounds = 2;
 
     if (
         params.maxPaletteSize === false ||
         params.maxPaletteSize === true ||
         params.maxPaletteSize === null ||
         params.maxPaletteSize && typeof(params.maxPaletteSize) !== 'number' ||
-        typeof(params.maxPaletteSize) === 'number' && params.maxPaletteSize < 2 ||
+        typeof(params.maxPaletteSize) === 'number' && params.maxPaletteSize < lowerBounds ||
         typeof(params.maxPaletteSize) === 'number' && params.maxPaletteSize % 1 !== 0
     ) {
-        warnUser('The maxPaletteSize parameter must be a number equal to or greater than 2.', skipWarnings);
+        warnUser('The maxPaletteSize parameter must be a whole number equal to or greater than ' + lowerBounds + '.', skipWarnings);
         return false;
     }
 

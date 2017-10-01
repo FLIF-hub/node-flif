@@ -9,17 +9,18 @@
  */
 function verifyManiacThreshold (params, src, skipWarnings) {
     var warnUser = require('../warnUser.js');
+    var lowerBounds = 0;
 
     if (
         params.maniacThreshold === false ||
         params.maniacThreshold === true ||
         params.maniacThreshold === null ||
         params.maniacThreshold && typeof(params.maniacThreshold) !== 'number' ||
-        typeof(params.maniacThreshold) === 'number' && params.maniacThreshold < 0 ||
+        typeof(params.maniacThreshold) === 'number' && params.maniacThreshold < lowerBounds ||
         typeof(params.maniacThreshold) === 'number' && params.maniacThreshold % 1 !== 0 ||
         typeof(params.maniacThreshold) === 'number' && src === 'decode'
     ) {
-        warnUser('The maniacThreshold parameter must be a number greater than or equal to 0.', skipWarnings);
+        warnUser('The maniacThreshold parameter must be a whole number greater than or equal to ' + lowerBounds + '.', skipWarnings);
         return false;
     }
 

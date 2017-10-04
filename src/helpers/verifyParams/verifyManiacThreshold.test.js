@@ -8,28 +8,32 @@ function test () {
     }
     var testData = [
         // Test known good for maniacThreshold
-        // TODO: Find out upper/lower bounds for maniacThreshold, all I know is it allows for the number 64
+        { expected: true,  arguments: [{ input: 'a.png',  output: 'a.flif', maniacThreshold: 4              }, 'encode',    true]},
+        { expected: true,  arguments: [{ input: 'a.flif', output: 'a.flif', maniacThreshold: 4              }, 'transcode', true]},
         { expected: true,  arguments: [{ input: 'a.png',  output: 'a.flif', maniacThreshold: 64             }, 'encode',    true]},
         { expected: true,  arguments: [{ input: 'a.flif', output: 'a.flif', maniacThreshold: 64             }, 'transcode', true]},
-        { expected: true,  arguments: [{ input: 'a.png',  output: 'a.flif', maniacThreshold: 128            }, 'encode',    true]},
-        { expected: true,  arguments: [{ input: 'a.flif', output: 'a.flif', maniacThreshold: 128            }, 'transcode', true]},
-        { expected: true,  arguments: [{ input: 'a.png',  output: 'a.flif', maniacThreshold: 0              }, 'encode',    true]},
-        { expected: true,  arguments: [{ input: 'a.flif', output: 'a.flif', maniacThreshold: 0              }, 'transcode', true]},
-        { expected: true,  arguments: [{ input: 'a.png',  output: 'a.flif', maniacThreshold: 1              }, 'encode',    true]},
-        { expected: true,  arguments: [{ input: 'a.flif', output: 'a.flif', maniacThreshold: 1              }, 'transcode', true]},
+        { expected: true,  arguments: [{ input: 'a.png',  output: 'a.flif', maniacThreshold: 100000         }, 'encode',    true]},
+        { expected: true,  arguments: [{ input: 'a.flif', output: 'a.flif', maniacThreshold: 100000         }, 'transcode', true]},
 
-        // Test random number from 0-255 on maniacThreshold
-        { expected: true,  arguments: [{ input: 'a.png',  output: 'a.flif', maniacThreshold: rand(255)      }, 'encode',    true]},
-        { expected: true,  arguments: [{ input: 'a.flif', output: 'a.flif', maniacThreshold: rand(255)      }, 'transcode', true]},
+
+        // Test random number from 4-100000 on maniacThreshold
+        { expected: true,  arguments: [{ input: 'a.png',  output: 'a.flif', maniacThreshold: rand(99996) + 4}, 'encode',    true]},
+        { expected: true,  arguments: [{ input: 'a.flif', output: 'a.flif', maniacThreshold: rand(99996) + 4}, 'transcode', true]},
 
         // Test known bad for maniacThreshold
-        { expected: false, arguments: [{ input: 'a.flif', output: 'a.png',  maniacThreshold: 0              }, 'decode',    true]},
-        { expected: false, arguments: [{ input: 'a.flif', output: 'a.png',  maniacThreshold: 1              }, 'decode',    true]},
+        { expected: false, arguments: [{ input: 'a.flif', output: 'a.png',  maniacThreshold: 4              }, 'decode',    true]},
         { expected: false, arguments: [{ input: 'a.flif', output: 'a.png',  maniacThreshold: 64             }, 'decode',    true]},
-        { expected: false, arguments: [{ input: 'a.flif', output: 'a.png',  maniacThreshold: rand(255)      }, 'decode',    true]},
+        { expected: false, arguments: [{ input: 'a.flif', output: 'a.png',  maniacThreshold: 100000         }, 'decode',    true]},
+        { expected: false, arguments: [{ input: 'a.flif', output: 'a.png',  maniacThreshold: rand(99996) + 4}, 'decode',    true]},
         { expected: false, arguments: [{ input: 'a.png',  output: 'a.flif', maniacThreshold: -10            }, 'encode',    true]},
         { expected: false, arguments: [{ input: 'a.flif', output: 'a.png',  maniacThreshold: -10            }, 'decode',    true]},
         { expected: false, arguments: [{ input: 'a.flif', output: 'a.flif', maniacThreshold: -10            }, 'transcode', true]},
+        { expected: false, arguments: [{ input: 'a.png',  output: 'a.flif', maniacThreshold: 3              }, 'encode',    true]},
+        { expected: false, arguments: [{ input: 'a.flif', output: 'a.png',  maniacThreshold: 3              }, 'decode',    true]},
+        { expected: false, arguments: [{ input: 'a.flif', output: 'a.flif', maniacThreshold: 3              }, 'transcode', true]},
+        { expected: false, arguments: [{ input: 'a.png',  output: 'a.flif', maniacThreshold: 100001         }, 'encode',    true]},
+        { expected: false, arguments: [{ input: 'a.flif', output: 'a.png',  maniacThreshold: 100001         }, 'decode',    true]},
+        { expected: false, arguments: [{ input: 'a.flif', output: 'a.flif', maniacThreshold: 100001         }, 'transcode', true]},
         { expected: false, arguments: [{ input: 'a.png',  output: 'a.flif', maniacThreshold: 22.2           }, 'encode',    true]},
         { expected: false, arguments: [{ input: 'a.flif', output: 'a.png',  maniacThreshold: 22.2           }, 'decode',    true]},
         { expected: false, arguments: [{ input: 'a.flif', output: 'a.flif', maniacThreshold: 22.2           }, 'transcode', true]},

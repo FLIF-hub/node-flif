@@ -44,7 +44,7 @@ Linux/OSX is using [flif-wasm](https://github.com/SaschaNaz/flif-wasm), it has a
 * [ ] Add in more multi-arg tests for encode/decode/transcode
 * [ ] Create automated end-to-end testing folder that verifies tests
 * [ ] Take care of all TODO's
-  * 12 remaining:
+  * 11 remaining:
     * **encode.js.** input should accept array of files
     * **encode.js.** Check `adaptive` to see if it takes 3 image paths or just 2. If 3 accept filepath or false?
     * **encode.js.** Check `guess` to see if it can have multiple choices passed in for each plane, if so use object.
@@ -54,7 +54,6 @@ Linux/OSX is using [flif-wasm](https://github.com/SaschaNaz/flif-wasm), it has a
     * **verifyParams.test.js.** Add tests for encodeQuality and decodeQuality.
     * **verifyFit.test.js.** add falses for encode/transcode of fit
     * **verifyFrameDelay.test.js.** Find out upper bounds for frameDelay and max number of frames allowed.
-    * **verifyManiacThreshold.test.js.** Find out upper/lower bounds for maniacThreshold, all I know is it allows for the number 64.
     * **verifyMaxPaletteSize.test.js.** Find out upper bounds for maxPaletteSize, all I know is it allows for the number 512 and logically shouldn't be less than 2.
     * **verifyResize.js.** Can you resize something less than 1px?
 * [ ] Add it to the NPM registry when at v1.0.0.
@@ -344,7 +343,7 @@ Transcode,         Encode | subtractGreen    | `true`            | boolean      
 Transcode,         Encode | frameShape       | `true`            | boolean          | `true`, `false`                                                                                      | False will disable Frame_Shape transform
 Transcode,         Encode | maxFrameLookBack | `1`               | number           | Min: `-1`, Max: `256`                                                                                | Max number of frames for Frame_Lookback
 Transcode,         Encode | maniacRepeats    | `2`               | number           |                                                                                                      | MANIAC learning iterations
-Transcode,         Encode | maniacThreshold  | `64`              | number           |                                                                                                      | MANIAC tree growth split threshold, in bits saved
+Transcode,         Encode | maniacThreshold  | `64`              | number           | Min: `4`, Max: `100000`                                                                              | MANIAC tree growth split threshold, in bits saved
 Transcode,         Encode | maniacDivisor    | `30`              | number           | Min: `1`, Max: `268435455`                                                                           | MANIAC inner node count divisor
 Transcode,         Encode | maniacMinSize    | `50`              | number           | Min: `0`, No Max                                                                                     | MANIAC post-pruning threshold
 Transcode,         Encode | chanceCutoff     | `2`               | number           | Min: `1`, Max: `128`                                                                                 | Minimum chance, 0-4096

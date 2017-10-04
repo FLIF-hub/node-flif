@@ -9,7 +9,8 @@
  */
 function verifyManiacThreshold (params, src, skipWarnings) {
     var warnUser = require('../warnUser.js');
-    var lowerBounds = 0;
+    var lowerBounds = 4;
+    var upperBounds = 100000;
 
     if (
         params.maniacThreshold === false ||
@@ -17,10 +18,11 @@ function verifyManiacThreshold (params, src, skipWarnings) {
         params.maniacThreshold === null ||
         params.maniacThreshold && typeof(params.maniacThreshold) !== 'number' ||
         typeof(params.maniacThreshold) === 'number' && params.maniacThreshold < lowerBounds ||
+        typeof(params.maniacThreshold) === 'number' && params.maniacThreshold > upperBounds ||
         typeof(params.maniacThreshold) === 'number' && params.maniacThreshold % 1 !== 0 ||
         typeof(params.maniacThreshold) === 'number' && src === 'decode'
     ) {
-        warnUser('The maniacThreshold parameter must be a whole number greater than or equal to ' + lowerBounds + '.', skipWarnings);
+        warnUser('The maniacThreshold parameter must be a whole number between ' + lowerBounds + ' and ' + upperBounds + '.', skipWarnings);
         return false;
     }
 

@@ -102,7 +102,7 @@ function runTests (testsArray, sub) {
 }
 runTests(allTestsToRun);
 
-var expectedNumberOfTests = 1265;
+var expectedNumberOfTests = 1250;
 if (numberOfTestsPassed !== expectedNumberOfTests) {
     var message =
         'Total number of tests has changed.\n\n' +

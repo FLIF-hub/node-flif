@@ -9,7 +9,8 @@
  */
 function verifyMaxPaletteSize (params, src, skipWarnings) {
     var warnUser = require('../warnUser.js');
-    var lowerBounds = 2;
+    var lowerBounds = -32000;
+    var upperBounds = 32000;
 
     if (
         params.maxPaletteSize === false ||
@@ -17,9 +18,10 @@ function verifyMaxPaletteSize (params, src, skipWarnings) {
         params.maxPaletteSize === null ||
         params.maxPaletteSize && typeof(params.maxPaletteSize) !== 'number' ||
         typeof(params.maxPaletteSize) === 'number' && params.maxPaletteSize < lowerBounds ||
+        typeof(params.maxPaletteSize) === 'number' && params.maxPaletteSize > upperBounds ||
         typeof(params.maxPaletteSize) === 'number' && params.maxPaletteSize % 1 !== 0
     ) {
-        warnUser('The maxPaletteSize parameter must be a whole number equal to or greater than ' + lowerBounds + '.', skipWarnings);
+        warnUser('The maxPaletteSize parameter must be a whole number between ' + lowerBounds + ' and ' + upperBounds + '.', skipWarnings);
         return false;
     }
 

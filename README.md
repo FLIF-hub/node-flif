@@ -44,7 +44,7 @@ Linux/OSX is using [flif-wasm](https://github.com/SaschaNaz/flif-wasm), it has a
 * [ ] Add in more multi-arg tests for encode/decode/transcode
 * [ ] Create automated end-to-end testing folder that verifies tests
 * [ ] Take care of all TODO's
-  * 11 remaining:
+  * 10 remaining:
     * **encode.js.** input should accept array of files
     * **encode.js.** Check `adaptive` to see if it takes 3 image paths or just 2. If 3 accept filepath or false?
     * **encode.js.** Check `guess` to see if it can have multiple choices passed in for each plane, if so use object.
@@ -54,7 +54,6 @@ Linux/OSX is using [flif-wasm](https://github.com/SaschaNaz/flif-wasm), it has a
     * **verifyParams.test.js.** Add tests for encodeQuality and decodeQuality.
     * **verifyFit.test.js.** add falses for encode/transcode of fit
     * **verifyFrameDelay.test.js.** Find out upper bounds for frameDelay and max number of frames allowed.
-    * **verifyMaxPaletteSize.test.js.** Find out upper bounds for maxPaletteSize, all I know is it allows for the number 512 and logically shouldn't be less than 2.
     * **verifyResize.js.** Can you resize something less than 1px?
 * [ ] Add it to the NPM registry when at v1.0.0.
 
@@ -335,7 +334,7 @@ Transcode,         Encode | effort           | `60`              | number       
 Transcode,         Encode | interlace        | `'auto'`          | boolean, 'auto'  | `true`, `false`, or `'auto'`                                                                         | Enable or disable interlacing. Auto will enable except on tiny images
 Transcode,         Encode | keepAlpha        | `false`           | boolean          | `true`, `false`                                                                                      | Stores the original RGB data with 0 alpha (transparent)
 Transcode,         Encode | frameDelay       | `[100]`           | array of numbers |                                                                                                      | Animation frame delay in ms. Array of number(s). (default is [100] which applies to all frames)
-Transcode,         Encode | maxPaletteSize   | `512`             | number           |                                                                                                      | Max number of colors to store in a FLIF palette. PNG/GIF use 256. FLIF default is 512.
+Transcode,         Encode | maxPaletteSize   | `512`             | number           | Min: `-32000`, Max: `32000`                                                                          | Max number of colors to store in a FLIF palette. PNG/GIF use `256`. FLIF default is `512`. `0` will disable palette. Simple FLIF decoders (8-bit only) cannot palettes over `512`.
 Transcode,         Encode | colorBuckets     | `'auto'`          | boolean, 'auto'  | `true`, `false`, or `'auto'`                                                                         |
 Transcode,         Encode | channelCompact   | `true`            | boolean          | `true`, `false`                                                                                      |
 Transcode,         Encode | ycocg            | `true`            | boolean          | `true`, `false`                                                                                      | False will disable YCoCg transform and use G(R-G)(B-G)

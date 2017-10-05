@@ -79,6 +79,13 @@ function buildEncodeArgs (params, skipWarnings) {
 
     var input = params.input;
     var output = params.output;
+
+    if (Array.isArray(input)) {
+        input = '"' + input.join('" "') + '"';
+    } else {
+        input = '"' + input + '"';
+    }
+
     var options = [
         commonEncodeDecode(params),
         commonEncode(params),
@@ -86,7 +93,7 @@ function buildEncodeArgs (params, skipWarnings) {
     ].join(' ');
 
     // -e -c       -R100 -H0 "a.flif" "b.png"
-    var args = '-e ' + options + ' "' + input + '" "' + output + '"';
+    var args = '-e ' + options + ' ' + input + ' "' + output + '"';
     // -e -c -R100 -H0 "a.flif" "b.png"
     args = args.replace(/  +/g, ' ');
     args = args.trim();

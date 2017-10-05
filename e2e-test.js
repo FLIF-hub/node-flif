@@ -2,6 +2,13 @@
 
 var nodeFLIF = require('./index.js');
 
+function runCommandSync (executable, args) {
+    var exec = require('child_process').execSync;
+    var executableAndArgs = executable + ' ' + args;
+    var child = exec(executableAndArgs);
+    return child.toString().trim();
+}
+
 
 // Test converting 1 flif to 1 png
 
@@ -57,8 +64,6 @@ console.log('Identified cat.flif');
 
 // Create an animated flif
 
-// TODO: allow passing an array as input
-/*
 var encodeAnimParams = {
     input: [
         './sample/catrun01.png',
@@ -73,9 +78,14 @@ var encodeAnimParams = {
 };
 
 nodeFLIF.encode(encodeAnimParams, function (data) {
-    console.log('Encod catrun01-06.png -> encode-anim-test.flif finished.');
+    console.log('Encode catrun01-06.png -> encode-anim-test.flif finished.');
     if (data) {
         console.log(data);
     }
 });
-*/
+
+
+// Run Libflif
+var open = require('open');
+open('http://localhost:8000/node_modules/libflif.js/index.html');
+runCommandSync('node', './node_modules/npm-free-server/dist/server.js');

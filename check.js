@@ -31,8 +31,10 @@ var version = runCommandSync('-v');
 console.log(version);
 
 // Should convert cat.png to check.flif
-var encode = runCommandSync('-e -P32000 ./sample/cat.png ./sample/check.flif');
+var encode = runCommandSync('-e ./sample/catrun01.png ./sample/catrun02.png ./sample/catrun03.png ./sample/catrun04.png ./sample/catrun05.png ./sample/catrun06.png ./sample/check.flif');
 console.log(encode);
+
+runCommandSync('-t ./sample/catrun01.flif ./sample/cat.flif potato.flif');
 
 // good
 // P-32000 P32000

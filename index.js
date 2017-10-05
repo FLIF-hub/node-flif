@@ -27,6 +27,7 @@ var nodeFLIF = {
             throw 'The src argument must be encode, decode, or transcode.';
         }
         if (callback && typeof(callback) !== 'function') {
+            // Although this is actually the 3rd arg in this function, the user will only be passing in 2 when running en/de/trans
             throw 'The second argument in node-flif.' + src + ' is optional. However if used, it must be a function.';
         }
 

@@ -14,18 +14,38 @@ function verifyGuess (params, src, skipWarnings) {
         params.guess === false ||
         params.guess === true ||
         params.guess === null ||
-        params.guess && typeof(params.guess) !== 'string' ||
-        params.guess && src === 'decode' ||
-        params.guess && (
-            params.guess !== 'heuristically' &&
-            params.guess !== 'average' &&
-            params.guess !== 'median gradient' &&
-            params.guess !== 'median number' &&
-            params.guess !== 'mixed'
-        )
+        params.guess && typeof(params.guess) !== 'object' ||
+        params.guess && src === 'decode'
     ) {
-        warnUser('The guess parameter must one of the following: "heuristically", "average", "median gradient", "median number", "mixed".', skipWarnings);
+        warnUser('The guess parameter must be an object.', skipWarnings);
         return false;
+    }
+
+    if (params.guess && typeof(params.guess) === 'object') {
+        var y = params.guess.y;
+        var co = params.guess.co;
+        var cg = params.guess.cg;
+        var alpha = params.guess.alpha;
+        var lookback = params.guess.lookback;
+
+        var planes = [y, co, cg, alpha, lookback];
+
+        for (var i = 0; i < planes.length; i++) {
+            var plane = planes[i];
+            if (
+                plane && typeof(plane) === 'string' &&
+                (
+                    plane !== 'heuristically' &&
+                    plane !== 'average' &&
+                    plane !== 'median gradient' &&
+                    plane !== 'median number' &&
+                    plane !== 'mixed'
+                )
+            ) {
+                warnUser('The guess.' + plane + ' parameter must be one of the following: "heuristically", "average", "median gradient", "median number", "mixed".', skipWarnings);
+                return false;
+            }
+        }
     }
 
     return true;

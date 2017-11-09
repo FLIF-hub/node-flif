@@ -107,8 +107,13 @@ var encodeParams = {
     chanceCutoff: 2,        // Minimum chance, 0-4096 (allows 1-128, default is 2)
     chanceAlpha: 19,        // Chance decay factor (allows 2-128, default is 19)
     adaptive: false,        // true will apply an adaptive lossy encoding, 2nd input image is saliency map (default is false)
-    guess: 'heuristically', // Pixel predictor for each plane (Y, Co, Cg, Alpha, Lookback)
-                            // 'average', 'median gradient', 'median number', 'mixed', defualt is 'heuristically'
+    guess: {                // Pixel predictor for each plane (Y, Co, Cg, Alpha, Lookback)
+        y: 'heuristically', // 'average', 'median gradient', 'median number', 'mixed', default is 'heuristically'
+        co: 'heuristically',
+        cg: 'heuristically',
+        alpha: 'heuristically',
+        lookback: 'heuristically'
+    },
     alphaGuess: 'heuristically', // predictor for invisible pixels (only if keepAlpha is false)
     chromaSubsample: false  // true to write an incomplete 4:2:0 chroma subsampled lossy FLIF file (default is false)
 };

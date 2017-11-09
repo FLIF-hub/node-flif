@@ -42,7 +42,13 @@ function test () {
                     chanceCutoff: 50,
                     chanceAlpha: 2,
                     adaptive: false,
-                    guess: 'median number',
+                    guess: {
+                        y: 'average',
+                        co: 'median gradient',
+                        cg: 'median number',
+                        alpha: 'mixed',
+                        lookback: 'average'
+                    },
                     alphaGuess: 'median gradient',
                     chromaSubsample: false,
                     frameDelay: [250, 1000, 250]
@@ -75,7 +81,7 @@ function test () {
         },
         {
             expected: '-e -c -m -p -o -k -E100 -I -Q100 -K -F100 ' +
-                '-P512 -B -C -Y -W -S -L1 -R2 -T64 -D30 -M50 -X2 -Z19 -U -G? -J "a.png" "b.flif"',
+                '-P512 -B -C -Y -W -S -L1 -R2 -T64 -D30 -M50 -X2 -Z19 -U -G????? -J "a.png" "b.flif"',
             arguments: [
                 {
                     input: 'a.png',
@@ -104,7 +110,14 @@ function test () {
                     chanceCutoff: 2,         // -X2
                     chanceAlpha: 19,         // -Z19
                     adaptive: true,          // -U
-                    guess: 'heuristically',  // -G? heuristically | -G0 avg | -G1 median_grad | -G2 median_nb | -GX mixed
+                    guess: {                 // -G????? | -G012X? | etc.
+                        y: 'heuristically',  // -G? heuristically | -G0 avg | -G1 median_grad | -G2 median_nb | -GX mixed
+                        co: 'heuristically',
+                        cg: 'heuristically',
+                        alpha: 'heuristically',
+                        lookback: 'heuristically'
+                    },
+
                     alphaGuess: 'mixed',     // -H? | -H0 | -H1 | -H2 | -HX | (only if keepAlpha is false)
                     chromaSubsample: true,   // -J
                     frameDelay: [100]        // -F100

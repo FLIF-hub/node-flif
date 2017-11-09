@@ -32,7 +32,15 @@ var encodeParams = {
     input: './sample/cat.png',
     output: './sample/encode-test.flif',
     overwrite: true,
-    async: false
+    async: false,
+    // Pixel predictor for each plane: 'average', 'median gradient', 'median number', 'mixed', default is 'heuristically'
+    guess: {
+        y: 'heuristically',
+        co: 'heuristically',
+        cg: 'heuristically',
+        alpha: 'heuristically',
+        lookback: 'heuristically'
+    }
 };
 
 console.log(nodeFLIF.encode(encodeParams));

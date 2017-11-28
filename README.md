@@ -28,7 +28,7 @@ If you would like to encode/decode flif files in a browser look into other proje
 
 ## Supported Environments
 
-* **Windows** - Node v1.0.0+ (Tested in v0.12.18 and it wouldn't work, works on 1.0.0-8.4.0)
+* **Windows** - Node v1.0.0+ (Tested in v0.12.18 and it wouldn't work, works on 1.0.0-8.x.x)
 * **Linux/OSX** - Node v8.0.0+ (Tested in 2.5.0, 3.3.1, 4.0.0, 4.8.4, 5.0.0, 6.0.0, 7.0.0, 7.10.1, none worked. Tested in Ubuntu 16 and OSX 10.11 on Node 8.0.0 and 8.4.0 and it worked.)
 
 **Why the difference between Node version on Win/\*Nix:**
@@ -46,7 +46,7 @@ Linux/OSX is using [flif-wasm](https://github.com/SaschaNaz/flif-wasm), it has a
 * [ ] Take care of all TODO's
   * 9 remaining:
     * **encode.js.** Check `adaptive` to see if it takes 3 image paths or just 2. If 3 accept filepath or false?
-    * **encode.js.** Check `guess` to see if it can have multiple choices passed in for each plane, if so use object.
+    * **encode.js.** Check `alphaGuess` to see if it can have multiple choices passed in for each plane, if so use object.
     * **advancedEncode.test.js.** check how you actually pass stuff into "guess", --guess=N[N..]
     * **verifyParams.js.** Add in the rest of the parameters from encode/transcode for validation
     * **verifyParams.js.** Ensure that encode-only params fail when passed in to transcode/decode and vice versa
@@ -339,8 +339,8 @@ Transcode,         Encode | interlace        | `'auto'`          | boolean, 'aut
 Transcode,         Encode | keepAlpha        | `false`           | boolean                    | `true`, `false`                                                                                      | Stores the original RGB data with 0 alpha (transparent)
 Transcode,         Encode | frameDelay       | `[100]`           | array of numbers           |                                                                                                      | Animation frame delay in ms. Array of number(s). (default is [100] which applies to all frames)
 Transcode,         Encode | maxPaletteSize   | `512`             | number                     | Min: `-32000`, Max: `32000`                                                                          | Max number of colors to store in a FLIF palette. PNG/GIF use `256`. FLIF default is `512`. `0` will disable palette. Simple FLIF decoders (8-bit only) cannot palettes over `512`.
-Transcode,         Encode | colorBuckets     | `'auto'`          | boolean, 'auto'            | `true`, `false`, or `'auto'`                                                                         |
-Transcode,         Encode | channelCompact   | `true`            | boolean                    | `true`, `false`                                                                                      |
+Transcode,         Encode | colorBuckets     | `'auto'`          | boolean, 'auto'            | `true`, `false`, or `'auto'`                                                                         | Disable Color_Buckets transform
+Transcode,         Encode | channelCompact   | `true`            | boolean                    | `true`, `false`                                                                                      | Disable Channel_Compact transform
 Transcode,         Encode | ycocg            | `true`            | boolean                    | `true`, `false`                                                                                      | False will disable YCoCg transform and use G(R-G)(B-G)
 Transcode,         Encode | subtractGreen    | `true`            | boolean                    | `true`, `false`                                                                                      | False will disable YCoCg and SubtractGreen transform and use GRB
 Transcode,         Encode | frameShape       | `true`            | boolean                    | `true`, `false`                                                                                      | False will disable Frame_Shape transform
@@ -352,6 +352,11 @@ Transcode,         Encode | maniacMinSize    | `50`              | number       
 Transcode,         Encode | chanceCutoff     | `2`               | number                     | Min: `1`, Max: `128`                                                                                 | Minimum chance, 0-4096
 Transcode,         Encode | chanceAlpha      | `19`              | number                     | Min: `2`, Max: `128`                                                                                 | Chance decay factor
 Transcode,         Encode | adaptive         | `false`           | boolean                    | `true`, `false`                                                                                      | True will apply an adaptive lossy encoding, 2nd input image is saliency map
-Transcode,         Encode | guess            | `'heuristically'` | string                     | `'average'`, `'median gradient'`, `'median number'`, `'mixed'`, or `'heuristically'`                 | Pixel predictor for each plane (Y, Co, Cg, Alpha, Lookback)
+Transcode,         Encode | guess            | {}                | object                     | Object can contain any sub-parameter of `y`, `co`, `cg`, `alpha`, or `lookback`. All are optional.   | Object containing the pixel predictors for each plane (Y, Co, Cg, Alpha, Lookback)
+Transcode,         Encode | guess.y          | `'heuristically'` | string                     | `'average'`, `'median gradient'`, `'median number'`, `'mixed'`, or `'heuristically'`                 | Pixel predictor for Y
+Transcode,         Encode | guess.co         | `'heuristically'` | string                     | `'average'`, `'median gradient'`, `'median number'`, `'mixed'`, or `'heuristically'`                 | Pixel predictor for Co
+Transcode,         Encode | guess.cg         | `'heuristically'` | string                     | `'average'`, `'median gradient'`, `'median number'`, `'mixed'`, or `'heuristically'`                 | Pixel predictor for Cg
+Transcode,         Encode | guess.alpha      | `'heuristically'` | string                     | `'average'`, `'median gradient'`, `'median number'`, `'mixed'`, or `'heuristically'`                 | Pixel predictor for Alpha
+Transcode,         Encode | guess.lookback   | `'heuristically'` | string                     | `'average'`, `'median gradient'`, `'median number'`, `'mixed'`, or `'heuristically'`                 | Pixel predictor for Lookback
 Transcode,         Encode | alphaGuess       | `'heuristically'` | string                     | `'average'`, `'median gradient'`, `'median number'`, `'mixed'`, or `'heuristically'`                 | Predictor for invisible pixels (only if keepAlpha is false)
 Transcode,         Encode | chromaSubsample  | `false`           | boolean                    | `true`, `false`                                                                                      | True to write an incomplete 4:2:0 chroma subsampled lossy FLIF file

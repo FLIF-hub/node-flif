@@ -10,10 +10,12 @@
 function verifyGuess (params, src, skipWarnings) {
     var warnUser = require('../warnUser.js');
 
+    // Throw error if params.guess is used but isn't an object
     if (
         params.guess === false ||
         params.guess === true ||
         params.guess === null ||
+        params.guess && Array.isArray(params.guess) ||
         params.guess && typeof(params.guess) !== 'object' ||
         params.guess && src === 'decode'
     ) {
@@ -22,6 +24,7 @@ function verifyGuess (params, src, skipWarnings) {
     }
 
     if (params.guess && typeof(params.guess) === 'object') {
+        // Describe all planes
         var y = params.guess.y;
         var co = params.guess.co;
         var cg = params.guess.cg;
@@ -32,7 +35,9 @@ function verifyGuess (params, src, skipWarnings) {
 
         for (var i = 0; i < planes.length; i++) {
             var plane = planes[i];
+
             if (
+                plane && typeof(plane) !== 'string' ||
                 plane && typeof(plane) === 'string' &&
                 (
                     plane !== 'heuristically' &&
@@ -43,6 +48,21 @@ function verifyGuess (params, src, skipWarnings) {
                 )
             ) {
                 warnUser('The guess.' + plane + ' parameter must be one of the following: "heuristically", "average", "median gradient", "median number", "mixed".', skipWarnings);
+                return false;
+            }
+        }
+
+        var expectedKeys = ['y', 'co', 'cg', 'alpha', 'lookback'];
+        for (var key in params.guess) {
+            var keyMatched = false;
+            for (var j = 0; j < expectedKeys.length; j++) {
+                var expectedKey = expectedKeys[j];
+                if (key === expectedKey) {
+                    keyMatched = true;
+                }
+            }
+            if (!keyMatched) {
+                warnUser('Unexpected parameter: guess.' + key + '. Use one or more of the following instead: y, co, cg, alpha, lookback.', skipWarnings);
                 return false;
             }
         }

@@ -45,7 +45,7 @@ var allTestsToRun = [
         require('./src/helpers/verifyParams/verifyChanceCutoff.test.js'),
         require('./src/helpers/verifyParams/verifyChanceAlpha.test.js'),
         require('./src/helpers/verifyParams/verifyAdaptive.test.js'),
-        // require('./src/helpers/verifyParams/verifyGuess.test.js'),
+        require('./src/helpers/verifyParams/verifyGuess.test.js'),
         require('./src/helpers/verifyParams/verifyAlphaGuess.test.js'),
         require('./src/helpers/verifyParams/verifyChromaSubsample.test.js')
     ],
@@ -56,11 +56,10 @@ var allTestsToRun = [
     require('./src/information/version.test.js'),
 
     // Conversion
-    //require('./src/conversion/encode.test.js'), [
-    [
+    require('./src/conversion/encode.test.js'), [
         require('./src/conversion/argumentGroups/commonEncodeDecode.test.js'),
         require('./src/conversion/argumentGroups/commonEncode.test.js'),
-        // require('./src/conversion/argumentGroups/advancedEncode.test.js'),
+        require('./src/conversion/argumentGroups/advancedEncode.test.js'),
         require('./src/conversion/argumentGroups/commonDecode.test.js')
     ],
     require('./src/conversion/decode.test.js'),
@@ -103,7 +102,7 @@ function runTests (testsArray, sub) {
 }
 runTests(allTestsToRun);
 
-var expectedNumberOfTests = 1162;
+var expectedNumberOfTests = 1316;
 if (numberOfTestsPassed !== expectedNumberOfTests) {
     var message =
         'Total number of tests has changed.\n\n' +

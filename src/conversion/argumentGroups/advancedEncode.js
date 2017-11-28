@@ -72,21 +72,34 @@ function advancedEncode (params) {
     if (params.adaptive === true) {
         adaptive = '-U';
     }
-    if (params.guess === 'heuristically') {
-        guess = '-G?';
+
+    if (params.guess) {
+        var guessDefault = 'heuristically';
+        var y = params.guess.y || guessDefault;
+        var co = params.guess.co || guessDefault;
+        var cg = params.guess.cg || guessDefault;
+        var alpha = params.guess.alpha || guessDefault;
+        var lookback = params.guess.lookback || guessDefault;
+        var planes = [y, co, cg, alpha, lookback];
+
+        guess = '-G';
+
+        var planeMap = {
+            'heuristically': '?',
+            'average': '0',
+            'median gradient': '1',
+            'median number': '2',
+            'mixed': 'X'
+        };
+
+        for (var i = 0; i < planes.length; i++) {
+            var plane = planes[i];
+            guess = guess + planeMap[plane];
+        }
     }
-    if (params.guess === 'average') {
-        guess = '-G0';
-    }
-    if (params.guess === 'median gradient') {
-        guess = '-G1';
-    }
-    if (params.guess === 'median number') {
-        guess = '-G2';
-    }
-    if (params.guess === 'mixed') {
-        guess = '-GX';
-    }
+
+
+
     if (!params.keepAlpha) {
         if (params.alphaGuess === 'heuristically') {
             alphaGuess = '-H?';

@@ -3,6 +3,7 @@
 * * *
 
 # NOT READY FOR USE YET
+
 ### Star & Watch for updates
 
 * * *
@@ -44,10 +45,8 @@ Linux/OSX is using [flif-wasm](https://github.com/SaschaNaz/flif-wasm), it has a
 * [ ] Add in more multi-arg tests for encode/decode/transcode
 * [ ] Create automated end-to-end testing folder that verifies tests
 * [ ] Take care of all TODO's
-  * 9 remaining:
+  * 7 remaining:
     * **encode.js.** Check `adaptive` to see if it takes 3 image paths or just 2. If 3 accept filepath or false?
-    * **encode.js.** Check `alphaGuess` to see if it can have multiple choices passed in for each plane, if so use object.
-    * **advancedEncode.test.js.** check how you actually pass stuff into "guess", --guess=N[N..]
     * **verifyParams.js.** Add in the rest of the parameters from encode/transcode for validation
     * **verifyParams.js.** Ensure that encode-only params fail when passed in to transcode/decode and vice versa
     * **verifyParams.test.js.** Add tests for encodeQuality and decodeQuality.
@@ -114,7 +113,8 @@ var encodeParams = {
         alpha: 'heuristically',
         lookback: 'heuristically'
     },
-    alphaGuess: 'heuristically', // predictor for invisible pixels (only if keepAlpha is false)
+    alphaGuess: 'average',  // Predictor for invisible pixels (only if keepAlpha is false)
+                            // `'average'`, `'median gradient'`, `'median neighbors'` (Default is to set keepAlpha to true)
     chromaSubsample: false  // true to write an incomplete 4:2:0 chroma subsampled lossy FLIF file (default is false)
 };
 
@@ -130,8 +130,7 @@ nodeFLIF.encode(endcodeParams, function (data) {
 
 A note on `keepPalette`; by default, we read PNG images as 24-bit RGB or 32-bit RGBA. node-flif will automatically use a palette if the number of colors turns out to be low (doesn't matter if the original PNG is PNG8 or PNG24/32). The order the colors are stored in the FLIF palette is not related to the PNG8 palette order. By default it sorts on luma, the first component of YCoCg. The option `keepPalette: true` makes it read/write PNG8, and preserve the palette order. The FLIF format itself supports any palette order (though sorted on luma is slightly more compact to encode), and it supports more than 256 colors too. The main advantage of `keepPalette: true` is that you get full control over the palette order, and also a better memory footprint (because everything stays at 8-bit per pixel, no intermediate representation as 24-bit / 32-bit RGBA).
 
-TODO: Test `adaptive` to see if it takes 3 image paths or just 2. If 3 accept filepath or false?  
-TODO: Test `guess` to see if it can have multiple choices passed in for each plane, if so use object.
+TODO: Test `adaptive` to see if it takes 3 image paths or just 2. If 3 accept filepath or false?
 
 * * *
 
@@ -352,11 +351,11 @@ Transcode,         Encode | maniacMinSize    | `50`              | number       
 Transcode,         Encode | chanceCutoff     | `2`               | number                     | Min: `1`, Max: `128`                                                                                 | Minimum chance, 0-4096
 Transcode,         Encode | chanceAlpha      | `19`              | number                     | Min: `2`, Max: `128`                                                                                 | Chance decay factor
 Transcode,         Encode | adaptive         | `false`           | boolean                    | `true`, `false`                                                                                      | True will apply an adaptive lossy encoding, 2nd input image is saliency map
-Transcode,         Encode | guess            | {}                | object                     | Object can contain any sub-parameter of `y`, `co`, `cg`, `alpha`, or `lookback`. All are optional.   | Object containing the pixel predictors for each plane (Y, Co, Cg, Alpha, Lookback)
+Transcode,         Encode | guess            | `{}`              | object                     | Object can contain any sub-parameter of `y`, `co`, `cg`, `alpha`, or `lookback`. All are optional.   | Object containing the pixel predictors for each plane (Y, Co, Cg, Alpha, Lookback)
 Transcode,         Encode | guess.y          | `'heuristically'` | string                     | `'average'`, `'median gradient'`, `'median number'`, `'mixed'`, or `'heuristically'`                 | Pixel predictor for Y
 Transcode,         Encode | guess.co         | `'heuristically'` | string                     | `'average'`, `'median gradient'`, `'median number'`, `'mixed'`, or `'heuristically'`                 | Pixel predictor for Co
 Transcode,         Encode | guess.cg         | `'heuristically'` | string                     | `'average'`, `'median gradient'`, `'median number'`, `'mixed'`, or `'heuristically'`                 | Pixel predictor for Cg
 Transcode,         Encode | guess.alpha      | `'heuristically'` | string                     | `'average'`, `'median gradient'`, `'median number'`, `'mixed'`, or `'heuristically'`                 | Pixel predictor for Alpha
 Transcode,         Encode | guess.lookback   | `'heuristically'` | string                     | `'average'`, `'median gradient'`, `'median number'`, `'mixed'`, or `'heuristically'`                 | Pixel predictor for Lookback
-Transcode,         Encode | alphaGuess       | `'heuristically'` | string                     | `'average'`, `'median gradient'`, `'median number'`, `'mixed'`, or `'heuristically'`                 | Predictor for invisible pixels (only if keepAlpha is false)
+Transcode,         Encode | alphaGuess       | keepAlpha: `true` | string                     | `'average'`, `'median gradient'`, `'median neighbors'`                                               | Predictor for invisible pixels (only if keepAlpha is false). Has no default, as default is to keep the original alpha values.
 Transcode,         Encode | chromaSubsample  | `false`           | boolean                    | `true`, `false`                                                                                      | True to write an incomplete 4:2:0 chroma subsampled lossy FLIF file

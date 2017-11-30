@@ -17,14 +17,12 @@ function verifyAlphaGuess (params, src, skipWarnings) {
         params.alphaGuess && typeof(params.alphaGuess) !== 'string' ||
         params.alphaGuess && src === 'decode' ||
         params.alphaGuess && (
-            params.alphaGuess !== 'heuristically' &&
             params.alphaGuess !== 'average' &&
             params.alphaGuess !== 'median gradient' &&
-            params.alphaGuess !== 'median number' &&
-            params.alphaGuess !== 'mixed'
+            params.alphaGuess !== 'median neighbors'
         )
     ) {
-        warnUser('The alphaGuess parameter must one of the following: "heuristically", "average", "median gradient", "median number", "mixed".', skipWarnings);
+        warnUser('The alphaGuess parameter must be one of the following: "average", "median gradient", "median neighbors".', skipWarnings);
         return false;
     }
 

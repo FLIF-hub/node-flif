@@ -72,14 +72,15 @@ function advancedEncode (params) {
     if (params.adaptive === true) {
         adaptive = '-U';
     }
-
     if (params.guess) {
         var guessDefault = 'heuristically';
+
         var y = params.guess.y || guessDefault;
         var co = params.guess.co || guessDefault;
         var cg = params.guess.cg || guessDefault;
         var alpha = params.guess.alpha || guessDefault;
         var lookback = params.guess.lookback || guessDefault;
+
         var planes = [y, co, cg, alpha, lookback];
 
         guess = '-G';
@@ -92,27 +93,19 @@ function advancedEncode (params) {
             'mixed': 'X'
         };
 
+        // -G => -G?012X || -G????? || -G11111 || etc.
         for (var i = 0; i < planes.length; i++) {
             var plane = planes[i];
             guess = guess + planeMap[plane];
         }
     }
-
     if (!params.keepAlpha) {
-        if (params.alphaGuess === 'heuristically') {
-            alphaGuess = '-H?';
-        }
         if (params.alphaGuess === 'average') {
             alphaGuess = '-H0';
-        }
-        if (params.alphaGuess === 'median gradient') {
+        } else if (params.alphaGuess === 'median gradient') {
             alphaGuess = '-H1';
-        }
-        if (params.alphaGuess === 'median number') {
+        } else if (params.alphaGuess === 'median neighbors') {
             alphaGuess = '-H2';
-        }
-        if (params.alphaGuess === 'mixed') {
-            alphaGuess = '-HX';
         }
     }
     if (params.chromaSubsample === true) {

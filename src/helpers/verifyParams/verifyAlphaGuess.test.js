@@ -5,23 +5,26 @@ function test () {
     var testName = 'verifyAlphaGuess';
     var testData = [
         // Test known good for alphaGuess
-        { expected: true,  arguments: [{ input: 'a.png',  output: 'a.flif', alphaGuess: 'heuristically'     }, 'encode',    true]},
-        { expected: true,  arguments: [{ input: 'a.flif', output: 'a.flif', alphaGuess: 'heuristically'     }, 'transcode', true]},
         { expected: true,  arguments: [{ input: 'a.png',  output: 'a.flif', alphaGuess: 'average'           }, 'encode',    true]},
         { expected: true,  arguments: [{ input: 'a.flif', output: 'a.flif', alphaGuess: 'average'           }, 'transcode', true]},
         { expected: true,  arguments: [{ input: 'a.png',  output: 'a.flif', alphaGuess: 'median gradient'   }, 'encode',    true]},
         { expected: true,  arguments: [{ input: 'a.flif', output: 'a.flif', alphaGuess: 'median gradient'   }, 'transcode', true]},
-        { expected: true,  arguments: [{ input: 'a.png',  output: 'a.flif', alphaGuess: 'median number'     }, 'encode',    true]},
-        { expected: true,  arguments: [{ input: 'a.flif', output: 'a.flif', alphaGuess: 'median number'     }, 'transcode', true]},
-        { expected: true,  arguments: [{ input: 'a.png',  output: 'a.flif', alphaGuess: 'mixed'             }, 'encode',    true]},
-        { expected: true,  arguments: [{ input: 'a.flif', output: 'a.flif', alphaGuess: 'mixed'             }, 'transcode', true]},
+        { expected: true,  arguments: [{ input: 'a.png',  output: 'a.flif', alphaGuess: 'median neighbors'  }, 'encode',    true]},
+        { expected: true,  arguments: [{ input: 'a.flif', output: 'a.flif', alphaGuess: 'median neighbors'  }, 'transcode', true]},
 
         // Test known bad for alphaGuess
-        { expected: false, arguments: [{ input: 'a.flif', output: 'a.png',  alphaGuess: 'heuristically'     }, 'decode',    true]},
         { expected: false, arguments: [{ input: 'a.flif', output: 'a.png',  alphaGuess: 'average'           }, 'decode',    true]},
         { expected: false, arguments: [{ input: 'a.flif', output: 'a.png',  alphaGuess: 'median gradient'   }, 'decode',    true]},
+        { expected: false, arguments: [{ input: 'a.flif', output: 'a.png',  alphaGuess: 'median neighbors'  }, 'decode',    true]},
+        { expected: false, arguments: [{ input: 'a.png',  output: 'a.flif', alphaGuess: 'heuristically'     }, 'encode',    true]},
+        { expected: false, arguments: [{ input: 'a.flif', output: 'a.png',  alphaGuess: 'heuristically'     }, 'decode',    true]},
+        { expected: false, arguments: [{ input: 'a.flif', output: 'a.flif', alphaGuess: 'heuristically'     }, 'transcode', true]},
+        { expected: false, arguments: [{ input: 'a.png',  output: 'a.flif', alphaGuess: 'median number'     }, 'encode',    true]},
         { expected: false, arguments: [{ input: 'a.flif', output: 'a.png',  alphaGuess: 'median number'     }, 'decode',    true]},
+        { expected: false, arguments: [{ input: 'a.flif', output: 'a.flif', alphaGuess: 'median number'     }, 'transcode', true]},
+        { expected: false, arguments: [{ input: 'a.png',  output: 'a.flif', alphaGuess: 'mixed'             }, 'encode',    true]},
         { expected: false, arguments: [{ input: 'a.flif', output: 'a.png',  alphaGuess: 'mixed'             }, 'decode',    true]},
+        { expected: false, arguments: [{ input: 'a.flif', output: 'a.flif', alphaGuess: 'mixed'             }, 'transcode', true]},
         { expected: false, arguments: [{ input: 'a.png',  output: 'a.flif', alphaGuess: true                }, 'encode',    true]},
         { expected: false, arguments: [{ input: 'a.flif', output: 'a.png',  alphaGuess: true                }, 'decode',    true]},
         { expected: false, arguments: [{ input: 'a.flif', output: 'a.flif', alphaGuess: true                }, 'transcode', true]},

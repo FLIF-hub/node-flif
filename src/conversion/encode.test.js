@@ -118,7 +118,7 @@ function test () {
                         lookback: 'heuristically'
                     },
 
-                    alphaGuess: 'mixed',     // -H? | -H0 | -H1 | -H2 | -HX | (only if keepAlpha is false)
+                    alphaGuess: 'average',   // -H0 | -H1 | -H2 | (only if keepAlpha is false)
                     chromaSubsample: true,   // -J
                     frameDelay: [100]        // -F100
                 }
@@ -126,16 +126,12 @@ function test () {
         },
 
         // Testing KeepAlpha and AlphaGuess interaction
-        { expected: '-e -H? "a.png" "b.flif"',    arguments: [{input:'a.png',  output:'b.flif', keepAlpha: false, alphaGuess: 'heuristically'   }] },
-        { expected: '-e -H0 "a.png" "b.flif"',    arguments: [{input:'a.png',  output:'b.flif', keepAlpha: false, alphaGuess: 'average'         }] },
-        { expected: '-e -H1 "a.png" "b.flif"',    arguments: [{input:'a.png',  output:'b.flif', keepAlpha: false, alphaGuess: 'median gradient' }] },
-        { expected: '-e -H2 "a.png" "b.flif"',    arguments: [{input:'a.png',  output:'b.flif', keepAlpha: false, alphaGuess: 'median number'   }] },
-        { expected: '-e -HX "a.png" "b.flif"',    arguments: [{input:'a.png',  output:'b.flif', keepAlpha: false, alphaGuess: 'mixed'           }] },
-        { expected: '-e -K "a.png" "b.flif"',     arguments: [{input:'a.png',  output:'b.flif', keepAlpha: true,  alphaGuess: 'heuristically'   }] },
-        { expected: '-e -K "a.png" "b.flif"',     arguments: [{input:'a.png',  output:'b.flif', keepAlpha: true,  alphaGuess: 'average'         }] },
-        { expected: '-e -K "a.png" "b.flif"',     arguments: [{input:'a.png',  output:'b.flif', keepAlpha: true,  alphaGuess: 'median gradient' }] },
-        { expected: '-e -K "a.png" "b.flif"',     arguments: [{input:'a.png',  output:'b.flif', keepAlpha: true,  alphaGuess: 'median number'   }] },
-        { expected: '-e -K "a.png" "b.flif"',     arguments: [{input:'a.png',  output:'b.flif', keepAlpha: true,  alphaGuess: 'mixed'           }] }
+        { expected: '-e -H0 "a.png" "b.flif"',    arguments: [{input:'a.png',  output:'b.flif', keepAlpha: false, alphaGuess: 'average'          }] },
+        { expected: '-e -H1 "a.png" "b.flif"',    arguments: [{input:'a.png',  output:'b.flif', keepAlpha: false, alphaGuess: 'median gradient'  }] },
+        { expected: '-e -H2 "a.png" "b.flif"',    arguments: [{input:'a.png',  output:'b.flif', keepAlpha: false, alphaGuess: 'median neighbors' }] },
+        { expected: '-e -K "a.png" "b.flif"',     arguments: [{input:'a.png',  output:'b.flif', keepAlpha: true,  alphaGuess: 'average'          }] },
+        { expected: '-e -K "a.png" "b.flif"',     arguments: [{input:'a.png',  output:'b.flif', keepAlpha: true,  alphaGuess: 'median gradient'  }] },
+        { expected: '-e -K "a.png" "b.flif"',     arguments: [{input:'a.png',  output:'b.flif', keepAlpha: true,  alphaGuess: 'median neighbors' }] }
     ];
 
     runAllTests(testName, 'conversion', testData);

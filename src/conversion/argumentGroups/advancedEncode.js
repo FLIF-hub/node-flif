@@ -98,8 +98,6 @@ function advancedEncode (params) {
         }
     }
 
-
-
     if (!params.keepAlpha) {
         if (params.alphaGuess === 'heuristically') {
             alphaGuess = '-H?';

@@ -99,6 +99,48 @@ var guesses = {
         cg: 'heuristically',
         alpha: 'heuristically'
     },
+    allTrue: {
+        y: true,
+        co: true,
+        cg: true,
+        alpha: true,
+        lookback: true
+    },
+    allFalse: {
+        y: false,
+        co: false,
+        cg: false,
+        alpha: false,
+        lookback: false
+    },
+    allNumber: {
+        y: 5,
+        co: 5,
+        cg: 5,
+        alpha: 5,
+        lookback: 5
+    },
+    allString: {
+        y: 'a',
+        co: 'a',
+        cg: 'a',
+        alpha: 'a',
+        lookback: 'a'
+    },
+    allArray: {
+        y: ['a'],
+        co: ['a'],
+        cg: ['a'],
+        alpha: ['a'],
+        lookback: ['a']
+    },
+    allObject: {
+        y: { a: 'b' },
+        co: { a: 'b' },
+        cg: { a: 'b' },
+        alpha: { a: 'b' },
+        lookback: { a: 'b' }
+    },
     empty: {}
 };
 

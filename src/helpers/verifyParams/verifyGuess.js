@@ -37,6 +37,7 @@ function verifyGuess (params, src, skipWarnings) {
             var plane = planes[i];
 
             if (
+                plane === false ||
                 plane && typeof(plane) !== 'string' ||
                 plane && typeof(plane) === 'string' &&
                 (

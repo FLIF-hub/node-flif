@@ -19,7 +19,8 @@ var allTestsToRun = [
         require('./src/helpers/verifyParams/ensureInputOutputExist.test.js'),
         require('./src/helpers/verifyParams/verifyAsync.test.js'),
         require('./src/helpers/verifyParams/verifyOverwrite.test.js'),
-        require('./src/helpers/verifyParams/verifyQuality.test.js'),
+        require('./src/helpers/verifyParams/verifyDecodeQuality.test.js'),
+        require('./src/helpers/verifyParams/verifyEncodeQuality.test.js'),
         require('./src/helpers/verifyParams/verifyKeepMetaData.test.js'),
         require('./src/helpers/verifyParams/verifyKeepColorProfile.test.js'),
         require('./src/helpers/verifyParams/verifyCRC.test.js'),
@@ -102,7 +103,7 @@ function runTests (testsArray, sub) {
 }
 runTests(allTestsToRun);
 
-var expectedNumberOfTests = 1333;
+var expectedNumberOfTests = 1375;
 if (numberOfTestsPassed !== expectedNumberOfTests) {
     var message =
         'Total number of tests has changed.\n\n' +

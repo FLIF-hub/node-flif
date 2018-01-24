@@ -49,7 +49,6 @@ Linux/OSX is using [flif-wasm](https://github.com/SaschaNaz/flif-wasm), it has a
     * **encode.js.** Check `adaptive` to see if it takes 3 image paths or just 2. If 3 accept filepath or false?
     * **verifyParams.js.** Add in the rest of the parameters from encode/transcode for validation
     * **verifyParams.js.** Ensure that encode-only params fail when passed in to transcode/decode and vice versa
-    * **verifyParams.test.js.** Add tests for encodeQuality and decodeQuality.
     * **verifyFit.test.js.** add falses for encode/transcode of fit
     * **verifyFrameDelay.test.js.** Find out upper bounds for frameDelay and max number of frames allowed.
     * **verifyResize.js.** Can you resize something less than 1px?
@@ -328,10 +327,10 @@ Transcode, Decode, Encode | crc              | `true`            | boolean      
 Transcode, Decode, Encode | keepMetaData     | `true`            | boolean                    | `true`, `false`                                                                                      | Set to false to strip EXIF/XMP metadata
 Transcode, Decode, Encode | keepColorProfile | `true`            | boolean                    | `true`, `false`                                                                                      | Set to false to strip ICC color profile
 Transcode, Decode, Encode | keepPalette      | `false`           | boolean                    | `true`, `false`                                                                                      | Set to true to keep the existing PNG pallete.
-Transcode, Decode,        | scale            | `1`               | number                     | (2,4,8,16,32)                                                                                        | Lossy downscaled image at scale 1:N
-Transcode, Decode,        | resize           | N/A               | object                     | Object must contain the keys of `width` and `height`, their pairs must be numbers                    | Lossy downscaled image to fit inside given Width/Height
-Transcode, Decode,        | fit              | N/A               | object                     | Object must contain the keys of `width` and `height`, their pairs must be numbers                    | Lossy downscaled image to exactly the given Width/Height
-Transcode, Decode,        | decodeQuality    | `100`             | number                     | Min: `0`, Max: `100`                                                                                 | 99 and below are lossy
+Transcode, Decode         | scale            | `1`               | number                     | `1`, `2`, `4`, `8`, `16`, `32`                                                                                        | Lossy downscaled image at scale 1:N
+Transcode, Decode         | resize           | N/A               | object                     | Object must contain the keys of `width` and `height`, their pairs must be numbers                    | Lossy downscaled image to fit inside given Width/Height
+Transcode, Decode         | fit              | N/A               | object                     | Object must contain the keys of `width` and `height`, their pairs must be numbers                    | Lossy downscaled image to fit exactly the given Width/Height
+Transcode, Decode         | decodeQuality    | `100`             | number                     | Min: `0`, Max: `100`                                                                                 | 99 and below are lossy
 Transcode,         Encode | encodeQuality    | `100`             | number                     | Min: `0`, Max: `100`                                                                                 | 99 and below are lossy
 Transcode,         Encode | effort           | `60`              | number                     | Min: `0`, Max: `100`                                                                                 | 0 = fast/poor compression, 100 = slowest/best?
 Transcode,         Encode | interlace        | `'auto'`          | boolean, 'auto'            | `true`, `false`, or `'auto'`                                                                         | Enable or disable interlacing. Auto will enable except on tiny images

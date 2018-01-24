@@ -7,6 +7,7 @@
  * @param  {boolean} skipWarnings This is used in our tests to not flag false positives.
  * @return {boolean}              True if params pass, false if there was a problem.
  */
+// eslint-disable-next-line no-unused-vars
 function verifyMaxPaletteSize (params, src, skipWarnings) {
     var warnUser = require('../warnUser.js');
     var lowerBounds = -32000;

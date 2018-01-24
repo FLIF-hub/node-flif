@@ -26,12 +26,12 @@ function test () {
         { expected: true,  arguments: [{ input: 'a.flif', output: 'a.flif', maxPaletteSize: rand()          }, 'transcode', true]},
 
         // Test known bad for maxPaletteSize
-        { expected: true,  arguments: [{ input: 'a.flif', output: 'a.png',  maxPaletteSize: rand()          }, 'decode',    true]},
-        { expected: true,  arguments: [{ input: 'a.flif', output: 'a.png',  maxPaletteSize: 0               }, 'decode',    true]},
-        { expected: true,  arguments: [{ input: 'a.flif', output: 'a.png',  maxPaletteSize: 1               }, 'decode',    true]},
-        { expected: true,  arguments: [{ input: 'a.flif', output: 'a.png',  maxPaletteSize: 512             }, 'decode',    true]},
-        { expected: true,  arguments: [{ input: 'a.flif', output: 'a.png',  maxPaletteSize: 32000           }, 'decode',    true]},
-        { expected: true,  arguments: [{ input: 'a.flif', output: 'a.png',  maxPaletteSize: -32000          }, 'decode',    true]},
+        { expected: false, arguments: [{ input: 'a.flif', output: 'a.png',  maxPaletteSize: rand()          }, 'decode',    true]},
+        { expected: false, arguments: [{ input: 'a.flif', output: 'a.png',  maxPaletteSize: 0               }, 'decode',    true]},
+        { expected: false, arguments: [{ input: 'a.flif', output: 'a.png',  maxPaletteSize: 1               }, 'decode',    true]},
+        { expected: false, arguments: [{ input: 'a.flif', output: 'a.png',  maxPaletteSize: 512             }, 'decode',    true]},
+        { expected: false, arguments: [{ input: 'a.flif', output: 'a.png',  maxPaletteSize: 32000           }, 'decode',    true]},
+        { expected: false, arguments: [{ input: 'a.flif', output: 'a.png',  maxPaletteSize: -32000          }, 'decode',    true]},
         { expected: false, arguments: [{ input: 'a.flif', output: 'a.png',  maxPaletteSize: -32001          }, 'encode',    true]},
         { expected: false, arguments: [{ input: 'a.flif', output: 'a.png',  maxPaletteSize: -32001          }, 'decode',    true]},
         { expected: false, arguments: [{ input: 'a.flif', output: 'a.flif', maxPaletteSize: -32001          }, 'transcode', true]},

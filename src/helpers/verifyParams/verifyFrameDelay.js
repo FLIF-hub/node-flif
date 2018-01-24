@@ -14,9 +14,9 @@ function verifyFrameDelay (params, src, skipWarnings) {
         params.frameDelay === null ||
         params.frameDelay === false ||
         params.frameDelay === true ||
-        params.frameDelay && src === 'decode' ||
         params.frameDelay && typeof(params.frameDelay) !== 'object' ||
-        params.frameDelay && !Array.isArray(params.frameDelay)
+        params.frameDelay && !Array.isArray(params.frameDelay) ||
+        params.frameDelay && src === 'decode'
     ) {
         warnUser('The frameDelay parameter must be an array of numbers like [100] or [100, 250].', skipWarnings);
         return false;

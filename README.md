@@ -45,10 +45,9 @@ Linux/OSX is using [flif-wasm](https://github.com/SaschaNaz/flif-wasm), it has a
 * [ ] Add in more multi-arg tests for encode/decode/transcode
 * [ ] Create automated end-to-end testing folder that verifies tests
 * [ ] Take care of all TODO's
-  * 7 remaining:
+  * 4 remaining:
     * **encode.js.** Check `adaptive` to see if it takes 3 image paths or just 2. If 3 accept filepath or false?
     * **verifyParams.js.** Add in the rest of the parameters from encode/transcode for validation
-    * **verifyParams.js.** Ensure that encode-only params fail when passed in to transcode/decode and vice versa
     * **verifyFrameDelay.test.js.** Find out upper bounds for frameDelay and max number of frames allowed.
     * **verifyResize.js.** Can you resize something less than 1px?
 * [ ] Add it to the NPM registry when at v1.0.0.

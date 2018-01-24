@@ -7,7 +7,6 @@
  * @param  {boolean} skipWarnings This is used in our tests to not flag false positives.
  * @return {boolean}              True if params pass, false if there was a problem.
  */
-// eslint-disable-next-line no-unused-vars
 function verifyMaxPaletteSize (params, src, skipWarnings) {
     var warnUser = require('../warnUser.js');
     var lowerBounds = -32000;
@@ -20,7 +19,8 @@ function verifyMaxPaletteSize (params, src, skipWarnings) {
         params.maxPaletteSize && typeof(params.maxPaletteSize) !== 'number' ||
         typeof(params.maxPaletteSize) === 'number' && params.maxPaletteSize < lowerBounds ||
         typeof(params.maxPaletteSize) === 'number' && params.maxPaletteSize > upperBounds ||
-        typeof(params.maxPaletteSize) === 'number' && params.maxPaletteSize % 1 !== 0
+        typeof(params.maxPaletteSize) === 'number' && params.maxPaletteSize % 1 !== 0 ||
+        typeof(params.maxPaletteSize) === 'number' && src === 'decode'
     ) {
         warnUser('The maxPaletteSize parameter must be a whole number between ' + lowerBounds + ' and ' + upperBounds + '.', skipWarnings);
         return false;

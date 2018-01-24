@@ -6,7 +6,7 @@
 function executablePath () {
     var executionPath = '';
 
-    if (process.platform === 'win32') {
+    if (process.env.FLIF === 'exe') {
         var path = require('path');
         executionPath = path.join('.', 'executables', 'win32', 'flif.exe');
     } else {

@@ -9,11 +9,9 @@
   },
   "scripts": {
     "start": "node index.js",
-    "installer": "npm install --loglevel=error",
-    "lint": "eslint --config=.eslintrc.js index.js e2e-test.js test.js src/**/*.js",
-    "fix": "eslint --fix --config=.eslintrc.js index.js e2e-test.js test.js src/**/*.js",
     "debug": "node --inspect-brk test.js",
-    "test": "node test.js"
+    "test-exe": "node test.js --exe",
+    "test-wasm": "node test.js --wasm"
   },
   "repository": {
     "type": "git",
@@ -29,21 +27,8 @@
     "decode"
   ],
   "dependencies": {
+    "flif-wasm": "^1.0.6",
     "root-require": "^0.3.1"
-  },
-  "darwinDependencies": {
-    "flif-wasm": "^1.0.6"
-  },
-  "linuxDependencies": {
-    "flif-wasm": "^1.0.6"
-  },
-  "devDependencies": {
-    "eslint": "^4.16.0",
-    "libflif.js": "github:SaschaNaz/libflif.js#master",
-    "npm-free-server": "^1.1.0",
-    "npm-platform-dependencies": "^0.0.13",
-    "open": "0.0.5",
-    "pre-commit": "^1.2.2"
   },
   "author": "The Jared Wilcurt",
   "license": "MIT",
@@ -56,10 +41,5 @@
   "bugs": {
     "url": "https://github.com/FLIF-hub/node-flif/issues"
   },
-  "homepage": "https://github.com/FLIF-hub/node-flif#readme",
-  "postinstall": "npmpd",
-  "pre-commit": [
-    "test",
-    "lint"
-  ]
+  "homepage": "https://github.com/FLIF-hub/node-flif#readme"
 }

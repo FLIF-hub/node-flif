@@ -7,7 +7,7 @@ function test () {
     var testData = [
         { expected: 'node "' + path.resolve(process.cwd(), 'node_modules', 'flif-wasm', 'lib', 'flif-wasm.js') + '"', arguments: [] }
     ];
-    if (process.platform === 'win32') {
+    if (process.env.FLIF === 'exe') {
         testData = [
             { expected: 'executables\\win32\\flif.exe', arguments: [] }
         ];

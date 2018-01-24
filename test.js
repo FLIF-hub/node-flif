@@ -1,5 +1,10 @@
-/* eslint-disable no-console */
 
+// Set environment variables to tell node-flif to use the native flif.exe or the flif-wasm Node module
+if (process.argv[2] && process.argv[2] === '--exe') {
+    process.env.FLIF = 'exe';
+} else if (process.argv[2] && process.argv[2] === '--wasm') {
+    process.env.FLIF = 'wasm';
+}
 
 var start = Date.now();
 

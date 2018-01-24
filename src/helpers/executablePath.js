@@ -4,12 +4,14 @@
  * @return {string} Path to the correct flif binary
  */
 function executablePath () {
-    var path = require('path');
-    var wasmPath = require.resolve('flif-wasm');
-    var executionPath = 'node "' + wasmPath + '"';
+    var executionPath = '';
 
     if (process.platform === 'win32') {
+        var path = require('path');
         executionPath = path.join('.', 'executables', 'win32', 'flif.exe');
+    } else {
+        var wasmPath = require.resolve('flif-wasm');
+        executionPath = 'node "' + wasmPath + '"';
     }
 
     return executionPath;

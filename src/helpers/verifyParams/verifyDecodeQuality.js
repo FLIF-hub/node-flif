@@ -19,7 +19,8 @@ function verifyDecodeQuality (params, src, skipWarnings) {
         params.decodeQuality && typeof(params.decodeQuality) !== 'number' ||
         typeof(params.decodeQuality) === 'number' && params.decodeQuality < lowerBounds ||
         typeof(params.decodeQuality) === 'number' && params.decodeQuality > upperBounds ||
-        typeof(params.decodeQuality) === 'number' && params.decodeQuality % 1 !== 0
+        typeof(params.decodeQuality) === 'number' && params.decodeQuality % 1 !== 0 ||
+        typeof(params.decodeQuality) === 'number' && src === 'encode'
     ) {
         warnUser('The decodeQuality parameter must be a whole number between ' + lowerBounds + ' and ' + upperBounds + '.', skipWarnings);
         return false;

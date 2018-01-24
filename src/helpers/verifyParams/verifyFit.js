@@ -28,7 +28,8 @@ function verifyFit (params, src, skipWarnings) {
             isNaN(parseInt(params.fit.width)) ||
             isNaN(parseInt(params.fit.height)) ||
             params.fit.width < 0 ||
-            params.fit.height < 0
+            params.fit.height < 0 ||
+            src === 'encode'
         )
     ) {
         warnUser('The fit parameter should be an object. Example: { width: 320, height: 240 }.', skipWarnings);

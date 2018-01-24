@@ -8,25 +8,25 @@ function test () {
     }
     var testData = [
         // Test known good for decodeQuality
-        { expected: true,  arguments: [{ input: 'a.png',  output: 'a.flif', decodeQuality: 0           }, 'encode',    true] },
         { expected: true,  arguments: [{ input: 'a.flif', output: 'a.png',  decodeQuality: 0           }, 'decode',    true] },
         { expected: true,  arguments: [{ input: 'a.flif', output: 'a.flif', decodeQuality: 0           }, 'transcode', true] },
-        { expected: true,  arguments: [{ input: 'a.png',  output: 'a.flif', decodeQuality: 1           }, 'encode',    true] },
         { expected: true,  arguments: [{ input: 'a.flif', output: 'a.png',  decodeQuality: 1           }, 'decode',    true] },
         { expected: true,  arguments: [{ input: 'a.flif', output: 'a.flif', decodeQuality: 1           }, 'transcode', true] },
-        { expected: true,  arguments: [{ input: 'a.png',  output: 'a.flif', decodeQuality: 50          }, 'encode',    true] },
         { expected: true,  arguments: [{ input: 'a.flif', output: 'a.png',  decodeQuality: 50          }, 'decode',    true] },
         { expected: true,  arguments: [{ input: 'a.flif', output: 'a.flif', decodeQuality: 50          }, 'transcode', true] },
-        { expected: true,  arguments: [{ input: 'a.png',  output: 'a.flif', decodeQuality: 100         }, 'encode',    true] },
         { expected: true,  arguments: [{ input: 'a.flif', output: 'a.png',  decodeQuality: 100         }, 'decode',    true] },
         { expected: true,  arguments: [{ input: 'a.flif', output: 'a.flif', decodeQuality: 100         }, 'transcode', true] },
 
         // Test random number from 0-100 on decodeQuality
-        { expected: true,  arguments: [{ input: 'a.png',  output: 'a.flif', decodeQuality: rand(100)   }, 'encode',    true] },
         { expected: true,  arguments: [{ input: 'a.flif', output: 'a.png',  decodeQuality: rand(100)   }, 'decode',    true] },
         { expected: true,  arguments: [{ input: 'a.flif', output: 'a.flif', decodeQuality: rand(100)   }, 'transcode', true] },
 
         // Test known bad for decodeQuality
+        { expected: false, arguments: [{ input: 'a.png',  output: 'a.flif', decodeQuality: 0           }, 'encode',    true] },
+        { expected: false, arguments: [{ input: 'a.png',  output: 'a.flif', decodeQuality: 1           }, 'encode',    true] },
+        { expected: false, arguments: [{ input: 'a.png',  output: 'a.flif', decodeQuality: 50          }, 'encode',    true] },
+        { expected: false, arguments: [{ input: 'a.png',  output: 'a.flif', decodeQuality: 100         }, 'encode',    true] },
+        { expected: false, arguments: [{ input: 'a.png',  output: 'a.flif', decodeQuality: rand(100)   }, 'encode',    true] },
         { expected: false, arguments: [{ input: 'a.png',  output: 'a.flif', decodeQuality: 101         }, 'encode',    true] },
         { expected: false, arguments: [{ input: 'a.flif', output: 'a.png',  decodeQuality: 101         }, 'decode',    true] },
         { expected: false, arguments: [{ input: 'a.flif', output: 'a.flif', decodeQuality: 101         }, 'transcode', true] },

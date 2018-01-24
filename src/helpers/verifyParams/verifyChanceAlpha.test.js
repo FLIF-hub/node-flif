@@ -8,7 +8,6 @@ function test () {
     }
     var testData = [
         // Test known good for chanceAlpha
-        // TODO: Find out upper/lower bounds for chanceAlpha, all I know is it allows for the number 19
         { expected: true,  arguments: [{ input: 'a.png',  output: 'a.flif', chanceAlpha: 2                  }, 'encode',    true]},
         { expected: true,  arguments: [{ input: 'a.flif', output: 'a.flif', chanceAlpha: 2                  }, 'transcode', true]},
         { expected: true,  arguments: [{ input: 'a.png',  output: 'a.flif', chanceAlpha: 19                 }, 'encode',    true]},

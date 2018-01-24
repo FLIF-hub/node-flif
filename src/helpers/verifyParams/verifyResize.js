@@ -27,7 +27,6 @@ function verifyResize (params, src, skipWarnings) {
             params.resize.height === true ||
             isNaN(parseInt(params.resize.width)) ||
             isNaN(parseInt(params.resize.height)) ||
-            // TODO: Can you resize something less than 1px?
             params.resize.width < 0 ||
             params.resize.height < 0 ||
             src === 'encode'

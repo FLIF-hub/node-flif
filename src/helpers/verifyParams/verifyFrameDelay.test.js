@@ -8,7 +8,6 @@ function test () {
     }
     var testData = [
         // Test known good for frameDelay
-        // TODO: Find out upper bounds for frameDelay and max number of frames allowed
         { expected: true,  arguments: [{ input: 'a.png',  output: 'a.flif', frameDelay: [0]                 }, 'encode',    true]},
         { expected: true,  arguments: [{ input: 'a.flif', output: 'a.flif', frameDelay: [0]                 }, 'transcode', true]},
         { expected: true,  arguments: [{ input: 'a.png',  output: 'a.flif', frameDelay: [1]                 }, 'encode',    true]},
@@ -26,7 +25,7 @@ function test () {
         { expected: true,  arguments: [{ input: 'a.png',  output: 'a.flif', frameDelay: [100, 200, 300]     }, 'encode',    true]},
         { expected: true,  arguments: [{ input: 'a.flif', output: 'a.flif', frameDelay: [100, 200, 300]     }, 'transcode', true]},
 
-        // Test random number from 0-100 on frameDelay
+        // Test random number from 0-60000 on frameDelay
         { expected: true,  arguments: [{ input: 'a.png',  output: 'a.flif', frameDelay: [rand(60000)]       }, 'encode',    true]},
         { expected: true,  arguments: [{ input: 'a.flif', output: 'a.flif', frameDelay: [rand(60000)]       }, 'transcode', true]},
 

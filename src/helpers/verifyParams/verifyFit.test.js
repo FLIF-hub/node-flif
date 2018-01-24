@@ -68,8 +68,6 @@ function test () {
         { expected: false, arguments: [{ input: 'a.png',  output: 'a.flif', fit: 'x10'                      }, 'encode',    true]},
         { expected: false, arguments: [{ input: 'a.flif', output: 'a.png',  fit: '10x'                      }, 'decode',    true]},
         { expected: false, arguments: [{ input: 'a.png',  output: 'a.flif', fit: '10x'                      }, 'encode',    true]}
-
-        // TODO: add falses for encode/transcode of fit
     ];
 
     runAllTests(testName, 'helpers/verifyParams', testData);

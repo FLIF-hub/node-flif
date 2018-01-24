@@ -118,11 +118,6 @@ function verifyParams (params, src, skipWarnings) {
         return false;
     }
 
-
-    // TODO:
-    // 1. Add in the rest of the parameters from encode/transcode for validation
-    // 2. Ensure that encode-only params fail when passed in to transcode/decode and vice versa
-
     return true;
 }
 

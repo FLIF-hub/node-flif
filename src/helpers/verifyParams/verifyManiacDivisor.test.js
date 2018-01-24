@@ -9,7 +9,6 @@ function test () {
     }
     var testData = [
         // Test known good for maniacDivisor
-        // TODO: Find out upper/lower bounds for maniacDivisor, all I know is it allows for the number 30
         { expected: true,  arguments: [{ input: 'a.png',  output: 'a.flif', maniacDivisor: 30               }, 'encode',    true]},
         { expected: true,  arguments: [{ input: 'a.flif', output: 'a.flif', maniacDivisor: 30               }, 'transcode', true]},
         { expected: true,  arguments: [{ input: 'a.png',  output: 'a.flif', maniacDivisor: 1                }, 'encode',    true]},

@@ -10,6 +10,7 @@
 function verifyManiacMinSize (params, src, skipWarnings) {
     var warnUser = require('../warnUser.js');
     var lowerBounds = 0;
+    // The upperBounds are not defined in the FLIF source code. It only checks for if (x < 0) { throw error }
 
     if (
         params.maniacMinSize === false ||

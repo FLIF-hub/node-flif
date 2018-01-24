@@ -8,7 +8,6 @@ function test () {
     }
     var testData = [
         // Test known good for maniacMinSize
-        // TODO: Find out upper/lower bounds for maniacMinSize, all I know is it allows for the number 50
         { expected: true,  arguments: [{ input: 'a.png',  output: 'a.flif', maniacMinSize: 50               }, 'encode',    true]},
         { expected: true,  arguments: [{ input: 'a.flif', output: 'a.flif', maniacMinSize: 50               }, 'transcode', true]},
         { expected: true,  arguments: [{ input: 'a.png',  output: 'a.flif', maniacMinSize: 0                }, 'encode',    true]},

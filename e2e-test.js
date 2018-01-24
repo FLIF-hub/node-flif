@@ -82,7 +82,8 @@ var encodeAnimParams = {
         './sample/catrun06.png'
     ],
     output: './sample/encode-anim-test.flif',
-    overwrite: true
+    overwrite: true,
+    frameDelay: [0]
 };
 
 nodeFLIF.encode(encodeAnimParams, function (data) {
@@ -91,7 +92,6 @@ nodeFLIF.encode(encodeAnimParams, function (data) {
         console.log(data);
     }
 });
-
 
 // Run Libflif
 var open = require('open');

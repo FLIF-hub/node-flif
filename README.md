@@ -45,10 +45,9 @@ Linux/OSX is using [flif-wasm](https://github.com/SaschaNaz/flif-wasm), it has a
 * [ ] Add in more multi-arg tests for encode/decode/transcode
 * [ ] Create automated end-to-end testing folder that verifies tests
 * [ ] Take care of all TODO's
-  * 4 remaining:
+  * 3 remaining:
     * **encode.js.** Check `adaptive` to see if it takes 3 image paths or just 2. If 3 accept filepath or false?
     * **verifyParams.js.** Add in the rest of the parameters from encode/transcode for validation
-    * **verifyFrameDelay.test.js.** Find out upper bounds for frameDelay and max number of frames allowed.
     * **verifyResize.js.** Can you resize something less than 1px?
 * [ ] Add it to the NPM registry when at v1.0.0.
 
@@ -333,7 +332,7 @@ Transcode,         Encode | encodeQuality    | `100`             | number       
 Transcode,         Encode | effort           | `60`              | number                     | Min: `0`, Max: `100`                                                                                 | 0 = fast/poor compression, 100 = slowest/best?
 Transcode,         Encode | interlace        | `'auto'`          | boolean, 'auto'            | `true`, `false`, or `'auto'`                                                                         | Enable or disable interlacing. Auto will enable except on tiny images
 Transcode,         Encode | keepAlpha        | `false`           | boolean                    | `true`, `false`                                                                                      | Stores the original RGB data with 0 alpha (transparent)
-Transcode,         Encode | frameDelay       | `[100]`           | array of numbers           |                                                                                                      | Animation frame delay in ms. Array of number(s). (default is [100] which applies to all frames)
+Transcode,         Encode | frameDelay       | `[100]`           | array of numbers           | Numbers Min: `0`, Numbers Max `60000`. Amount of frames is limited by available memory, not a number | Animation frame delay in ms. Array of number(s). (default is [100] which applies to all frames)
 Transcode,         Encode | maxPaletteSize   | `512`             | number                     | Min: `-32000`, Max: `32000`                                                                          | Max number of colors to store in a FLIF palette. PNG/GIF use `256`. FLIF default is `512`. `0` will disable palette. Simple FLIF decoders (8-bit only) cannot palettes over `512`.
 Transcode,         Encode | colorBuckets     | `'auto'`          | boolean, 'auto'            | `true`, `false`, or `'auto'`                                                                         | Disable Color_Buckets transform
 Transcode,         Encode | channelCompact   | `true`            | boolean                    | `true`, `false`                                                                                      | Disable Channel_Compact transform

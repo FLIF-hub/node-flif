@@ -9,6 +9,8 @@
  */
 function verifyFrameDelay (params, src, skipWarnings) {
     var warnUser = require('../warnUser.js');
+    var lowerBounds = 0;
+    var upperBounds = 60000;
 
     if (
         params.frameDelay === null ||
@@ -27,10 +29,16 @@ function verifyFrameDelay (params, src, skipWarnings) {
             var item = params.frameDelay[i];
             if (
                 typeof(item) !== 'number' ||
-                item === undefined ||
-                item < 0
+                item === undefined
             ) {
                 warnUser('The frameDelay parameter must be an array of numbers like [100] or [100, 250].', skipWarnings);
+                return false;
+            }
+            if (
+                typeof(item) === 'number' && item < lowerBounds ||
+                typeof(item) === 'number' && item > upperBounds
+            ) {
+                warnUser('Numbers in the frameDelay parameter array must be a whole number between ' + lowerBounds + ' and ' + upperBounds + '.', skipWarnings);
                 return false;
             }
         }

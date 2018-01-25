@@ -29,19 +29,13 @@
     "decode"
   ],
   "dependencies": {
+    "flif-wasm": "^1.0.7",
     "root-require": "^0.3.1"
-  },
-  "darwinDependencies": {
-    "flif-wasm": "^1.0.6"
-  },
-  "linuxDependencies": {
-    "flif-wasm": "^1.0.6"
   },
   "devDependencies": {
     "eslint": "^4.16.0",
     "libflif.js": "github:SaschaNaz/libflif.js#master",
     "npm-free-server": "^1.1.0",
-    "npm-platform-dependencies": "^0.0.13",
     "open": "0.0.5",
     "pre-commit": "^1.2.2"
   },
@@ -57,7 +51,6 @@
     "url": "https://github.com/FLIF-hub/node-flif/issues"
   },
   "homepage": "https://github.com/FLIF-hub/node-flif#readme",
-  "postinstall": "npmpd",
   "pre-commit": [
     "test",
     "lint"

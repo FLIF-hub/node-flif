@@ -39,6 +39,7 @@ function verifyParams (params, src, skipWarnings) {
 
     var verifyAsync            = require('./verifyParams/verifyAsync.js')(params, src, skipWarnings);
     var verifyOverwrite        = require('./verifyParams/verifyOverwrite.js')(params, src, skipWarnings);
+    var disallowQuality        = require('./verifyParams/disallowQuality.js')(params, src, skipWarnings);
     var verifyEncodeQuality    = require('./verifyParams/verifyEncodeQuality.js')(params, src, skipWarnings);
     var verifyDecodeQuality    = require('./verifyParams/verifyDecodeQuality.js')(params, src, skipWarnings);
     var verifyKeepMetaData     = require('./verifyParams/verifyKeepMetaData.js')(params, src, skipWarnings);
@@ -47,6 +48,7 @@ function verifyParams (params, src, skipWarnings) {
     if (
         !verifyAsync ||
         !verifyOverwrite ||
+        !disallowQuality ||
         !verifyEncodeQuality ||
         !verifyDecodeQuality ||
         !verifyKeepMetaData ||

@@ -11,9 +11,6 @@ function commonDecode (params) {
     var resize = '';
     var fit = '';
 
-    if (parseInt(params.quality, 10) < 101) {
-        decodeQuality = '-q=' + parseInt(params.quality, 10);
-    }
     if (parseInt(params.decodeQuality) < 101) {
         decodeQuality = '-q=' + parseInt(params.decodeQuality);
     }

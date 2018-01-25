@@ -4,10 +4,10 @@ function test () {
     var runAllTests = require('../../testers/loopOverAllTestSets.js');
     var testName = 'commonDecode';
     var testData = [
-        { expected: '-q=0',   arguments: [{quality: 0                  }] },
-        { expected: '-q=1',   arguments: [{quality: 1                  }] },
-        { expected: '-q=50',  arguments: [{quality: 50                 }] },
-        { expected: '-q=100', arguments: [{quality: 100                }] },
+        { expected: '-q=0',   arguments: [{decodeQuality: 0            }] },
+        { expected: '-q=1',   arguments: [{decodeQuality: 1            }] },
+        { expected: '-q=50',  arguments: [{decodeQuality: 50           }] },
+        { expected: '-q=100', arguments: [{decodeQuality: 100          }] },
         { expected: '-s=1',   arguments: [{scale: 1                    }] },
         { expected: '-s=2',   arguments: [{scale: 2                    }] },
         { expected: '-s=4',   arguments: [{scale: 4                    }] },

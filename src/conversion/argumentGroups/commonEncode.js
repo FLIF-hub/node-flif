@@ -12,9 +12,6 @@ function commonEncode (params) {
     var keepAlpha = '';
     var frameDelay = '';
 
-    if (parseInt(params.quality, 10) < 101) {
-        encodeQuality = '-Q' + parseInt(params.quality, 10);
-    }
     if (parseInt(params.encodeQuality, 10) < 101) {
         encodeQuality = '-Q' + parseInt(params.encodeQuality, 10);
     }

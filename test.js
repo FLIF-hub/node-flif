@@ -19,6 +19,7 @@ var allTestsToRun = [
         require('./src/helpers/verifyParams/ensureInputOutputExist.test.js'),
         require('./src/helpers/verifyParams/verifyAsync.test.js'),
         require('./src/helpers/verifyParams/verifyOverwrite.test.js'),
+        require('./src/helpers/verifyParams/disallowQuality.test.js'),
         require('./src/helpers/verifyParams/verifyDecodeQuality.test.js'),
         require('./src/helpers/verifyParams/verifyEncodeQuality.test.js'),
         require('./src/helpers/verifyParams/verifyKeepMetaData.test.js'),

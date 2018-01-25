@@ -22,7 +22,7 @@ function test () {
                     overwrite: false,
                     effort: 0,
                     interlace: true,
-                    quality: 0,
+                    encodeQuality: 0,
                     keepAlpha: false,
                     crc: true,
                     keepMetaData: true,
@@ -90,7 +90,7 @@ function test () {
                     overwrite: true,         // -o for true
                     effort: 100,             // -E100
                     interlace: true,         // -I for true | -N for false | empty string for auto
-                    quality: 100,            // -Q100
+                    encodeQuality: 100,      // -Q100
                     keepAlpha: true,         // -K when true
                     crc: false,              // -c when false
                     keepMetaData: false,     // -m when false

@@ -46,7 +46,7 @@ function test () {
                     input: 'a.flif',
                     output: 'b.png',
                     async: false,
-                    quality: 81,
+                    decodeQuality: 81,
                     scale: 1,
                     resize: {
                         width: 200,

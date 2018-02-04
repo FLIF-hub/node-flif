@@ -45,10 +45,9 @@ Linux/OSX is using [flif-wasm](https://github.com/SaschaNaz/flif-wasm), it has a
 * [ ] Add in more multi-arg tests for encode/decode/transcode
 * [ ] Create automated end-to-end testing folder that verifies tests
 * [ ] Take care of all TODO's
-  * 3 remaining:
+  * 2 remaining:
     * **encode.js.** Check `adaptive` to see if it takes 3 image paths or just 2. If 3 accept filepath or false?
     * **verifyParams.js.** Add in the rest of the parameters from encode/transcode for validation
-    * **verifyResize.js.** Can you resize something less than 1px?
 * [ ] Add it to the NPM registry when at v1.0.0.
 
 * * *
@@ -323,8 +322,8 @@ Transcode, Decode, Encode | keepMetaData     | `true`            | boolean      
 Transcode, Decode, Encode | keepColorProfile | `true`            | boolean                    | `true`, `false`                                                                                      | Set to false to strip ICC color profile
 Transcode, Decode, Encode | keepPalette      | `false`           | boolean                    | `true`, `false`                                                                                      | Set to true to keep the existing PNG pallete.
 Transcode, Decode         | scale            | `1`               | number                     | `1`, `2`, `4`, `8`, `16`, `32`                                                                       | Lossy downscaled image at scale 1:N
-Transcode, Decode         | resize           | N/A               | object                     | Object must contain the keys of `width` and `height`, their pairs must be numbers                    | Lossy downscaled image to fit inside given Width/Height
-Transcode, Decode         | fit              | N/A               | object                     | Object must contain the keys of `width` and `height`, their pairs must be numbers                    | Lossy downscaled image to fit exactly the given Width/Height
+Transcode, Decode         | resize           | N/A               | object                     | Object must contain the keys `width` and `height`, their pairs must be whole numbers greater than 0  | Lossy downscaled image to fit inside given Width/Height
+Transcode, Decode         | fit              | N/A               | object                     | Object must contain the keys `width` and `height`, their pairs must be whole numbers greater than 0  | Lossy downscaled image to fit exactly the given Width/Height
 Transcode, Decode         | decodeQuality    | `100`             | number                     | Min: `0`, Max: `100`                                                                                 | 99 and below are lossy
 Transcode,         Encode | encodeQuality    | `100`             | number                     | Min: `0`, Max: `100`                                                                                 | 99 and below are lossy
 Transcode,         Encode | effort           | `60`              | number                     | Min: `0`, Max: `100`                                                                                 | 0 = fast/poor compression, 100 = slowest/best?

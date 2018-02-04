@@ -5,8 +5,6 @@ function test () {
     var testName = 'verifyResize';
     var testData = [
         // Test known good for resize
-        { expected: true,  arguments: [{ input: 'a.flif', output: 'a.png',  resize: {width:0,   height:0}   }, 'decode',    true] },
-        { expected: true,  arguments: [{ input: 'a.flif', output: 'a.png',  resize: {width:0,   height:0}   }, 'transcode', true] },
         { expected: true,  arguments: [{ input: 'a.flif', output: 'a.png',  resize: {width:1,   height:1}   }, 'decode',    true] },
         { expected: true,  arguments: [{ input: 'a.flif', output: 'a.png',  resize: {width:1,   height:1}   }, 'transcode', true] },
         { expected: true,  arguments: [{ input: 'a.flif', output: 'a.png',  resize: {width:10,  height:20}  }, 'decode',    true] },
@@ -20,10 +18,10 @@ function test () {
         { expected: true,  arguments: [{ input: 'a.flif', output: 'a.png',  resize: {width:1.1, height:1.1} }, 'decode',    true] },
         { expected: true,  arguments: [{ input: 'a.flif', output: 'a.png',  resize: {width:1.1, height:1.1} }, 'transcode', true] },
 
-
-
         // Test known bad for resize
         { expected: false, arguments: [{ input: 'a.flif', output: 'a.png',  resize: {width:0,   height:0}   }, 'encode',    true] },
+        { expected: false, arguments: [{ input: 'a.flif', output: 'a.png',  resize: {width:0,   height:0}   }, 'decode',    true] },
+        { expected: false, arguments: [{ input: 'a.flif', output: 'a.png',  resize: {width:0,   height:0}   }, 'transcode', true] },
         { expected: false, arguments: [{ input: 'a.flif', output: 'a.png',  resize: {width:1,   height:1}   }, 'encode',    true] },
         { expected: false, arguments: [{ input: 'a.flif', output: 'a.png',  resize: {width:10,  height:20}  }, 'encode',    true] },
         { expected: false, arguments: [{ input: 'a.flif', output: 'a.png',  resize: {width:320, height:240} }, 'encode',    true] },

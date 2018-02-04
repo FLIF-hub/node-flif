@@ -27,8 +27,8 @@ function verifyResize (params, src, skipWarnings) {
             params.resize.height === true ||
             isNaN(parseInt(params.resize.width)) ||
             isNaN(parseInt(params.resize.height)) ||
-            params.resize.width < 0 ||
-            params.resize.height < 0 ||
+            params.resize.width < 1 ||
+            params.resize.height < 1 ||
             src === 'encode'
         )
     ) {

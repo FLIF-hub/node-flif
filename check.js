@@ -44,7 +44,7 @@ console.log(encode);
 // https://github.com/FLIF-hub/FLIF/blob/v0.3/src/flif.cpp#L580
 
 // Log out true/false if file exists
-console.log(fs.existsSync('./sample/check.flif'));
+console.log('Does ./sample/check.flif exist?', fs.existsSync('./sample/check.flif'));
 
 
 // Should convert cat.flif to check.png
@@ -52,7 +52,7 @@ var decode = runCommandSync('-d ./sample/check.flif ./sample/check.png');
 console.log(decode);
 
 // Log out true/false if file exists
-console.log(fs.existsSync('./sample/check.png'));
+console.log('Does ./sample/check.png exist?', fs.existsSync('./sample/check.png'));
 
 openImage('sample\\check.png');
 

@@ -47,6 +47,11 @@ Linux/OSX is using [flif-wasm](https://github.com/SaschaNaz/flif-wasm), it has a
 * [ ] Take care of all TODO's
   * 2 remaining:
     * **encode.js.** Check `adaptive` to see if it takes 3 image paths or just 2. If 3 accept filepath or false?
+      * `flif -e -Q50 -U input.png saliency.png output.flif`
+      * Only accepts 1 input
+      * Second input is used as saliency map
+      * must use lossy encodeQuality (99 or below)
+      * encode/transcode only
     * **verifyParams.js.** Add in the rest of the parameters from encode/transcode for validation
 * [ ] Add it to the NPM registry when at v1.0.0.
 

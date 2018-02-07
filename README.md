@@ -46,12 +46,7 @@ Linux/OSX is using [flif-wasm](https://github.com/SaschaNaz/flif-wasm), it has a
 * [ ] Create automated end-to-end testing folder that verifies tests
 * [ ] Take care of all TODO's
   * 2 remaining:
-    * **encode.js.** Check `adaptive` to see if it takes 3 image paths or just 2. If 3 accept filepath or false?
-      * `flif -e -Q50 -U input.png saliency.png output.flif`
-      * Only accepts 1 input
-      * Second input is used as saliency map
-      * must use lossy encodeQuality (99 or below)
-      * encode/transcode only
+    * **encode.js.** Does `adaptive` allow for .flif file saliency maps? Can you use adaptive on transcodes?
     * **verifyParams.js.** Add in the rest of the parameters from encode/transcode for validation
 * [ ] Add it to the NPM registry when at v1.0.0.
 
@@ -348,7 +343,7 @@ Transcode,         Encode | maniacDivisor    | `30`              | number       
 Transcode,         Encode | maniacMinSize    | `50`              | number                     | Min: `0`, No Max                                                                                     | MANIAC post-pruning threshold
 Transcode,         Encode | chanceCutoff     | `2`               | number                     | Min: `1`, Max: `128`                                                                                 | Minimum chance, 0-4096
 Transcode,         Encode | chanceAlpha      | `19`              | number                     | Min: `2`, Max: `128`                                                                                 | Chance decay factor
-Transcode,         Encode | adaptive         | `false`           | boolean                    | `true`, `false`                                                                                      | True will apply an adaptive lossy encoding, 2nd input image is saliency map
+Transcode,         Encode | adaptive         | N/A               | string                     | String must be a valid path ending in one of these: `.png`, `.pnm`, `.ppm`, `.pgm`, `.pbm`, `.pam`   | Uses image path as saliency map to apply an adaptive lossy encoding, must use encodeQuality < 100 and only one input image
 Transcode,         Encode | guess            | `{}`              | object                     | Object can contain any sub-parameter of `y`, `co`, `cg`, `alpha`, or `lookback`. All are optional.   | Object containing the pixel predictors for each plane (Y, Co, Cg, Alpha, Lookback)
 Transcode,         Encode | guess.y          | `'heuristically'` | string                     | `'average'`, `'median gradient'`, `'median number'`, `'mixed'`, or `'heuristically'`                 | Pixel predictor for Y
 Transcode,         Encode | guess.co         | `'heuristically'` | string                     | `'average'`, `'median gradient'`, `'median number'`, `'mixed'`, or `'heuristically'`                 | Pixel predictor for Co

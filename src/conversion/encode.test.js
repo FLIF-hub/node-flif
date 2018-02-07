@@ -13,7 +13,7 @@ function test () {
 
         // Multi param tests
         {
-            expected: '-e -E0 -I -Q0 -F250,1000,250 -P2 -A -L10 -R20 -T256 -D10 -M1 -X50 -Z2 -G012X0 -H1 "a.png" "b.flif"',
+            expected: '-e -E0 -I -Q0 -F250,1000,250 -P2 -A -L10 -R20 -T256 -D10 -M1 -X50 -Z2 -U -G012X0 -H1 "a.png" "c.png" "b.flif"',
             arguments: [
                 {
                     input: 'a.png',
@@ -41,7 +41,7 @@ function test () {
                     maniacMinSize: 1,
                     chanceCutoff: 50,
                     chanceAlpha: 2,
-                    adaptive: false,
+                    adaptive: 'c.png',
                     guess: {
                         y: 'average',
                         co: 'median gradient',
@@ -74,14 +74,13 @@ function test () {
                     ycocg: true,             // -Y when false
                     subtractGreen: true,     // -W when false
                     frameShape: true,        // -S when false
-                    adaptive: false,         // -U
                     chromaSubsample: false   // -J
                 }
             ]
         },
         {
-            expected: '-e -c -m -p -o -k -E100 -I -Q100 -K -F100 ' +
-                '-P512 -B -C -Y -W -S -L1 -R2 -T64 -D30 -M50 -X2 -Z19 -U -G????? -J "a.png" "b.flif"',
+            expected: '-e -c -m -p -o -k -E100 -I -Q99 -K -F100 ' +
+                '-P512 -B -C -Y -W -S -L1 -R2 -T64 -D30 -M50 -X2 -Z19 -U -G????? -J "a.png" "c.png" "b.flif"',
             arguments: [
                 {
                     input: 'a.png',
@@ -90,7 +89,7 @@ function test () {
                     overwrite: true,         // -o for true
                     effort: 100,             // -E100
                     interlace: true,         // -I for true | -N for false | empty string for auto
-                    encodeQuality: 100,      // -Q100
+                    encodeQuality: 99,       // -Q99
                     keepAlpha: true,         // -K when true
                     crc: false,              // -c when false
                     keepMetaData: false,     // -m when false
@@ -109,7 +108,7 @@ function test () {
                     maniacMinSize: 50,       // -M50
                     chanceCutoff: 2,         // -X2
                     chanceAlpha: 19,         // -Z19
-                    adaptive: true,          // -U
+                    adaptive: 'c.png',       // -U "c.png"
                     guess: {                 // -G????? | -G012X? | etc.
                         y: 'heuristically',  // -G? heuristically | -G0 avg | -G1 median_grad | -G2 median_nb | -GX mixed
                         co: 'heuristically',

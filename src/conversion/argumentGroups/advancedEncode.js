@@ -69,8 +69,16 @@ function advancedEncode (params) {
     if (params.chanceAlpha) {
         chanceAlpha = '-Z' + parseInt(params.chanceAlpha);
     }
-    if (params.adaptive === true) {
+    if (params.adaptive) {
         adaptive = '-U';
+        if (Array.isArray(params.input)) {
+            params.input.push(params.adaptive);
+        } else {
+            var newInput = [];
+            newInput.push(params.input);
+            newInput.push(params.adaptive);
+            params.input = newInput;
+        }
     }
     if (params.guess) {
         var guessDefault = 'heuristically';

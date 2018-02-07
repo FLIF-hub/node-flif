@@ -77,6 +77,13 @@ function buildEncodeArgs (params, skipWarnings) {
         return false;
     }
 
+    var options = [
+        commonEncodeDecode(params),
+        commonEncode(params),
+        advancedEncode(params)
+    ].join(' ');
+
+    // Some options, like adaptive, effect the inputs, so they must run first
     var input = params.input;
     var output = params.output;
 
@@ -85,12 +92,6 @@ function buildEncodeArgs (params, skipWarnings) {
     } else {
         input = '"' + input + '"';
     }
-
-    var options = [
-        commonEncodeDecode(params),
-        commonEncode(params),
-        advancedEncode(params)
-    ].join(' ');
 
     // -e -c       -R100 -H0 "a.flif" "b.png"
     var args = '-e ' + options + ' ' + input + ' "' + output + '"';

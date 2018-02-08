@@ -107,6 +107,9 @@ function transcode (params, skipWarnings) {
     }
 
     // Required
+    var input = params.input;
+    var output = params.output;
+
     var options = [
         commonEncodeDecode(params),
         commonEncode(params),
@@ -114,18 +117,8 @@ function transcode (params, skipWarnings) {
         advancedEncode(params)
     ].join(' ');
 
-    // Some options, like adaptive, effect the inputs, so they must run first
-    var input = params.input;
-    var output = params.output;
-
-    if (Array.isArray(input)) {
-        input = '"' + input.join('" "') + '"';
-    } else {
-        input = '"' + input + '"';
-    }
-
     // -t -c -m -p -o -k -q=100 -s=2 -r=100x100 -f=100x100 "a.flif" "b.flif"
-    var args = '-t ' + options + ' ' + input + ' "' + output + '"';
+    var args = '-t ' + options + ' "' + input + '" "' + output + '"';
     // -t -c -m        -s=2   -f=100x100 "a.flif" "b.flif" ==> -t -c -m -s=2 -f=100x100 "a.flif" "b.flif"
     args = args.replace(/  +/g, ' ');
     args = args.trim();

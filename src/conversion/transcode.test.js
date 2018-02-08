@@ -12,10 +12,10 @@ function test () {
         { expected: '-t "a.flif" "b.flif"',        arguments: [{input:'a.flif', output:'b.flif', async: false                  }] },
         {
             expected: '-t ' +
-                '-c -m -p -o -k -E100 -I -Q73 -K -F100 ' +
+                '-c -m -p -o -k -E100 -I -Q100 -K -F100 ' +
                 '-q=81 -s=1 -r=200x400 -f=200x400 ' +
-                '-P512 -B -C -Y -W -S -L1 -R2 -T64 -D30 -M50 -X2 -Z19 -U -G????? -J ' +
-                '"a.flif" "c.png" "b.flif"',
+                '-P512 -B -C -Y -W -S -L1 -R2 -T64 -D30 -M50 -X2 -Z19 -G????? -J ' +
+                '"a.flif" "b.flif"',
             arguments: [
                 {
                     input: 'a.flif',
@@ -24,7 +24,7 @@ function test () {
                     overwrite: true,         // -o for true
                     effort: 100,             // -E100
                     interlace: true,         // -I for true | -N for false | empty string for auto
-                    encodeQuality: 73,       // -Q73
+                    encodeQuality: 100,      // -Q100
                     keepAlpha: true,         // -K when true
                     crc: false,              // -c when false
                     keepMetaData: false,     // -m when false
@@ -43,7 +43,6 @@ function test () {
                     maniacMinSize: 50,       // -M50
                     chanceCutoff: 2,         // -X2
                     chanceAlpha: 19,         // -Z19
-                    adaptive: 'c.png',       // -U
                     guess: {                 // -G????? | -G012X? | etc.
                         y: 'heuristically',  // -G? heuristically | -G0 avg | -G1 median_grad | -G2 median_nb | -GX mixed
                         co: 'heuristically',

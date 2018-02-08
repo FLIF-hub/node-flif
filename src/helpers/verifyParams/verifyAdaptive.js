@@ -31,6 +31,7 @@ function verifyAdaptive (params, src, skipWarnings) {
     if (
         params.adaptive === null ||
         params.adaptive === false ||
+        params.adaptive === true ||
         params.adaptive && typeof(params.input) !== 'string' && params.input.length !== 1 ||
         params.adaptive && !hasFileExtension()
     ) {
@@ -44,8 +45,11 @@ function verifyAdaptive (params, src, skipWarnings) {
         return false;
     }
 
-    if (params.adaptive && hasFileExtension() && src === 'decode') {
-        warnUser('The adaptive parameter only works on encodes and transcodes.', skipWarnings);
+    if (
+        params.adaptive && hasFileExtension() && src === 'decode' ||
+        params.adaptive && hasFileExtension() && src === 'transcode'
+    ) {
+        warnUser('The adaptive parameter only works on encodes.', skipWarnings);
         return false;
     }
 

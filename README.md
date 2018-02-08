@@ -51,8 +51,8 @@ var nodeFLIF = require('node-flif');
 var path = require('path');
 
 var encodeParams = {
-    input: path(process.cwd(), 'your-file.png'),
-    output: path(process.cwd(), 'new-file.flif')
+    input: path.join(process.cwd(), 'your-file.png'),
+    output: path.join(process.cwd(), 'new-file.flif')
 };
 nodeFLIF.encode(encodeParams, function (data) {
     console.log('Encode finished.');
@@ -69,14 +69,16 @@ var nodeFLIF = require('node-flif');
 var path = require('path');
 
 var encodeParams = {
-    input: path(process.cwd(), 'your-file.png'),
-    output: path(process.cwd(), 'new-file.flif'),
+    input: path.join(process.cwd(), 'your-file.png'),
+    output: path.join(process.cwd(), 'new-file.flif'),
     async: false
 };
 
 var data = nodeFLIF.encode(encodeParams);
 console.log('Encode finished');
-console.log(data);
+if (data) {
+    console.log(data);
+}
 ```
 
 Asynchronous decode example:
@@ -86,8 +88,8 @@ var nodeFLIF = require('node-flif');
 var path = require('path');
 
 var decodeParams = {
-    input: path(process.cwd(), 'your-file.flif'),
-    output: path(process.cwd(), 'new-file.png')
+    input: path.join(process.cwd(), 'your-file.flif'),
+    output: path.join(process.cwd(), 'new-file.png')
 };
 nodeFLIF.decode(decodeParams, function (data) {
     console.log('Decode finished.');
@@ -104,14 +106,16 @@ var nodeFLIF = require('node-flif');
 var path = require('path');
 
 var decodeParams = {
-    input: path(process.cwd(), 'your-file.flif'),
-    output: path(process.cwd(), 'new-file.png'),
+    input: path.join(process.cwd(), 'your-file.flif'),
+    output: path.join(process.cwd(), 'new-file.png'),
     async: false
 };
 
 var data = nodeFLIF.decode(decodeParams);
 console.log('Decode finished');
-console.log(data);
+if (data) {
+    console.log(data);
+}
 ```
 
 Asynchronous transcode example:
@@ -121,8 +125,8 @@ var nodeFLIF = require('node-flif');
 var path = require('path');
 
 var transcodeParams = {
-    input: path(process.cwd(), 'your-file.flif'),
-    output: path(process.cwd(), 'new-file.flif')
+    input: path.join(process.cwd(), 'your-file.flif'),
+    output: path.join(process.cwd(), 'new-file.flif')
 };
 nodeFLIF.transcode(transcodeParams, function (data) {
     console.log('Transcode finished.');
@@ -139,14 +143,16 @@ var nodeFLIF = require('node-flif');
 var path = require('path');
 
 var transcodeParams = {
-    input: path(process.cwd(), 'your-file.flif'),
-    output: path(process.cwd(), 'new-file.flif'),
+    input: path.join(process.cwd(), 'your-file.flif'),
+    output: path.join(process.cwd(), 'new-file.flif'),
     async: false
 };
 
 var data = nodeFLIF.transcode(transcodeParams);
 console.log('Transcode finished');
-console.log(data);
+if (data) {
+    console.log(data);
+}
 ```
 
 Additional API details below.

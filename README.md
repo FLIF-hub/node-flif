@@ -155,6 +155,8 @@ if (data) {
 }
 ```
 
+In the above examples the variable of `data` should be `undefined` in normal use. It will only have a value if the flif executable returns text (likely a warning or error).
+
 Additional API details below.
 
 * * *

@@ -1,11 +1,11 @@
 {
   "name": "node-flif",
-  "version": "0.2.0",
+  "version": "1.0.0",
   "flifVersion": "0.3.0",
   "description": "A Node.js wrapper for the FLIF executable.",
   "main": "index.js",
   "engines": {
-    "node": ">=4.0.0"
+    "node": ">=1.0.0"
   },
   "scripts": {
     "start": "node index.js",
@@ -26,7 +26,8 @@
     "image-compression",
     "image-conversion",
     "encode",
-    "decode"
+    "decode",
+    "convert"
   ],
   "dependencies": {
     "flif-wasm": "^1.0.7",

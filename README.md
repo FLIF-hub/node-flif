@@ -1,10 +1,6 @@
 # node-flif [![Build Status](https://travis-ci.org/FLIF-hub/node-flif.svg?branch=master)](https://travis-ci.org/FLIF-hub/node-flif)
 
-* * *
-
-# NOT READY FOR USE YET
-
-### Star & Watch for updates
+Star this repo to increase the amount of FLIF in the world.
 
 * * *
 
@@ -14,7 +10,7 @@ FLIF is a lossless image format designed with the web in mind. It has lots of gr
 
 This repository is for a Node.js module that wraps around a native executable for your platform. That executable performs the actions of encoding or decoding FLIF files. This wrapper allows you to pass in a javascript object containing your settings into a function that will create the commandline arguments for you and then run them against the executable CLI. It will also warn you if you pass in the wrong parameters or types of data.
 
-Eventually you will be able to `npm install` this module.
+* * *
 
 ### node-flif is **NOT** meant for browsers
 
@@ -38,31 +34,121 @@ Linux/OSX is using [flif-wasm](https://github.com/SaschaNaz/flif-wasm), it has a
 
 * * *
 
-## TO-DO List
+## Basic usage
 
-* [x] Create API documentation (Subject to change prior to v1.0.0)
-* [x] Create a simple wrapper that allows passing in a parameter object that will abstract out the native executable switches.
-* [ ] Add in more multi-arg tests for encode/decode/transcode
-* [ ] Create automated end-to-end testing folder that verifies tests
-* [ ] Take care of all TODO's
-  * 1 remaining:
-    * **verifyParams.js.** Add in the rest of the parameters from encode/transcode for validation
-* [ ] Add it to the NPM registry when at v1.0.0.
+Here is the basic encode, decode, transcode usage. Detailed API below.
+
+Install (requires [Node/npm](https://nodejs.org))
+
+```
+npm install --save node-flif
+```
+
+Asynchronous encode example:
+
+```js
+var nodeFLIF = require('node-flif');
+
+var encodeParams = {
+    input: 'your-file.png',
+    output: 'new-file.flif'
+};
+nodeFLIF.encode(encodeParams, function (data) {
+    console.log('Encode finished.');
+    if (data) {
+        console.log(data);
+    }
+});
+```
+
+Synchronous encode example:
+
+```js
+var nodeFLIF = require('node-flif');
+var encodeParams = {
+    input: 'your-file.png',
+    output: 'new-file.flif',
+    async: false
+};
+
+var data = nodeFlif.encode(encodeParams);
+console.log('Encode finished');
+console.log(data);
+```
+
+Asynchronous decode example:
+
+```js
+var nodeFLIF = require('node-flif');
+
+var decodeParams = {
+    input: 'your-file.flif',
+    output: 'new-file.png'
+};
+nodeFLIF.decode(decodeParams, function (data) {
+    console.log('Decode finished.');
+    if (data) {
+        console.log(data);
+    }
+});
+```
+
+Synchronous decode example:
+
+```js
+var nodeFLIF = require('node-flif');
+var decodeParams = {
+    input: 'your-file.flif',
+    output: 'new-file.png',
+    async: false
+};
+
+var data = nodeFlif.decode(decodeParams);
+console.log('Decode finished');
+console.log(data);
+```
+
+Asynchronous transcode example:
+
+```js
+var nodeFLIF = require('node-flif');
+
+var transcodeParams = {
+    input: 'your-file.flif',
+    output: 'new-file.flif'
+};
+nodeFLIF.transcode(transcodeParams, function (data) {
+    console.log('Transcode finished.');
+    if (data) {
+        console.log(data);
+    }
+});
+```
+
+Synchronous transcode example:
+
+```js
+var nodeFLIF = require('node-flif');
+var transcodeParams = {
+    input: 'your-file.flif',
+    output: 'new-file.flif',
+    async: false
+};
+
+var data = nodeFlif.transcode(transcodeParams);
+console.log('Transcode finished');
+console.log(data);
+```
+
+Additional API details below.
 
 * * *
 
-## Planned API
-
-This is still being fleshed out.
-
-:star: Done, has tests  
-:black_large_square: Done, no tests  
-:white_square_button: Started, not done  
-:white_large_square: Not Started
+## API
 
 * * *
 
-### Encode :star:
+### Encode
 
 Convert your image **to** a FLIF.
 
@@ -114,8 +200,8 @@ var encodeParams = {
 
 // By default encode is asynchronous, and can accept an optional callback.
 // If you set the async param to false and pass in a callback it will be ignored.
-nodeFLIF.encode(endcodeParams, function (data) {
-    console.log('Endcode finished.');
+nodeFLIF.encode(encodeParams, function (data) {
+    console.log('Encode finished.');
     if (data) {
         console.log(data);
     }
@@ -126,7 +212,7 @@ A note on `keepPalette`; by default, we read PNG images as 24-bit RGB or 32-bit 
 
 * * *
 
-### Decode :star:
+### Decode
 
 Convert your image **from** a FLIF.
 
@@ -169,7 +255,7 @@ nodeFLIF.decode(decodeParams, function (data) {
 
 * * *
 
-### Transcode :white_large_square:
+### Transcode
 
 Create a new FLIF from an existing FLIF with new settings.
 
@@ -197,7 +283,7 @@ nodeFLIF.transcode(transcodeParams, function (data) {
 
 * * *
 
-### Identify :star:
+### Identify
 
 Identify is a **synchronous** command that will return an `object` containing the name, dimensions, color, size, and interlace data about the image.
 
@@ -223,7 +309,7 @@ The above snippet will console log out an object similar to this:
 
 * * *
 
-### Executable Path :star:
+### Executable Path
 
 Returns a string of the internal path to the flif executable specific to your OS (win32/linux/darwin) and architecture (x86/x64).
 
@@ -242,7 +328,7 @@ var flifFullPath = path.join(process.cwd(), 'node_modules', 'node-flif', nodeFLI
 
 * * *
 
-### Breakpoints :star:
+### Breakpoints
 
 Gives you information about the breakpoints in an image to allow for truncating the file at different points. The breakpoints, or "truncation offsets", are for truncations at scales 1:8, 1:4, 1:2. This function runs **synchronously**. Non-interlaced flifs will return an empty object.
 
@@ -273,7 +359,7 @@ For non-interlaced flifs, you will get an empty object back. You can also detect
 
 * * *
 
-### Version :star:
+### Version
 
 Returns the version of node-flif and the FLIF executable as an object.
 
@@ -289,22 +375,13 @@ Here is a table of each version of Node-FLIF and the corresponding version of FL
 
 node-flif | flif  | flif-wasm
 :--       | :--   | :--
+1.0.0     | 0.3.0 | 1.0.7
 0.2.0     | 0.3.0 | 1.0.3
 0.1.0     | 0.3.0 | N/A
 
-
 * * *
 
-### Questions:
-
-I need to try to solve these on my own with the CLI, then consult documentation or Jon with any remaining questions.
-
-* Q: What are the upper/lower bounds for `-chance-alpha` (`-Z`, `chanceAlpha`), all I know is it allows for the number 19
-
-  options.alpha < 2 || options.alpha > 128
-  Not a sensible number for option -Z (try something between 2 and 128)
-
-### Documentation Table
+# Documentation Table
 
 Conversion                | Parameter        | Default           | Type                       | Allowed                                                                                              | Description
 :--                       | :--              | :--               | :--                        | :--                                                                                                  | :--
@@ -336,7 +413,7 @@ Transcode,         Encode | ycocg            | `true`            | boolean      
 Transcode,         Encode | subtractGreen    | `true`            | boolean                    | `true`, `false`                                                                                      | False will disable YCoCg and SubtractGreen transform and use GRB
 Transcode,         Encode | frameShape       | `true`            | boolean                    | `true`, `false`                                                                                      | False will disable Frame_Shape transform
 Transcode,         Encode | maxFrameLookBack | `1`               | number                     | Min: `-1`, Max: `256`                                                                                | Max number of frames for Frame_Lookback
-Transcode,         Encode | maniacRepeats    | `2`               | number                     |                                                                                                      | MANIAC learning iterations
+Transcode,         Encode | maniacRepeats    | `2`               | number                     | Min: `0`, Max: `20`                                                                                  | MANIAC learning iterations
 Transcode,         Encode | maniacThreshold  | `64`              | number                     | Min: `4`, Max: `100000`                                                                              | MANIAC tree growth split threshold, in bits saved
 Transcode,         Encode | maniacDivisor    | `30`              | number                     | Min: `1`, Max: `268435455`                                                                           | MANIAC inner node count divisor
 Transcode,         Encode | maniacMinSize    | `50`              | number                     | Min: `0`, No Max                                                                                     | MANIAC post-pruning threshold
@@ -351,3 +428,11 @@ Transcode,         Encode | guess.lookback   | `'heuristically'` | string       
 Transcode,         Encode | alphaGuess       | keepAlpha: `true` | string                     | `'average'`, `'median gradient'`, `'median neighbors'`                                               | Predictor for invisible pixels (only if keepAlpha is false). Has no default, as default is to keep the original alpha values.
 Transcode,         Encode | chromaSubsample  | `false`           | boolean                    | `true`, `false`                                                                                      | True to write an incomplete 4:2:0 chroma subsampled lossy FLIF file
 Encode                    | adaptive         | N/A               | string                     | String must be a valid path ending in one of these: `.png`, `.pnm`, `.ppm`, `.pgm`, `.pbm`, `.pam`   | Uses image path as saliency map to apply an adaptive lossy encoding. Must use encodeQuality < 100 and only one input image
+
+* * *
+
+## TO-DO List
+
+* [ ] Add in more multi-arg tests for encode/decode/transcode
+* [ ] Create automated end-to-end testing folder that verifies tests
+* [ ] Add it to the NPM registry when at v1.0.0.

@@ -41,17 +41,18 @@ Here is the basic encode, decode, transcode usage. Detailed API below.
 Install (requires [Node/npm](https://nodejs.org))
 
 ```
-npm install --save node-flif
+npm install --save flif-hub/node-flif
 ```
 
 Asynchronous encode example:
 
 ```js
 var nodeFLIF = require('node-flif');
+var path = require('path');
 
 var encodeParams = {
-    input: 'your-file.png',
-    output: 'new-file.flif'
+    input: path(process.cwd(), 'your-file.png'),
+    output: path(process.cwd(), 'new-file.flif')
 };
 nodeFLIF.encode(encodeParams, function (data) {
     console.log('Encode finished.');
@@ -65,13 +66,15 @@ Synchronous encode example:
 
 ```js
 var nodeFLIF = require('node-flif');
+var path = require('path');
+
 var encodeParams = {
-    input: 'your-file.png',
-    output: 'new-file.flif',
+    input: path(process.cwd(), 'your-file.png'),
+    output: path(process.cwd(), 'new-file.flif'),
     async: false
 };
 
-var data = nodeFlif.encode(encodeParams);
+var data = nodeFLIF.encode(encodeParams);
 console.log('Encode finished');
 console.log(data);
 ```
@@ -80,10 +83,11 @@ Asynchronous decode example:
 
 ```js
 var nodeFLIF = require('node-flif');
+var path = require('path');
 
 var decodeParams = {
-    input: 'your-file.flif',
-    output: 'new-file.png'
+    input: path(process.cwd(), 'your-file.flif'),
+    output: path(process.cwd(), 'new-file.png')
 };
 nodeFLIF.decode(decodeParams, function (data) {
     console.log('Decode finished.');
@@ -97,13 +101,15 @@ Synchronous decode example:
 
 ```js
 var nodeFLIF = require('node-flif');
+var path = require('path');
+
 var decodeParams = {
-    input: 'your-file.flif',
-    output: 'new-file.png',
+    input: path(process.cwd(), 'your-file.flif'),
+    output: path(process.cwd(), 'new-file.png'),
     async: false
 };
 
-var data = nodeFlif.decode(decodeParams);
+var data = nodeFLIF.decode(decodeParams);
 console.log('Decode finished');
 console.log(data);
 ```
@@ -112,10 +118,11 @@ Asynchronous transcode example:
 
 ```js
 var nodeFLIF = require('node-flif');
+var path = require('path');
 
 var transcodeParams = {
-    input: 'your-file.flif',
-    output: 'new-file.flif'
+    input: path(process.cwd(), 'your-file.flif'),
+    output: path(process.cwd(), 'new-file.flif')
 };
 nodeFLIF.transcode(transcodeParams, function (data) {
     console.log('Transcode finished.');
@@ -129,13 +136,15 @@ Synchronous transcode example:
 
 ```js
 var nodeFLIF = require('node-flif');
+var path = require('path');
+
 var transcodeParams = {
-    input: 'your-file.flif',
-    output: 'new-file.flif',
+    input: path(process.cwd(), 'your-file.flif'),
+    output: path(process.cwd(), 'new-file.flif'),
     async: false
 };
 
-var data = nodeFlif.transcode(transcodeParams);
+var data = nodeFLIF.transcode(transcodeParams);
 console.log('Transcode finished');
 console.log(data);
 ```
@@ -435,4 +444,5 @@ Encode                    | adaptive         | N/A               | string       
 
 * [ ] Add in more multi-arg tests for encode/decode/transcode
 * [ ] Create automated end-to-end testing folder that verifies tests
-* [ ] Add it to the NPM registry when at v1.0.0.
+* [ ] Add it to the npm registry when at v1.0.0.
+ * Wait for npm registry to allow for private emails or publishing without email verification

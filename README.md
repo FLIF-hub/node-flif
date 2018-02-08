@@ -44,7 +44,7 @@ Install (requires [Node/npm](https://nodejs.org))
 npm install --save flif-hub/node-flif
 ```
 
-Asynchronous encode example:
+**Asynchronous encode example:**
 
 ```js
 var nodeFLIF = require('node-flif');
@@ -62,7 +62,7 @@ nodeFLIF.encode(encodeParams, function (data) {
 });
 ```
 
-Synchronous encode example:
+**Synchronous encode example:**
 
 ```js
 var nodeFLIF = require('node-flif');
@@ -81,7 +81,7 @@ if (data) {
 }
 ```
 
-Asynchronous decode example:
+**Asynchronous decode example:**
 
 ```js
 var nodeFLIF = require('node-flif');
@@ -99,7 +99,7 @@ nodeFLIF.decode(decodeParams, function (data) {
 });
 ```
 
-Synchronous decode example:
+**Synchronous decode example:**
 
 ```js
 var nodeFLIF = require('node-flif');
@@ -118,7 +118,7 @@ if (data) {
 }
 ```
 
-Asynchronous transcode example:
+**Asynchronous transcode example:**
 
 ```js
 var nodeFLIF = require('node-flif');
@@ -136,7 +136,7 @@ nodeFLIF.transcode(transcodeParams, function (data) {
 });
 ```
 
-Synchronous transcode example:
+**Synchronous transcode example:**
 
 ```js
 var nodeFLIF = require('node-flif');

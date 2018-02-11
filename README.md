@@ -41,7 +41,7 @@ Here is the basic encode, decode, transcode usage. Detailed API below.
 Install (requires [Node/npm](https://nodejs.org))
 
 ```
-npm install --save flif-hub/node-flif
+npm install --save node-flif
 ```
 
 **Asynchronous encode example:**

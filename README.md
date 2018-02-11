@@ -392,6 +392,7 @@ Here is a table of each version of Node-FLIF and the corresponding version of FL
 
 node-flif | flif  | flif-wasm
 :--       | :--   | :--
+1.0.1     | 0.3.0 | 1.0.7
 1.0.0     | 0.3.0 | 1.0.7
 0.2.0     | 0.3.0 | 1.0.3
 0.1.0     | 0.3.0 | N/A

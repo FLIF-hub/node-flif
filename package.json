@@ -1,6 +1,6 @@
 {
   "name": "node-flif",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "flifVersion": "0.3.0",
   "description": "A Node.js wrapper for the FLIF executable.",
   "main": "index.js",

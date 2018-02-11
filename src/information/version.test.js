@@ -4,7 +4,7 @@ function test () {
     var runAllTests = require('../testers/loopOverAllTestSets.js');
     var testName = 'version';
     var testData = [
-        { expected: { nodeFLIF: '1.0.0', flif: '0.3.0' }, arguments: ['']  }
+        { expected: { nodeFLIF: '1.0.1', flif: '0.3.0' }, arguments: ['']  }
     ];
 
     runAllTests(testName, 'information', testData);

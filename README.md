@@ -453,5 +453,3 @@ Encode                    | adaptive         | N/A               | string       
 
 * [ ] Add in more multi-arg tests for encode/decode/transcode
 * [ ] Create automated end-to-end testing folder that verifies tests
-* [ ] Add it to the npm registry when at v1.0.0.
- * Wait for npm registry to allow for private emails or publishing without email verification

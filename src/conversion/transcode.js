@@ -16,7 +16,7 @@ var encodeParams = {
     crc: true,              // Set to false to skip verifying/adding CRC (default is true)
     keepMetaData: true,     // Set to false to strip EXIF/XMP metadata (default is true)
     keepColorProfile: true, // Set to false to strip ICC color profile (default is true)
-    keepPalette: false,     // Set to true to keep the existing PNG pallete. (default is false)
+    keepPalette: false,     // Set to true to keep the existing PNG palette. (default is false)
     frameDelay: 100,        // Pass in a single number or an array of numbers for animations. (default is 100)
     // Advanced optional encoding parameters
     maxPaletteSize: 512,    // Max number of colors to store in a FLIF palette. PNG/GIF use 256. (FLIF default is 512)

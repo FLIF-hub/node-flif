@@ -1,4 +1,5 @@
-# node-flif [![Build Status](https://travis-ci.org/FLIF-hub/node-flif.svg?branch=master)](https://travis-ci.org/FLIF-hub/node-flif)
+# node-flif
+[![Build Status](https://travis-ci.org/FLIF-hub/node-flif.svg?branch=master)](https://travis-ci.org/FLIF-hub/node-flif) ![Test Coverage: 100%](https://img.shields.io/badge/Test%20Coverage-100%25-brightgreen.svg) ![API Coverage: 100%](https://img.shields.io/badge/API%20Coverage-100%25-brightgreen.svg) ![Windows Node support >=1.0.0](https://img.shields.io/badge/Node-%3E%3D1.0.0-brightgreen.svg?logo=windows) ![Linux Node support >=8.0.0](https://img.shields.io/badge/Node-%3E%3D8.0.0-brightgreen.svg?logo=linux) ![OSX Node support >=8.0.0](https://img.shields.io/badge/Node-%3E%3D8.0.0-brightgreen.svg?logo=apple)
 
 Star this repo to increase the amount of FLIF in the world.
 

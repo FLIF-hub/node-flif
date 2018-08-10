@@ -1,21 +1,27 @@
 # node-flif
 [![Build Status](https://travis-ci.org/FLIF-hub/node-flif.svg?branch=master)](https://travis-ci.org/FLIF-hub/node-flif) ![Test Coverage: 100%](https://img.shields.io/badge/Test%20Coverage-100%25-brightgreen.svg) ![API Coverage: 100%](https://img.shields.io/badge/API%20Coverage-100%25-brightgreen.svg) ![Windows Node support >=1.0.0](https://img.shields.io/badge/Node-%3E%3D1.0.0-brightgreen.svg?logo=windows) ![Linux Node support >=8.0.0](https://img.shields.io/badge/Node-%3E%3D8.0.0-brightgreen.svg?logo=linux) ![OSX Node support >=8.0.0](https://img.shields.io/badge/Node-%3E%3D8.0.0-brightgreen.svg?logo=apple)
 
-Star this repo to increase the amount of FLIF in the world.
+A Node.js wrapper for the FLIF CLI executable.
+
+### ***Star this repo to increase the amount of FLIF in the world.***
+
+This repository is for a Node.js module that wraps around a native executable for your platform. That executable performs the actions of encoding, decoding, and transcoding FLIF files. This wrapper allows you to pass in a javascript object containing your settings into a function that will create the commandline arguments for you and then run them against the executable CLI. It will also warn you if you pass in the wrong parameters or types of data.
+
+This project fully supports 100% of the FLIF CLI features, and has 100% test coverage for all code.
 
 * * *
 
-A Node wrapper for the FLIF CLI executable.
+### Wait, what's FLIF?
 
-FLIF is a lossless image format designed with the web in mind. It has lots of great features. To learn more about the format go to [FLIF.info](http://flif.info).
-
-This repository is for a Node.js module that wraps around a native executable for your platform. That executable performs the actions of encoding or decoding FLIF files. This wrapper allows you to pass in a javascript object containing your settings into a function that will create the commandline arguments for you and then run them against the executable CLI. It will also warn you if you pass in the wrong parameters or types of data.
+FLIF is a lossless image format designed with the web in mind. FLIF outperforms other image formats for the web and has lots of great features. To learn more about the format go to [FLIF.info](http://flif.info).
 
 * * *
 
 ### node-flif is **NOT** meant for browsers
 
 Since node-flif wraps around a native executable and references the file system, it cannot be ran in a browser.
+
+Use cases for node-flif are server-side, automation scripting, and native apps.
 
 If you would like to encode/decode flif files in a browser look into other projects like:
 

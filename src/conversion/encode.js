@@ -93,9 +93,9 @@ function buildEncodeArgs (params, skipWarnings) {
         input = '"' + input + '"';
     }
 
-    // -e -c       -R100 -H0 "a.flif" "b.png"
+    // -e -c       -R100 -H0 "a.png" "b.flif"
     var args = '-e ' + options + ' ' + input + ' "' + output + '"';
-    // -e -c -R100 -H0 "a.flif" "b.png"
+    // -e -c -R100 -H0 "a.png" "b.flif"
     args = args.replace(/  +/g, ' ');
     args = args.trim();
 
